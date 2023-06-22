@@ -1,7 +1,7 @@
 <template>
   <div class="sidebar">
     <div class="logo-container">
-      <img src="../../public/assets/img/svo-academy logo.png" alt="Logo" class="logo-image">
+      <img src="/assets/img/svo-academy-logo.png" alt="Logo" class="logo-image">
       <h1 class="header-title">Education</h1>
     </div>
     <nav>
