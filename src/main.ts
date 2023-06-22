@@ -1,8 +1,11 @@
 import 'primeflex/primeflex.css';
 import 'primevue/resources/primevue.min.css';
 import 'primeicons/primeicons.css';
-import '../node_modules/prismjs/themes/prism-coy.css';
 import './assets/main.css'
+//theme
+import "primevue/resources/themes/lara-light-indigo/theme.css";     
+//core
+import "primevue/resources/primevue.min.css";
 
 import { createApp, reactive } from 'vue'
 import { createPinia } from 'pinia'
