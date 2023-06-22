@@ -137,7 +137,6 @@ export default {
   font-size: 1rem;
   display: flex;
   align-items: center;
-  color: black;
 }
 
 .header-search i {
@@ -164,13 +163,11 @@ export default {
 .profile-name {
   font-weight: bold;
   margin-right: 0.25rem;
-  color: black;
 }
 
 .pi.pi-chevron-right {
   font-size: 0.75rem;
   margin-left: 0.25rem;
-  color: black;
 }
 
 .pi.pi-chevron-down {
