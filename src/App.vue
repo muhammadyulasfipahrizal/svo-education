@@ -5,16 +5,19 @@ import HeaderLayout from './components/HeaderLayout.vue'
 </script>
 
 <template>
-  <div class="app">
-      <SidebarLayout />
+  <div id="root" class="min-h-screen flex relative lg:static surface-ground">
+    <SidebarLayout />
+    <div id="content-container" class="min-h-screen flex flex-column relative flex-auto">
       <HeaderLayout />
       <RouterView />
+    </div>
   </div>
 </template>
 
 
-<style scoped>
-.app {
-  display: flex;
+<style scope>
+#content-container{
+  width: calc(100vw - 300px);
+  background-color: white;
 }
 </style>

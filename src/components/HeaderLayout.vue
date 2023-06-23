@@ -1,76 +1,75 @@
 <template>
-  <div class="header">
-    <div class="header-left">
-      <div class="filter-dropdown">
-        <button class="filter-toggle" @click="toggleFilter">
-          <span class="filter-text">Filter</span>
-          <i class="pi pi-chevron-down smaller-chevron"></i>
-        </button>
-        <div class="filter-options" :class="{ open: showFilterOptions }">
-          <ul>
-            <li>option</li>
-            <li>option</li>
-            <li>option</li>
-          </ul>
+  <div id="app-header"
+    class="flex justify-content-between align-items-center px-5 surface-0 surface-border relative lg:static">
+    <div class="flex">
+      <div class="card flex justify-content-center">
+        <Dropdown v-model="selectedFilter" :options="filterData" optionLabel="name" placeholder="FILTER"
+          class="w-full md:w-14rem filter-toggle"></Dropdown>
+      </div>
+    </div>
+    <ul
+      class="list-right list-none p-0 m-0 hidden lg:flex lg:align-items-center select-none lg:flex-row surface-section border-1 lg:border-none surface-border right-0 top-100 z-1 shadow-2 lg:shadow-none absolute lg:static">
+      <li>
+        <div class="card flex flex-wrap justify-content-center gap-3">
+          <span class="p-input-icon-left">
+            <i class="pi pi-search"></i>
+            <InputText v-model="search" placeholder="Search" class="border-none search" />
+          </span>
         </div>
-      </div>
-    </div>
-    <div class="header-right">
-      <div class="header-search">
-        <i class="pi pi-search"></i>
-        <input type="text" class="search-input" placeholder="Search...  |" v-model="searchQuery" @keyup.enter="performSearch" />
-      </div>
-      <div class="header-icon">
-        <i class="pi pi-calendar"></i>
-      </div>
-      <div class="header-icon">
-        <i class="pi pi-bell"></i>
-      </div>
-      <div class="header-icon">
-        <i class="pi pi-shopping-cart"></i>
-      </div>
-      <div class="header-profile">
-        <img src="../../public/assets/img/admin-profile-image.png" alt="Profile" class="profile-image" />
-        <span class="profile-name">Tracey Tam</span>
-        <i class="pi pi-chevron-right"></i>
-      </div>
-    </div>
+      </li>
+      <li>
+        <div class="v-border"></div>
+      </li>
+      <li><a
+          class="flex p-3 lg:px-3 lg:py-2 align-items-center text-600 hover:text-900 hover:surface-100 font-medium border-round cursor-pointer transition-duration-150 transition-colors p-ripple"><i
+            class="pi pi-calendar text-base lg:text-2xl mr-2 lg:mr-0"></i><span
+            class="block lg:hidden font-medium">Inbox</span><span class="p-ink" role="presentation"></span></a></li>
+      <li><a
+          class="flex p-3 lg:px-3 lg:py-2 align-items-center text-600 hover:text-900 hover:surface-100 font-medium border-round cursor-pointer transition-duration-150 transition-colors p-ripple">
+          <i class="pi pi-bell text-base lg:text-2xl mr-2 lg:mr-0 p-overlay-badge"></i><span
+            class="block lg:hidden font-medium">Notifications</span><span class="p-ink" role="presentation"></span></a>
+      </li>
+      <li><a
+          class="flex p-3 lg:px-3 lg:py-2 align-items-center text-600 hover:text-900 hover:surface-100 font-medium border-round cursor-pointer transition-duration-150 transition-colors p-ripple"><i
+            class="pi pi-shopping-cart text-base lg:text-2xl mr-2 lg:mr-0 p-overlay-badge"></i><span
+            class="block lg:hidden font-medium">Notifications</span><span class="p-ink" role="presentation"></span></a>
+      </li>
+      <li class="border-top-1 surface-border lg:border-top-none">
+        <a
+          class="flex p-3 lg:px-3 lg:py-2 gap-1 align-items-center hover:surface-100 font-medium border-round cursor-pointer transition-duration-150 transition-colors p-ripple"><img
+            src="/assets/img/admin-profile-image.png" class="mr-3 lg:mr-0" style="width: 32px; height: 32px;">
+          <div class="block">
+            <div class="text-900 text-black font-medium">John Toson</div>
+          </div>
+          <i class="pi pi-angle-right"></i>
+          <span class="p-ink" role="presentation" style="height: 64px; width: 64px; top: -7.5px; left: -1px;"></span>
+        </a>
+      </li>
+    </ul>
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      showFilterOptions: false,
-      searchQuery: ''
-    };
-  },
-  methods: {
-    toggleFilter() {
-      this.showFilterOptions = !this.showFilterOptions;
-    },
-    performSearch() {
-      // Perform search logic based on the searchQuery value
-      console.log('Search query:', this.searchQuery);
-    }
-  }
-};
+<script setup lang="ts">
+import Dropdown from 'primevue/dropdown';
+import { ref, onMounted } from "vue";
+
+const selectedFilter = ref();
+const filterData = ref([
+  { name: 'New York', code: 'NY' },
+  { name: 'Rome', code: 'RM' },
+  { name: 'London', code: 'LDN' },
+  { name: 'Istanbul', code: 'IST' },
+  { name: 'Paris', code: 'PRS' }
+]);
+const search = ref();
+onMounted(() => {
+
+})
 </script>
 
-<style scoped>
-.header {
-  position: fixed;
-  top: 0;
-  left: 20%;
-  width: 80%;
-  height: 10%;
-  padding: 0.5rem 1rem;
-  background-color: #fff;
-  z-index: 9999;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+<style>
+#app-header {
+  height: 60px;
 }
 
 .header-left {
@@ -84,14 +83,25 @@ export default {
 }
 
 .filter-toggle {
-  border: none;
-  border-radius: 5px;
-  background-color: #006785;
+  background: #006785;
+  border-radius: 6px;
   color: white;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  padding: 0.5rem;
+  height: 32px;
+}
+
+.filter-toggle>.p-dropdown-label {
+  color: white !important;
+  padding: 5px 10px 5px 10px;
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.filter-toggle>.p-dropdown-trigger svg path {
+  fill: white;
 }
 
 .filter-toggle i {
@@ -148,10 +158,14 @@ export default {
   align-items: center;
 }
 
-.search-input {
+.search {
   border: none;
-  max-width: 70px;
+  width: 110px;
   outline: none;
+  transition: width 300ms ease-in-out;
+}
+.search:focus{
+  width: 400px;
 }
 
 .profile-image {
@@ -172,5 +186,15 @@ export default {
 
 .pi.pi-chevron-down {
   font-size: 0.75rem;
+}
+
+.list-right {
+  height: 32px;
+}
+
+.v-border {
+  height: 32px;
+  width: 1px;
+  border-left: 1px solid #2C52A51A;
 }
 </style>
