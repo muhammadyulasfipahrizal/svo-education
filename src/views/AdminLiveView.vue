@@ -33,8 +33,8 @@
               <div class="card-data">
                 <img :src="profileImage" alt="Profile" class="card-profile" />
                 <div class="card-info">
-                  <p class="card-title">{{ url.title }}</p>
-                  <p>by <span>{{ url.instructor }}</span></p>
+                  <p class="card-title">{{ url.details.title }}</p>
+                  <p>by <span>{{ url.details.instructor }}</span></p>
                 </div>
               </div>
             </div>
@@ -53,18 +53,30 @@
             <p>Or</p>
             <p class="modal-select-file">Select File</p>
           </label>
-          <video v-else :src="selectedVideo"></video>
+          <video v-else :src="selectedVideo" class="modal-video"></video>
           <p class="max-file-size">Maximum file size: 8 MB</p>
         </div>
         <h3 class="live-video-details">Live Video Details</h3>
         <div class="profile-section">
-          <img :src="profileImage" alt="Profile" class="modal-profile" @click="changeProfileImage" />
-        </div>
+          <input 
+            type="file"
+            ref="fileInput"
+            accept="image/*"
+            style="display: none"
+            @change="handleImageChange"
+          />
+          <img
+            :src="profileImage"
+            alt="Profile"
+            class="modal-profile"
+            @click="changeProfileImage"
+          />
+        </div>        
         <div class="details-section">
-          <input v-model="videoDetails.title" type="text" placeholder="Title" class="title-input" />
+          <input v-model="currentCard.details.title" type="text" placeholder="Title" class="title-input" />
           <div class="instructor-section">
             <p>by</p>
-            <select v-model="videoDetails.instructor" class="instructor-dropdown">
+            <select v-model="currentCard.details.instructor" class="instructor-dropdown">
               <option value="Instructor 1">Instructor 1</option>
               <option value="Instructor 2">Instructor 2</option>
               <option value="Instructor 3">Instructor 3</option>
@@ -84,12 +96,16 @@ export default {
       videoUrls: [],
       showModal: false,
       profileImage: "../../public/assets/img/admin-profile-image.png",
-      videoDetails: {
-        title: "",
-        instructor: "Instructor 1",
+      currentCard: {
+        index: null,
+        details: {
+          title: "",
+          instructor: "Instructor 1",
+        },
       },
       uploadedVideoFile: null,
       selectedVideo: null,
+      imageInput: null,
     };
   },
   methods: {
@@ -98,11 +114,14 @@ export default {
       this.uploadedVideoFile = null;
 
       if (index !== null) {
-        this.videoDetails.title = this.videoUrls[index].title;
-        this.videoDetails.instructor = this.videoUrls[index].instructor;
+        this.currentCard.index = index;
+        this.currentCard.details.title = this.videoUrls[index].details.title;
+        this.currentCard.details.instructor = this.videoUrls[index].details.instructor;
+        this.selectedVideo = this.videoUrls[index].url;
       } else {
-        this.videoDetails.title = "";
-        this.videoDetails.instructor = "Instructor 1";
+        this.currentCard.index = null;
+        this.currentCard.details.title = "";
+        this.currentCard.details.instructor = "Instructor 1";
       }
 
       this.$nextTick(() => {
@@ -115,7 +134,10 @@ export default {
       });
     },
     addVideoUrl() {
-      const newVideoUrl = { url: URL.createObjectURL(this.uploadedVideoFile) };
+      const newVideoUrl = {
+        url: URL.createObjectURL(this.uploadedVideoFile),
+        details: { ...this.currentCard.details },
+      };
       this.videoUrls.unshift(newVideoUrl);
     },
     handleFileChange(event) {
@@ -124,11 +146,28 @@ export default {
       this.selectedVideo = URL.createObjectURL(file);
     },
     changeProfileImage() {
-      // change profile
+      const fileInput = this.$refs.fileInput;
+      if (fileInput) {
+        fileInput.click();
+      }
+    },
+    handleImageChange(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          this.profileImage = e.target.result;
+        };
+        reader.readAsDataURL(file);
+        this.imageInput = file;
+      }
     },
     closeModal(event) {
       if (event.target.classList.contains('modal')) {
         this.showModal = false;
+        this.selectedVideo = null;
+        this.currentCard.details.title = "";
+        this.currentCard.details.instructor = "Instructor 1";
       }
     },
     addEmptyCard() {
@@ -136,11 +175,12 @@ export default {
       this.videoUrls.push(newEmptyCardItem);
     },
     saveVideo() {
-      if (this.videoDetails.title && this.uploadedVideoFile) {
+      if (this.currentCard.details.title && this.uploadedVideoFile) {
         this.showModal = false;
         this.addVideoUrl();
-        this.videoUrls[0].title = this.videoDetails.title;
-        this.videoUrls[0].instructor = this.videoDetails.instructor;
+        this.currentCard.details.title = "";
+        this.currentCard.details.instructor = "Instructor 1";
+        this.selectedVideo = null;
 
         if (this.videoUrls.length === 1) {
           this.addEmptyCard();
@@ -150,6 +190,7 @@ export default {
   },
 };
 </script>
+
 
 <style scoped>
 .admin-live-view {
@@ -321,6 +362,11 @@ export default {
 .modal-profile {
   width: 50px;
   height: 50px;
+}
+
+.modal-video {
+  max-width: 600px;
+  max-height: 500px;
 }
 
 .upload-label {
