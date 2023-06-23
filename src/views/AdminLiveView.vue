@@ -7,18 +7,18 @@
           <h3 class="upload-text">Add more live event</h3>
         </div>
         <div class="video-container" v-else>
-          <video class="uploaded-video-header" :src="videoUrls[0].url" controls></video>
+          <video width="1180" height="500" :src="videoUrls[0].url" controls></video>
         </div>
       </div>
       <div class="card-row">
-        <div v-for="(url, index) in videoUrls" :key="index" class="card-item" @click="openModal(index)">
+        <div v-for="(url, index) in videoUrls" :key="index" class="card-item" @click="openModal(null)">
           <div class="card-video">
             <div v-if="!url" class="card-content">
               <i class="pi pi-fw pi-plus-circle upload-icon"></i>
               <h3 class="upload-text">Add more live event</h3>
             </div>
             <div class="video-container" v-else>
-              <video :class="[index === 0 ? 'uploaded-video-header' : 'uploaded-video']" :src="url.url" controls></video>
+              <video width="380" height="235"   :src="url.url" controls></video>
               <div class="card-footer">
                 <div class="card-icon">
                   <i class="pi pi-fw pi-circle-on live-icon"></i>
@@ -36,6 +36,11 @@
                     <p class="card-title">{{ url.details.title }}</p>
                     <p>by <span>{{ url.details.instructor }}</span></p>
                   </div>
+                </div>
+                <div class="card-icon">
+                  <p>Event 1</p>
+                  <i @click="openModal" class="pi pi-fw pi-user-edit"></i>
+                  <i @click="deleteCard" class="pi pi-fw pi-user-edit"></i>
                 </div>
               </div>
             </div>
@@ -237,20 +242,7 @@
 
 .video-container {
   position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.uploaded-video-header {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.uploaded-video {
-  width: 100%;
-  height: 73%;
-  object-fit: cover;
+  overflow: hidden;
 }
 
 .card-footer {
@@ -364,8 +356,9 @@
 }
 
 .modal-video {
-  max-width: 600px;
-  max-height: 500px;
+  width: 100%;
+  height: 400px;
+  object-fit: fill;
 }
 
 .upload-label {
