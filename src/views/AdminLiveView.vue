@@ -11,14 +11,14 @@
         </div>
       </div>
       <div class="card-row">
-        <div v-for="(url, index) in videoUrls" :key="index" class="card-item" @click="openModal(null)">
+        <div v-for="(url, index) in videoUrls" :key="index" class="card-item" @click="openModal(index)">
           <div class="card-video">
             <div v-if="!url" class="card-content">
               <i class="pi pi-fw pi-plus-circle upload-icon"></i>
               <h3 class="upload-text">Add more live event</h3>
             </div>
             <div class="video-container" v-else>
-              <video width="380" height="235"   :src="url.url" controls></video>
+              <video width="380" height="235" :src="url.url" controls></video>
               <div class="card-footer">
                 <div class="card-icon">
                   <i class="pi pi-fw pi-circle-on live-icon"></i>
@@ -37,10 +37,10 @@
                     <p>by <span>{{ url.details.instructor }}</span></p>
                   </div>
                 </div>
-                <div class="card-icon">
-                  <p>Event 1</p>
+                <div class="card-util">
+                  <p>Event {{ eventCounter + index }}</p>
                   <i @click="openModal" class="pi pi-fw pi-user-edit"></i>
-                  <i @click="deleteCard" class="pi pi-fw pi-user-edit"></i>
+                  <i @click="deleteCard(index)" class="pi pi-fw pi-code"></i>
                 </div>
               </div>
             </div>
@@ -111,6 +111,7 @@
         uploadedVideoFile: null,
         selectedVideo: null,
         imageInput: null,
+        eventCounter: 1,
       };
     },
     methods: {
@@ -144,6 +145,10 @@
           details: { ...this.currentCard.details },
         };
         this.videoUrls.unshift(newVideoUrl);
+        this.eventCounter++;
+      },
+      deleteCard(index) {
+        this.videoUrls.splice(index, 1);
       },
       handleFileChange(event) {
         const file = event.target.files[0];
@@ -293,6 +298,17 @@
   display: flex;
   align-items: center;
   margin-right: 10px;
+}
+
+.card-util {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.card-util i {
+  margin: 0 10px;
 }
 
 .card-data {
