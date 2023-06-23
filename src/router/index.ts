@@ -7,14 +7,21 @@ const router = createRouter({
       path: '/dashboard',
       name: 'dashboard',
       component: () => import('../views/DashboardView.vue')
-  },
+    },
     {
-      path: '/live',
+      path: '/admin/live',
       name: 'live',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import('../views/AdminLiveView.vue')
+    },
+    {
+      path: '/admin/event',
+      name: 'admin-event',
+      component: () => import('../views/Admin/AdminEvent/AdminEvent.vue')
+    },
+    {
+      path: '/admin/event-detail/:id',
+      name: 'admin-event-detail',
+      component: () => import('../views/Admin/AdminEvent/AdminEventDetail/AdminEventDetail.vue')
     }
   ]
 })
