@@ -56,7 +56,7 @@ import ToggleButton from 'primevue/togglebutton';
 import Tooltip from 'primevue/tooltip';
 import Toast from 'primevue/toast';
 import ToastService from 'primevue/toastservice';
-// import BlockViewer from './components/blockviewer/BlockViewer.vue';
+import { setupCalendar } from 'v-calendar';
 
 const app = createApp(App)
 
@@ -64,6 +64,7 @@ app.use(createPinia())
 app.use(PrimeVue, { ripple: true });
 app.use(ToastService);
 app.use(router)
+app.use(setupCalendar, {})
 
 app.config.globalProperties.$appState = reactive({ theme: 'lara-light-indigo', dark: false });
 app.component('Accordion', Accordion);
