@@ -67,7 +67,7 @@ onMounted(() => {
 })
 </script>
 
-<style>
+<style scoped lang="scss">
 #app-header {
   height: 60px;
 }
@@ -82,31 +82,32 @@ onMounted(() => {
   margin-left: 0.25rem;
 }
 
-.filter-toggle {
+::v-deep(.filter-toggle) {
   background: #006785;
   border-radius: 6px;
   color: white;
   height: 32px;
+
+  .p-dropdown-label {
+    color: white !important;
+    padding: 5px 10px 5px 10px;
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+
+  .p-dropdown-trigger svg path {
+    fill: white;
+  }
+
+  i {
+    margin: 0 0.5rem;
+  }
 }
 
-.filter-toggle>.p-dropdown-label {
-  color: white !important;
-  padding: 5px 10px 5px 10px;
-  font-family: Inter;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 19px;
-  letter-spacing: 0em;
-  text-align: left;
-}
-
-.filter-toggle>.p-dropdown-trigger svg path {
-  fill: white;
-}
-
-.filter-toggle i {
-  margin: 0 0.5rem;
-}
 
 .filter-text {
   margin-left: 0.2rem;
@@ -164,7 +165,8 @@ onMounted(() => {
   outline: none;
   transition: width 300ms ease-in-out;
 }
-.search:focus{
+
+.search:focus {
   width: 400px;
 }
 

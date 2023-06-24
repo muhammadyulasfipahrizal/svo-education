@@ -1,209 +1,234 @@
+<script setup lang="ts">
+import { ref, nextTick } from 'vue';
+
+interface VideoUrl {
+  url: string;
+  details: {
+    title: string;
+    instructor: string;
+  };
+}
+
+interface CurrentCard {
+  index: number | null;
+  details: {
+    title: string;
+    instructor: string;
+  };
+}
+
+const videoUrls = ref<VideoUrl[]>([]);
+const showModal = ref(false);
+const profileImage = ref("/assets/img/admin-profile-image.png");
+const currentCard = ref<{ index: number | null; details: { title: string; instructor: string }; }>({
+  index: null,
+  details: {
+    title: "",
+    instructor: "Instructor 1",
+  },
+});
+const uploadedVideoFile = ref<File | null>(null);
+const selectedVideo = ref<string | null>(null);
+const imageInput = ref<File | null>(null);
+
+const openModal = (index: number | null): void => {
+  showModal.value = true;
+  uploadedVideoFile.value = null;
+
+  if (index !== null) {
+    currentCard.value = {
+      ...currentCard.value,
+      details: {
+        ...currentCard.value.details,
+        title: videoUrls.value[index].details.title,
+        instructor: videoUrls.value[index].details.instructor
+      },
+      index: index
+    };
+    selectedVideo.value = videoUrls.value[index].url;
+  } else {
+    currentCard.value.index = null;
+    currentCard.value.details.title = "";
+    currentCard.value.details.instructor = "Instructor 1";
+  }
+
+  nextTick(() => {
+    if (index !== null) {
+      const cardTitleInput = document.querySelector(`.card-item:nth-child(${index + 1}) .title-input`);
+      if (cardTitleInput instanceof HTMLElement) {
+        cardTitleInput.focus();
+      }
+    }
+  });
+};
+
+const handleFileChange = (event: Event): void => {
+  const target = event.target as HTMLInputElement;
+  const file = target.files?.[0];
+  if (file) {
+    uploadedVideoFile.value = file;
+    selectedVideo.value = URL.createObjectURL(file);
+  }
+};
+
+const changeProfileImage = (): void => {
+  const fileInput = document.querySelector<HTMLInputElement>('#fileInput');
+  if (fileInput) {
+    fileInput.click();
+  }
+};
+
+const handleImageChange = (event: Event): void => {
+  const target = event.target as HTMLInputElement;
+  const file = target.files?.[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      profileImage.value = e.target?.result as string;
+    };
+    reader.readAsDataURL(file);
+    imageInput.value = file;
+  }
+};
+
+const closeModal = (event: Event): void => {
+  const target = event.target as HTMLElement;
+  if (target.classList.contains('modal')) {
+    showModal.value = false;
+    selectedVideo.value = null;
+    currentCard.value.details.title = "";
+    currentCard.value.details.instructor = "Instructor 1";
+  }
+};
+
+const saveVideo = (): void => {
+  if (currentCard.value.details.title && uploadedVideoFile.value) {
+    showModal.value = false;
+    const newVideoUrl: VideoUrl = {
+      url: URL.createObjectURL(uploadedVideoFile.value),
+      details: currentCard.value.details,
+    };
+
+    videoUrls.value = [...videoUrls.value, newVideoUrl]
+    currentCard.value = {
+      ...currentCard.value,
+      details: {
+        title: '',
+        instructor: ''
+      }
+    }
+    selectedVideo.value = null;
+    instructorNew.value = '';
+  }
+};
+
+const deleteCard = (index: number) => {
+  //
+}
+
+const instructors = ref([
+  { name: 'Instructor 1', code: '001' },
+  { name: 'Instructor 2', code: '002' },
+  { name: 'Instructor 3', code: '003' },
+  { name: 'Instructor 4', code: '001' },
+])
+
+const instructorNew = ref();
+</script>
+
 <template>
-    <div class="admin-live-view">
-      <h1>Live video for you</h1>
-      <div class="card-header" @click="openModal(null)">
-        <div v-if="!videoUrls[0]" class="card-content">
-          <i class="pi pi-fw pi-plus-circle upload-icon"></i>
-          <h3 class="upload-text">Add more live event</h3>
-        </div>
-        <div class="video-container" v-else>
-          <video width="1180" height="500" :src="videoUrls[0].url" controls></video>
-        </div>
+  <section class="admin-live-view flex px-5 flex-column gap-3 mb-5">
+    <h1>Live video for you</h1>
+    <div class="border-1 surface-border surface-0 mb-3" @click="openModal(null)">
+      <div v-if="!videoUrls[0]" class="p-5 flex justify-content-center align-items-center h-30rem cursor-pointer">
+        <i class="pi pi-fw pi-plus-circle upload-icon"></i>
+        <h3 class="upload-text">Add more live event</h3>
       </div>
-      <div class="card-row">
-        <div v-for="(url, index) in videoUrls" :key="index" class="card-item" @click="openModal(null)">
-          <div class="card-video">
-            <div v-if="!url" class="card-content">
-              <i class="pi pi-fw pi-plus-circle upload-icon"></i>
-              <h3 class="upload-text">Add more live event</h3>
+      <div class="flex justify-content-center align-items-center w-full" v-else>
+        <video height="500" :src="videoUrls[0].url" controls></video>
+      </div>
+    </div>
+    <div class="grid gap-5 w-full">
+      <div v-for="(video, index) in videoUrls" :key="index" class="col-4 border-1 border-round-xl border-300">
+        <div class="card-video">
+          <div class="flex flex-column gap-2">
+            <div class="flex gap-2 justify-content-center align-items-center">
+              <p class="text-sm font-bold">Event 1</p>
+              <Button icon="pi pi-pencil" size="small" @click="openModal(index)" link></Button>
+              <Button icon="pi pi-trash" size="small" @click="deleteCard(index)" link></Button>
             </div>
-            <div class="video-container" v-else>
-              <video width="380" height="235"   :src="url.url" controls></video>
-              <div class="card-footer">
-                <div class="card-icon">
-                  <i class="pi pi-fw pi-circle-on live-icon"></i>
-                  <div class="view-count">
-                    <i class="pi pi-fw pi-eye"></i>
-                    <span class="view-count-text">92</span>
-                  </div>
-                  <i class="pi pi-fw pi-thumbs-up like-icon"></i>
-                  <i class="pi pi-fw pi-heart love-icon"></i>
-                  <p>42k</p>
+            <video height="235" :src="video.url" controls></video>
+            <div class="">
+              <div class="flex align-items-center">
+                <!-- live icon -->
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M5.28544 4.11517C5.61088 4.44061 5.61088 4.96825 5.28544 5.29368C2.68111 7.89802 2.68111 12.1205 5.28544 14.7248C5.61088 15.0502 5.61088 15.5779 5.28544 15.9033C4.96001 16.2288 4.43237 16.2288 4.10693 15.9033C0.851725 12.6481 0.851725 7.37038 4.10693 4.11517C4.43237 3.78973 4.96001 3.78973 5.28544 4.11517ZM15.8951 4.11517C19.1503 7.37038 19.1503 12.6481 15.8951 15.9033C15.5696 16.2288 15.042 16.2288 14.7166 15.9033C14.3911 15.5779 14.3911 15.0502 14.7166 14.7248C17.3209 12.1205 17.3209 7.89802 14.7166 5.29368C14.3911 4.96825 14.3911 4.44061 14.7166 4.11517C15.042 3.78973 15.5696 3.78973 15.8951 4.11517ZM7.75765 6.50965C8.08309 6.83509 8.08309 7.36273 7.75765 7.68816C6.48185 8.96396 6.48185 11.0324 7.75765 12.3082C8.08309 12.6337 8.08309 13.1613 7.75765 13.4868C7.43222 13.8122 6.90458 13.8122 6.57914 13.4868C4.65247 11.5601 4.65247 8.43633 6.57914 6.50965C6.90458 6.18421 7.43222 6.18421 7.75765 6.50965ZM13.5563 6.50965C15.4829 8.43633 15.4829 11.5601 13.5563 13.4868C13.2308 13.8122 12.7032 13.8122 12.3777 13.4868C12.0523 13.1613 12.0523 12.6337 12.3777 12.3082C13.6535 11.0324 13.6535 8.96396 12.3777 7.68816C12.0523 7.36273 12.0523 6.83509 12.3777 6.50965C12.7032 6.18421 13.2308 6.18421 13.5563 6.50965ZM10.0677 8.8175C10.7581 8.8175 11.3177 9.37715 11.3177 10.0675C11.3177 10.7579 10.7581 11.3175 10.0677 11.3175C9.37734 11.3175 8.8177 10.7579 8.8177 10.0675C8.8177 9.37715 9.37734 8.8175 10.0677 8.8175Z"
+                    fill="#BE2F00" />
+                </svg>
+                <div class="view-count ml-2">
+                  <i class="pi pi-fw pi-eye"></i>
+                  <span class="view-count-text">92</span>
                 </div>
-                <div class="card-data">
-                  <img :src="profileImage" alt="Profile" class="card-profile" />
-                  <div class="card-info">
-                    <p class="card-title">{{ url.details.title }}</p>
-                    <p>by <span>{{ url.details.instructor }}</span></p>
-                  </div>
-                </div>
-                <div class="card-icon">
-                  <p>Event 1</p>
-                  <i @click="openModal" class="pi pi-fw pi-user-edit"></i>
-                  <i @click="deleteCard" class="pi pi-fw pi-user-edit"></i>
+                <Button icon="pi pi-thumbs-up" size="small" link></Button>
+                <Button icon="pi pi-heart" size="small" link></Button>
+                <p class="text-sm font-900">42k</p>
+              </div>
+              <div class="card-data">
+                <img src="/assets/img/instructor.png" alt="Profile" class="card-profile" />
+                <div class="card-info">
+                  <p class="card-title">{{ video.details?.title }}</p>
+                  <p>by <span>{{ video.details?.instructor }}</span></p>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <!-- Modal -->
-      <div v-if="showModal" class="modal" @click="closeModal">
-        <div class="modal-content" @click.stop>
-          <h2>Upload A New Video</h2>
-          <div class="upload-section">
-            <label class="upload-label" v-if="!selectedVideo">
-              <input class="modal-input" ref="fileInput" type="file" accept="video/*" style="display: none" @change="handleFileChange" />
-              <span class="modal-upload-text">Drop Files Here</span>
-              <p>Or</p>
-              <p class="modal-select-file">Select File</p>
-            </label>
-            <video v-else :src="selectedVideo" class="modal-video"></video>
-            <p class="max-file-size">Maximum file size: 8 MB</p>
+      <!-- ADD NEW VIDEO -->
+      <div class="col-4 border-1 border-round-xl border-300 flex justify-content-center align-items-center"
+        v-if="videoUrls.length > 0" @click="openModal(null)">
+        <div class="card-video">
+          <div class="card-content">
+            <i class="pi pi-fw pi-plus-circle upload-icon"></i>
+            <h3 class="upload-text">Add more live event</h3>
           </div>
-          <h3 class="live-video-details">Live Video Details</h3>
-          <div class="profile-section">
-            <input 
-              type="file"
-              ref="fileInput"
-              accept="image/*"
-              style="display: none"
-              @change="handleImageChange" 
-            />
-            <img
-              :src="profileImage"
-              alt="Profile"
-              class="modal-profile"
-              @click="changeProfileImage"
-            />
-          </div>        
-          <div class="details-section">
-            <input v-model="currentCard.details.title" type="text" placeholder="Title" class="title-input" />
-            <div class="instructor-section">
-              <p>by</p>
-              <select v-model="currentCard.details.instructor" class="instructor-dropdown">
-                <option value="Instructor 1">Instructor 1</option>
-                <option value="Instructor 2">Instructor 2</option>
-                <option value="Instructor 3">Instructor 3</option>
-              </select>
-            </div>
-          </div>
-          <button class="save-button" @click="saveVideo">Save</button>
         </div>
       </div>
     </div>
-  </template>
-  
-  <script>
-  export default {
-    data() {
-      return {
-        videoUrls: [],
-        showModal: false,
-        profileImage: "../../public/assets/img/admin-profile-image.png",
-        currentCard: {
-          index: null,
-          details: {
-            title: "",
-            instructor: "Instructor 1",
-          },
-        },
-        uploadedVideoFile: null,
-        selectedVideo: null,
-        imageInput: null,
-      };
-    },
-    methods: {
-      openModal(index) {
-        this.showModal = true;
-        this.uploadedVideoFile = null;
-  
-        if (index !== null) {
-          this.currentCard.index = index;
-          this.currentCard.details.title = this.videoUrls[index].details.title;
-          this.currentCard.details.instructor = this.videoUrls[index].details.instructor;
-          this.selectedVideo = this.videoUrls[index].url;
-        } else {
-          this.currentCard.index = null;
-          this.currentCard.details.title = "";
-          this.currentCard.details.instructor = "Instructor 1";
-        }
-  
-        this.$nextTick(() => {
-          if (index !== null) {
-            const cardTitleInput = document.querySelector(`.card-item:nth-child(${index + 1}) .title-input`);
-            if (cardTitleInput) {
-              cardTitleInput.focus();
-            }
-          }
-        });
-      },
-      addVideoUrl() {
-        const newVideoUrl = {
-          url: URL.createObjectURL(this.uploadedVideoFile),
-          details: { ...this.currentCard.details },
-        };
-        this.videoUrls.unshift(newVideoUrl);
-      },
-      handleFileChange(event) {
-        const file = event.target.files[0];
-        this.uploadedVideoFile = file;
-        this.selectedVideo = URL.createObjectURL(file);
-      },
-      changeProfileImage() {
-        const fileInput = this.$refs.fileInput;
-        if (fileInput) {
-          fileInput.click();
-        }
-      },
-      handleImageChange(event) {
-        const file = event.target.files[0];
-        if (file) {
-          const reader = new FileReader();
-          reader.onload = (e) => {
-            this.profileImage = e.target.result;
-          };
-          reader.readAsDataURL(file);
-          this.imageInput = file;
-        }
-      },
-      closeModal(event) {
-        if (event.target.classList.contains('modal')) {
-          this.showModal = false;
-          this.selectedVideo = null;
-          this.currentCard.details.title = "";
-          this.currentCard.details.instructor = "Instructor 1";
-        }
-      },
-      addEmptyCard() {
-        const newEmptyCardItem = null;
-        this.videoUrls.push(newEmptyCardItem);
-      },
-      saveVideo() {
-        if (this.currentCard.details.title && this.uploadedVideoFile) {
-          this.showModal = false;
-          this.addVideoUrl();
-          this.currentCard.details.title = "";
-          this.currentCard.details.instructor = "Instructor 1";
-          this.selectedVideo = null;
-  
-          if (this.videoUrls.length === 1) {
-            this.addEmptyCard();
-          }
-        }
-      },
-    },
-  };
-  </script>
+    <!-- Modal -->
+    <Dialog v-model:visible="showModal" modal header="Header" :style="{ width: '50vw' }">
+      <h2>Upload A New Video</h2>
+      <div class="upload-section">
+        <label class="upload-label" v-if="!selectedVideo">
+          <input class="modal-input" ref="fileInput" type="file" accept="video/*" style="display: none"
+            @change="handleFileChange" />
+          <span class="modal-upload-text">Drop Files Here</span>
+          <p>Or</p>
+          <p class="modal-select-file">Select File</p>
+        </label>
+        <video v-else :src="selectedVideo" class="modal-video"></video>
+        <p class="max-file-size">Maximum file size: 8 MB</p>
+      </div>
+      <h3 class="live-video-details">Live Video Details</h3>
+      <div class="profile-section">
+        <input type="file" ref="fileInput" accept="image/*" style="display: none" @change="handleImageChange" />
+        <img :src="profileImage" alt="Profile" class="modal-profile" @click="changeProfileImage" />
+      </div>
+      <div class="flex gap-2">
+        <InputText v-model="currentCard.details.title" small placeholder="Title" class="p-inputtext-sm" />
+        <div class="flex gap-2">
+          <p class="text-700 text-normal">by</p>
+          <Dropdown v-model="instructorNew" :options="instructors" optionLabel="name" placeholder="Instructor name"
+            class="w-full md:w-14rem filter-toggle"></Dropdown>
+        </div>
+      </div>
+      <Button size="small" class="save-button" @click="saveVideo">Save</Button>
+    </Dialog>
+  </section>
+</template>
 
-<style scoped>
-.admin-live-view {
-  position: absolute;
-  top: 10%;
-  left: 0%;
-  color: #000;
-}
-
+<style scoped lang="scss">
 .card-row {
   display: flex;
   justify-content: flex-start;
@@ -344,7 +369,7 @@
   font-size: 20px;
 }
 
-.modal-select-file{
+.modal-select-file {
   border: 1px solid #ccc;
   padding: 0 5px;
   border-radius: 5px;
@@ -367,9 +392,8 @@
   justify-content: center;
   flex-direction: column;
   cursor: pointer;
-  width: 650px;
   height: 200px;
-  border: 2px dotted #D9D9D9;
+  border: 1px dotted #D9D9D9;
   border-radius: 10px;
 }
 
@@ -380,11 +404,6 @@
 .max-file-size {
   margin-top: 5px;
   font-size: 14px;
-}
-
-.details-section {
-  display: flex;
-  flex-direction: row;
 }
 
 .live-video-details {
@@ -410,14 +429,9 @@
   font-size: 14px;
 }
 
-.instructor-section {
-  display: flex;
-  margin: 0 10px;
-  flex-direction: row;
-}
-
 .instructor-dropdown {
   margin-left: 10px;
+  height: 26px;
 }
 
 .instructor-toggle label {
@@ -436,5 +450,35 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
+}
+
+.p-inputtext-sm {
+  background-color: #D9D9D9;
+  width: 139px;
+  height: 30px;
+}
+
+::v-deep(.filter-toggle) {
+  background-color: #D9D9D9;
+  border-radius: 6px;
+  color: #808081;
+  height: 32px;
+
+  .p-dropdown-label {
+    padding: 5px 10px 5px 10px;
+    font-size: 15px;
+    // font-weight: 600;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+
+  .p-dropdown-trigger svg path {
+    fill: #808081;
+  }
+
+  i {
+    margin: 0 0.5rem;
+  }
 }
 </style>
