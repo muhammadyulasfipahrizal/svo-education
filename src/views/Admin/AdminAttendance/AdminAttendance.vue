@@ -3,10 +3,114 @@ import AttendanceCalendar from './AttendanceCalander.vue';
 </script>
 
 <template>
-    <main class="flex px-5 justify-content-between">
-        <h1 class="font-bold mb-2">Admin Attendance</h1>
-        <div class="flex flex-column">
-            <AttendanceCalendar/>
+    <main class="flex flex-column px-5 justify-content-between">
+        <h1 class="font-bold mb-2">My Attendance</h1>
+        <div class=" flex flex-row align-items-center">
+            <MultiSelect optionLabel="name" placeholder="Filter" :maxSelectedLabels="3" class="w-full md:w-20rem" />
+            <span class="p-input-icon-left">
+                <i class="pi pi-search" />
+                <InputText  placeholder="Search by class" />
+            </span>
+            <Button label="DOWNLOAD" icon="pi pi-download" class="download-button to-right"/>
+        </div>
+        <div>
+            <Dropdown optionLabel="name" placeholder="December" class="w-full md:w-14rem" />
+            <Dropdown optionLabel="name" placeholder="2022" class="w-full md:w-14rem" />
+        </div>
+        <div class="flex flex-row ">
+            <div class="flex flex-row mr-3 my-3">
+                <div class="p-2 border-2 surface-border flex flex-row align-items-center">
+                    <i class="pi pi-thumbs-up thumb-up-icon mr-1"></i>
+                    <p>Pass</p>
+                </div>
+                <div class="p-2 border-2 surface-border flex flex-row align-items-center">
+                    <i class="pi pi-thumbs-down thumb-down-icon mr-1"></i>
+                    <p>Pass</p>
+                </div>
+            </div>
+            <div class="flex flex-row my-3">
+                <div class="p-2 border-2 surface-border flex flex-row align-items-center">
+                    <div class="attended-box mr-1"> </div>
+                    <p>Attended</p>
+                </div>
+                <div class="p-2 border-2 surface-border flex flex-row align-items-center">
+                    <div class="absent-box mr-1"></div>
+                    <p>Absent</p>
+                </div>
+                <div class="p-2 border-2 surface-border flex flex-row align-items-center">
+                    <div class="not-started-box mr-1"></div>
+                    <p>Not Yet Started</p>
+                </div>
+            </div>
+        </div>
+        <AttendanceCalendar/>
+        <div class="flex justify-between align-items-center my-3">
+            <p class="mr-4">Showing data 1 to 10 of 256k entries</p>
+            <div class="flex align-items-center to-right">
+                <Button icon="pi pi-arrow-left" class="nav-button mx-1" />
+                <Button label="1" class="nav-button mx-1" />
+                <Button label="2" class="nav-button mx-1" />
+                <Button label="3" class="nav-button mx-1" />
+                <Button label="4" class="nav-button mx-1" />
+                <p class="nav-dot">...</p>
+                <Button icon="pi pi-arrow-right" class="nav-button mx-1" />
+            </div>
         </div>
     </main>
 </template>
+
+<style scoped>
+.to-right {
+    margin-left: auto;
+}
+.download-button {
+    background-color: #e26954;
+}
+.thumb-up-icon {
+    background-color: #649A6D;
+    padding: 5px;
+    border-radius: 50%;
+    color: white;
+  }
+
+  .thumb-down-icon {
+    background-color: #BD3000;
+    padding: 5px;
+    border-radius: 50%;
+    color: white;
+  }
+
+  .attended-box {
+    background-color: #649A6D;
+    padding: 8px;
+    border-radius: 2px;
+  }
+
+  .absent-box {
+    background-color: #BD3000;
+    padding: 8px;
+    border-radius: 2px;
+  }
+
+  .not-started-box {
+    border: 0.5px solid gray;
+    padding: 8px;
+    border-radius: 2px;
+  }
+  .nav-button {
+    width: 50px;
+    height: 30px;
+    background-color: #EEEEEE;
+    color: #404B52;
+    border: none;
+  }
+
+  .nav-button:hover {
+    color: white;
+    background-color: #00C0DD;
+  }
+
+  .nav-dot {
+    font-size: 28px;    
+  }
+</style>
