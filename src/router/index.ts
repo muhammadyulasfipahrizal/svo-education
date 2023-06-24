@@ -11,7 +11,7 @@ const router = createRouter({
     {
       path: '/admin/live',
       name: 'live',
-      component: () => import('../views/AdminLiveView.vue')
+      component: () => import('../views/Admin/AdminLive/AdminLiveView.vue')
     },
     {
       path: '/admin/event',
