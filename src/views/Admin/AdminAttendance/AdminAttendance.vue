@@ -1,21 +1,17 @@
-<script setup lang="ts">
-import AttendanceCalendar from './AttendanceCalander.vue';
-</script>
-
 <template>
     <main class="flex flex-column px-5 justify-content-between">
         <h1 class="font-bold mb-2">My Attendance</h1>
-        <div class=" flex flex-row align-items-center">
-            <MultiSelect optionLabel="name" placeholder="Filter" :maxSelectedLabels="3" class="w-full md:w-20rem" />
+        <div class=" flex flex-row align-items-center mb-3 filter-search">
+            <Button label="Filter" icon="pi pi-filter-fill" size="small" class="filter-button mr-3"/>
             <span class="p-input-icon-left">
-                <i class="pi pi-search" />
-                <InputText  placeholder="Search by class" />
+                <i class="pi pi-search search-icon" />
+                <InputText  placeholder="Search by class" class="search-bar p-inputtext-sm"/>
             </span>
             <Button label="DOWNLOAD" icon="pi pi-download" class="download-button to-right"/>
         </div>
         <div>
-            <Dropdown optionLabel="name" placeholder="December" class="w-full md:w-14rem" />
-            <Dropdown optionLabel="name" placeholder="2022" class="w-full md:w-14rem" />
+            <Dropdown optionLabel="name" placeholder="December" class="w-full md:w-10rem mr-2" />
+            <Dropdown optionLabel="name" placeholder="2022" class="w-full md:w-8rem" />
         </div>
         <div class="flex flex-row ">
             <div class="flex flex-row mr-3 my-3">
@@ -43,7 +39,9 @@ import AttendanceCalendar from './AttendanceCalander.vue';
                 </div>
             </div>
         </div>
-        <AttendanceCalendar/>
+        <div class="flex flex-row flex-wrap">
+            <AttendanceCalendar v-for="index in calendarCount" :key="index"/>
+        </div>
         <div class="flex justify-between align-items-center my-3">
             <p class="mr-4">Showing data 1 to 10 of 256k entries</p>
             <div class="flex align-items-center to-right">
@@ -53,16 +51,42 @@ import AttendanceCalendar from './AttendanceCalander.vue';
                 <Button label="3" class="nav-button mx-1" />
                 <Button label="4" class="nav-button mx-1" />
                 <p class="nav-dot">...</p>
+                <Button label="20" class="nav-button mx-1" />
                 <Button icon="pi pi-arrow-right" class="nav-button mx-1" />
             </div>
         </div>
     </main>
 </template>
 
+<script setup lang="ts">
+import { ref } from 'vue';
+import AttendanceCalendar from './AttendanceCalander.vue';
+
+const calendarCount = ref(10);
+</script>
+
 <style scoped>
 .to-right {
     margin-left: auto;
 }
+.filter-button {
+    background-color: #fff;
+    color: #8B83BA;
+    border: 0.5px solid #8B83BA;
+}
+.search-bar {
+    background-color: rgba(139, 131, 186, 0.1);
+    color: #8B83BA;
+    width: 400px;
+  }
+  
+  .search-bar::placeholder {
+    color: #8B83BA;
+  }
+  
+  .search-icon {
+    color: #8B83BA;
+  }
 .download-button {
     background-color: #e26954;
 }
@@ -108,6 +132,9 @@ import AttendanceCalendar from './AttendanceCalander.vue';
   .nav-button:hover {
     color: white;
     background-color: #00C0DD;
+  }
+  .nav-button:active {
+    border: none;
   }
 
   .nav-dot {
