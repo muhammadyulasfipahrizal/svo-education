@@ -40,7 +40,7 @@
             </div>
         </div>
         <div class="flex flex-row flex-wrap">
-            <AttendanceCalendar v-for="index in calendarCount" :key="index"/>
+          <AttendanceCalendar v-for="(card, index) in cardData" :key="index" :card="card" />
         </div>
         <div class="flex justify-between align-items-center my-3">
             <p class="mr-4">Showing data 1 to 10 of 256k entries</p>
@@ -62,7 +62,39 @@
 import { ref } from 'vue';
 import AttendanceCalendar from './AttendanceCalander.vue';
 
-const calendarCount = ref(10);
+const cardData = ref([
+  {
+    label: 'P',
+    status: 'COMPLETED',
+    title: 'UI UX Design',
+    currentDay: 'Day 5',
+    progress: 20,
+    attendance: 4,
+    percent: 80,
+    iconMarkup: '<i class="pi pi-thumbs-up"></i>'
+  },
+  {
+    label: 'W',
+    status: 'IN-PROGRESS',
+    title: 'Web Developer',
+    currentDay: 'Day 3',
+    progress: 40,
+    attendance: 2,
+    percent: 40,
+    iconMarkup: '<i class="pi pi-thumbs-down"></i>'
+  },
+  {
+    label: 'M',
+    status: 'COMPLETED',
+    title: 'Marketing',
+    currentDay: 'Day 7',
+    progress: 70,
+    attendance: 6,
+    percent: 85,
+    iconMarkup: '<i class="pi pi-thumbs-up"></i>'
+  },
+]);
+
 </script>
 
 <style scoped>
