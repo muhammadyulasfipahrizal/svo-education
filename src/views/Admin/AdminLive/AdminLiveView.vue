@@ -320,6 +320,17 @@ const instructorNew = ref();
   margin-right: 10px;
 }
 
+.card-util {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.card-util i {
+  margin: 0 10px;
+}
+
 .card-data {
   display: flex;
   align-items: center;
