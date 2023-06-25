@@ -70,7 +70,7 @@ const cardData = ref([
     currentDay: 'Day 5',
     progress: 20,
     attendance: 4,
-    percent: 80,
+    percent: 20,
     iconMarkup: '<i class="pi pi-thumbs-up"></i>'
   },
   {
@@ -90,7 +90,7 @@ const cardData = ref([
     currentDay: 'Day 7',
     progress: 70,
     attendance: 6,
-    percent: 85,
+    percent: 70,
     iconMarkup: '<i class="pi pi-thumbs-up"></i>'
   },
 ]);

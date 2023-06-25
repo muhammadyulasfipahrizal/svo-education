@@ -27,6 +27,7 @@ import { ref } from 'vue';
 import { Calendar } from 'v-calendar';
 import 'v-calendar/style.css';
 
+
 const props = defineProps({
   card: {
     type: Object,
