@@ -21,12 +21,9 @@ function setInactive() {
 }
 
 function onDrop(e: any) {
-  setInactive() // add this line too
-  // emit('files-dropped', [...e.dataTransfer.files])
-  console.log('e', e.dataTransfer.files);
+  setInactive();
   fileUpload.value = e.dataTransfer.files[0];
   fileUploadPreview.value = URL.createObjectURL(fileUpload.value);
-
 }
 
 const title = ref();
@@ -62,6 +59,12 @@ const onDateSelectCalendarRef = (value: Date) => {
 
 const onTimeSelect = (value: Date) => {
   time.value = format(value, 'HH:mm')
+}
+
+const onUpload = (e: any) => {
+  setInactive();
+  fileUpload.value = e.target.files[0];
+  fileUploadPreview.value = URL.createObjectURL(fileUpload.value);
 }
 
 </script>
@@ -101,15 +104,15 @@ const onTimeSelect = (value: Date) => {
     <div class="flex flex-column gap-2">
       <!-- FILE Upload -->
       <div
-        class="flex justify-content-center align-items-center border-1 border-dashed surface-0 surface-border flex-column p-3 gap-2"
+        class="flex justify-content-center align-items-center border-1 border-dashed surface-0 surface-border flex-column p-3 gap-2 w-full"
         :data-active="active" @dragenter.prevent="setActive" @dragover.prevent="setActive"
         @dragleave.prevent="setInactive" @drop.prevent="onDrop">
         <!-- share state with the scoped slot -->
         <slot :dropZoneActive="active"></slot>
 
-        <img v-if="fileUploadPreview" :src="fileUploadPreview" />
+        <img v-if="fileUploadPreview" :src="fileUploadPreview" class="w-full h-20rem" />
         <template v-if="!fileUploadPreview">
-          <input type="file" ref="fileUpload" class="hidden" />
+          <input type="file" ref="fileUpload" class="hidden" accept="image/*" @change="onUpload" />
           <h2 class="text-700 font-medium text-sm">Drop files here</h2>
           <p class="text-500">or</p>
           <div class="flex">
