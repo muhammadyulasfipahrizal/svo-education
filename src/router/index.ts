@@ -11,7 +11,7 @@ const router = createRouter({
     {
       path: '/admin/live',
       name: 'live',
-      component: () => import('../views/AdminLiveView.vue')
+      component: () => import('../views/Admin/AdminLive/AdminLiveView.vue')
     },
     {
       path: '/admin/event',
@@ -22,7 +22,12 @@ const router = createRouter({
       path: '/admin/event-detail/:id',
       name: 'admin-event-detail',
       component: () => import('../views/Admin/AdminEvent/AdminEventDetail/AdminEventDetail.vue')
-    }
+    },
+    {
+      path: '/admin/attendance',
+      name: 'admin-attendance',
+      component: () => import('../views/Admin/AdminAttendance/AdminAttendance.vue')
+    },
   ]
 })
 
