@@ -40,20 +40,17 @@
             </div>
         </div>
         <div class="flex flex-row flex-wrap">
-          <AttendanceCalendar v-for="(card, index) in cardData" :key="index" :card="card" />
+          <AttendanceCalendar v-for="(card, index) in cardData" :key="index" :card="card"/>
         </div>
         <div class="flex justify-between align-items-center my-3">
             <p class="mr-4">Showing data 1 to 10 of 256k entries</p>
-            <div class="flex align-items-center to-right">
-                <Button icon="pi pi-arrow-left" class="nav-button mx-1" />
-                <Button label="1" class="nav-button mx-1" />
-                <Button label="2" class="nav-button mx-1" />
-                <Button label="3" class="nav-button mx-1" />
-                <Button label="4" class="nav-button mx-1" />
-                <p class="nav-dot">...</p>
-                <Button label="20" class="nav-button mx-1" />
-                <Button icon="pi pi-arrow-right" class="nav-button mx-1" />
-            </div>
+            <Paginator 
+              class="to-right" 
+              :rows="10" 
+              :totalRecords="120" 
+              :p-paginator-first="false" 
+              :p-paginator-last="false">
+            </Paginator>
         </div>
     </main>
 </template>

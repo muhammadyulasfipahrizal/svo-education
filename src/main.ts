@@ -56,6 +56,7 @@ import ToggleButton from 'primevue/togglebutton';
 import Tooltip from 'primevue/tooltip';
 import Toast from 'primevue/toast';
 import ToastService from 'primevue/toastservice';
+import Paginator from 'primevue/paginator';
 import { setupCalendar } from 'v-calendar';
 
 const app = createApp(App)
@@ -105,6 +106,7 @@ app.component('Tag', Tag);
 app.component('Textarea', Textarea);
 app.component('ToggleButton', ToggleButton);
 app.component('Toast', Toast);
+app.component('Paginator', Paginator);
 // app.component('BlockViewer', BlockViewer);
 
 app.directive('badge', BadgeDirective);

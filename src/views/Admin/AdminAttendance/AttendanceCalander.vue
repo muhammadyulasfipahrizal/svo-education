@@ -18,7 +18,7 @@
       <p class="ml-1">{{ card.attendance }}/5 days</p>
       <p class="ml-7">{{ card.percent }}%</p>
     </div>
-    <Calendar borderless :locale="calendarLocale" />
+    <Calendar borderless :locale="calendarLocale" :attributes='attrs'/>
   </div>
 </template>
 
@@ -26,7 +26,6 @@
 import { ref } from 'vue';
 import { Calendar } from 'v-calendar';
 import 'v-calendar/style.css';
-
 
 const props = defineProps({
   card: {
@@ -48,6 +47,14 @@ const calendarLocale = ref({
     weekdays: 'WWW',
   },
 });
+
+const attrs = ref([
+  {
+    key: 'today',
+    dot: true,
+    dates: new Date(),
+  },
+]);
 
 const getIconClass = (iconMarkup: string) => {
   if (iconMarkup.includes('pi-thumbs-up')) {
