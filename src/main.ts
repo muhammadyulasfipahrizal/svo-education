@@ -57,6 +57,7 @@ import Tooltip from 'primevue/tooltip';
 import Toast from 'primevue/toast';
 import ToastService from 'primevue/toastservice';
 import { setupCalendar } from 'v-calendar';
+import StarRating from 'vue-star-rating'
 
 const app = createApp(App)
 
@@ -106,6 +107,8 @@ app.component('Textarea', Textarea);
 app.component('ToggleButton', ToggleButton);
 app.component('Toast', Toast);
 // app.component('BlockViewer', BlockViewer);
+
+app.component('star-rating', StarRating);
 
 app.directive('badge', BadgeDirective);
 app.directive('tooltip', Tooltip);
