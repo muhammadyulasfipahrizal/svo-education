@@ -28,6 +28,33 @@ const router = createRouter({
       name: 'admin-attendance',
       component: () => import('../views/Admin/AdminAttendance/AdminAttendance.vue')
     },
+    {
+      path: '/admin/instructor-grade',
+      name: 'admin-instructor-grade',
+      component: () => import('../views/Admin/AdminGrades/InstructorGrades/InstructorGrades.vue')
+    },
+    {
+      path: '/admin/message/instructor/:id',
+      name: 'admin-instructor-message-grade',
+      component: () => import('../views/Admin/AdminGrades/InstructorGrades/InstructorGradesMessage/InstructorGradesMessage.vue'),
+      props: true
+    },
+    {
+      path: '/admin/course-grade',
+      name: 'admin-course-grade',
+      component: () => import('../views/Admin/AdminGrades/StudentGrades/CourseGrades.vue')
+    },
+    {
+      path: '/admin/course-grade/:course/student',
+      name: 'admin-course-grade-student',
+      component: () => import('../views/Admin/AdminGrades/StudentGrades/StudentCourseGrades.vue')
+    },
+    {
+      path: '/admin/message/student/:id',
+      name: 'admin-student-message-grade',
+      component: () => import('../views/Admin/AdminGrades/StudentGrades/StudentGradesMessage/StudentGradesMessage.vue'),
+      props: true
+    },
   ]
 })
 
