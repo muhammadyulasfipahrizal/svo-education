@@ -31,12 +31,32 @@
             <span class="menuitem-text">Live</span>
           </router-link>
         </li>
+
         <li>
-          <router-link to="/admin/progress" class="menuitem-link" :class="{ active: isActive('/admin/progress') }">
-            <i class="pi pi-fw pi-chart-bar"></i>
-            <span class="menuitem-text">Progress</span>
+          <router-link to="" @click="openProgress('progress')" class="menuitem-link"
+            :class="{ active: isActive('/admin/progress') }">
+            <i class="pi pi-fw pi-calendar"></i>
+            <span class="ml-2 menuitem-text">Progress</span>
           </router-link>
+          <ul
+            class="list-none py-0 pl-3 pr-0 m-0 overflow-y-hidden transition-all transition-duration-400 transition-ease-in-out"
+            :class="{ hidden: !subMenuState['progress'] }">
+            <li>
+              <router-link to="/admin/progress/student" class="menuitem-link"
+                :class="{ active: isActive('/admin/progress/student') }">
+                <span class="menuitem-text">Student</span>
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/admin/progress/guest'" class="menuitem-link"
+                :class="{ active: isActive('/admin/progress/guest') }">
+                <span class="menuitem-text">Guest</span>
+              </router-link>
+            </li>
+          </ul>
         </li>
+
+
         <li>
           <router-link to="" @click="openSub('grades')" class="menuitem-link"
             :class="{ active: isActive('/admin/grades') }">
@@ -125,6 +145,7 @@ const route = useRoute();
 const isActive = (routePath: string) => route.path === routePath;
 const subMenuState = ref({
   'grades': false,
+  'progress': false,
 })
 const openSub = (menu: 'grades') => {
   subMenuState.value = {
@@ -132,6 +153,14 @@ const openSub = (menu: 'grades') => {
     [menu]: !subMenuState.value[menu]
   }
 }
+
+const openProgress = (menu: 'progress') => {
+  subMenuState.value = {
+    ...subMenuState.value,
+    [menu]: !subMenuState.value[menu]
+  }
+}
+
 </script>
 
 <style scoped>

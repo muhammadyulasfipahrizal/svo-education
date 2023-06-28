@@ -4,8 +4,7 @@
       <Avatar :label="card.label" class="my-1" size="xlarge" shape="circle" />
       <span v-html="card.iconMarkup" :class="getIconClass(card.iconMarkup)"></span>
     </div>
-    <p :class="getStatusClass(card.status)">{{ card.status }}</p>
-    <p class="font-bold text-xl">{{ card.title }}</p>
+    <p class="font-bold text-xl">{{ card.name }}</p>
     <div class="flex flex-row align-items-center">
       <p class="font-semibold">Current Day:</p>
       <p class="current-day">{{ card.currentDay }}</p>
@@ -18,7 +17,7 @@
       <p class="ml-1">{{ card.attendance }}/5 days</p>
       <p class="ml-7">{{ card.percent }}%</p>
     </div>
-    <Calendar borderless :locale="calendarLocale" />
+    <Calendar borderless :locale="calendarLocale" :attributes="attributes"/>
   </div>
 </template>
 
@@ -27,14 +26,12 @@ import { ref } from 'vue';
 import { Calendar } from 'v-calendar';
 import 'v-calendar/style.css';
 
-
 const props = defineProps({
   card: {
     type: Object,
     default: () => ({
       label: '',
-      status: '',
-      title: '',
+      name: '',
       currentDay: '',
       progress: 0,
       attendance: 0,
@@ -59,15 +56,37 @@ const getIconClass = (iconMarkup: string) => {
   return '';
 };
 
-const getStatusClass = (status: string) => {
-  if (status.includes('COMPLETED')) {
-    return 'attendance-status-completed';
-  } else if (status.includes('IN-PROGRESS')) {
-    return 'attendance-status-in-progress';
-  }
-  
-  return '';
-};
+const attributes = ref([
+  {
+    // Boolean
+    dot: 'green',
+    dates: [
+      new Date(2018, 0, 1),
+      new Date(2018, 0, 10),
+      new Date(2018, 0, 22),
+    ],
+  },
+  {
+    dot: 'red',
+    dates: [
+      new Date(2018, 0, 4),
+      new Date(2018, 0, 10),
+      new Date(2018, 0, 15),
+    ],
+  },
+  {
+    dot: {
+      style: {
+        backgroundColor: 'brown',
+      },
+    },
+    dates: [
+      new Date(2018, 0, 12),
+      new Date(2018, 0, 26),
+      new Date(2018, 0, 15),
+    ],
+  },
+]);
 
 </script>
 
