@@ -56,8 +56,11 @@ import ToggleButton from 'primevue/togglebutton';
 import Tooltip from 'primevue/tooltip';
 import Toast from 'primevue/toast';
 import ToastService from 'primevue/toastservice';
+import Paginator from 'primevue/paginator';
+import DataTable from 'primevue/datatable';
+import Column from 'primevue/column';
+import Tree from 'primevue/tree';
 import { setupCalendar } from 'v-calendar';
-import StarRating from 'vue-star-rating'
 
 const app = createApp(App)
 
@@ -106,9 +109,11 @@ app.component('Tag', Tag);
 app.component('Textarea', Textarea);
 app.component('ToggleButton', ToggleButton);
 app.component('Toast', Toast);
+app.component('Paginator', Paginator);
+app.component('DataTable', DataTable);
+app.component('Column', Column);
+app.component('Tree', Tree);
 // app.component('BlockViewer', BlockViewer);
-
-app.component('star-rating', StarRating);
 
 app.directive('badge', BadgeDirective);
 app.directive('tooltip', Tooltip);
