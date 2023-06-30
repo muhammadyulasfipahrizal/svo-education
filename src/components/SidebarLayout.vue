@@ -122,13 +122,13 @@
           </router-link>
         </li>
         <li>
-          <router-link to="/admin/create" class="menuitem-link" :class="{ active: isActive('/create') }">
+          <router-link to="/admin/create" class="menuitem-link" :class="{ active: isActive('/admin/create') }">
             <i class="pi pi-fw pi-plus"></i>
             <span class="menuitem-text">Create</span>
           </router-link>
         </li>
         <li>
-          <router-link to="/admin/customize" class="menuitem-link" :class="{ active: isActive('/customize') }">
+          <router-link to="/admin/customize" class="menuitem-link" :class="{ active: isActive('/admin/customize') }">
             <i class="pi pi-fw pi-cog"></i>
             <span class="menuitem-text">Customize</span>
           </router-link>

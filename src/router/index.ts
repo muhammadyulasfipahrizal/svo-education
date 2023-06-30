@@ -60,6 +60,11 @@ const router = createRouter({
       component: () => import('../views/Admin/AdminGrades/StudentGrades/StudentGradesMessage/StudentGradesMessage.vue'),
       props: true
     },
+    {
+      path: '/admin/create',
+      name: 'admin-create',
+      component: () => import('../views/Admin/AdminCreate/AdminCreate.vue')
+    },
 
   ]
 })
