@@ -21,6 +21,7 @@ import BadgeDirective from 'primevue/badgedirective';
 import Badge from 'primevue/badge';
 import Button from 'primevue/button';
 import Calendar from 'primevue/calendar';
+import Card from 'primevue/card';
 import Carousel from 'primevue/carousel';
 import Checkbox from 'primevue/checkbox';
 import Chip from 'primevue/chip';
@@ -113,6 +114,7 @@ app.component('Paginator', Paginator);
 app.component('DataTable', DataTable);
 app.component('Column', Column);
 app.component('Tree', Tree);
+app.component('Card', Card);
 // app.component('BlockViewer', BlockViewer);
 
 app.directive('badge', BadgeDirective);
