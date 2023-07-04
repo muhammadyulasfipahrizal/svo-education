@@ -70,11 +70,11 @@ const onUpload = (e: any) => {
 </script>
 
 <template>
-  <main class="flex px-5 justify-content-between">
+  <main class="flex px-5 justify-content-between flex-column md:flex-row">
     <div class="event-list">
       <h1 class="font-bold mb-2">Ongoing Event</h1>
 
-      <div class="flex gap-2">
+      <div class="flex gap-2 flex-column md:flex-row">
         <EventItem />
         <EventItem />
         <EventAdd @on-add="onAddEvent" />
@@ -100,7 +100,7 @@ const onUpload = (e: any) => {
 
 
   <!-- MODAL Upload -->
-  <Dialog v-model:visible="visible" modal header="Upload new Media" :style="{ width: '50vw' }">
+  <Dialog v-model:visible="visible" modal header="Upload new Media">
     <div class="flex flex-column gap-2">
       <!-- FILE Upload -->
       <div

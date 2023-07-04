@@ -28,7 +28,7 @@ onMounted(() => {
             <h1 class="text-900 font-bold text-5xl">Instructor Grades</h1>
         </div>
         <div class="flex flex-column gap-3">
-            <div class="flex gap-3 justify-content-center w-full">
+            <div class="flex flex-column md:flex-row gap-3 align-items-center justify-content-center w-full">
                 <h1 class="text-900 font-bold text-3xl">
                     Leave a message for instructor
                 </h1>

@@ -4,8 +4,8 @@
         <i class="pi pi-chevron-left mr-3 back-arrow" v-if="showDetail" @click="goBack"></i>
         <h1 class="page-title">Student Progress</h1>
     </div>
-    <div v-if="!showDetail">
-      <DataTable :value="courseData" selectionMode="single" :selection="selectedCourse" @rowSelect="handleRowSelect">
+    <div v-if="!showDetail" >
+      <DataTable :value="courseData" class="min-w-full" selectionMode="single" :selection="selectedCourse" @rowSelect="handleRowSelect">
         <Column field="courseName">
           <template #header>
             <div>

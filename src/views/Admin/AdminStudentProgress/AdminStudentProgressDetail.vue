@@ -70,7 +70,7 @@ const showNextDays = () => {
 
 <template>
   <div class="flex flex-column">
-    <Dropdown optionLabel="name" placeholder="Course Name" class="w-full md:w-16rem md:h-3rem mr-2 mt-1 mb-3" />
+    <Dropdown optionLabel="name" placeholder="Course Name" class="w-18rem md:w-16rem md:h-3rem mr-2 mt-1 mb-3" />
     <div class=" flex flex-row align-items-center mb-3 filter-search">
       <Button label="Filter" icon="pi pi-filter-fill" size="small" class="filter-button mr-3" />
       <span class="p-input-icon-left">
@@ -171,8 +171,8 @@ const showNextDays = () => {
       </Column>
     </DataTable>
 
-    <!-- test modal -->
-    <Dialog v-model:visible="visible" :value="studentData" modal header="Header" :style="{ width: '50vw' }">
+    <!-- modal -->
+    <Dialog v-model:visible="visible" :value="studentData" modal header="Header">
       <template #header>
         <div class="flex flex-row align-items-center">
           <Avatar label="M" class="modal-image mr-2" shape="circle" />
@@ -541,6 +541,14 @@ const showNextDays = () => {
   background: #006785;
   color: white;
   border: none;
+}
+
+@media (max-width: 768px) {
+  ::v-deep(.p-button .p-button-label) {
+    display: none;
+    margin: 0;
+    padding: 0;
+  }
 }
 </style>
 

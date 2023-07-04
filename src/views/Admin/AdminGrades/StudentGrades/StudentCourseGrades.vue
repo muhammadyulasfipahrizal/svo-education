@@ -60,7 +60,7 @@ const selectedProfile = ref<IStudentGrade | null>(null);
             <!-- FILTER -->
             <div class="card flex justify-content-start">
                 <Dropdown v-model="selectedCourse" :options="courseList" optionLabel="name" placeholder="Select a course"
-                    class="w-full md:w-14rem">
+                    class="w-full md:w-14rem hidden md:flex">
                     <template #value="slotProps">
                         <div v-if="slotProps.value" class="flex align-items-center">
                             <img :alt="slotProps.value.name" :src="slotProps.value.image" class="mr-2"
@@ -80,10 +80,10 @@ const selectedProfile = ref<IStudentGrade | null>(null);
                     </template>
                 </Dropdown>
             </div>
-            <div class="flex justify-content-between align-items-center w-full">
+            <div class="flex justify-content-start md:justify-content-between align-items-center w-full">
                 <div class="flex flex-row align-items-center filter-search align-items-center">
                     <Button label="Filter" icon="pi pi-filter-fill" size="small" class="filter-button mr-3" />
-                    <span class="p-input-icon-left">
+                    <span class="p-input-icon-left mr-3">
                         <i class="pi pi-search search-icon" />
                         <InputText placeholder="Search by name" class="search-bar p-inputtext-sm" />
                     </span>
@@ -146,7 +146,7 @@ const selectedProfile = ref<IStudentGrade | null>(null);
     </section>
 
     <!-- MODAL Profile -->
-    <Dialog v-model:visible="modalProfile" modal :style="{ width: '50vw' }">
+    <Dialog v-model:visible="modalProfile" modal >
         <template #header>
             <div class="flex gap-2 align-items-center">
                 <img :src="selectedProfile?.student.image" alt="" style="width: 39px; height: 39px;" />
@@ -224,7 +224,7 @@ const selectedProfile = ref<IStudentGrade | null>(null);
 .search-bar {
     background-color: rgba(139, 131, 186, 0.1);
     color: #8B83BA;
-    width: 400px;
+    width: 240px;
 }
 
 .search-bar::placeholder {
@@ -280,4 +280,18 @@ const selectedProfile = ref<IStudentGrade | null>(null);
         background-color: #e26954;
     }
 }
+
+@media only screen and (min-width: 768px) {
+    .search-bar {
+        width: 400px;
+    }
+}
+
+@media (max-width: 768px) {
+    ::v-deep(.p-button .p-button-label) {
+      display: none;
+      margin: 0;
+      padding: 0;
+    }
+  }
 </style>
