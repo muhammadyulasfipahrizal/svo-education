@@ -5,28 +5,34 @@
             <Button label="Filter" icon="pi pi-filter-fill" size="small" class="filter-button mr-3"/>
             <span class="p-input-icon-left">
                 <i class="pi pi-search search-icon" />
-                <InputText  placeholder="Search by class" class="search-bar p-inputtext-sm"/>
+                <InputText  placeholder="Search by class" class="search-bar h-10 w-96 p-input text-sm"/>
             </span>
-            <Button label="DOWNLOAD" icon="pi pi-download" class="download-button to-right"/>
+            <Button label="DOWNLOAD" icon="pi pi-download" size="small" class="download-button ml-auto"/>
         </div>
-        <div>
-            <Dropdown optionLabel="name" placeholder="December" class="w-full md:w-10rem mr-2" />
-            <Dropdown optionLabel="name" placeholder="2022" class="w-full md:w-8rem mr-2" />
+        <div class="flex flex-column flex-wrap md:flex-row">
+          <div class="flex flex-row mb-3">
+            <Dropdown optionLabel="name" placeholder="December" class="w-10rem mr-2" />
+            <Dropdown optionLabel="name" placeholder="2022" class="w-8rem mr-2" />
+          </div>
             <Dropdown 
               v-model="selectedCity" 
               :options="cities" 
               optionLabel="name" 
               placeholder="Select a City" 
-              class="w-full md:w-14rem mb-3" />
+              class="w-14rem mb-3" />
         </div>
-        <div class="flex flex-row flex-wrap">
+        <div class="flex flex-row flex-wrap ">
           <AttendanceCalendar v-for="(card, index) in cardData" :key="index" :card="card" />
         </div>
         <Paginator 
           :rows="10" 
           :totalRecords="120" 
-          template=" CurrentPageReport PrevPageLink PageLinks NextPageLink "
-          currentPageReportTemplate="Showing data {first} to {last} of {totalRecords} entries" />
+          :template="{
+            '768px': 'CurrentPageReport PrevPageLink  NextPageLink',
+            default: 'CurrentPageReport PrevPageLink PageLinks NextPageLink',
+          }"
+          currentPageReportTemplate='Showing data {first} to {last} of {totalRecords} entries'
+        />
     </main>
 </template>
 
@@ -91,8 +97,6 @@ const cardData = ref([
 .search-bar {
     border-radius: 6px;
     background: var(--suggested-light-grey, #EEE);
-    width: 392px;
-    height: 40px;
   }
   
   .search-bar::placeholder {

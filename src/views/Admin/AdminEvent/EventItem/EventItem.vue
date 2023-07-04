@@ -44,9 +44,7 @@ const goToDetail = () => {
 
 
 <style scoped>
-.container {
-    max-width: 224px;
-}
+
 .btn-buy {
     width: 100%;
     background-color: #E26954;
@@ -63,4 +61,10 @@ const goToDetail = () => {
 .text-super-small {
     font-size: 8px;
 }
+
+@media only screen and (min-width: 768px) {
+    .container {
+      max-width: 224px;
+    }
+  }
 </style>

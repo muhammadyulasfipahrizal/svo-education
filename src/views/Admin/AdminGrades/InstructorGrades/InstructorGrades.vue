@@ -33,15 +33,15 @@ const onSelectProfile = (v: Instructor) => {
         <h1 class="text-900 font-bold text-4xl pl-2">Instructor Grades</h1>
         <div class="pl-2 flex flex-column gap-2 my-5 pr-3">
             <!-- FILTER -->
-            <div class="flex justify-content-between align-items-center w-full">
+            <div class="flex justify-content-start md:justify-content-between align-items-center w-full">
                 <div class="flex flex-row align-items-center filter-search align-items-center">
                     <Button label="Filter" icon="pi pi-filter-fill" size="small" class="filter-button mr-3" />
-                    <span class="p-input-icon-left">
+                    <span class="p-input-icon-left mr-3">
                         <i class="pi pi-search search-icon" />
                         <InputText placeholder="Search by name" class="search-bar p-inputtext-sm" />
                     </span>
                 </div>
-                <Button label="DOWNLOAD " size="small" icon="pi pi-download" class="btn-orange"></Button>
+                <Button label="DOWNLOAD" size="small" icon="pi pi-download" class="btn-orange"></Button>
             </div>
 
             <DataTable :value="instructorList" paginator :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]" sortMode="multiple"
@@ -151,7 +151,7 @@ const onSelectProfile = (v: Instructor) => {
 .search-bar {
     background-color: rgba(139, 131, 186, 0.1);
     color: #8B83BA;
-    width: 400px;
+    width: 240px;
 }
 
 .search-bar::placeholder {
@@ -195,4 +195,18 @@ const onSelectProfile = (v: Instructor) => {
         }
     }
 }
+
+@media only screen and (min-width: 768px) {
+    .search-bar {
+        width: 400px;
+    }
+}
+
+@media (max-width: 768px) {
+    ::v-deep(.p-button .p-button-label) {
+      display: none;
+      margin: 0;
+      padding: 0;
+    }
+  }
 </style>

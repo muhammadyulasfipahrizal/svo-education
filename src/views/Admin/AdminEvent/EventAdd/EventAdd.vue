@@ -14,13 +14,14 @@ const emit = defineEmits(['onAdd'])
 <style scoped>
 .container {
     min-width: 224px;
+    min-height: 327px;
     box-shadow: 0px 4px 4px 0px #00000040;
-    border-radius: 10px;
+    border-radius: 10p
 }
 
 .btn-add {
     background: #D9D5EC;
-    border: 0;
+    border: 0;      
     width: 30px;
     height: 30px !important;
 }

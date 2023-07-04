@@ -144,12 +144,12 @@ const instructorNew = ref();
         <i class="pi pi-fw pi-plus-circle upload-icon"></i>
         <h3 class="upload-text">Add more live event</h3>
       </div>
-      <div class="flex justify-content-center align-items-center w-full" v-else>
+      <div class="flex justify-content-center align-items-center" v-else>
         <video height="500" :src="videoUrls[0].url" controls></video>
       </div>
     </div>
-    <div class="grid gap-5 w-full">
-      <div v-for="(video, index) in videoUrls" :key="index" class="col-4 border-1 border-round-xl border-300">
+    <div class="flex md:grid gap-5 flex-column md:flex-row justify-center md:justify-start ">
+      <div v-for="(video, index) in videoUrls" :key="index" class="col-4 border-1 border-round-xl border-300 md:w-auto w-screen">
         <div class="card-video">
           <div class="flex flex-column gap-2">
             <div class="flex gap-2 justify-content-center align-items-center">
@@ -186,7 +186,7 @@ const instructorNew = ref();
         </div>
       </div>
       <!-- ADD NEW VIDEO -->
-      <div class="col-4 border-1 border-round-xl border-300 flex justify-content-center align-items-center"
+      <div class="col-4 border-1 border-round-xl border-300 flex flex-column md:flex-row justify-content-center align-items-center w-screen md:w-auto p-8"
         v-if="videoUrls.length > 0" @click="openModal(null)">
         <div class="card-video">
           <div class="card-content">
@@ -197,7 +197,7 @@ const instructorNew = ref();
       </div>
     </div>
     <!-- Modal -->
-    <Dialog v-model:visible="showModal" modal header="Header" :style="{ width: '50vw' }">
+    <Dialog v-model:visible="showModal" modal header="Header"  class="min-w-min">
       <h2>Upload A New Video</h2>
       <div class="upload-section">
         <label class="upload-label" v-if="!selectedVideo">
@@ -492,4 +492,5 @@ const instructorNew = ref();
     margin: 0 0.5rem;
   }
 }
+
 </style>
