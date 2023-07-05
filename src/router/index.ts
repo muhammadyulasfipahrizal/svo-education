@@ -63,7 +63,69 @@ const router = createRouter({
     {
       path: '/admin/create',
       name: 'admin-create',
-      component: () => import('../views/Admin/AdminCreate/AdminCreate.vue')
+      component: () => import('../views/Admin/AdminCreate/AdminCreate.vue'),
+      children: [
+        {
+          path: '',
+          name: 'admin-create-root',
+          component: () => import('../views/Admin/AdminCreate/Course/CourseList/CourseList.vue')
+        },
+        // Course
+        {
+          path: '/admin/create/course',
+          name: 'admin-create-course-list',
+          component: () => import('../views/Admin/AdminCreate/Course/CourseList/CourseList.vue')
+        },
+        {
+          path: '/admin/create/course/add',
+          name: 'admin-create-course-add',
+          component: () => import('../views/Admin/AdminCreate/Course/CourseCreate/CourseCreate.vue')
+        },
+        // Question
+        {
+          path: '/admin/create/question',
+          name: 'admin-create-question-list',
+          component: () => import('../views/Admin/AdminCreate/Question/QuestionList/QuestionList.vue')
+        },
+        {
+          path: '/admin/create/question/add',
+          name: 'admin-create-question-add',
+          component: () => import('../views/Admin/AdminCreate/Question/QuestionCreate/QuestionCreate.vue')
+        },
+        // Material
+        {
+          path: '/admin/create/material',
+          name: 'admin-create-material-list',
+          component: () => import('../views/Admin/AdminCreate/Material/MaterialList/MaterialList.vue')
+        },
+        {
+          path: '/admin/create/material/add',
+          name: 'admin-create-material-add',
+          component: () => import('../views/Admin/AdminCreate/Material/MaterialCreate/MaterialCreate.vue')
+        },
+        // Instructor
+        {
+          path: '/admin/create/instructor',
+          name: 'admin-create-instructor-list',
+          component: () => import('../views/Admin/AdminCreate/Instructor/InstructorList/InstructorList.vue')
+        },
+        {
+          path: '/admin/create/instructor/add',
+          name: 'admin-create-instructor-add',
+          component: () => import('../views/Admin/AdminCreate/Instructor/InstructorCreate/InstructorCreate.vue')
+        },
+        // Task
+        {
+          path: '/admin/create/task',
+          name: 'admin-create-task-list',
+          component: () => import('../views/Admin/AdminCreate/Task/TaskList/TaskList.vue')
+        },
+        {
+          path: '/admin/create/task/add',
+          name: 'admin-create-task-add',
+          component: () => import('../views/Admin/AdminCreate/Task/TaskCreate/TaskCreate.vue')
+        },
+      ]
     },
 
   ]

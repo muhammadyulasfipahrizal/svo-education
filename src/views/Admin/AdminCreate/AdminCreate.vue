@@ -1,39 +1,48 @@
 <script setup lang="ts">
-import AdminCreateCourse from './AdminCreateCourse/AdminCreateCourse.vue'
-import { ref } from 'vue';
-const activeMenu = ref<string>('courses');
+import router from '@/router';
+import { ref, onMounted } from 'vue';
 
+const activeMenu = ref<string>('/admin/create/course');
+
+const goToLocation = (location: string) => router.push(location);
+
+onMounted(() => {
+    activeMenu.value = router.currentRoute.value.fullPath;
+})
+router.afterEach((to, from) => {
+    activeMenu.value = to.fullPath;
+});
 </script>
 
 <template>
-    <main class="flex px-5 justify-content-between">
+    <main class="flex px-5 justify-content-between py-5">
         <section class="event-list">
-            <h1 class="font-bold mb-2">Admin Create</h1>
+            <h1 class="font-bold mb-2 title">Admin Create</h1>
 
             <article class="flex gap-2">
                 <header class="flex gap-2">
-                    <Button size="small" class="btn-header" @click="activeMenu = 'courses'"
-                        :class="{ active: activeMenu === 'courses' }">
+                    <Button size="small" class="btn-header" @click="goToLocation('/admin/create/course')"
+                        :class="{ active: activeMenu.startsWith('/admin/create/course') }">
                         <i class="pi pi-plus"></i>
                         <p class="text-900 font-bold ml-2 text-white">ADD COURSES</p>
                     </Button>
-                    <Button size="small" class="btn-header" @click="activeMenu = 'question'"
-                        :class="{ active: activeMenu === 'question' }">
+                    <Button size="small" class="btn-header" @click="goToLocation('/admin/create/question')"
+                        :class="{ active: activeMenu.startsWith('/admin/create/question') }">
                         <i class="pi pi-plus"></i>
                         <p class="text-900 font-bold ml-2 text-white">PREPARE QUESTIONS</p>
                     </Button>
-                    <Button size="small" class="btn-header" @click="activeMenu = 'material'"
-                        :class="{ active: activeMenu === 'material' }">
+                    <Button size="small" class="btn-header" @click="goToLocation('/admin/create/material')"
+                        :class="{ active: activeMenu.startsWith('/admin/create/material') }">
                         <i class="pi pi-plus"></i>
                         <p class="text-900 font-bold ml-2 text-white">MATERIAL SOURCES</p>
                     </Button>
-                    <Button size="small" class="btn-header" @click="activeMenu = 'instructor'"
-                        :class="{ active: activeMenu === 'instructor' }">
+                    <Button size="small" class="btn-header" @click="goToLocation('/admin/create/instructor')"
+                        :class="{ active: activeMenu.startsWith('/admin/create/instructor') }">
                         <i class="pi pi-plus"></i>
                         <p class="text-900 font-bold ml-2 text-white">ASSIGN INSTRUCTOR</p>
                     </Button>
-                    <Button size="small" class="btn-header" @click="activeMenu = 'task'"
-                        :class="{ active: activeMenu === 'task' }">
+                    <Button size="small" class="btn-header" @click="goToLocation('/admin/create/task')"
+                        :class="{ active: activeMenu.startsWith('/admin/create/task') }">
                         <i class="pi pi-plus"></i>
                         <p class="text-900 font-bold ml-2 text-white">ASSIGN DAILY TASK</p>
                     </Button>
@@ -41,8 +50,10 @@ const activeMenu = ref<string>('courses');
             </article>
 
             <article>
-                <AdminCreateCourse v-if="activeMenu === 'courses'" />
+                <router-view></router-view>
             </article>
+
+            <Button size="small" label="SAVE" class="w-full my-4 btn-save" />
         </section>
     </main>
 </template>
@@ -73,5 +84,19 @@ const activeMenu = ref<string>('courses');
             color: white;
         }
     }
+}
+
+.title {
+    font-family: Inter;
+    font-size: 35px;
+    font-weight: 700;
+    line-height: 56px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+.btn-save {
+    background: var(--primary, #00C0DD);
+    border: none;
 }
 </style>
