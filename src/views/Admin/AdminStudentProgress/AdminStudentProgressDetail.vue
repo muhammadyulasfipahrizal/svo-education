@@ -270,7 +270,7 @@ const showNextDays = () => {
             <p class="modal text correct-color">100%</p>
           </div>
         </div>
-        <div class="flex flex-row align-items-center my-4">
+        <div class="flex f  lex-row align-items-center my-4">
           <div class="flex flex-row align-items-center">
             <i class="pi pi-check mr-3 correct-color"></i>
             <p class="modal-text">Final exam</p>
