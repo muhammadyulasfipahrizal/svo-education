@@ -1,21 +1,61 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-const instructorData = ref([
+interface InstructorData {
+  name: string,
+  numCourses: string,
+  courses: string[]
+}
+
+const instructorData = ref<InstructorData[]>([
   {
-    name: 'Xavier Ron',
-    course: '1 course',
+    name: 'Xavier Ronda',
+    numCourses: '1 course',
+    courses: [
+      'Sales Management',
+      'Sales Analytic',
+      'Sales Account Management'
+    ]
   },
 ]);
 
 const visible = ref(false);
+const checked = ref<boolean>(false);
+const instructorInput = ref(false)
+const userInput = ref('');
+
+const handleKeyPress = (event: KeyboardEvent) => {
+  if (event.key === 'Enter') {
+    updateInstructorData();
+  }
+};
+
+const updateInstructorData = () => {
+  if (userInput.value.trim() !== '') {
+    const newInstructorData = {
+      name: userInput.value,
+      numCourses: '0 course',
+      courses: [
+      'Sales Management',
+      'Sales Analytic',
+      'Sales Account Management'
+    ]
+    };
+    instructorData.value.push(newInstructorData);
+    instructorInput.value = false;
+    userInput.value = '';
+  }
+};
+
 
 const showModal = () => {
   visible.value = true;
 };
 
+const addInstructor = () => {
+  instructorInput.value = true
+}
 
-const checked = ref<boolean>(false);
 </script>
 
 <template>
@@ -45,7 +85,7 @@ const checked = ref<boolean>(false);
               </template>
               <template #body="{data}">
                 <div>
-                  <p class="table-text">{{ data.course }}</p>
+                  <p class="table-text">{{ data.numCourses }}</p>
                 </div>
               </template>
             </Column>
@@ -59,7 +99,7 @@ const checked = ref<boolean>(false);
                 <div>
                     <Button size="small" class="btn-table" @click="showModal">
                     <i class="pi pi-plus"></i>
-                    <p class="text-900 font-bold ml-2 text-white">ADD COURSES</p>
+                    <p class="text-900 font-bold ml-2 text-white">ASSIGN COURSES</p>
                 </Button>
                 </div>
               </template>
@@ -69,28 +109,28 @@ const checked = ref<boolean>(false);
 
 
         <!-- modal -->
-        <Dialog v-model:visible="visible"  modal header="Header" :style="{ width: '35vw' }">
+        <Dialog v-model:visible="visible" v-for="(data, index) in instructorData" :key="index"  modal header="Header" :style="{ width: '35vw' }">
             <template #header>
                 <div class="flex flex-row align-items-center">
                     <Avatar label="M" class="modal-image mr-2" shape="circle" />
-                    <p class="modal-student-name">Xavier Ron</p>
+                    <p class="modal-student-name">{{ data.name }}</p>
                 </div>
             </template>
             <div>
-                <div class="flex flex-row align-items-center my-4">
-                    <Checkbox v-model="checked" :binary="true" class="mr-2"/>
-                    <p class="modal-text">Sales Management</p>
-                </div>
-                    <div class="line"></div>
-                <div class="flex flex-row align-items-center my-4">
-                    <Checkbox v-model="checked" :binary="true" class="mr-2"/>
-                    <p class="modal-text mr-1">Sales Analytic</p>
+                <div class="flex flex-column" v-for="(item, itemIndex) in data.courses" :key="itemIndex">
+                    <div class="flex flex-row align-items-center my-4">
+                      <Checkbox v-model="checked" :binary="true" class="mr-2" />
+                      <p class="modal-text">{{ item }}</p>
+                    </div>
+                  <div class="line"></div>
                 </div>
                 <Button size="small" label="SAVE" class="w-full my-4 btn-save" />
             </div>
         </Dialog>
 
-        <Button size="small" label="Add new intructor" class="w-full mt-4 btn-add-intructor" />
+        <!-- input instructor -->
+        <InputText type="text" v-show="instructorInput" class="w-full" v-model="userInput" @keydown="handleKeyPress" />
+        <Button size="small" label="Add new intructor" class="w-full mt-4 btn-add-intructor" @click="addInstructor"/>
     </section>
 </template>
 
