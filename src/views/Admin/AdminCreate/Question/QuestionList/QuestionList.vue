@@ -7,24 +7,20 @@ interface ICourse {
     title: string;
 }
 const dataList = ref<ICourse[]>([{
-    title: 'Event 1',
+    title: 'Assesment',
     id: 1,
     image: '/assets/img/course/course-quiz.png',
 }, {
-    title: 'Event 2',
+    title: 'Quiz',
     id: 2,
     image: '/assets/img/course/course-quiz.png',
 }, {
-    title: 'Event 3',
+    title: 'Midterm Exam',
     id: 3,
     image: '/assets/img/course/course-quiz.png',
 }, {
-    title: 'Event 4',
+    title: 'Final Exam',
     id: 4,
-    image: '/assets/img/course/course-quiz.png',
-}, {
-    title: 'Event 5',
-    id: 5,
     image: '/assets/img/course/course-quiz.png',
 }])
 </script>
@@ -40,7 +36,7 @@ const dataList = ref<ICourse[]>([{
             </template>
         </Card>
 
-        <article class="grid gap-4 justify-content-center">
+        <article class="grid gap-4 justify-content-start">
             <template v-for="(event, idx) of dataList">
                 <div
                     class="col-2 flex justify-content-center align-items-center gap-2 flex-column cursor-pointer list-item">
@@ -48,7 +44,6 @@ const dataList = ref<ICourse[]>([{
                     <div class="flex gap-1 justify-content-center align-items-center">
                         <h3 class="card-title">{{ event.title }}</h3>
                         <Button size="small" link icon="pi pi-pencil"></Button>
-                        <Button size="small" link icon="pi pi-trash"></Button>
                     </div>
                 </div>
             </template>

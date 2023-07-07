@@ -39,7 +39,7 @@ const courseList = ref<ICourse[]>([{
             </template>
         </Card>
 
-        <article class="grid gap-4 justify-content-center">
+        <article class="grid gap-4 justify-content-start">
             <template v-for="(event, idx) of courseList">
                 <div
                     class="col-2 flex justify-content-center align-items-center gap-2 flex-column cursor-pointer list-item">
