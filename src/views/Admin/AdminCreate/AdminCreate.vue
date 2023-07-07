@@ -52,8 +52,6 @@ router.afterEach((to, from) => {
             <article>
                 <router-view></router-view>
             </article>
-
-            <Button size="small" label="SAVE" class="w-full my-4 btn-save" />
         </section>
     </main>
 </template>
@@ -95,8 +93,4 @@ router.afterEach((to, from) => {
     text-align: left;
 }
 
-.btn-save {
-    background: var(--primary, #00C0DD);
-    border: none;
-}
 </style>

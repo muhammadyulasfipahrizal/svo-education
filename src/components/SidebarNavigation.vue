@@ -31,7 +31,7 @@
                 <router-link to="" @click="openProgress('progress')" class="menuitem-link"
                   :class="{ active: isActive('/admin/progress') }">
                   <i class="pi pi-fw pi-calendar"></i>
-                  <span class="ml-2 menuitem-text">Progress</span>
+                  <span class="menuitem-text">Progress</span>
                 </router-link>
                 <ul
                   class="list-none py-0 pl-3 pr-0 m-0 overflow-y-hidden transition-all transition-duration-400 transition-ease-in-out"
@@ -55,7 +55,7 @@
               <li>
                 <router-link to="" @click="openSub('grades')" class="menuitem-link"
                   :class="{ active: isActive('/admin/grades') }">
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="mr-2">
                     <g id="SVG/Grade" clip-path="url(#clip0_1108_33499)">
                       <g id="Group">
                         <path id="Vector"
@@ -91,7 +91,7 @@
                     </defs>
                   </svg>
         
-                  <span class="ml-2 menuitem-text">Grades</span>
+                  <span class="menuitem-text">Grades</span>
                 </router-link>
                 <ul
                   class="list-none py-0 pl-3 pr-0 m-0 overflow-y-hidden transition-all transition-duration-400 transition-ease-in-out"

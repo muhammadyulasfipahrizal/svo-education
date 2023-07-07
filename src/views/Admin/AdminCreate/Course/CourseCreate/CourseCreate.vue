@@ -141,8 +141,7 @@ const quizList = ref<{ title: string; }[]>([
                 <div>
                     <div class="flex flex-column gap-3">
                         <div v-for="role in roleList" :key="role.key" class="flex align-items-start">
-                            <RadioButton v-model="selectedRole" :inputId="role.key" name="roles"
-                                :value="role.name" />
+                            <RadioButton v-model="selectedRole" :inputId="role.key" name="roles" :value="role.name" />
                             <label :for="role.key" class="ml-2">{{ role.name }}</label>
                             <div class="flex flex-column gap-3 my-5" v-if="selectedRole === role.name">
                                 <template v-for="subrole in dataRoles" :key="subrole.id">
@@ -417,6 +416,13 @@ const quizList = ref<{ title: string; }[]>([
                     <template v-for="quiz in quizList">
                         <QuizInput :title="quiz.title" />
                     </template>
+                    <!-- ADD more quiz -->
+                    <div class="grid pl-3">
+                        <div class="col">
+                            <Button label="Add More Quiz" class="btn-orange w-full" icon="pi pi-plus" size="small"
+                                @click="quizList.push({ title: 'New Quiz', })" />
+                        </div>
+                    </div>
                 </div>
             </template>
 
@@ -454,6 +460,7 @@ const quizList = ref<{ title: string; }[]>([
                 </div>
             </template>
         </div>
+        <Button size="small" label="SAVE" class="w-full my-4 btn-default" />
     </section>
 </template>
 
