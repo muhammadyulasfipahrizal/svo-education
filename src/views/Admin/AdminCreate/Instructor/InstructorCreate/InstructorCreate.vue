@@ -77,7 +77,7 @@ const addInstructor = () => {
                 </div>
               </template>
             </Column>
-            <Column field="enrollment">
+            <Column field="enrollment" sortable>
               <template #header>
                 <div>
                   <p class="header-text">Course</p>
@@ -91,7 +91,7 @@ const addInstructor = () => {
             </Column>
             <Column field="startDate">
               <template #header>
-                <div>
+                <div >
                   <p class="header-text">Action</p>
                 </div>
               </template>
@@ -109,7 +109,7 @@ const addInstructor = () => {
 
 
         <!-- modal -->
-        <Dialog v-model:visible="visible" v-for="(data, index) in instructorData" :key="index"  modal header="Header" :style="{ width: '35vw' }">
+        <Dialog v-model:visible="visible" v-for="(data, index) in instructorData" :key="index"  modal header="Header" :style="{ width: '50vw' }">
             <template #header>
                 <div class="flex flex-row align-items-center">
                     <Avatar label="M" class="modal-image mr-2" shape="circle" />

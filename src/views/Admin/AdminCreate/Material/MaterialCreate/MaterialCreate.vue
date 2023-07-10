@@ -49,15 +49,17 @@ const addMaterial = (index: number) => {
                 </Button>
             </div>
             <div class="flex flex-column">
-                <ol>
-                    <li class="list-style my-3" v-for="(item, itemIndex) in material.items" :key="itemIndex">
-                        <div class="flex flex-row align-items-center mx-2">
-                            <Dropdown optionLabel="name" placeholder="Select a City" class="w-full md:w-14rem mr-3">
-                            </Dropdown>
-                            <p contenteditable class="material-list-text">{{ item.website }}</p>
-                        </div>
-                    </li>
-                </ol>
+                     <ol>
+                         <li class="list-style my-3" v-for="(item, itemIndex) in material.items" :key="itemIndex">
+                             <div class="flex flex-row align-items-center mx-2">
+                                 <Dropdown
+                                     optionLabel="name" placeholder="Select a City" 
+                                     class="mr-3">
+                                 </Dropdown>
+                                 <p contenteditable class="material-list-text">{{ item.website }}</p>
+                             </div>
+                         </li>
+                     </ol>
             </div>
         </div>
         <Button size="small" label="Add new material sources" class="w-full mt-4 btn-add-material"
