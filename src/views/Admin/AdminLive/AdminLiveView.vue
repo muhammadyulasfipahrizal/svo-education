@@ -137,14 +137,14 @@ const instructorNew = ref();
 </script>
 
 <template>
-  <section class="admin-live-view flex px-5 flex-column gap-3 mb-5">
+  <section class="flex px-5 flex-column gap-3 mb-5">
     <h1>Live video for you</h1>
-    <div class="border-1 surface-border surface-0 mb-3" @click="openModal(null)">
+    <div class="border-1 surface-border surface-0 mb-3 w-10/12" @click="openModal(null)">
       <div v-if="!videoUrls[0]" class="p-5 flex justify-content-center align-items-center h-30rem cursor-pointer">
         <i class="pi pi-fw pi-plus-circle upload-icon"></i>
         <h3 class="upload-text">Add more live event</h3>
       </div>
-      <div class="flex justify-content-center align-items-center" v-else>
+      <div class="flex justify-content-center align-items-center overflow-hidden" v-else>
         <video height="500" :src="videoUrls[0].url" controls></video>
       </div>
     </div>
@@ -197,17 +197,16 @@ const instructorNew = ref();
       </div>
     </div>
     <!-- Modal -->
-    <Dialog v-model:visible="showModal" modal header="Header"  class="min-w-min">
-      <h2>Upload A New Video</h2>
+    <Dialog v-model:visible="showModal" modal header="Upload new media" class="modal min-w-min" :style="{ width: '80vw' }" :breakpoints="{ '764px': '70vw'}">
       <div class="upload-section">
         <label class="upload-label" v-if="!selectedVideo">
-          <input class="modal-input" ref="fileInput" type="file" accept="video/*" style="display: none"
+          <input ref="fileInput" type="file" accept="video/*" style="display: none"
             @change="handleFileChange" />
           <span class="modal-upload-text">Drop Files Here</span>
           <p>Or</p>
           <p class="modal-select-file">Select File</p>
         </label>
-        <video v-else :src="selectedVideo" class="modal-video"></video>
+        <video v-else :src="selectedVideo" ></video>
         <p class="max-file-size">Maximum file size: 8 MB</p>
       </div>
       <h3 class="live-video-details">Live Video Details</h3>
@@ -352,28 +351,10 @@ const instructorNew = ref();
 }
 
 /* Modal Styles */
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
 
-.modal-content {
-  background-color: #fff;
-  padding: 20px;
-  width: 700px;
-  border-radius: 15px;
-}
-
-.modal-content h2 {
-  margin-top: 0;
+.modal video {
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .modal-upload-text {
