@@ -47,9 +47,6 @@ const addNewTask = () => {
 </template>
 
 <style scoped lang="scss">
-.list {
-    width: 50vw;
-}
 .title {
     color: var(--font-1, #001125);
     font-size: 25px;
@@ -105,4 +102,10 @@ const addNewTask = () => {
     background-color: #D9D5EC;
     padding: 1px;
 }
+
+@media only screen and (min-width: 768px) {
+    .list {
+      width: 75vw;
+    }
+  }
 </style>

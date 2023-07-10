@@ -33,17 +33,17 @@ const dataList = ref<ICourse[]>([{
     <section>
         <Card class="my-5 shadow-5">
             <template #content>
-                <div class="flex justify-content-between align-items-center">
+                <div class="flex justify-content-between align-items-center w-8/12">
                     <h1 class="title">Material sources</h1>
                     <Button label="NEW" @click="$router.push('/admin/create/material/add')" class="btn-new"></Button>
                 </div>
             </template>
         </Card>
 
-        <article class="grid gap-4 justify-content-center">
+        <article class="grid gap-4 justify-content-start md:justify-content-center">
             <template v-for="(event, idx) of dataList">
                 <div
-                    class="col-2 flex justify-content-center align-items-center gap-2 flex-column cursor-pointer list-item">
+                    class="flex justify-content-center align-items-center gap-2 flex-column cursor-pointer list-item">
                     <img :src="event.image" :alt="event.title" />
                     <div class="flex gap-1 justify-content-center align-items-center">
                         <h3 class="card-title">{{ event.title }}</h3>

@@ -165,18 +165,20 @@ const quizList = ref<{ title: string; }[]>([
 
         <div class="card card-container p-2">
             <div class="card-content">
-                <div class="grid ">
-                    <div class="col-7">
-                        <div class="flex flex-column align-items-start justify-content-start gap-3">
+                <div class="grid">
+                    <div class="mr-5">
+                        <div class="flex flex-column align-items-start justify-content-start gap-3 w-screen md:w-min">
                             <InputText type="text" label="Title" v-model="title" class="p-inputtext-lg w-full" required
                                 placeholder="Title" />
 
-                            <div class="flex gap-2 align-items-center">
-                                <h1 class="instructor text-2xl text-900 font-bold">
-                                    Instructor By
-                                </h1>
-                                <Dropdown v-model="selectedInstructor" :options="instructorList" optionLabel="name"
-                                    placeholder="Select Instructor" class="w-full md:w-14rem p-inputtext-sm" size="small" />
+                            <div class="flex flex-column md:flex-row gap-2 align-items-start md:align-items-center">
+                                <div class="flex flex-row gap-2">
+                                    <h1 class="instructor text-2xl text-900 font-bold min-w-max">
+                                        Instructor By
+                                    </h1>
+                                    <Dropdown v-model="selectedInstructor" :options="instructorList" optionLabel="name"
+                                        placeholder="Select Instructor" class="w-full md:w-14rem p-inputtext-sm" size="small" />
+                                </div>
                                 <div class="flex gap-1">
                                     <i class="pi-thumbs-up pi mt-1"></i>
                                     <p class="text-900 font-normal">0%</p>
@@ -186,7 +188,7 @@ const quizList = ref<{ title: string; }[]>([
                                 </div>
                             </div>
 
-                            <div class="grid w-full gap-3 p-2">
+                            <div class="grid w-full gap-3 p-2 flex-column md:flex-row">
                                 <div class="col card shadow-1 flex flex-column">
                                     <div class="flex gap-1 align-items-center">
                                         <i class="pi-star-fill pi"></i>
@@ -227,11 +229,11 @@ const quizList = ref<{ title: string; }[]>([
 
                             </div>
 
-                            <Button label="ENROLL" class="btn-default" />
+                            <Button label="ENROLL" class="btn-default w-screen md:w-max mb-3 md:mb-0" />
                         </div>
                     </div>
-                    <div class="col-5">
-                        <UploadImage />
+                    <div>
+                        <UploadImage class="w-screen md:w-max upload-image"/>
                         <div class="flex justify-content-center align-items-center gap-2 my-2">
                             <div class="card-price flex justify-content-center align-items-center flex-column p-2">
                                 <h4 class="text-900 font-bold text-md">Original Price</h4>
@@ -252,7 +254,7 @@ const quizList = ref<{ title: string; }[]>([
         </div>
 
         <!-- STEP SECTION -->
-        <div class="flex justify-content-start align-items-center gap-2 my-3">
+        <div class="flex justify-content-start align-items-center gap-2 my-3 w-screen">
             <Button label="ABOUT" :class="{ 'btn-default': steps === 'about' }" outlined class=""
                 @click="steps = 'about'" />
             <Button label="INSTRUCTOR" :class="{ 'btn-default': steps === 'instructor' }" outlined
@@ -265,7 +267,7 @@ const quizList = ref<{ title: string; }[]>([
         <div class="flex flex-column">
             <!-- ABOUT -->
             <template v-if="steps === 'about'">
-                <div class="card p-1 border-1 surface-border flex w-fit">
+                <div class="card p-1 border-1 surface-border justify-content-center flex w-screen md:w-fit">
                     <table class="table-grade-system">
                         <thead>
                             <tr>
@@ -316,7 +318,7 @@ const quizList = ref<{ title: string; }[]>([
                 <div class="card py-3">
                     <div class="row">
                         <div class="col-4">
-                            <UploadVideo />
+                            <UploadVideo class="upload-video w-screen md:w-fit"/>
                             <h4 class="text-900 text-xl font-bold my-3 text-center">
                                 Course Preview
                             </h4>
@@ -465,6 +467,13 @@ const quizList = ref<{ title: string; }[]>([
 </template>
 
 <style scoped lang="scss">
+.upload-image {
+    height: 350px;
+}
+
+.upload-video {
+    height: 300px;
+}
 .title {
     font-family: Inter;
     font-size: 35px;
