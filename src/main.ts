@@ -21,6 +21,7 @@ import BadgeDirective from 'primevue/badgedirective';
 import Badge from 'primevue/badge';
 import Button from 'primevue/button';
 import Calendar from 'primevue/calendar';
+import Card from 'primevue/card';
 import Carousel from 'primevue/carousel';
 import Checkbox from 'primevue/checkbox';
 import Chip from 'primevue/chip';
@@ -56,7 +57,11 @@ import ToggleButton from 'primevue/togglebutton';
 import Tooltip from 'primevue/tooltip';
 import Toast from 'primevue/toast';
 import ToastService from 'primevue/toastservice';
-// import BlockViewer from './components/blockviewer/BlockViewer.vue';
+import Paginator from 'primevue/paginator';
+import DataTable from 'primevue/datatable';
+import Column from 'primevue/column';
+import Tree from 'primevue/tree';
+import { setupCalendar } from 'v-calendar';
 
 const app = createApp(App)
 
@@ -64,6 +69,7 @@ app.use(createPinia())
 app.use(PrimeVue, { ripple: true });
 app.use(ToastService);
 app.use(router)
+app.use(setupCalendar, {})
 
 app.config.globalProperties.$appState = reactive({ theme: 'lara-light-indigo', dark: false });
 app.component('Accordion', Accordion);
@@ -104,6 +110,11 @@ app.component('Tag', Tag);
 app.component('Textarea', Textarea);
 app.component('ToggleButton', ToggleButton);
 app.component('Toast', Toast);
+app.component('Paginator', Paginator);
+app.component('DataTable', DataTable);
+app.component('Column', Column);
+app.component('Tree', Tree);
+app.component('Card', Card);
 // app.component('BlockViewer', BlockViewer);
 
 app.directive('badge', BadgeDirective);
