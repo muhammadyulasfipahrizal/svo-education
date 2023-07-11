@@ -114,7 +114,7 @@ const onUpload = (e: any) => {
         <slot :dropZoneActive="active"></slot>
 
         <img v-if="fileUploadPreview" :src="fileUploadPreview" class="w-full h-20rem" />
-        <template v-if="!fileUploadPreview">
+        <template v-i`f="!fileUploadPreview">
           <input type="file" ref="fileUpload" class="hidden" accept="image/*" @change="onUpload" />
           <h2 class="text-700 font-medium text-sm">Drop files here</h2>
           <p class="text-500">or</p>
