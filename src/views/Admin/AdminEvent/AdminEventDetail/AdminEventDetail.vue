@@ -9,6 +9,7 @@ const visible = ref(false);
 const fileUpload = ref();
 const fileUploadPreview = ref();
 
+
 const title = ref();
 const description = ref();
 const location = ref();
@@ -65,15 +66,15 @@ onMounted(() => {
 </script>
 
 <template>
-    <section class="grid px-5 justify-content-between">
+    <section class="grid px-5 md:justify-content-between flex-column md:flex-row" >
         <div class="event-list col-8">
             <div class="flex gap-1 align-items-center">
                 <Button @click="$router.push('/admin/event')" link class="btn-back" size="small" icon="pi pi-angle-left" />
                 <h1 class="font-bold">Ongoing Event</h1>
             </div>
 
-            <div class="flex gap-2 flex-column w-full">
-                <img src="/assets/img/event/innovations.png" alt="" />
+            <div class="flex gap-2 flex-column width md:w-full">
+                <img src="/assets/img/event/innovations.png" alt=""/>
                 <InputText v-model="title" class="title" />
                 <Textarea v-model="description" rows="5" />
                 <div class="flex">
@@ -81,10 +82,10 @@ onMounted(() => {
                 </div>
             </div>
         </div>
-        <div class="calendar col-4">
+        <div class="calendar w-screen md:w-fit">
             <h1 class="font-bold mb-2">Calendar</h1>
-            <div class="card flex ">
-                <Calendar v-model="date" inline showWeek class="calendar">
+            <div class="flex">
+                <Calendar v-model="date" inline showWeek class="calendar width md:w-max" >
                 </Calendar>
             </div>
 
@@ -142,6 +143,9 @@ onMounted(() => {
     </section>
 </template>
 <style>
+.width {
+    width: calc(100vw - 100px);
+}
 .calendar>.p-datepicker {
     border-radius: 20px;
     width: 100%;

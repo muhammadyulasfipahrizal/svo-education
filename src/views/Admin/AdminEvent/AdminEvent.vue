@@ -70,20 +70,23 @@ const onUpload = (e: any) => {
 </script>
 
 <template>
-  <main class="flex px-5 justify-content-between flex-column md:flex-row">
+  <main class="flex overflow-hidden flex-column md:flex-row">
     <div class="event-list">
       <h1 class="font-bold mb-2">Ongoing Event</h1>
 
-      <div class="flex gap-2 flex-column md:flex-row">
+      <div class="flex card-row flex-wrap gap-2 flex-column md:flex-row">
         <EventItem />
         <EventItem />
+        <EventAdd @on-add="onAddEvent" />
+        <EventAdd @on-add="onAddEvent" />
+        <EventAdd @on-add="onAddEvent" />
         <EventAdd @on-add="onAddEvent" />
       </div>
     </div>
     <div class="calendar">
       <h1 class="font-bold mb-2">Calendar</h1>
       <div class="card flex justify-content-center">
-        <Calendar v-model="date" inline showWeek class="calendar">
+        <Calendar v-model="date" inline showWeek class="calendar" >
           <!-- for badge calendar -->
           <template #date="slotProps">
             <strong v-if="slotProps.date.day > 10 && slotProps.date.day < 15"
@@ -156,8 +159,12 @@ const onUpload = (e: any) => {
   </Dialog>
 </template>
 <style scoped lang="scss">
-::v-deep(.calendar > .p-datepicker) {
+.card-row {
+  width: 750px;
+}
+::v-deep(.calendar) {
   border-radius: 20px;
+  width: 400px;
 
   .p-datepicker-calendar table td {
     padding: 0.25rem !important;
@@ -165,7 +172,7 @@ const onUpload = (e: any) => {
 
   table td>span {
     border-radius: 5px;
-    width: 50px;
+    width: 30px;
     height: 50px;
     font-size: 15px;
   }
