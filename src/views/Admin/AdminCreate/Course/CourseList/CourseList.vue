@@ -32,7 +32,7 @@ const courseList = ref<ICourse[]>([{
     <section>
         <Card class="my-5 shadow-5">
             <template #content>
-                <div class="flex justify-content-between align-items-center w-8/12">
+                <div class="flex justify-content-between align-items-center">
                     <h1 class="title">Course</h1>
                     <Button label="NEW" @click="$router.push('/admin/create/course/add')" class="btn-new"></Button>
                 </div>
@@ -42,7 +42,7 @@ const courseList = ref<ICourse[]>([{
         <article class="grid gap-4 justify-content-start md:justify-content-center">
             <template v-for="(event, idx) of courseList">
                 <div
-                    class="flex justify-content-center align-items-start gap-2 flex-column cursor-pointer list-item">
+                    class="flex justify-content-center align-items-center gap-2 flex-column cursor-pointer list-item">
                     <img :src="event.image" :alt="event.title" />
                     <div class="flex gap-1 justify-content-center align-items-center">
                         <h3 class="card-title">{{ event.title }}</h3>
@@ -56,9 +56,6 @@ const courseList = ref<ICourse[]>([{
 </template>
 
 <style scoped lang="scss">
-.test {
-    width: 300px;
-}
 .row {
     display: flex;
     flex-wrap: wrap;

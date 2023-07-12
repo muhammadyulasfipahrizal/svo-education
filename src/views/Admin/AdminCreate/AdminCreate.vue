@@ -15,12 +15,12 @@ router.afterEach((to, from) => {
 </script>
 
 <template>
-    <main class="flex px-5 justify-content-between w-screen">
+    <main class="flex px-5 justify-content-between w-screen md:w-max">
         <section class="event-list">
             <h1 class="font-bold mb-2 title">Admin Create</h1>
 
-            <article class="flex gap-2 w-screen">
-                <header class="flex gap-2 overflow-scroll">
+            <article class="flex gap-2 width md:w-max ">
+                <header class="flex gap-2 overflow-scroll md:overflow-hidden">
                     <Button size="small" class="btn-header min-w-max" @click="goToLocation('/admin/create/course')"
                         :class="{ active: activeMenu.startsWith('/admin/create/course') }">
                         <i class="pi pi-plus"></i>
@@ -56,6 +56,9 @@ router.afterEach((to, from) => {
     </main>
 </template>
 <style scoped lang="scss">
+.width {
+    max-width: 95vw;
+}
 .btn-header {
     font-size: 16px;
     border-radius: 6px;
