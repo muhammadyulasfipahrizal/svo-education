@@ -5,7 +5,7 @@
         <h1 class="page-title">Student Progress</h1>
     </div>
     <div v-if="!showDetail" >
-      <DataTable :value="courseData" class="pr-3" selectionMode="single" :selection="selectedCourse" @rowSelect="handleRowSelect" tableStyle="min-width: 80rem">
+      <DataTable :value="courseData" class="pr-3" selectionMode="single" :selection="selectedCourse" @rowSelect="handleRowSelect" tableStyle="min-width: 50rem">
         <Column field="courseName">
           <template #header>
             <div>

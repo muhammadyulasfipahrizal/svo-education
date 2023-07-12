@@ -83,7 +83,7 @@ const showNextDays = () => {
     </div>
 
     <!-- table -->
-    <DataTable class="detail-table" :value="studentData" paginator :rows="5" tableStyle="min-width: 80rem">
+    <DataTable class="detail-table" :value="studentData" paginator :rows="5" tableStyle="min-width: 50rem">
       <template #paginatorfirstpagelinkicon></template>
       <template #paginatorprevpagelinkicon>
         <i class="pi pi-chevron-left"></i>
