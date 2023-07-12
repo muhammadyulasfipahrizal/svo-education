@@ -5,7 +5,7 @@
         <h1 class="page-title">Student Progress</h1>
     </div>
     <div v-if="!showDetail" >
-      <DataTable :value="courseData" class="min-w-full" selectionMode="single" :selection="selectedCourse" @rowSelect="handleRowSelect">
+      <DataTable :value="courseData" class="pr-3" selectionMode="single" :selection="selectedCourse" @rowSelect="handleRowSelect" tableStyle="min-width: 80rem">
         <Column field="courseName">
           <template #header>
             <div>
@@ -165,6 +165,9 @@ const handleRowSelect = (event: DataTableRowSelectEvent) => {
 
 <style lang="scss" scoped>
 ::v-deep(.p-datatable) {
+  .p-datatable-wrapper {
+    border-radius: 7.5px;
+  }
   .p-datatable-thead>tr>th {
       background: #006785;
       color: white;
