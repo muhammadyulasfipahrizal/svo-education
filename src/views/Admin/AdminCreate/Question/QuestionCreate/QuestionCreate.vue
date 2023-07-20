@@ -52,9 +52,9 @@ const assesments = ref<IAssesment[]>([
             </div>
             <div class="flex flex-column gap-2 px-3">
                 <h4 class="font-bold text-md">Assesment (2 questions)</h4>
-                <div class="grid align-items-center">
-                    <h4 class="font-bold text-lg col-10">Assesment</h4>
-                    <div class="flex gap-2 col-2 align-items-center justify-content-center">
+                <div class="grid align-items-center w-full">
+                    <h4 class="font-bold text-lg col-12 md:col-9 lg:col-9 xl:col-9">Assesment</h4>
+                    <div class="col-12 md:col-3 lg:col-3 xl:col-3 flex gap-2 col-2 align-items-center justify-content-center">
                         <h5 class="font-bold text-900 text-lg">Due</h5>
                         <Dropdown v-model="selectedDue" :options="dueList" optionLabel="name" placeholder="Select Limit"
                             class="w-full md:w-14rem h-3rem" />
@@ -68,7 +68,7 @@ const assesments = ref<IAssesment[]>([
                     </div>
                 </template>
                 <!-- ADD more quiz -->
-                <div class="grid pl-3">
+                <div class="grid">
                     <div class="col">
                         <Button label="Add new assesment question" class="btn-orange w-full" icon="pi pi-plus" size="small" @click="assesments.push({
                             question: 'New Assesment',
