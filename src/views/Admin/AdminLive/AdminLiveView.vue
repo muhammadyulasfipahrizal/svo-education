@@ -149,7 +149,7 @@ const instructorNew = ref();
       </div>
     </div>
     <div class="flex md:grid gap-5 flex-column md:flex-row justify-center md:justify-start ">
-      <div v-for="(video, index) in videoUrls" :key="index" class="col-4 border-1 border-round-xl border-300 md:w-auto w-screen">
+      <div v-for="(video, index) in videoUrls" :key="index" class="col-4 border-1 border-round-xl border-300 md:w-auto">
         <div class="card-video">
           <div class="flex flex-column gap-2">
             <div class="flex gap-2 justify-content-center align-items-center">
@@ -186,7 +186,7 @@ const instructorNew = ref();
         </div>
       </div>
       <!-- ADD NEW VIDEO -->
-      <div class="col-4 border-1 border-round-xl border-300 flex flex-column md:flex-row justify-content-center align-items-center w-screen md:w-auto p-8"
+      <div class="col-4 border-1 border-round-xl border-300 flex flex-column md:flex-row justify-content-center align-items-center md:w-auto p-8"
         v-if="videoUrls.length > 0" @click="openModal(null)">
         <div class="card-video">
           <div class="card-content">

@@ -38,8 +38,6 @@ watchEffect(() => {
 <style scoped>
 #app-sidebar {
   min-width: 300px;
-  /* height: 100vh; */
-  /* overflow: scroll; */
   background-color: #fff;
   padding: 1rem;
   top: 0;
