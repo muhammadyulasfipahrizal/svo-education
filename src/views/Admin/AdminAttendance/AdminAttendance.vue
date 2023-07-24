@@ -21,7 +21,7 @@
               placeholder="Select a City" 
               class="w-14rem mb-3" />
         </div>
-        <div class="flex flex-row flex-wrap ">
+        <div class="flex flex-row flex-wrap justify-content-center sm:justify-content-start">
           <AttendanceCalendar v-for="(card, index) in cardData" :key="index" :card="card" />
         </div>
         <Paginator 

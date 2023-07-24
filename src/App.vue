@@ -5,7 +5,7 @@ import HeaderLayout from './components/HeaderLayout.vue'
 </script>
 
 <template>
-  <div id="root" class="min-h-screen flex w-screen relative md:static surface-ground">
+  <div id="root" class="min-h-screen flex relative md:static surface-ground">
     <SidebarLayout />
     <div class="bg-white min-h-screen flex flex-column relative flex-auto main-content">
       <HeaderLayout />
@@ -27,5 +27,9 @@ import HeaderLayout from './components/HeaderLayout.vue'
   .main-content {
     width: calc(100% - 300px);
   }
+}
+
+#root {
+  width: 98.9vw;
 }
 </style>

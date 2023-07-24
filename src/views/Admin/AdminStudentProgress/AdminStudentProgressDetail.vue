@@ -71,17 +71,19 @@ const showNextDays = () => {
 <template>
   <div class="flex flex-column">
     <Dropdown optionLabel="name" placeholder="Course Name" class="w-18rem md:w-16rem md:h-3rem mr-2 mt-1 mb-3" />
-    <div class=" flex flex-row align-items-center mb-3 filter-search">
-      <Button label="Filter" icon="pi pi-filter-fill" size="small" class="filter-button mr-3" />
-      <span class="p-input-icon-left">
-        <i class="pi pi-search search-icon" />
-        <InputText placeholder="Search by Name" class="search-bar p-inputtext-sm" />
-      </span>
-      <Button label="DOWNLOAD" icon="pi pi-download" size="small" class="download-button ml-auto" />
+    <div class=" flex flex-row align-items-center justify-content-between mb-3 filter-search pr-3">
+      <div>
+        <Button label="Filter" icon="pi pi-filter-fill" size="small" class="filter-button mr-3" />
+        <span class="p-input-icon-left">
+          <i class="pi pi-search search-icon" />
+          <InputText placeholder="Search by Name" class="search-bar p-inputtext-sm" />
+        </span>
+      </div>
+      <Button label="DOWNLOAD" icon="pi pi-download" size="small" class="download-button " />
     </div>
 
     <!-- table -->
-    <DataTable class="detail-table" :value="studentData" paginator :rows="5">
+    <DataTable class="detail-table" :value="studentData" paginator :rows="5" tableStyle="min-width: 50rem">
       <template #paginatorfirstpagelinkicon></template>
       <template #paginatorprevpagelinkicon>
         <i class="pi pi-chevron-left"></i>
@@ -172,7 +174,7 @@ const showNextDays = () => {
     </DataTable>
 
     <!-- modal -->
-    <Dialog v-model:visible="visible" :value="studentData" modal header="Header">
+    <Dialog v-model:visible="visible" :value="studentData" modal header="Header" :style="{width: '40vw'}" :breakpoints="{ '764px': '70vw'}">
       <template #header>
         <div class="flex flex-row align-items-center">
           <Avatar label="M" class="modal-image mr-2" shape="circle" />
