@@ -5,11 +5,7 @@
         <h1 class="page-title">Student Progress</h1>
     </div>
     <div v-if="!showDetail" >
-<<<<<<< HEAD
-      <DataTable :value="courseData" class="pr-3" selectionMode="single" :selection="selectedCourse" @rowSelect="handleRowSelect" tableStyle="min-width: 50rem">
-=======
       <DataTable :value="courseData" class="shadow-2" selectionMode="single" :selection="selectedCourse" @rowSelect="handleRowSelect">
->>>>>>> 6652dc1b75a4c30a4c0c8a9d1d1499d9fdd1284c
         <Column field="courseName">
           <template #header>
             <div>
