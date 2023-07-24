@@ -36,17 +36,10 @@ const dataList = ref<ICourse[]>([{
             </template>
         </Card>
 
-<<<<<<< HEAD
-        <article class="grid gap-4 justify-content-center md:justify-content-start">
-            <template v-for="(event, idx) of dataList">
-                <div
-                    class="flex justify-content-center align-items-center gap-2 flex-column cursor-pointer list-item">
-=======
         <article class="grid gap-4 justify-content-center md:justify-content-start lg:justify-content-start">
             <template v-for="(event, idx) of dataList">
                 <div
                 class="col-12 md:col-3 lg:col-3 xl:col-3 flex justify-content-center align-items-center gap-2 flex-column cursor-pointer list-item">
->>>>>>> 6652dc1b75a4c30a4c0c8a9d1d1499d9fdd1284c
                     <img :src="event.image" :alt="event.title" />
                     <div class="flex gap-1 justify-content-center align-items-center">
                         <h3 class="card-title">{{ event.title }}</h3>
