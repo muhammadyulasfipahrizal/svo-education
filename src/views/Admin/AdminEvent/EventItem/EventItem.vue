@@ -7,7 +7,7 @@ const goToDetail = () => {
 </script>
 
 <template>
-    <section class="flex flex-column gap-2 container">
+    <section class="flex flex-column gap-2 w-screen container">
         <article class="border-1 surface-0 surface-border p-1 flex flex-column gap-1">
             <img src="/assets/img/event/innovations.png" />
             <h2 class="text-900 font-bold text-sm">Network Technology Seminar</h2>
@@ -64,7 +64,7 @@ const goToDetail = () => {
 
 @media only screen and (min-width: 768px) {
     .container {
-      max-width: 224px;
+      max-width: 225px;
     }
   }
 </style>

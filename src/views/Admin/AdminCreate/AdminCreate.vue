@@ -56,6 +56,9 @@ router.afterEach((to, from) => {
     </main>
 </template>
 <style scoped lang="scss">
+.width {
+    max-width: 95vw;
+}
 .btn-header {
     font-size: 16px;
     border-radius: 6px;
