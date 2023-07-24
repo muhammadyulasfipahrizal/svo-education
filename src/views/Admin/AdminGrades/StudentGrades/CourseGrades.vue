@@ -19,7 +19,7 @@ const getStudentCount = (courseId: number) => {
 </script>
 
 <template>
-    <section>
+    <section class="px-5">
         <h1 class="text-900 font-bold text-4xl pl-2">Student Grades</h1>
         <div class="pl-2 flex flex-column gap-2 my-5 pr-3">
             <DataTable :value="courseList" paginator :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]" sortMode="multiple"

@@ -1,11 +1,15 @@
 <template>
-  <div class="flex flex-column ">
+  <div class="flex flex-column px-5">
     <div class="flex flex-row align-items-center">
         <i class="pi pi-chevron-left mr-3 back-arrow" v-if="showDetail" @click="goBack"></i>
         <h1 class="page-title">Student Progress</h1>
     </div>
     <div v-if="!showDetail" >
+<<<<<<< HEAD
       <DataTable :value="courseData" class="pr-3" selectionMode="single" :selection="selectedCourse" @rowSelect="handleRowSelect" tableStyle="min-width: 50rem">
+=======
+      <DataTable :value="courseData" class="shadow-2" selectionMode="single" :selection="selectedCourse" @rowSelect="handleRowSelect">
+>>>>>>> 6652dc1b75a4c30a4c0c8a9d1d1499d9fdd1284c
         <Column field="courseName">
           <template #header>
             <div>
@@ -165,23 +169,26 @@ const handleRowSelect = (event: DataTableRowSelectEvent) => {
 
 <style lang="scss" scoped>
 ::v-deep(.p-datatable) {
-  .p-datatable-wrapper {
-    border-radius: 7.5px;
-  }
-  .p-datatable-thead>tr>th {
-      background: #006785;
-      color: white;
-      color: var(--white, #FFF);
-      text-align: center;
-      font-size: 20px;
-      font-weight: 700;
-      svg path {
-          fill: white;
-      }
-      &:hover {
-          background: #006785;
-          color: var(--white, #FFF);
-      }
-  }
+    .p-datatable-wrapper {
+        border-radius: 10px;
+    }
+    .p-datatable-thead>tr>th {
+        background: #006785;
+        color: white;
+        color: var(--white, #FFF);
+        text-align: center;
+        font-size: 20px;
+        font-weight: 700;
+
+        svg path {
+            fill: white;
+        }
+
+        &:hover {
+            background: #006785;
+            color: var(--white, #FFF);
+        }
+    }
 }
+
 </style>

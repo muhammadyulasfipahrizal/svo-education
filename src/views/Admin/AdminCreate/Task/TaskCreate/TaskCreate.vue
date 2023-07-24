@@ -25,7 +25,7 @@ const addNewTask = () => {
 <template>
     <section class="my-3">
         <p class="title">Assigned daily task</p>
-        <div class="flex flex-column mx-auto mt-3 list">
+        <div class="flex flex-column mx-auto mt-3 list w-full">
             <p class="text-day mb-3">Monday</p>
             <Card>
                 <template #content>
@@ -35,13 +35,13 @@ const addNewTask = () => {
                                 <p contenteditable class="text-task mb-2">{{ task.taskName }}</p>
                                 <p contenteditable class="text-desc">{{ task.taskDesc }}</p>
                             </div>
-                            <Button label="go" class="go-button ml-auto" />
+                            <Button label="go" class="btn-orange ml-auto" />
                         </div>
                         <div class="line mb-5"></div>
                     </div>
                 </template>
             </Card>
-            <Button size="small" label="Add new columns" class="w-full mt-4 btn-add-columns" @click="addNewTask"/>
+            <Button size="small" label="Add new columns" class="w-full mt-4 btn-orange" @click="addNewTask"/>
         </div>
     </section>
 </template>

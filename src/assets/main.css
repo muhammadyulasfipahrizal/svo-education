@@ -5,6 +5,7 @@
   font-family: 'Gudea', sans-serif;
   margin: 0;
   font-weight: normal;
+  overflow-x: hidden;
 }
 
 a,

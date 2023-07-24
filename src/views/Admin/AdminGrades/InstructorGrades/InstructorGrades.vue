@@ -29,7 +29,7 @@ const onSelectProfile = (v: Instructor) => {
 </script>
 
 <template>
-    <section>
+    <section class="px-5">
         <h1 class="text-900 font-bold text-4xl pl-2">Instructor Grades</h1>
         <div class="pl-2 flex flex-column gap-2 my-5 pr-3">
             <!-- FILTER -->

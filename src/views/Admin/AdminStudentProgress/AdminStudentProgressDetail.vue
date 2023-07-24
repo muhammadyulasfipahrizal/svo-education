@@ -168,7 +168,7 @@ const showNextDays = () => {
           </div>
         </template>
         <template #body="{ data }">
-          <Button label="Info" class="info-button" @click="showModal(data)" />
+          <Button label="Info" class="btn-orange" @click="showModal(data)" />
         </template>
       </Column>
     </DataTable>

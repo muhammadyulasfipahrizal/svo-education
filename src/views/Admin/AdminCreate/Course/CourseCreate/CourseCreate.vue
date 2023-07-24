@@ -4,6 +4,7 @@ import UploadImage from './Components/UploadImage/UploadImage.vue'
 import QuizInput from './Components/QuizInput/QuizInput.vue'
 import { ref } from 'vue';
 
+
 const title = ref<string>('');
 
 // instructor
@@ -32,9 +33,9 @@ const languageList = ref([
 // roles
 const selectedRole = ref<string>('All');
 const roleList = ref([
-    { name: 'All', key: 'all' },
-    { name: 'SVO ID', key: 'svo' },
-    { name: 'Non-SVO ID', key: 'non-svo' },
+    { name: 'All', key: 'all', subrole: [] },
+    { name: 'SVO ID', key: 'svo', subrole: [] },
+    { name: 'Non-SVO ID', key: 'non-svo', subrole: [] },
 ]);
 const dataRoles = ref<{ title: string; id: number }[]>([
     {
@@ -146,8 +147,7 @@ const quizList = ref<{ title: string; }[]>([
                             <div class="flex flex-column gap-3 my-5" v-if="selectedRole === role.name">
                                 <template v-for="subrole in dataRoles" :key="subrole.id">
                                     <div class="flex align-items-center gap-2">
-                                        <Checkbox v-model="subrole.title" :inputId="subrole.title" name="subrole"
-                                            :value="subrole.title" />
+                                        <Checkbox v-model="role.subrole" :name="subrole.title" :value="subrole.id" />
                                         <label :for="subrole.title">{{ subrole.title }}</label>
                                     </div>
                                 </template>
@@ -166,20 +166,20 @@ const quizList = ref<{ title: string; }[]>([
         <div class="card card-container p-2">
             <div class="card-content">
                 <div class="grid">
-                    <div class="mr-5">
-                        <div class="flex flex-column align-items-start justify-content-start gap-3 w-screen md:w-min">
+                    <div class="col-12 lg:col-7">
+                        <div class="flex flex-column align-items-start justify-content-start gap-3 ">
                             <InputText type="text" label="Title" v-model="title" class="p-inputtext-lg w-full" required
                                 placeholder="Title" />
 
-                            <div class="flex flex-column md:flex-row gap-2 align-items-start md:align-items-center">
-                                <div class="flex flex-row gap-2">
-                                    <h1 class="instructor text-2xl text-900 font-bold min-w-max">
+                            <div class="grid gap-2 align-items-start md:align-items-center">
+                                <div class="col-12 md:col-8 grid gap-2">
+                                    <h1 class="col-12 md:col-7 lg:col-7 instructor text-2xl text-900 font-bold min-w-max">
                                         Instructor By
                                     </h1>
                                     <Dropdown v-model="selectedInstructor" :options="instructorList" optionLabel="name"
-                                        placeholder="Select Instructor" class="w-full md:w-14rem p-inputtext-sm" size="small" />
+                                        placeholder="Select Instructor" class="w-full md:w-14rem p-inputtext-sm col-12 md:col-5 lg:col-7" size="small" />
                                 </div>
-                                <div class="flex gap-1">
+                                <div class="col-12 md:col-4 flex gap-1">
                                     <i class="pi-thumbs-up pi mt-1"></i>
                                     <p class="text-900 font-normal">0%</p>
                                     <p>|</p>
@@ -229,12 +229,14 @@ const quizList = ref<{ title: string; }[]>([
 
                             </div>
 
-                            <Button label="ENROLL" class="btn-default w-screen md:w-max mb-3 md:mb-0" />
+                            <Button label="ENROLL" class="btn-default md:w-max mb-3 md:mb-0" />
                         </div>
                     </div>
-                    <div>
-                        <UploadImage class="w-screen md:w-max upload-image"/>
-                        <div class="flex justify-content-center align-items-center gap-2 my-2">
+                    <div class="col-12 lg:col-5">
+                        <div class="col-12">
+                            <UploadImage class="w-full upload-image " style="height: 257px"/>
+                        </div>
+                        <div class="flex justify-content-center align-items-center gap-2 my-2 col-12">
                             <div class="card-price flex justify-content-center align-items-center flex-column p-2">
                                 <h4 class="text-900 font-bold text-md">Original Price</h4>
                                 <InputNumber v-model="originalPrice" inputId="integeronly" placeholder="0.00" />
@@ -244,7 +246,7 @@ const quizList = ref<{ title: string; }[]>([
                                 <InputNumber v-model="discountPrice" inputId="integeronly" placeholder="0.00" />
                             </div>
                         </div>
-                        <div class="flex justify-content-center align-items-center gap-2 my-2 btn-buy-container">
+                        <div class="flex justify-content-center align-items-center gap-2 my-2 btn-buy-container col-12">
                             <Button label="ADD TO CART" size="small" />
                             <Button label="BUY NOW" size="small" />
                         </div>
@@ -254,7 +256,7 @@ const quizList = ref<{ title: string; }[]>([
         </div>
 
         <!-- STEP SECTION -->
-        <div class="flex justify-content-start align-items-center gap-2 my-3 w-screen">
+        <div class="flex justify-content-start align-items-center gap-2 my-3">
             <Button label="ABOUT" :class="{ 'btn-default': steps === 'about' }" outlined class=""
                 @click="steps = 'about'" />
             <Button label="INSTRUCTOR" :class="{ 'btn-default': steps === 'instructor' }" outlined
@@ -267,7 +269,7 @@ const quizList = ref<{ title: string; }[]>([
         <div class="flex flex-column">
             <!-- ABOUT -->
             <template v-if="steps === 'about'">
-                <div class="card p-1 border-1 surface-border justify-content-center flex w-screen md:w-fit">
+                <div class="card p-1 border-1 surface-border justify-content-center flex md:w-fit">
                     <table class="table-grade-system">
                         <thead>
                             <tr>
@@ -317,8 +319,8 @@ const quizList = ref<{ title: string; }[]>([
 
                 <div class="card py-3">
                     <div class="row">
-                        <div class="col-4">
-                            <UploadVideo class="upload-video w-screen md:w-fit"/>
+                        <div class="col-12 md:col-8 lg:col-6 xl:col-4">
+                            <UploadVideo class="upload-video w-full"/>
                             <h4 class="text-900 text-xl font-bold my-3 text-center">
                                 Course Preview
                             </h4>
@@ -327,7 +329,7 @@ const quizList = ref<{ title: string; }[]>([
                 </div>
                 <div class="flex flex-column gap-2">
                     <label for="about-description" class="text-900 text-lg font-bold">About</label>
-                    <InputText id="about-description" size="small" v-model="aboutDescription"
+                    <Textarea id="about-description" size="small" v-model="aboutDescription"
                         aria-describedby="about-description-help" placeholder="Course Detail..." class="p-inputtext-sm" />
                 </div>
             </template>
@@ -339,7 +341,7 @@ const quizList = ref<{ title: string; }[]>([
                     <img src="/assets/img/avatar.png" alt="" class="w-5rem" />
                     <InputText label="Instructor Name" placeholder="Instructor Name" v-model="instructorName"
                         class="p-inputtext-sm w-2" />
-                    <InputText label="Instructor Profile..." placeholder="Instructor Profile" v-model="instructorProfile"
+                    <Textarea label="Instructor Profile..." placeholder="Instructor Profile" v-model="instructorProfile"
                         class="p-inputtext-sm w-full" />
                 </div>
             </template>
@@ -416,10 +418,12 @@ const quizList = ref<{ title: string; }[]>([
                 <!-- Quiz -->
                 <div class="flex flex-column gap-2 my-3">
                     <template v-for="quiz in quizList">
-                        <QuizInput :title="quiz.title" />
+                        <div class="my-2">
+                            <QuizInput :title="quiz.title" />
+                        </div>
                     </template>
                     <!-- ADD more quiz -->
-                    <div class="grid pl-3">
+                    <div class="grid">
                         <div class="col">
                             <Button label="Add More Quiz" class="btn-orange w-full" icon="pi pi-plus" size="small"
                                 @click="quizList.push({ title: 'New Quiz', })" />
