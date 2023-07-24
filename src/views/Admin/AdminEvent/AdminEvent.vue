@@ -71,10 +71,9 @@ const onUpload = (e: any) => {
 
 <template>
   <main class="flex overflow-hidden flex-column md:flex-row">
-    <div class="event-list">
+    <div>
       <h1 class="font-bold mb-2">Ongoing Event</h1>
-
-      <div class="flex card-row flex-wrap gap-2 flex-column md:flex-row">
+      <div class="flex card-row justify-center flex-wrap gap-2 flex-column md:flex-row">
         <EventItem />
         <EventItem />
         <EventAdd @on-add="onAddEvent" />
@@ -83,9 +82,9 @@ const onUpload = (e: any) => {
         <EventAdd @on-add="onAddEvent" />
       </div>
     </div>
-    <div class="calendar">
+    <div>
       <h1 class="font-bold mb-2">Calendar</h1>
-      <div class="card flex justify-content-center">
+      <div class="flex justify-content-center">
         <Calendar v-model="date" inline showWeek class="calendar" >
           <!-- for badge calendar -->
           <template #date="slotProps">

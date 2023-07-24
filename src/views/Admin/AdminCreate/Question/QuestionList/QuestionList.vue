@@ -36,10 +36,10 @@ const dataList = ref<ICourse[]>([{
             </template>
         </Card>
 
-        <article class="grid gap-4 justify-content-start">
+        <article class="grid gap-4 justify-content-center md:justify-content-start">
             <template v-for="(event, idx) of dataList">
                 <div
-                    class="col-2 flex justify-content-center align-items-center gap-2 flex-column cursor-pointer list-item">
+                    class="flex justify-content-center align-items-center gap-2 flex-column cursor-pointer list-item">
                     <img :src="event.image" :alt="event.title" />
                     <div class="flex gap-1 justify-content-center align-items-center">
                         <h3 class="card-title">{{ event.title }}</h3>
