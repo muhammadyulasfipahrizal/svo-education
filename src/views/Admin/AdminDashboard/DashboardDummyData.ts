@@ -1,4 +1,4 @@
-import type { Course, Instructor, Student } from "./Dashboard.type";
+import type { Course, Instructor, Student, Activities } from "./Dashboard.type";
 
 export const courseDummyData: Course[] = [
     {
@@ -38,4 +38,35 @@ export const studentDummyData: Student[] = [
         image: '/assets/img/student/student.png',
     },
 
+]
+
+export const activitiesDummyData: Activities[] = [
+    {
+        id: 1,
+        start_time: '08:00',
+        end_time: '10:00',
+        activity: 'Plan CRM training sessions'
+
+    },
+    {
+        id: 2,
+        start_time: '08:00',
+        end_time: '10:00',
+        activity: 'Plan CRM training sessions'
+
+    },
+    {
+        id: 1,
+        start_time: '08:00',
+        end_time: '10:00',
+        activity: 'Plan CRM training sessions'
+
+    },
+    {
+        id: 1,
+        start_time: '08:00',
+        end_time: '10:00',
+        activity: 'Plan CRM training sessions'
+
+    },
 ]

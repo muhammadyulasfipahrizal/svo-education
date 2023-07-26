@@ -29,3 +29,10 @@ export interface Student {
     enrolled: number;
     image: string;
 }
+
+export interface Activities {
+    id: number;
+    start_time: string;
+    end_time: string;
+    activity: string;
+}
