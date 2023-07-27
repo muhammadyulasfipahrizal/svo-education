@@ -61,7 +61,8 @@ import Paginator from 'primevue/paginator';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import Tree from 'primevue/tree';
-import { setupCalendar } from 'v-calendar';
+import { setupCalendar, Calendar as VCalendar, DatePicker as VDatePicker } from 'v-calendar';
+import 'v-calendar/style.css';
 
 const app = createApp(App)
 
@@ -70,6 +71,9 @@ app.use(PrimeVue, { ripple: true });
 app.use(ToastService);
 app.use(router)
 app.use(setupCalendar, {})
+// Use the components
+app.component('VCalendar', VCalendar)
+app.component('VDatePicker', VDatePicker)
 
 app.config.globalProperties.$appState = reactive({ theme: 'lara-light-indigo', dark: false });
 app.component('Accordion', Accordion);

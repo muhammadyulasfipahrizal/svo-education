@@ -54,7 +54,7 @@ const selectedProfile = ref<IStudentGrade | null>(null);
 </script>
 
 <template>
-    <section class="px-5">
+    <section class="">
         <h1 class="text-900 font-bold text-4xl pl-2">Student Grades</h1>
         <div class="pl-2 flex flex-column gap-2 mb-5 pr-3">
             <!-- FILTER -->
@@ -80,15 +80,15 @@ const selectedProfile = ref<IStudentGrade | null>(null);
                     </template>
                 </Dropdown>
             </div>
-            <div class="flex justify-content-start md:justify-content-between align-items-center w-full">
-                <div class="flex flex-row align-items-center filter-search align-items-center">
-                    <Button label="Filter" icon="pi pi-filter-fill" size="small" class="filter-button mr-3" />
-                    <span class="p-input-icon-left mr-3">
-                        <i class="pi pi-search search-icon" />
-                        <InputText placeholder="Search by name" class="search-bar p-inputtext-sm" />
+            <div class="grid w-full justify-content-center align-items-center">
+                <div class="col-12 md:col-9 lg:col-10 xl:col-10 grid align-items-center filter-search align-items-center py-0 my-2">
+                    <Button label="Filter" icon="pi pi-filter-fill" size="small" class="filter-button col-12 md:col-3 xl:col-2" />
+                    <span class="p-input-icon-left col-12 md:col-9 xl:col-10 py-0">
+                        <i class="pi pi-search search-icon ml-2" />
+                        <InputText placeholder="Search by name" class="search-bar w-full p-inputtext-sm" />
                     </span>
                 </div>
-                <Button label="DOWNLOAD " size="small" icon="pi pi-download" class="download-button"></Button>
+                <Button label="DOWNLOAD " size="small" icon="pi pi-download" class="download-button col-12 md:col-3 lg:col-2 xl:col-2"></Button>
             </div>
 
             <DataTable :value="studentList" paginator :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]" sortMode="multiple"
@@ -278,12 +278,6 @@ const selectedProfile = ref<IStudentGrade | null>(null);
     &:active,
     &:focus {
         background-color: #e26954;
-    }
-}
-
-@media only screen and (min-width: 768px) {
-    .search-bar {
-        width: 400px;
     }
 }
 

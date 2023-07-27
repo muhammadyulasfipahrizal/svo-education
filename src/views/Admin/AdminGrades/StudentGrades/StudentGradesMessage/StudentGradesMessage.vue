@@ -23,7 +23,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <section class="flex gap-2 flex-column px-3">
+    <section class="flex gap-2 flex-column">
         <div class="flex gap-5">
             <Button icon="pi pi-angle-left" size="small" link @click="$router.back()"></Button>
             <h1 class="text-900 font-bold text-5xl">Student Grades</h1>

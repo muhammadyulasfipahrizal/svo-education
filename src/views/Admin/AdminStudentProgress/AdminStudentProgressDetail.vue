@@ -66,6 +66,7 @@ const showModal = (data: IStudent) => {
 const showNextDays = () => {
   //
 }
+const checkedStudent = ref();
 </script>
 
 <template>
@@ -79,22 +80,13 @@ const showNextDays = () => {
           <InputText placeholder="Search by Name" class="search-bar p-inputtext-sm" />
         </span>
       </div>
-      <Button label="DOWNLOAD" icon="pi pi-download" size="small" class="download-button " />
+      <Button label="DOWNLOAD" icon="pi pi-download" size="small" class="btn-orange " />
     </div>
 
     <!-- table -->
-    <DataTable class="detail-table" :value="studentData" paginator :rows="5" tableStyle="min-width: 50rem">
-      <template #paginatorfirstpagelinkicon></template>
-      <template #paginatorprevpagelinkicon>
-        <i class="pi pi-chevron-left"></i>
-      </template>
-      <template #paginatornextpagelinkicon>
-        <p>99</p>
-      </template>
-      <template #paginatorlastpagelinkicon>
-        <i class="pi pi-chevron-right"></i>
-      </template>
-      <Column selectionMode="multiple"></Column>
+    <DataTable :value="studentData" paginator :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]" sortMode="multiple"
+      tableStyle="min-width: 50rem" dataKey="id" v-model:selection="checkedStudent" class="shadow-2">
+      <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
       <Column field="name" style="text-white">
         <template #header>
           <div>
@@ -174,7 +166,8 @@ const showNextDays = () => {
     </DataTable>
 
     <!-- modal -->
-    <Dialog v-model:visible="visible" :value="studentData" modal header="Header" :style="{width: '40vw'}" :breakpoints="{ '764px': '70vw'}">
+    <Dialog v-model:visible="visible" :value="studentData" modal header="Header" :style="{ width: '40vw' }"
+      :breakpoints="{ '764px': '70vw' }">
       <template #header>
         <div class="flex flex-row align-items-center">
           <Avatar label="M" class="modal-image mr-2" shape="circle" />
@@ -504,18 +497,6 @@ const showNextDays = () => {
       }
     }
   }
-}
-
-::v-deep(.p-checkbox > .p-component) {
-  display: flex;
-  margin-top: 3px;
-  width: 12px;
-  height: 12px;
-  justify-content: center;
-  align-items: center;
-  flex-shrink: 0;
-  border-radius: 3px;
-  border: 1px solid #000;
 }
 
 ::v-deep(.p-paginator) {
