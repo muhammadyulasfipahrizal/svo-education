@@ -137,28 +137,29 @@ const instructorNew = ref();
 </script>
 
 <template>
-  <section class="flex px-5 flex-column gap-3 mb-5">
+  <section
+    class="grid pl-4 pr-4 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2 py-2 w-full py-3">
     <h1>Live video for you</h1>
-    <div class="border-1 surface-border surface-0 mb-3 w-10/12" @click="openModal(null)">
+    <div class="border-1 surface-border surface-0 mb-3 w-full" @click="openModal(null)">
       <div v-if="!videoUrls[0]" class="p-5 flex justify-content-center align-items-center h-30rem cursor-pointer">
         <i class="pi pi-fw pi-plus-circle upload-icon"></i>
         <h3 class="upload-text">Add more live event</h3>
       </div>
-      <div class="flex justify-content-center align-items-center overflow-hidden" v-else>
-        <video height="500" :src="videoUrls[0].url" controls></video>
+      <div class="grid overflow-hidden" v-else>
+        <video class="col-12" height="500" :src="videoUrls[0].url" controls></video>
       </div>
     </div>
-    <div class="flex md:grid gap-5 flex-column md:flex-row justify-center md:justify-start ">
-      <div v-for="(video, index) in videoUrls" :key="index" class="col-4 border-1 border-round-xl border-300 md:w-auto">
-        <div class="card-video">
+    <div class="grid ">
+      <div v-for="(video, index) in videoUrls" :key="index" class="col-12 md:col-4 lg:col-4 xl:col-4">
+        <div class="card-video border-1 border-round-xl border-300">
           <div class="flex flex-column gap-2">
             <div class="flex gap-2 justify-content-center align-items-center">
               <p class="text-sm font-bold">Event 1</p>
               <Button icon="pi pi-pencil" size="small" @click="openModal(index)" link></Button>
               <Button icon="pi pi-trash" size="small" @click="deleteCard(index)" link></Button>
             </div>
-            <video height="235" :src="video.url" controls></video>
-            <div class="">
+            <video height="235" :src="video.url" controls="false" class="w-full"></video>
+            <div class="px-2">
               <div class="flex align-items-center">
                 <!-- live icon -->
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -176,9 +177,9 @@ const instructorNew = ref();
               </div>
               <div class="card-data">
                 <img src="/assets/img/instructor.png" alt="Profile" class="card-profile" />
-                <div class="card-info">
-                  <p class="card-title">{{ video.details?.title }}</p>
-                  <p>by <span>{{ video.details?.instructor }}</span></p>
+                <div class="flex flex-column gap-0">
+                  <p class="p-0 m-0 text-sm card-title">{{ video.details?.title }}</p>
+                  <p class="p-0 m-0 text-sm">by <span>{{ video.details?.instructor }}</span></p>
                 </div>
               </div>
             </div>
@@ -186,9 +187,10 @@ const instructorNew = ref();
         </div>
       </div>
       <!-- ADD NEW VIDEO -->
-      <div class="col-4 border-1 border-round-xl border-300 flex flex-column md:flex-row justify-content-center align-items-center md:w-auto p-8"
+      <div
+        class="col-12 md:col-4 lg:col-4 xl:col-4 cursor-pointer"
         v-if="videoUrls.length > 0" @click="openModal(null)">
-        <div class="card-video">
+        <div class="card-video border-1 border-round-xl border-300 flex flex-column md:flex-row justify-content-center align-items-center p-8 h-full">
           <div class="card-content">
             <i class="pi pi-fw pi-plus-circle upload-icon"></i>
             <h3 class="upload-text">Add more live event</h3>
@@ -197,16 +199,16 @@ const instructorNew = ref();
       </div>
     </div>
     <!-- Modal -->
-    <Dialog v-model:visible="showModal" modal header="Upload new media" class="modal min-w-min" :style="{ width: '80vw' }" :breakpoints="{ '764px': '70vw'}">
+    <Dialog v-model:visible="showModal" modal header="Upload new media" class="modal min-w-min" :style="{ width: '50vw' }"
+      :breakpoints="{ '764px': '70vw' }">
       <div class="upload-section">
         <label class="upload-label" v-if="!selectedVideo">
-          <input ref="fileInput" type="file" accept="video/*" style="display: none"
-            @change="handleFileChange" />
+          <input ref="fileInput" type="file" accept="video/*" style="display: none" @change="handleFileChange" />
           <span class="modal-upload-text">Drop Files Here</span>
           <p>Or</p>
           <p class="modal-select-file">Select File</p>
         </label>
-        <video v-else :src="selectedVideo" ></video>
+        <video v-else :src="selectedVideo"></video>
         <p class="max-file-size">Maximum file size: 8 MB</p>
       </div>
       <h3 class="live-video-details">Live Video Details</h3>
@@ -222,7 +224,11 @@ const instructorNew = ref();
             class="w-full md:w-14rem filter-toggle"></Dropdown>
         </div>
       </div>
-      <Button size="small" class="save-button" @click="saveVideo">Save</Button>
+      <template #footer>
+        <div class="flex justify-content-center align-items-center py-2">
+          <Button size="small" class="w-full save-button" @click="saveVideo">Save</Button>
+        </div>
+      </template>
     </Dialog>
   </section>
 </template>
@@ -473,5 +479,4 @@ const instructorNew = ref();
     margin: 0 0.5rem;
   }
 }
-
 </style>

@@ -84,19 +84,19 @@ const eventList = ref<EventItem[]>([
 </script>
 
 <template>
-  <section class="grid overflow-hidden flex-column md:flex-row pr-4">
-    <div class="col-12 md:col-8">
+  <section class="grid overflow-hidden flex-column md:flex-row pl-4 pr-4 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2">
+    <div class="col-12 md:col-8 lg:col-9 xl:col-9">
       <h1 class="font-bold mb-2">Ongoing Event</h1>
-      <div class="flex card-row justify-center flex-wrap gap-2 flex-column md:flex-row">
+      <div class="grid justify-center flex-wrap gap-2 flex-column md:flex-row">
         <template v-for="item in eventList">
           <EventItem :item="item" />
         </template>
         <EventAdd @on-add="onAddEvent" />
       </div>
     </div>
-    <div class="col-12 md:col-4">
+    <div class="col-12 md:col-4 lg:col-3 xl:col-3">
       <h1 class="font-bold mb-2">Calendar</h1>
-      <div class="flex justify-content-center">
+      <div class="flex justify-content-start">
         <Calendar v-model="date" inline showWeek class="calendar">
           <!-- for badge calendar -->
           <template #date="slotProps">
@@ -110,15 +110,49 @@ const eventList = ref<EventItem[]>([
         </Calendar>
       </div>
     </div>
+    <div class="col-12 md:hide lg:hide xl:hide py-2">
+      <div class="flex gap-2 align-items-center my-3">
+        <i class="pi pi-calendar"></i>
+        <p class="text-md font-grey-500 font-bold">
+          {{ format(new Date(), 'dd-MMM-yyyy') }}
+        </p>
+      </div>
+      <div class="grid surface-0 p-2 border-300 border-1 border-round gap-2">
+        <div class="border-round border-1 p-2 flex flex-column w-full">
+          <p class="text-sm font-bold text-orange-400">
+            {{ format(new Date(), 'HH:mm aa') }} - {{ format(new Date(), 'HH:mm aa') }}
+          </p>
+          <p class="text-sm font-bold">Plan CRM training sessions</p>
+        </div>
+        <div class="border-round border-1 p-2 flex flex-column w-full">
+          <p class="text-sm font-bold text-orange-400">
+            {{ format(new Date(), 'HH:mm aa') }} - {{ format(new Date(), 'HH:mm aa') }}
+          </p>
+          <p class="text-sm font-bold">Plan CRM training sessions</p>
+        </div>
+        <div class="border-round border-1 p-2 flex flex-column w-full">
+          <p class="text-sm font-bold text-orange-400">
+            {{ format(new Date(), 'HH:mm aa') }} - {{ format(new Date(), 'HH:mm aa') }}
+          </p>
+          <p class="text-sm font-bold">Plan CRM training sessions</p>
+        </div>
+        <div class="border-round border-1 p-2 flex flex-column w-full">
+          <p class="text-sm font-bold text-orange-400">
+            {{ format(new Date(), 'HH:mm aa') }} - {{ format(new Date(), 'HH:mm aa') }}
+          </p>
+          <p class="text-sm font-bold">Plan CRM training sessions</p>
+        </div>
+      </div>
+    </div>
   </section>
 
 
   <!-- MODAL Upload -->
   <Dialog v-model:visible="visible" modal header="Upload new Media">
-    <div class="flex flex-column gap-2">
+    <div class="flex flex-column gap-2 py-2">
       <!-- FILE Upload -->
       <div
-        class="flex justify-content-center align-items-center border-1 border-dashed surface-0 surface-border flex-column p-3 gap-2 w-full"
+        class="flex justify-content-center align-items-center border-1 border-dashed surface-0 surface-border flex-column p-3 gap-2"
         :data-active="active" @dragenter.prevent="setActive" @dragover.prevent="setActive"
         @dragleave.prevent="setInactive" @drop.prevent="onDrop">
         <!-- share state with the scoped slot -->
@@ -137,32 +171,32 @@ const eventList = ref<EventItem[]>([
       <div class="flex">
         <p class="text-500 text-xs">Maximum upload file size: 8 MB</p>
       </div>
-      <div class="flex flex-column gap-2">
-        <h1 class="text-900 font-bold">Ongoing Event Details</h1>
-        <div class="flex pl-3  gap-2 align-items-center">
+      <div class="grid">
+        <h1 class="text-900 font-bold col-12">Ongoing Event Details</h1>
+        <div class="flex pl-3  gap-2 align-items-center col-12">
           <InputText class="p-inputtext-sm" v-model="title" placeholder="Title" />
           <p class="text-500">at</p>
           <InputText class="p-inputtext-sm" v-model="location" placeholder="Location" />
         </div>
-        <div class="flex pl-3  gap-2 align-items-center">
-          <span class="p-input-icon-left">
+        <div class="grid pl-3 w-full md:w-auto lg:w-auto">
+          <span class="p-input-icon-left col-12 md:col-4 lg:col-4 xl:col-4">
             <i class="pi pi-calendar"></i>
             <InputText class="p-inputtext-sm" v-model="calendar" placeholder="Calendar" @click="showCalendar" />
             <Calendar v-model="calendar" id="calendar" placeholder="Calendars" @date-select="onDateSelectCalendarRef"
               class="calendarRef" ref="calendarRef" />
           </span>
-          <span class="p-input-icon-left">
+          <span class="p-input-icon-left col-12 md:col-4 lg:col-4 xl:col-4">
             <i class="pi pi-clock"></i>
             <InputText class="p-inputtext-sm" v-model="time" placeholder="Time" @click="showTimepicker" />
             <Calendar id="time-picker" placeholder="Time" @date-select="onTimeSelect" timeOnly class="timeRef"
               ref="timeRef" />
           </span>
-          <span class="p-input-icon-left">
+          <span class="p-input-icon-left col-12 md:col-4 lg:col-4 xl:col-4">
             <i class="pi pi-ticket"></i>
             <InputText class="p-inputtext-sm" type="number" v-model="ticketPrice" placeholder="Ticket price" />
           </span>
         </div>
-        <div class="flex">
+        <div class="grid px-3 w-full py-3">
           <Button label="SAVE" class="w-full btn-save" @click="visible = false"></Button>
         </div>
       </div>
@@ -253,4 +287,5 @@ const eventList = ref<EventItem[]>([
   visibility: hidden;
   left: 0;
   position: absolute;
-}</style>
+}
+</style>
