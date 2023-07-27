@@ -61,6 +61,7 @@ import Paginator from 'primevue/paginator';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import Tree from 'primevue/tree';
+import VirtualScroller from 'primevue/virtualscroller';
 import { setupCalendar, Calendar as VCalendar, DatePicker as VDatePicker } from 'v-calendar';
 import 'v-calendar/style.css';
 
@@ -119,6 +120,7 @@ app.component('DataTable', DataTable);
 app.component('Column', Column);
 app.component('Tree', Tree);
 app.component('Card', Card);
+app.component('VirtualScroller', VirtualScroller);
 // app.component('BlockViewer', BlockViewer);
 
 app.directive('badge', BadgeDirective);
