@@ -3,6 +3,7 @@ import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import ColumnGroup from 'primevue/columngroup';   // optional
 import Row from 'primevue/row';
+import StarRating from 'vue-star-rating'
 import { ref, watchEffect, watch } from 'vue';
 import type { Instructor } from './Instructor.type';
 import { instructorDummyData } from './instructorDummyData';
@@ -29,9 +30,9 @@ const onSelectProfile = (v: Instructor) => {
 </script>
 
 <template>
-    <section class="px-5">
-        <h1 class="text-900 font-bold text-4xl pl-2">Instructor Grades</h1>
-        <div class="pl-2 flex flex-column gap-2 my-5 pr-3">
+    <section class="grid overflow-hidden flex-column md:flex-row pl-3 pr-3 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2 py-2">
+        <h1 class="text-900 font-bold text-3xl">Instructor Grades</h1>
+        <div class="pl-2 col-12 flex flex-column gap-2 my-2">
             <!-- FILTER -->
             <div class="flex justify-content-start md:justify-content-between align-items-center w-full">
                 <div class="flex flex-row align-items-center filter-search align-items-center">
@@ -43,24 +44,25 @@ const onSelectProfile = (v: Instructor) => {
                 </div>
                 <Button label="DOWNLOAD" size="small" icon="pi pi-download" class="btn-orange"></Button>
             </div>
-
+        </div>
+        <div class="col-12">
             <DataTable :value="instructorList" paginator :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]" sortMode="multiple"
-                tableStyle="min-width: 50rem" dataKey="id" v-model:selection="checkedInstructor" class="shadow-2">
+                v-model:selection="checkedInstructor" class="shadow-2 p-datatable-sm" tableStyle="min-width: 80rem">
                 <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
                 <Column field="name" header="Name">
                     <template #body="value">
                         <div class="flex gap-2 align-items-center">
                             <img :src="value.data.image" alt="" style="width: 39px; height: 39px;" />
-                            <div class="flex gap-1 flex-column align-items-start">
-                                <h4 class="text-900 font-semibold">{{ value.data.name }}</h4>
-                                <p class="text-500 font-normal">
+                            <div class="flex flex-column align-items-start">
+                                <h4 class="p-0 text-900 font-semibold">{{ value.data.name }}</h4>
+                                <p class="p-0 text-500 font-normal">
                                     {{ value.data.email }}
                                 </p>
                             </div>
                         </div>
                     </template>
                 </Column>
-                <Column field="course" header="Course" sortable>
+                <Column field="course" header="Course" sortable class="w-5">
                     <template #body="value">
                         <div class="flex gap-1 flex-column align-items-start">
                             <h4 class="text-900 font-semibold">{{ value.data.work_as }}</h4>
@@ -70,8 +72,8 @@ const onSelectProfile = (v: Instructor) => {
                         </div>
                     </template>
                 </Column>
-                <Column field="department" header="Department" sortable></Column>
-                <Column field="quantity" header="Would take again" sortable>
+                <Column field="department" header="Department" sortable class="w-3"></Column>
+                <Column field="quantity" header="Would take again" sortable class="w-3">
                     <template #body="value">
                         <div class="flex gap-1 flex-column align-items-center">
                             <h4 class="text-900 font-bold">{{ parseFloat(((value.data.rating.ratings.helpful +
@@ -84,10 +86,13 @@ const onSelectProfile = (v: Instructor) => {
                         </div>
                     </template>
                 </Column>
-                <Column field="profile" header="Profile">
+                <Column field="profile" header="Profile" class="w-full" style="min-width: 5rem;">
                     <template #body="value">
-                        <Button label="Profile" class="btn-orange" @click="onSelectProfile(value.data)"
-                            size="small"></Button>
+                        <Button class="w-full btn-orange" @click="onSelectProfile(value.data)">
+                            <span class="text-lg font-semibold">
+                                Profile
+                            </span>
+                        </Button>
                     </template>
                 </Column>
                 <Column field="message" header="Message">
@@ -102,14 +107,14 @@ const onSelectProfile = (v: Instructor) => {
     </section>
 
     <!-- MODAL Profile -->
-    <Dialog v-model:visible="modalProfile" modal :style="{ width: '50vw' }">
+    <Dialog v-model:visible="modalProfile" modal :style="{ width: '40vw' }" :breakpoints="{ '764px': '90vw' }">
         <template #header>
             <div class="flex gap-2 align-items-center">
                 <img :src="selectedProfile?.image" alt="" style="width: 39px; height: 39px;" />
                 <div class="h4 text-900 font-bold">{{ selectedProfile?.name }}</div>
             </div>
         </template>
-        <div class="flex flex-column gap-2">
+        <div class="flex flex-column gap-2 py-3">
             <div class="flex flex-column gap-3 align-items-center">
                 <div class="flex align-items-center justify-content-between w-full">
                     <h3 class="text-900 font-bold text-sm">Helpfullness</h3>
@@ -177,6 +182,7 @@ const onSelectProfile = (v: Instructor) => {
     .p-datatable-wrapper {
         border-radius: 10px;
     }
+
     .p-datatable-thead>tr>th {
         background: #006785;
         color: white;
@@ -204,9 +210,9 @@ const onSelectProfile = (v: Instructor) => {
 
 @media (max-width: 768px) {
     ::v-deep(.p-button .p-button-label) {
-      display: none;
-      margin: 0;
-      padding: 0;
+        display: none;
+        margin: 0;
+        padding: 0;
     }
-  }
+}
 </style>

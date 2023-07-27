@@ -1,11 +1,11 @@
 <template>
-  <div class="flex flex-column px-5">
-    <div class="flex flex-row align-items-center">
-        <i class="pi pi-chevron-left mr-3 back-arrow" v-if="showDetail" @click="goBack"></i>
-        <h1 class="page-title">Student Progress</h1>
+  <section class="grid overflow-hidden flex-column md:flex-row pl-4 pr-4 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2">
+    <div class="flex flex-row align-items-center col-12">
+      <h1 class="text-4xl font-bold ">Student Progress</h1>
     </div>
-    <div v-if="!showDetail" >
-      <DataTable :value="courseData" class="shadow-2" selectionMode="single" :selection="selectedCourse" @rowSelect="handleRowSelect">
+    <div class="col-12">
+      <DataTable :value="courseData" class="shadow-2" selectionMode="single" :selection="selectedCourse"
+        @rowSelect="handleRowSelect">
         <Column field="courseName">
           <template #header>
             <div>
@@ -13,7 +13,7 @@
             </div>
           </template>
           <template #body="{ data }">
-            <div class="flex flex-row align-items-center">
+            <div class="flex flex-row align-items-center w-full">
               <img src="/assets/svo-academy.png" class="data-image" />
               <p class="data-text">{{ data.courseName }}</p>
             </div>
@@ -25,7 +25,7 @@
               <p class="header-text">Enrollment</p>
             </div>
           </template>
-          <template #body="{data}">
+          <template #body="{ data }">
             <div>
               <p class="data-text">{{ data.enrollment }}</p>
             </div>
@@ -49,7 +49,7 @@
               <p class="header-text">Start Date</p>
             </div>
           </template>
-          <template #body="{data}">
+          <template #body="{ data }">
             <div>
               <p class="data-text">{{ data.startDate }}</p>
             </div>
@@ -61,7 +61,7 @@
               <p class="header-text">End Date</p>
             </div>
           </template>
-          <template #body="{data}">
+          <template #body="{ data }">
             <div>
               <p class="data-text">{{ data.endDate }}</p>
             </div>
@@ -81,39 +81,24 @@
           </template>
         </Column>
       </DataTable>
-  </div>
-    <div v-else>
-      <AdminStudentProgressDetail :course="selectedCourse"/>
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import AdminStudentProgressDetail from './AdminStudentProgressDetail.vue';
+import router from '@/router';
 import type { DataTableRowSelectEvent } from 'primevue/datatable';
+import { courseDataMock } from './Course.mock';
 
-const courseData = ref([
-  {
-    courseName: 'UI UX Design',
-    enrollment: '200',
-    progress: 50,
-    startDate: '27 mar 2023',
-    endDate: '3 apr 2023',
-    duration: '2 weeks'
-  },
-]);
+const courseData = ref(courseDataMock);
 
 const showDetail = ref(false);
 const selectedCourse = ref(null);
 
-const goBack = () => {
-  showDetail.value = false
-}
 
 const handleRowSelect = (event: DataTableRowSelectEvent) => {
-  showDetail.value = true;
-  selectedCourse.value = event.data;
+  router.push('/admin/progress/student/' + event.data.id)
 }
 
 </script>
@@ -122,6 +107,7 @@ const handleRowSelect = (event: DataTableRowSelectEvent) => {
 .back-arrow {
   cursor: pointer;
 }
+
 .page-title {
   color: var(--font-1, #001125);
   font-size: 35px;
@@ -137,12 +123,14 @@ const handleRowSelect = (event: DataTableRowSelectEvent) => {
   font-family: Inter;
   font-weight: 700;
 }
+
 .data-text {
   color: var(--fonts-primary, #25213B);
   font-size: 20px;
   font-family: Inter;
   font-weight: 500;
 }
+
 .progress-bar-container {
   width: 200px;
   height: 10px;
@@ -165,26 +153,26 @@ const handleRowSelect = (event: DataTableRowSelectEvent) => {
 
 <style lang="scss" scoped>
 ::v-deep(.p-datatable) {
-    .p-datatable-wrapper {
-        border-radius: 10px;
-    }
-    .p-datatable-thead>tr>th {
-        background: #006785;
-        color: white;
-        color: var(--white, #FFF);
-        text-align: center;
-        font-size: 20px;
-        font-weight: 700;
+  .p-datatable-wrapper {
+    border-radius: 10px;
+  }
 
-        svg path {
-            fill: white;
-        }
+  .p-datatable-thead>tr>th {
+    background: #006785;
+    color: white;
+    color: var(--white, #FFF);
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
 
-        &:hover {
-            background: #006785;
-            color: var(--white, #FFF);
-        }
+    svg path {
+      fill: white;
     }
+
+    &:hover {
+      background: #006785;
+      color: var(--white, #FFF);
+    }
+  }
 }
-
 </style>
