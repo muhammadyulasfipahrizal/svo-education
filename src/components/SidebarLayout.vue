@@ -42,6 +42,10 @@ watchEffect(() => {
   padding: 1rem;
   top: 0;
   left: 0;
+
+  @media screen and (max-width: 768px) {
+    padding: 0rem;
+  }
 }
 
 .logo-container {

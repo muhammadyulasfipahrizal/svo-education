@@ -1,5 +1,8 @@
 <script setup lang="ts">
+import { type EventItem } from "../AdminEvent.vue";
+import format from 'date-fns/format'
 import router from "@/router";
+const props = defineProps<{ item: EventItem }>();
 
 const goToDetail = () => {
     router.push('/admin/event-detail/1')
@@ -10,19 +13,19 @@ const goToDetail = () => {
     <section class="flex flex-column gap-2 w-screen container">
         <article class="border-1 surface-0 surface-border p-1 flex flex-column gap-1">
             <img src="/assets/img/event/innovations.png" />
-            <h2 class="text-900 font-bold text-sm">Network Technology Seminar</h2>
-            <p class="text-700 font-medium text-xs">at Bukit Bintang</p>
+            <h2 class="text-900 font-bold text-sm">{{ props.item.name }}</h2>
+            <p class="text-700 font-medium text-xs">at {{ props.item.location }}</p>
             <div class="flex gap-2 align-items-center">
                 <i class="pi pi-calendar"></i>
-                <p class="text-700 text-super-small">Thu, Dec 25th, 2022</p>
+                <p class="text-700 text-super-small">{{ format(new Date(props.item.date), 'EEE, MMM Lo, yyyy') }}</p>
             </div>
             <div class="flex gap-2 align-items-center">
                 <i class="pi pi-clock"></i>
-                <p class="text-700 text-super-small">Start at 11:00 AM</p>
+                <p class="text-700 text-super-small">Start at {{ format(new Date(props.item.date), 'hh:mm aa') }}</p>
             </div>
             <div class="flex gap-2 align-items-center">
                 <i class="pi pi-ticket"></i>
-                <p class="text-700 text-super-small">Start from RM 9.99</p>
+                <p class="text-700 text-super-small">Start from RM {{ props.item.ticket_prize }}</p>
             </div>
             <div class="flex">
                 <Button label="BUY" class="btn-buy"></Button>
@@ -34,7 +37,7 @@ const goToDetail = () => {
                 <i class="pi pi-pencil"></i>
             </Button>
 
-            <Button link size="small" >
+            <Button link size="small">
                 <i class="pi pi-trash"></i>
             </Button>
 
@@ -44,12 +47,12 @@ const goToDetail = () => {
 
 
 <style scoped>
-
 .btn-buy {
     width: 100%;
     background-color: #E26954;
     border: 0;
 }
+
 .btn-buy:hover {
     background-color: #E26954;
 }
@@ -64,7 +67,7 @@ const goToDetail = () => {
 
 @media only screen and (min-width: 768px) {
     .container {
-      max-width: 225px;
+        max-width: 225px;
     }
-  }
+}
 </style>
