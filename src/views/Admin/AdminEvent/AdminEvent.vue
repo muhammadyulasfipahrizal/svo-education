@@ -67,25 +67,37 @@ const onUpload = (e: any) => {
   fileUploadPreview.value = URL.createObjectURL(fileUpload.value);
 }
 
+export type EventItem = {
+  name: string;
+  location: string;
+  date: Date;
+  ticket_prize: number;
+}
+const eventList = ref<EventItem[]>([
+  {
+    name: 'Network Technology Seminar',
+    location: 'Bukit Bintang',
+    date: new Date(),
+    ticket_prize: 9.99,
+  }
+])
 </script>
 
 <template>
-  <main class="flex overflow-hidden flex-column md:flex-row">
-    <div>
+  <section class="grid overflow-hidden flex-column md:flex-row pr-4">
+    <div class="col-12 md:col-8">
       <h1 class="font-bold mb-2">Ongoing Event</h1>
       <div class="flex card-row justify-center flex-wrap gap-2 flex-column md:flex-row">
-        <EventItem />
-        <EventItem />
-        <EventAdd @on-add="onAddEvent" />
-        <EventAdd @on-add="onAddEvent" />
-        <EventAdd @on-add="onAddEvent" />
+        <template v-for="item in eventList">
+          <EventItem :item="item" />
+        </template>
         <EventAdd @on-add="onAddEvent" />
       </div>
     </div>
-    <div>
+    <div class="col-12 md:col-4">
       <h1 class="font-bold mb-2">Calendar</h1>
       <div class="flex justify-content-center">
-        <Calendar v-model="date" inline showWeek class="calendar" >
+        <Calendar v-model="date" inline showWeek class="calendar">
           <!-- for badge calendar -->
           <template #date="slotProps">
             <strong v-if="slotProps.date.day > 10 && slotProps.date.day < 15"
@@ -98,7 +110,7 @@ const onUpload = (e: any) => {
         </Calendar>
       </div>
     </div>
-  </main>
+  </section>
 
 
   <!-- MODAL Upload -->
@@ -113,7 +125,7 @@ const onUpload = (e: any) => {
         <slot :dropZoneActive="active"></slot>
 
         <img v-if="fileUploadPreview" :src="fileUploadPreview" class="w-full h-20rem" />
-        <template v-i`f="!fileUploadPreview">
+        <template v-if="!fileUploadPreview">
           <input type="file" ref="fileUpload" class="hidden" accept="image/*" @change="onUpload" />
           <h2 class="text-700 font-medium text-sm">Drop files here</h2>
           <p class="text-500">or</p>
@@ -161,17 +173,38 @@ const onUpload = (e: any) => {
 .card-row {
   width: 750px;
 }
+
 ::v-deep(.calendar) {
   border-radius: 20px;
-  width: 400px;
+  border: 1px solid #D9D5EC;
+  background: #FFF;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  max-height: 400px;
 
   .p-datepicker-calendar table td {
-    padding: 0.25rem !important;
+    // padding: 0.25rem !important;
+  }
+
+  .p-datepicker {
+    overflow: hidden;
+    border-radius: 20px;
+  }
+
+  .p-datepicker-header {
+    padding: 0 0.5rem;
+  }
+
+  table tr td {
+    width: 50px;
+    height: 50px;
+    padding: 0px;
+    margin: 5px;
+    background: rgba(250, 250, 250, 0.50);
   }
 
   table td>span {
     border-radius: 5px;
-    width: 30px;
+    width: 36px;
     height: 50px;
     font-size: 15px;
   }
@@ -220,5 +253,4 @@ const onUpload = (e: any) => {
   visibility: hidden;
   left: 0;
   position: absolute;
-}
-</style>
+}</style>

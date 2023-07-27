@@ -28,8 +28,4 @@ import HeaderLayout from './components/HeaderLayout.vue'
     width: calc(100% - 300px);
   }
 }
-
-#root {
-  width: 98.9vw;
-}
 </style>
