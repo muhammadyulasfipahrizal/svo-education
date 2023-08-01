@@ -168,7 +168,7 @@ const quizList = ref<{ title: string; }[]>([
                 <div class="grid">
                     <div class="col-12 lg:col-7">
                         <div class="flex flex-column align-items-start justify-content-start gap-3 ">
-                            <InputText type="text" label="Title" v-model="title" class="p-inputtext-lg w-full" required
+                            <InputText type="text" label="Title" v-model="title" class="p-inputtext-lg w-full mt-6" required
                                 placeholder="Title" />
 
                             <div class="grid gap-2 align-items-start md:align-items-center">

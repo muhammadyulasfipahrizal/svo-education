@@ -36,3 +36,4 @@ export interface Activities {
     end_time: string;
     activity: string;
 }
+

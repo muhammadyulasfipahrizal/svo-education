@@ -43,6 +43,7 @@ const addNewTask = () => {
             </Card>
             <Button size="small" label="Add new columns" class="w-full mt-4 btn-orange" @click="addNewTask"/>
         </div>
+            <Button size="small" label="SAVE" class="w-full my-4 btn-default" />
     </section>
 </template>
 
