@@ -31,3 +31,10 @@ a,
     background: white;
   }
 }
+
+.item-flex {
+  margin-right: 5px;
+  @media screen and (min-width: 992px) {
+    flex: 1 0 18%;
+  }
+}

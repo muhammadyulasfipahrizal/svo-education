@@ -1,15 +1,19 @@
 <template>
-  <main class="flex flex-column px-5 justify-content-between">
-    <h1 class="font-bold mb-2">My Attendance</h1>
-    <div class=" flex flex-row align-items-center mb-3 filter-search">
-      <Button label="Filter" icon="pi pi-filter-fill" size="small" class="filter-button mr-3" />
-      <span class="p-input-icon-left">
-        <i class="pi pi-search search-icon" />
+  <section
+    class="grid overflow-hidden flex-column md:flex-row px-2 md:px-2 lg:px-2 xl:px-2 py-2">
+    <h1 class="text-900 font-bold text-3xl">My Attendance</h1>
+    <div class="col-12 grid align-items-center mb-3 filter-search">
+      <Button label="Filter" icon="pi pi-filter-fill" size="small" class="filter-button col-3" />
+      <span class="p-input-icon-left col-6">
+        <i class="pi pi-search search-icon pl-1" />
         <InputText placeholder="Search by class" class="search-bar h-10 w-96 p-input text-sm" />
       </span>
-      <Button label="DOWNLOAD" icon="pi pi-download" size="small" class="btn-orange ml-auto" />
+      <Button size="small" class="btn-orange ml-auto col-2">
+        <i class="block pi pi-download md:mr-2"></i>
+        <p class="hidden sm:block md:block lg:block xl:block">DOWNLOAD</p>
+      </Button>
     </div>
-    <div class="flex flex-column flex-wrap md:flex-row">
+    <div class="col-12 flex flex-column flex-wrap md:flex-row p-0 m-0">
       <div class="flex flex-row mb-3">
         <Dropdown optionLabel="name" placeholder="December" class="w-10rem mr-2" />
         <Dropdown optionLabel="name" placeholder="2022" class="w-8rem mr-2" />
@@ -17,14 +21,16 @@
       <Dropdown v-model="selectedCity" :options="cities" optionLabel="name" placeholder="Select a City"
         class="w-14rem mb-3" />
     </div>
-    <div class="flex flex-row flex-wrap justify-content-center sm:justify-content-start">
-      <AttendanceCalendar v-for="(card, index) in cardData" :key="index" :card="card" />
+    <div class="col-12 grid p-0 m-0">
+      <div class="item-flex col-6 sm:col-4 md:col-4 lg:col-4 py-0 px-0 m-0 px-2" v-for="(card, index) in cardData">
+        <AttendanceCalendar :key="index" :card="card" />
+      </div>
     </div>
     <Paginator :rows="10" :totalRecords="120" :template="{
-      '768px': 'CurrentPageReport PrevPageLink  NextPageLink',
+      '992px': 'CurrentPageReport PrevPageLink  NextPageLink',
       default: 'CurrentPageReport PrevPageLink PageLinks NextPageLink',
-    }" currentPageReportTemplate='Showing data {first} to {last} of {totalRecords} entries' />
-  </main>
+    }" currentPageReportTemplate='Showing data {first} to {last} of {totalRecords} entries' class="col-12" />
+  </section>
 </template>
 
 <script setup lang="ts">
@@ -58,6 +64,33 @@ const cardData = ref([
     attendance: 2,
     percent: 40,
     iconMarkup: '<i class="pi pi-thumbs-down"></i>'
+  },
+  {
+    label: 'M',
+    name: 'john',
+    currentDay: 'Day 7',
+    progress: 70,
+    attendance: 6,
+    percent: 70,
+    iconMarkup: '<i class="pi pi-thumbs-up"></i>'
+  },
+  {
+    label: 'M',
+    name: 'john',
+    currentDay: 'Day 7',
+    progress: 70,
+    attendance: 6,
+    percent: 70,
+    iconMarkup: '<i class="pi pi-thumbs-up"></i>'
+  },
+  {
+    label: 'M',
+    name: 'john',
+    currentDay: 'Day 7',
+    progress: 70,
+    attendance: 6,
+    percent: 70,
+    iconMarkup: '<i class="pi pi-thumbs-up"></i>'
   },
   {
     label: 'M',
