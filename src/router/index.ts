@@ -34,6 +34,11 @@ const router = createRouter({
       component: () => import('../views/Admin/AdminStudentProgress/AdminStudentProgress.vue')
     },
     {
+      path: '/admin/progress/student/:courseId',
+      name: 'admin-progress-student-detail',
+      component: () => import('../views/Admin/AdminStudentProgress/AdminStudentProgressDetail.vue')
+    },
+    {
       path: '/admin/instructor-grade',
       name: 'admin-instructor-grade',
       component: () => import('../views/Admin/AdminGrades/InstructorGrades/InstructorGrades.vue')

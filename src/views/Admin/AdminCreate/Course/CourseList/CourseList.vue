@@ -39,10 +39,9 @@ const courseList = ref<ICourse[]>([{
             </template>
         </Card>
 
-        <article class="grid gap-4 justify-content-center md:justify-content-start lg:justify-content-start">
+        <article class="col-12 grid p-0 m-0">
             <template v-for="(event, idx) of courseList">
-                <div
-                    class="col-12 md:col-3 lg:col-3 xl:col-2 flex justify-content-center align-items-center gap-2 flex-column cursor-pointer list-item">
+                <div class="item-flex col-6 sm:col-4 md:col-4 lg:col-4 py-0 px-0 m-0 px-2 cursor-pointer list-item">
                     <img :src="event.image" :alt="event.title" />
                     <div class="flex gap-1 justify-content-center align-items-center">
                         <h3 class="card-title">{{ event.title }}</h3>
@@ -102,5 +101,9 @@ const courseList = ref<ICourse[]>([{
     line-height: 48px;
     letter-spacing: 0em;
     text-align: left;
+}
+
+.item-flex {
+    max-width: 210px;
 }
 </style>

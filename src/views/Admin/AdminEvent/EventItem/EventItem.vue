@@ -10,24 +10,24 @@ const goToDetail = () => {
 </script>
 
 <template>
-    <section class="flex flex-column gap-2 w-screen container">
-        <article class="border-1 surface-0 surface-border p-1 flex flex-column gap-1">
-            <img src="/assets/img/event/innovations.png" />
-            <h2 class="text-900 font-bold text-sm">{{ props.item.name }}</h2>
-            <p class="text-700 font-medium text-xs">at {{ props.item.location }}</p>
-            <div class="flex gap-2 align-items-center">
+    <section class="flex flex-column gap-2 w-full md:w-4 lg:w-4 xl:w-4">
+        <article class="border-1 surface-0 surface-border">
+            <img src="/assets/img/event/innovations.png" class="col-12 py-0 w-full" />
+            <h2 class="col-12 text-900 font-bold text-sm py-0 m-0">{{ props.item.name }}</h2>
+            <p class="col-12 text-700 font-medium text-xs py-0 m-0">at {{ props.item.location }}</p>
+            <div class="col-12 flex py-1 gap-2 align-items-center">
                 <i class="pi pi-calendar"></i>
                 <p class="text-700 text-super-small">{{ format(new Date(props.item.date), 'EEE, MMM Lo, yyyy') }}</p>
             </div>
-            <div class="flex gap-2 align-items-center">
+            <div class="col-12 flex py-1 gap-2 align-items-center">
                 <i class="pi pi-clock"></i>
                 <p class="text-700 text-super-small">Start at {{ format(new Date(props.item.date), 'hh:mm aa') }}</p>
             </div>
-            <div class="flex gap-2 align-items-center">
+            <div class="col-12 flex py-1 gap-2 align-items-center">
                 <i class="pi pi-ticket"></i>
                 <p class="text-700 text-super-small">Start from RM {{ props.item.ticket_prize }}</p>
             </div>
-            <div class="flex">
+            <div class="flex col-12">
                 <Button label="BUY" class="btn-buy"></Button>
             </div>
         </article>

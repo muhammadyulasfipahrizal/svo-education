@@ -1,24 +1,29 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
+import { courseDataMock } from './Course.mock';
+import router from '@/router';
+import { useRoute } from 'vue-router';
 
 interface IStudent {
+  id: string;
   name: string;
   email: string;
   progress: number;
   percentage: string;
   passFail: string;
-  attendance: string;
+  attendance: number;
   days: string[];
 }
 
 const studentData = ref<IStudent[]>([
   {
+    id: '1',
     name: 'John Tason',
     email: 'JohnToson@gmail.com',
     progress: 50,
     percentage: '80%',
     passFail: 'Passed',
-    attendance: '5/10',
+    attendance: 5,
     days: [
       'passed',
       'passed',
@@ -33,12 +38,13 @@ const studentData = ref<IStudent[]>([
     ],
   },
   {
+    id: '2',
     name: 'Isabel Tray',
     email: 'IsabelT@gmail.com',
     progress: 80,
     percentage: '100%',
     passFail: 'Passed',
-    attendance: '9/10',
+    attendance: 9,
     days: [
       'passed',
       'passed',
@@ -57,240 +63,262 @@ const studentData = ref<IStudent[]>([
 const visible = ref(false);
 const currentStudent = ref<IStudent | null>(null);
 const displayedDays = ref<string[]>([]);
-
+const columns: { field: string; header: string; value: string }[] = [];
 const showModal = (data: IStudent) => {
   currentStudent.value = data;
   displayedDays.value = data.days.slice(0, 1);
   visible.value = true;
+  data.days.map((value, index) => {
+    columns.push({ field: 'day_' + (index + 1), header: 'Day ' + (index + 1), value })
+  })
 };
 const showNextDays = () => {
   //
 }
 const checkedStudent = ref();
+
+onMounted(() => {
+  const route = useRoute();
+  const courseId: string = route.params.courseId as unknown as string;
+  const course = courseDataMock.find((v) => v.id === courseId)
+  if (course) {
+    selectedCourse.value = course;
+  }
+})
+
+const courses = ref(courseDataMock);
+const selectedCourse = ref();
 </script>
 
 <template>
-  <div class="flex flex-column">
-    <Dropdown optionLabel="name" placeholder="Course Name" class="w-18rem md:w-16rem md:h-3rem mr-2 mt-1 mb-3" />
-    <div class=" flex flex-row align-items-center justify-content-between mb-3 filter-search pr-3">
-      <div>
-        <Button label="Filter" icon="pi pi-filter-fill" size="small" class="filter-button mr-3" />
-        <span class="p-input-icon-left">
-          <i class="pi pi-search search-icon" />
-          <InputText placeholder="Search by Name" class="search-bar p-inputtext-sm" />
-        </span>
-      </div>
-      <Button label="DOWNLOAD" icon="pi pi-download" size="small" class="btn-orange " />
+  <section class="grid overflow-hidden flex-column md:flex-row pl-4 pr-4 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2">
+    <div class="col-12 flex flex-row align-items-center my-2">
+      <i class="pi pi-chevron-left mr-3 back-arrow cursor-pointer" @click="$router.push('/admin/progress/student')"></i>
+      <h1 class="text-4xl font-bold ">Student Progress</h1>
     </div>
-
-    <!-- table -->
-    <DataTable :value="studentData" paginator :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]" sortMode="multiple"
-      tableStyle="min-width: 50rem" dataKey="id" v-model:selection="checkedStudent" class="shadow-2">
-      <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
-      <Column field="name" style="text-white">
-        <template #header>
-          <div>
-            <p class="header-text">Name</p>
-          </div>
-        </template>
-        <template #body="{ data }">
-          <div class="flex flex-row align-items-center">
-            <Avatar label="M" class="data-image mr-2" shape="circle" />
-            <div class="flex flex-column">
-              <p class="name-text">{{ data.name }}</p>
-              <p class="name-email">{{ data.email }}</p>
+    <div class="grid col-12">
+      <div class="col-12">
+        <Dropdown optionLabel="courseName" :options="courses" v-model="selectedCourse" placeholder="Course Name"
+          class="w-full md:w-14rem md:flex">
+          <template #value="slotProps">
+            <div v-if="slotProps.value" class="flex align-items-center">
+              <img :alt="slotProps.value.courseName" :src="slotProps.value.image" class="mr-2" style="width: 53px" />
+              <div class="text-900 font-bold text-lg">{{ slotProps.value.courseName }}</div>
             </div>
-          </div>
-        </template>
-      </Column>
-      <Column field="progress" sortable class="text-white">
-        <template #header>
-          <div>
-            <p class="header-text">Progress</p>
-          </div>
-        </template>
-        <template #body="{ data }">
-          <div class="flex flex-column">
-            <div class="progress-bar-container my-2 flex flex-column">
-              <div class="progress-bar" :style="{ width: data.progress + '%' }"></div>
-            </div>
-            <p class="progress-text">{{ data.progress }} % completed</p>
-          </div>
-        </template>
-      </Column>
-      <Column field="percentage" sortable>
-        <template #header>
-          <div>
-            <p class="header-text">Percentage</p>
-          </div>
-        </template>
-        <template #body="{ data }">
-          <p class="percatage-text">{{ data.percentage }}</p>
-        </template>
-      </Column>
-      <Column field="passFail" sortable>
-        <template #header>
-          <div>
-            <p class="header-text">Pass-Fail</p>
-          </div>
-        </template>
-        <template #body="{ data }">
-          <div class="flex flex-row align-items-center">
-            <p class="mr-2 pass-text">{{ data.passfail }}</p>
-            <i class="pi pi-check-circle pass-icon"></i>
-          </div>
-        </template>
-      </Column>
-      <Column field="attendance">
-        <template #header>
-          <div>
-            <p class="header-text">Attendance</p>
-          </div>
-        </template>
-        <template #body="{ data }">
-          <div>
-            <p class="attendance-text">{{ data.attendance }}</p>
-          </div>
-        </template>
-      </Column>
-      <Column>
-        <template #header>
-          <div>
-            <p class="header-text">Student Profile</p>
-          </div>
-        </template>
-        <template #body="{ data }">
-          <Button label="Info" class="btn-orange" @click="showModal(data)" />
-        </template>
-      </Column>
-    </DataTable>
-
-    <!-- modal -->
-    <Dialog v-model:visible="visible" :value="studentData" modal header="Header" :style="{ width: '40vw' }"
-      :breakpoints="{ '764px': '70vw' }">
-      <template #header>
-        <div class="flex flex-row align-items-center">
-          <Avatar label="M" class="modal-image mr-2" shape="circle" />
-          <p class="modal-student-name">{{ currentStudent?.name }}</p>
-        </div>
-      </template>
-      <div class="flex flex-row">
-        <DataTable class="w-full modal-table" :value="displayedDays">
-          <template #header>
-            <div class="flex justify-content-center margin-auto">
-              <p>attendance {{ currentStudent?.attendance }} (90%)</p>
+            <span v-else>
+              {{ slotProps.placeholder }}
+            </span>
+          </template>
+          <template #option="slotProps">
+            <div class="flex align-items-center">
+              <img :alt="slotProps.option.courseName" :src="slotProps.option.image" class="mr-2" style="width: 53px" />
+              <div class="text-900 font-bold text-lg">{{ slotProps.option.courseName }}</div>
             </div>
           </template>
-          <Column field="status" header="Day 1">
+        </Dropdown>
+      </div>
+      <div class="col-12 flex flex-row align-items-center justify-content-between mb-3 filter-search pr-3">
+        <div class="col-10 md:col-10 lg:col-10 lg:col-10">
+          <Button label="Filter" icon="pi pi-filter-fill" size="small" class="filter-button mr-3" />
+          <span class="p-input-icon-left w-7">
+            <i class="pi pi-search search-icon" />
+            <InputText placeholder="Search by Name" class="search-bar p-inputtext-sm w-full" />
+          </span>
+        </div>
+        <Button label="DOWNLOAD" icon="pi pi-download" size="small" class="btn-orange hidden md:block" />
+        <Button icon="pi pi-download" size="small" class="btn-orange col-2 block md:hidden" />
+      </div>
+
+      <!-- table -->
+      <div class="col-12 pr-3">
+        <DataTable :value="studentData" paginator :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]" sortMode="multiple"
+          tableStyle="min-width: 50rem" dataKey="id" v-model:selection="checkedStudent" class="shadow-2 detail-table">
+          <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
+          <Column field="name" class="text-white" headerStyle="width: 4rem">
+            <template #header>
+              <div>
+                <p class="header-text">Name</p>
+              </div>
+            </template>
             <template #body="{ data }">
-              <i v-if="data.day1 === 'passed'" class="pi pi-check-circle correct-color"></i>
-              <i v-else class="pi pi-exclamation-circle correct-color"></i>
+              <div class="flex flex-row align-items-center">
+                <Avatar label="M" class="data-image mr-2" shape="circle" />
+                <div class="flex flex-column">
+                  <p class="name-text">{{ data.name }}</p>
+                  <p class="name-email">{{ data.email }}</p>
+                </div>
+              </div>
             </template>
           </Column>
-          <Column field="status" header="Day 2">
+          <Column field="progress" sortable class="text-white">
+            <template #header>
+              <div>
+                <p class="header-text">Progress</p>
+              </div>
+            </template>
             <template #body="{ data }">
-              <i v-if="data.day1 === 'passed'" class="pi pi-check-circle correct-color"></i>
-              <i v-else class="pi pi-exclamation-circle correct-color"></i>
+              <div class="flex flex-column">
+                <div class="progress-bar-container my-2 flex flex-column">
+                  <div class="progress-bar" :style="{ width: data.progress + '%' }"></div>
+                </div>
+                <p class="progress-text">{{ data.progress }} % completed</p>
+              </div>
             </template>
           </Column>
-          <Column field="status" header="Day 3">
+          <Column field="percentage" sortable>
+            <template #header>
+              <div>
+                <p class="header-text">Percentage</p>
+              </div>
+            </template>
             <template #body="{ data }">
-              <i v-if="data.day1 === 'passed'" class="pi pi-check-circle correct-color"></i>
-              <i v-else class="pi pi-exclamation-circle correct-color"></i>
+              <p class="percatage-text">{{ data.percentage }}</p>
             </template>
           </Column>
-          <Column field="status" header="Day 4">
+          <Column field="passFail" sortable>
+            <template #header>
+              <div>
+                <p class="header-text">P/F</p>
+              </div>
+            </template>
             <template #body="{ data }">
-              <i v-if="data.day1 === 'passed'" class="pi pi-check-circle correct-color"></i>
-              <i v-else class="pi pi-exclamation-circle correct-color"></i>
+              <div class="flex flex-row align-items-center">
+                <p class="mr-2 pass-text">{{ data.passFail }}</p>
+                <i class="pi pi-check-circle pass-icon"></i>
+              </div>
             </template>
           </Column>
-          <Column field="status" header="Day 5">
+          <Column field="attendance">
+            <template #header>
+              <div>
+                <p class="header-text">Attendance</p>
+              </div>
+            </template>
             <template #body="{ data }">
-              <i v-if="data.day1 === 'passed'" class="pi pi-check-circle correct-color"></i>
-              <i v-else class="pi pi-exclamation-circle correct-color"></i>
+              <div>
+                <p class="attendance-text">{{ data.attendance }}</p>
+              </div>
+            </template>
+          </Column>
+          <Column>
+            <template #header>
+              <div>
+                <p class="header-text">Student Profile</p>
+              </div>
+            </template>
+            <template #body="{ data }">
+              <Button label="Info" class="btn-orange" @click="showModal(data)" />
             </template>
           </Column>
         </DataTable>
-        <button class="next-button cursor-pointer" @click="showNextDays">></button>
       </div>
-      <div>
-        <div class="flex flex-row align-items-center my-4">
-          <i class="pi pi-check mr-3 correct-color"></i>
-          <p class="modal-text">You have completed all of the assessment</p>
-        </div>
-        <div class="flex flex-row align-items-center my-4">
-          <i class="pi pi-align-justify mr-3 "></i>
-          <p class="modal-text mr-1">You passed the course! Your overall grade</p>
-          <p class="modal text correct-color">100%</p>
-        </div>
-        <div class="flex flex-row align-items-center my-4">
-          <div class="flex flex-row align-items-center">
-            <i class="pi pi-check mr-3 correct-color"></i>
-            <p class="modal-text">Daily Task</p>
-          </div>
-          <div class="flex flex-row ml-auto">
-            <p class="modal-text mr-1">Grade:</p>
-            <p class="modal text correct-color">100%</p>
-          </div>
-        </div>
-        <div class="flex flex-row align-items-center my-4">
-          <div class="flex flex-row align-items-center">
-            <i class="pi pi-check mr-3 correct-color"></i>
-            <p class="modal-text">Quiz</p>
-          </div>
-          <div class="flex flex-row ml-auto">
-            <p class="modal-text mr-1">Grade:</p>
-            <p class="modal text correct-color">100%</p>
-          </div>
-        </div>
-        <div class="flex flex-row align-items-center my-4">
-          <div class="flex flex-row align-items-center">
-            <i class="pi pi-check mr-3 correct-color"></i>
-            <p class="modal-text">Assessment</p>
-          </div>
-          <div class="flex flex-row ml-auto">
-            <p class="modal-text mr-1">Grade:</p>
-            <p class="modal text correct-color">100%</p>
-          </div>
-        </div>
+    </div>
+  </section>
 
-        <div class="flex flex-row align-items-center my-4">
-          <div class="flex flex-row align-items-center">
-            <i class="pi pi-check mr-3 correct-color"></i>
-            <p class="modal-text">Midterm exam</p>
+  <!-- modal -->
+  <Dialog v-model:visible="visible" :value="studentData" modal header="Header" :style="{ width: '40vw' }"
+    :breakpoints="{ '764px': '90vw' }">
+    <template #header>
+      <div class="flex flex-row align-items-center">
+        <Avatar label="M" class="modal-image mr-2" shape="circle" />
+        <p class="modal-student-name">{{ currentStudent?.name }}</p>
+      </div>
+    </template>
+    <div class="flex flex-row">
+      <DataTable class="w-full modal-table" :value="[0]">
+        <template #header>
+          <div class="flex justify-content-center margin-auto">
+            <p class="p-0 m-0 text-md font-bold">Attendance {{ currentStudent?.attendance }}/10 ({{
+              ((currentStudent?.attendance || 0) / 10) * 100 }}%)</p>
           </div>
-          <div class="flex flex-row ml-auto">
-            <p class="modal-text mr-1">Grade:</p>
-            <p class="modal text correct-color">100%</p>
-          </div>
+        </template>
+        <template v-for="col of columns">
+          <Column field="status" :header="col.header">
+            <template #body>
+              <i v-if="col.value === 'passed'" class="pi pi-check-circle correct-color"></i>
+              <i v-else class="pi pi-exclamation-circle correct-color"></i>
+            </template>
+          </Column>
+        </template>
+      </DataTable>
+      <button class="next-button cursor-pointer" @click="showNextDays">></button>
+    </div>
+    <div>
+      <div class="flex flex-row align-items-center my-4">
+        <i class="pi pi-check-circle mr-3 correct-color"></i>
+        <p class="modal-text">You have completed all of the assessment</p>
+      </div>
+      <div class="flex flex-row align-items-center my-4">
+        <i class="pi pi-align-justify mr-3 "></i>
+        <p class="modal-text mr-1">You passed the course! Your overall grade</p>
+        <p class="modal text correct-color font-bold">100%</p>
+      </div>
+      <div class="flex flex-row align-items-center my-4">
+        <div class="flex flex-row align-items-center">
+          <i class="pi pi-check-circle mr-3 correct-color"></i>
+          <p class="modal-text">Daily Task</p>
         </div>
-        <div class="flex f  lex-row align-items-center my-4">
-          <div class="flex flex-row align-items-center">
-            <i class="pi pi-check mr-3 correct-color"></i>
-            <p class="modal-text">Final exam</p>
-          </div>
-          <div class="flex flex-row ml-auto">
-            <p class="modal-text mr-1">Grade:</p>
-            <p class="modal text correct-color">100%</p>
-          </div>
-        </div>
-        <div class="line"></div>
-        <div class="flex flex-row align-items-center my-4">
-          <div class="flex flex-row align-items-center">
-            <i class="pi pi-check mr-3 correct-color"></i>
-            <p class="modal-text">Overall Grade</p>
-          </div>
-          <div class="flex flex-row ml-auto">
-            <p class="modal-text mr-1">Grade:</p>
-            <p class="modal text correct-color">100%</p>
-          </div>
+        <div class="flex flex-row ml-auto">
+          <p class="modal-text mr-1">Grade:</p>
+          <p class="modal text correct-color font-bold">100%</p>
         </div>
       </div>
-    </Dialog>
-  </div>
+      <div class="flex flex-row align-items-center my-4">
+        <div class="flex flex-row align-items-center">
+          <i class="pi pi-check-circle mr-3 correct-color"></i>
+          <p class="modal-text">Quiz</p>
+        </div>
+        <div class="flex flex-row ml-auto">
+          <p class="modal-text mr-1">Grade:</p>
+          <p class="modal text correct-color font-bold">100%</p>
+        </div>
+      </div>
+      <div class="flex flex-row align-items-center my-4">
+        <div class="flex flex-row align-items-center">
+          <i class="pi pi-check-circle mr-3 correct-color"></i>
+          <p class="modal-text">Assessment</p>
+        </div>
+        <div class="flex flex-row ml-auto">
+          <p class="modal-text mr-1">Grade:</p>
+          <p class="modal text correct-color font-bold">100%</p>
+        </div>
+      </div>
+
+      <div class="flex flex-row align-items-center my-4">
+        <div class="flex flex-row align-items-center">
+          <i class="pi pi-check-circle mr-3 correct-color"></i>
+          <p class="modal-text">Midterm exam</p>
+        </div>
+        <div class="flex flex-row ml-auto">
+          <p class="modal-text mr-1">Grade:</p>
+          <p class="modal text correct-color font-bold">100%</p>
+        </div>
+      </div>
+      <div class="flex f  lex-row align-items-center my-4">
+        <div class="flex flex-row align-items-center">
+          <i class="pi pi-check-circle mr-3 correct-color"></i>
+          <p class="modal-text">Final exam</p>
+        </div>
+        <div class="flex flex-row ml-auto">
+          <p class="modal-text mr-1">Grade:</p>
+          <p class="modal text correct-color font-bold">100%</p>
+        </div>
+      </div>
+      <div class="line"></div>
+      <div class="flex flex-row align-items-center my-4">
+        <div class="flex flex-row align-items-center">
+          <i class="pi pi-check-circle mr-3 correct-color"></i>
+          <p class="modal-text">Overall Grade</p>
+        </div>
+        <div class="flex flex-row ml-auto">
+          <p class="modal-text mr-1">Grade:</p>
+          <p class="modal text correct-color font-bold">100%</p>
+        </div>
+      </div>
+    </div>
+  </Dialog>
 </template>
-
+  
 <style scoped>
 :deep(.p-paginator) {
   position: absolute;
@@ -453,85 +481,31 @@ const checkedStudent = ref();
   padding: 1px;
 }
 </style>
-    
+
+
+
 <style lang="scss" scoped>
-::v-deep(.modal-table) {
-  .p-datatable {
-    .p-datatable-thead>tr>th {
-      background: white;
-      color: white;
-      color: var(--white, #FFF);
-      text-align: center;
-      font-size: 20px;
-      font-weight: 700;
-
-      svg path {
-        fill: white;
-      }
-
-      &:hover {
-        background: #006785;
-        color: var(--white, #FFF);
-      }
-    }
-  }
-}
-
 ::v-deep(.detail-table) {
-  .p-datatable {
-    .p-datatable-thead>tr>th {
-      background: #006785;
-      color: white;
-      color: var(--white, #FFF);
-      text-align: center;
-      font-size: 20px;
-      font-weight: 700;
+  .p-datatable-wrapper {
+    border-radius: 10px;
+  }
 
-      svg path {
-        fill: white;
-      }
+  .p-datatable-thead>tr>th {
+    background: #006785;
+    color: white;
+    color: var(--white, #FFF);
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
 
-      &:hover {
-        background: #006785;
-        color: var(--white, #FFF);
-      }
+    svg path {
+      fill: white;
     }
-  }
-}
 
-::v-deep(.p-paginator) {
-  .p-paginator-pages>.p-paginator-page {
-    color: black;
-    text-align: center;
-    font-size: 16px;
-    font-family: Inter;
-    font-weight: 600;
-  }
-}
-
-::v-deep(.p-paginator) {
-  .p-paginator-next>p {
-    color: black;
-    text-align: center;
-    font-size: 16px;
-    font-family: Inter;
-    font-weight: 600;
-  }
-}
-
-::v-deep(.p-button:active),
-::v-deep(.p-button:hover) {
-  background: #006785;
-  color: white;
-  border: none;
-}
-
-@media (max-width: 768px) {
-  ::v-deep(.p-button .p-button-label) {
-    display: none;
-    margin: 0;
-    padding: 0;
+    &:hover {
+      background: #006785;
+      color: var(--white, #FFF);
+    }
   }
 }
 </style>
-
