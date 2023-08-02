@@ -70,23 +70,21 @@ router.afterEach((to, from) => {
 </script>
 
 <template>
-    <main class="flex px-5 justify-content-between">
+    <main class="grid px-5 justify-content-between">
         <section class="event-list w-full">
-            <h1 class="font-bold mb-2 title">Admin Create</h1>
+            <h1 class="font-bold mb-2 title col-12">Create</h1>
 
-            <article class="flex gap-4">
-                <div class="grid gap-2" >
+            <article class="flex gap-2 overflow-x-scroll col-12">
                     <div v-for="(data, index) in categoryData" :key="index">
-                        <Button size="small" class="col-12 md:col-3 lg:col-2 btn-header min-w-max" @click="goToLocation(data.location)"
+                        <Button size="small" class="btn-header min-w-max" @click="goToLocation(data.location)"
                             :class="{ active: activeMenu.startsWith(data.location) }">
                             <i class="pi pi-plus" @click="addDialog"></i>
                             <p class="text-900 font-bold ml-2 text-white">{{ data.title }}</p>
                         </Button>
                     </div>
-                        <Button size="small" class="col-12 md:col-3 lg:col-2 btn-header min-w-max" @click="showModal">
+                        <Button size="small" class="btn-header min-w-min" @click="showModal">
                             <i class="pi pi-plus"></i>
                         </Button>
-                </div>
             </article>
 
             <article>
@@ -165,4 +163,14 @@ router.afterEach((to, from) => {
     text-align: left;
 }
 
+  /* width */
+  ::-webkit-scrollbar {
+    height: 10px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #dddd; 
+    border-radius: 10px;
+  }
 </style>

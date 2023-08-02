@@ -519,6 +519,10 @@ const quizList = ref<{ title: string; }[]>([
     background: #D9D9D9;
 }
 
+.p-inputtext-lg {
+    height: 100px;
+}
+
 .card-container {
     border-radius: 10px;
     border: 1px solid #E5E5E5;
@@ -617,6 +621,16 @@ const quizList = ref<{ title: string; }[]>([
     .header {
         background: var(--suggested-light-grey, #EEE);
         padding: 10px;
+        color: var(--font-1, #001125);
     }
+}
+
+::v-deep(.p-accordion-header){
+    color: var(--font-1, #001125);
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 32px;
 }
 </style>

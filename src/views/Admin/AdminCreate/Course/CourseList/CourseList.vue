@@ -29,8 +29,8 @@ const courseList = ref<ICourse[]>([{
 </script>
 
 <template>
-    <section>
-        <Card class="my-5 shadow-5">
+    <section class="grid">
+        <Card class="my-5 shadow-5 col-12">
             <template #content>
                 <div class="flex justify-content-between align-items-center">
                     <h1 class="title">Course</h1>
@@ -39,17 +39,16 @@ const courseList = ref<ICourse[]>([{
             </template>
         </Card>
 
-        <article class="col-12 grid p-0 m-0">
-            <template v-for="(event, idx) of courseList">
-                <div class="item-flex col-6 sm:col-4 md:col-4 lg:col-4 py-0 px-0 m-0 px-2 cursor-pointer list-item">
-                    <img :src="event.image" :alt="event.title" />
-                    <div class="flex gap-1 justify-content-center align-items-center">
+        <article class="grid col-12">
+            <div v-for="(event, idx) of courseList" class="col-6 md:col-4 lg:col-4 xl:col-3">
+                <div class="grid cursor-pointer list-item align-items-center justify-content-center">
+                    <img :src="event.image" :alt="event.title" class="col-10"/>
+                    <div class="grid">
                         <h3 class="card-title">{{ event.title }}</h3>
                         <Button size="small" link icon="pi pi-pencil"></Button>
-                        <Button size="small" link icon="pi pi-trash"></Button>
                     </div>
                 </div>
-            </template>
+            </div>
         </article>
     </section>
 </template>
@@ -101,9 +100,5 @@ const courseList = ref<ICourse[]>([{
     line-height: 48px;
     letter-spacing: 0em;
     text-align: left;
-}
-
-.item-flex {
-    max-width: 210px;
 }
 </style>
