@@ -67,11 +67,7 @@ const goToDetail = () => {
 
 @media only screen and (min-width: 768px) {
     .container {
-<<<<<<< HEAD
-      max-width: 225px;
-=======
         max-width: 225px;
->>>>>>> 32b633dd4fdb714ede7fdc7fdede0e4a5131a752
     }
 }
 </style>
