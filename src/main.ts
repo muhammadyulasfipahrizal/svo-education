@@ -1,7 +1,7 @@
 import 'primeflex/primeflex.css';
 import 'primevue/resources/primevue.min.css';
 import 'primeicons/primeicons.css';
-import './assets/main.css'
+import './assets/main.scss'
 //theme
 import "primevue/resources/themes/lara-light-indigo/theme.css";     
 //core
