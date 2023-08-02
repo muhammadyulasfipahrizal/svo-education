@@ -53,7 +53,7 @@ const onTimeSelect = (value: Date) => {
 onMounted(() => {
     date.value = new Date();
     location.value = 'Bukit bintang';
-    ticketPrice.value = 'Start from RM9.99';
+    ticketPrice.value = 9.99;
     title.value = "Network Technology Seminar";
     description.value = 'The world of network technology is constantly evolving, with new advancements and innovations being introduced every year. To stay up-to-date with the latest trends, it is essential to attend a seminar that covers the most recent developments in this field. Our network technology seminar is designed to do just that!|';
     time.value = format(new Date(), "'Starts at ' hh:mm b");
@@ -67,150 +67,106 @@ onMounted(() => {
 const isLargeScreen = ref(false);
 
 watchEffect(() => {
-  const handleResize = () => {
-    isLargeScreen.value = window.innerWidth >= 765;
-  };
+    const handleResize = () => {
+        isLargeScreen.value = window.innerWidth >= 765;
+    };
 
-  handleResize();
+    handleResize();
 
-  window.addEventListener('resize', handleResize);
+    window.addEventListener('resize', handleResize);
 
-  return () => {
-    window.removeEventListener('resize', handleResize);
-  };
+    return () => {
+        window.removeEventListener('resize', handleResize);
+    };
+});
+const range = ref({
+    start: new Date(2020, 0, 6),
+    end: new Date(2020, 0, 10),
 });
 
+const decrementTicketCount = () => ticketCount.value - 1 < 1 ? ticketCount.value : ticketCount.value--;
 </script>
 
 <template>
-    <section class="grid px-5 flex-column md:flex-row max-w-screen" >
-        <div class="event-list col-6 mr-4">
+    <section class="grid flex-column md:flex-row pr-2 pl-2 md:pl-2 lg:pl-0 xl:pl-0">
+        <div class="event-list col-12 md:col-8 lg:col-8">
             <div class="flex gap-1 align-items-center">
                 <Button @click="$router.push('/admin/event')" link class="btn-back" size="small" icon="pi pi-angle-left" />
                 <h1 class="font-bold">Ongoing Event</h1>
             </div>
 
-            <div class="flex gap-2 flex-column width md:w-full ">
-                <img src="/assets/img/event/innovations.png" alt=""/>
+            <div class="flex gap-2 flex-column md:w-full ">
+                <img src="/assets/img/event/innovations.png" alt="" class="w-full" />
                 <InputText v-model="title" class="title" />
-                <Textarea v-model="description" rows="5" />
-                <div class="flex">
-                    <Button label="SAVE" @click="$router.push('/admin/event')" class="w-full btn-save"></Button>
-                </div>
+                <Textarea v-model="description" rows="10" />
             </div>
         </div>
 
-        <div>
-
-            <div class="calendar w-screen md:w-fit">
+        <div class="col-12 md:col-4 lg:col-4">
+            <div class="calendar">
                 <h1 class="font-bold mb-2">Calendar</h1>
                 <div class="flex">
-                    <Calendar v-model="date" inline showWeek class="calendar width md:w-max" >
-                    </Calendar>
+                    <VDatePicker v-model.range="range" disabled mode="date" class="datepicker w-full" />
                 </div>
             </div>
-    
-                <!-- Information -->
-                <h1 class="font-bold mb-2 mt-3">Event Information</h1>
-                    <div v-if="isLargeScreen">
-                        <div class="flex flex-column gap-2">
-                            <div class="flex gap-2">
-                                <span class="p-input-icon-left">
-                                    <i class="pi pi-map-marker"></i>
-                                    <InputText class="p-inputtext-sm" type="text" v-model="location" placeholder="Location" />
-                                </span>
-                                <span class="p-input-icon-left">
-                                    <i class="pi pi-calendar"></i>
-                                    <InputText class="p-inputtext-sm" v-model="calendar" placeholder="Calendar" @click="showCalendar" />
-                                    <Calendar v-model="calendar" id="calendar" placeholder="Calendars"
-                                        @date-select="onDateSelectCalendarRef" class="calendarRef" ref="calendarRef" />
-                                </span>
-                            </div>
-                            <div class="flex gap-2">
-                                <span class="p-input-icon-left">
-                                    <i class="pi pi-clock"></i>
-                                    <InputText class="p-inputtext-sm" v-model="time" placeholder="Time" @click="showTimepicker" />
-                                    <Calendar id="time-picker" placeholder="Time" @date-select="onTimeSelect" timeOnly class="timeRef"
-                                        ref="timeRef" />
-                                </span>
-                                <span class="p-input-icon-left">
-                                    <i class="pi pi-ticket"></i>
-                                    <InputText class="p-inputtext-sm" type="text" v-model="ticketPrice" placeholder="Ticket price" />
-                                </span>
-                            </div>
+
+            <!-- Information -->
+            <h1 class="font-bold mb-2 mt-3">Event Information</h1>
+            <div>
+                <div class="w-full">
+                    <img src="/assets/img/ticket.png" alt="ticket" class="w-full" />
+                    <div class="grid">
+                        <div class="col-7">
+                            <InputText v-model="ticketType" class="border-noround w-full" />
                         </div>
-                        
-                        <!-- TICKETS -->
-                        <div class="grid mt-2">
-                            <div class="col-4 flex flex-column gap-2 cursor-pointer p-5 border-round justify-content-center align-items-center border-1 surface-0 surface-border"
-                                @click="addImage.click()">
-                                <input type="file" class="hidden" ref="addImage" />
-                                <i class="pi pi-image"></i>
-                                <p class="text-xs font-normal text-900">Add Image</p>
-                            </div>
-                            <div class="col-8 flex flex-column gap-1 pt-0">
-                                <InputText v-model="ticketType" />
-                                <div class="flex gap-1">
-                                    <p>Price: RM
-                                        <InputText class="ticket-type" v-model="ticketPricePerItem" />
-                                    </p>
-                                    <p>per ticket
-                                        <InputText v-model="ticketCount" class="p-inputtext-sm ticket-count" type="number" />
-                                    </p>
-                                </div>
-                                <p class="text-xs text-900">Include 4% online processing fee + RM 4 ticket fee</p>
-                                <Button class="btn-add">Add to cart for RM 15.00</Button>
+                        <div class="col-5">
+                            <div class="flex border-red-500 border-1 align-items-center p-1 border-round gap-1">
+                                <button class="bg-white text-red-500 border-none cursor-pointer"
+                                    @click="decrementTicketCount">
+                                    <img src="/assets/icon/minus.svg" alt="minus" />
+                                </button>
+                                <span class="border-1 border-solid border-300 w-1px" style="height: 30px;"></span>
+                                <InputText v-model="ticketCount" class="border-none ticket-count" type="number" min="1" />
+                                <span class="border-1 border-solid border-300 w-1px" style="height: 30px;"></span>
+                                <button class="bg-white text-red-500 border-none cursor-pointer" @click="ticketCount++">
+                                    <img src="/assets/icon/plus.svg" alt="plus" />
+                                </button>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="grid py-2">
+                    <span class="p-input-icon-left col-12 md:col-6 lg:col-6 xl:col-6 py-1">
+                        <i class="pi pi-map-marker"></i>
+                        <InputText class="p-inputtext-sm w-full" type="text" v-model="location" placeholder="Location" />
+                    </span>
+                    <span class="p-input-icon-left col-12 md:col-6 lg:col-6 xl:col-6 py-1">
+                        <i class="pi pi-calendar"></i>
+                        <InputText class="p-inputtext-sm w-full" v-model="calendar" placeholder="Calendar"
+                            @click="showCalendar" />
+                        <Calendar v-model="calendar" id="calendar" placeholder="Calendars"
+                            @date-select="onDateSelectCalendarRef" class="calendarRef" ref="calendarRef" />
+                    </span>
+                    <span class="p-input-icon-left col-12 md:col-6 lg:col-6 xl:col-6 py-1">
+                        <i class="pi pi-clock"></i>
+                        <InputText class="p-inputtext-sm w-full" v-model="time" placeholder="Time"
+                            @click="showTimepicker" />
+                        <Calendar id="time-picker" placeholder="Time" @date-select="onTimeSelect" timeOnly class="timeRef"
+                            ref="timeRef" />
+                    </span>
+                    <span class="p-input-icon-left col-12 md:col-6 lg:col-6 xl:col-6 py-1">
+                        <i class="pi pi-ticket"></i>
+                        <InputText class="p-inputtext-sm w-full" type="text" v-model="ticketPrice"
+                            placeholder="Ticket price" />
+                    </span>
+                </div>
 
-                    <div v-else class="flex flex-column gap-2 justify-center width">
-                            <div class="flex flex-column gap-2 cursor-pointer p-5 border-round justify-content-center align-items-center border-1 surface-0 surface-border"
-                                @click="addImage.click()">
-                                <input type="file" class="hidden" ref="addImage" />
-                                <i class="pi pi-image"></i>
-                                <p class="text-xs font-normal text-900">Add Image</p>
-                            </div>
-                            <div class="flex gap-4 align-items-center">
-                                <InputText v-model="ticketType" />
-                                <div class="flex gap-1">
-                                    <p>Price: RM
-                                        <InputText class="ticket-type" v-model="ticketPricePerItem" />
-                                    </p>
-                                    <p>per ticket
-                                        <InputText v-model="ticketCount" class="p-inputtext-sm ticket-count" type="number" />
-                                    </p>
-                                </div>
-                            </div>
-                            <div>
-                                <p class="text-xs text-900">Include 4% online processing fee + RM 4 ticket fee</p>
-                                <Button class="btn-add">Add to cart for RM 15.00</Button>
-                            </div>
-
-                            <div class="flex flex-column gap-2">
-                                    <span class="p-input-icon-left">
-                                        <i class="pi pi-map-marker"></i>
-                                        <InputText class="w-full" type="text" v-model="location" placeholder="Location" />
-                                    </span>
-                                    <span class="p-input-icon-left">
-                                        <i class="pi pi-calendar"></i>
-                                        <InputText class="w-full" v-model="calendar" placeholder="Calendar" @click="showCalendar" />
-                                        <Calendar v-model="calendar" id="calendar" placeholder="Calendars"
-                                            @date-select="onDateSelectCalendarRef" class="calendarRef" ref="calendarRef" />
-                                    </span>
-                                    <span class="p-input-icon-left">
-                                        <i class="pi pi-clock"></i>
-                                        <InputText class="w-full" v-model="time" placeholder="Time" @click="showTimepicker" />
-                                        <Calendar id="time-picker" placeholder="Time" @date-select="onTimeSelect" timeOnly class="timeRef"
-                                            ref="timeRef" />
-                                    </span>
-                                    <span class="p-input-icon-left">
-                                        <i class="pi pi-ticket"></i>
-                                        <InputText class="w-full" type="text" v-model="ticketPrice" placeholder="Ticket price" />
-                                    </span>
-                            </div>
-                        </div>
-                    </div>
+                <Button class="btn-add my-2 text-center">Add to cart for RM {{ ticketPrice }}</Button>
+            </div>
+        </div>
+        <div class="col-12 pr-2">
+            <Button label="SAVE" @click="$router.push('/admin/event')" class="w-full  btn-save"></Button>
+        </div>
     </section>
 </template>
 <style>
@@ -218,33 +174,15 @@ watchEffect(() => {
     width: calc(100vw - 100px);
 }
 
-.calendar>.p-datepicker-calendar table td {
-    padding: 0.25rem !important;
+.calendar .datepicker {
+    border-radius: 20px;
+    border: 1px solid #D9D5EC;
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
-.calendar>.p-datepicker table td>span:focus {
-    box-shadow: none;
-}
-
-.calendar>.p-datepicker table td>span.p-highlight {
-    background: #E96853;
-    color: white;
-}
-
-.calendar>.p-datepicker table td>span:not(.p-highlight) .badge {
-    background: #E96853;
-    color: white;
-    border-radius: 50%;
-}
-
-.calendar>.p-datepicker table td>span.p-highlight .badge {
-    background: white;
-    color: #E96853;
-    border-radius: 16px;
-}
-
-.p-datepicker:not(.p-disabled) table td span:not(.p-highlight):not(.p-disabled) span:hover {
-    background: #E96853 !important;
+.calendar .vc-day {
+    pointer-events: none
 }
 
 @media (min-width: 765px) {
@@ -279,7 +217,6 @@ watchEffect(() => {
     padding: 5px;
     border: 1px;
     gap: 5px;
-    /* border-radius: 0; */
 }
 
 
@@ -326,6 +263,19 @@ watchEffect(() => {
     border-radius: 0;
     padding: 5px;
     font-size: 12px;
+    -moz-appearance: textfield;
+    -o-appearance: none;
+    appearance: none;
+    text-align: center;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+    }
+
+    &:focus {
+        outline: none;
+    }
 }
 </style>
 

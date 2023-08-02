@@ -6,7 +6,7 @@ const router = createRouter({
     {
       path: '/dashboard',
       name: 'dashboard',
-      component: () => import('../views/DashboardView.vue')
+      component: () => import('../views/Admin/AdminDashboard/AdminDashboard.vue')
     },
     {
       path: '/admin/live',
@@ -32,6 +32,11 @@ const router = createRouter({
       path: '/admin/progress/student',
       name: 'admin-progress-student',
       component: () => import('../views/Admin/AdminStudentProgress/AdminStudentProgress.vue')
+    },
+    {
+      path: '/admin/progress/student/:courseId',
+      name: 'admin-progress-student-detail',
+      component: () => import('../views/Admin/AdminStudentProgress/AdminStudentProgressDetail.vue')
     },
     {
       path: '/admin/instructor-grade',

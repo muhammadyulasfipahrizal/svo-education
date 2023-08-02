@@ -1,7 +1,7 @@
 import 'primeflex/primeflex.css';
 import 'primevue/resources/primevue.min.css';
 import 'primeicons/primeicons.css';
-import './assets/main.css'
+import './assets/main.scss'
 //theme
 import "primevue/resources/themes/lara-light-indigo/theme.css";     
 //core
@@ -61,7 +61,9 @@ import Paginator from 'primevue/paginator';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import Tree from 'primevue/tree';
-import { setupCalendar } from 'v-calendar';
+import VirtualScroller from 'primevue/virtualscroller';
+import { setupCalendar, Calendar as VCalendar, DatePicker as VDatePicker } from 'v-calendar';
+import 'v-calendar/style.css';
 
 const app = createApp(App)
 
@@ -70,6 +72,9 @@ app.use(PrimeVue, { ripple: true });
 app.use(ToastService);
 app.use(router)
 app.use(setupCalendar, {})
+// Use the components
+app.component('VCalendar', VCalendar)
+app.component('VDatePicker', VDatePicker)
 
 app.config.globalProperties.$appState = reactive({ theme: 'lara-light-indigo', dark: false });
 app.component('Accordion', Accordion);
@@ -115,6 +120,7 @@ app.component('DataTable', DataTable);
 app.component('Column', Column);
 app.component('Tree', Tree);
 app.component('Card', Card);
+app.component('VirtualScroller', VirtualScroller);
 // app.component('BlockViewer', BlockViewer);
 
 app.directive('badge', BadgeDirective);

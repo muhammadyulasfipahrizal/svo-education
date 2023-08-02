@@ -4,7 +4,7 @@ const emit = defineEmits(['onAdd'])
 
 <template>
     <section
-        class="w-screen container flex flex-column gap-2 border-1 surface-0 surface-border justify-content-center align-items-center">
+        class="w-full md:w-4 lg:w-4 xl:w-4 container flex flex-column gap-2 border-1 surface-0 surface-border justify-content-center align-items-center">
         <Button icon="pi pi-plus" class="btn-add" rounded aria-label="Filter" @click="emit('onAdd')"></Button>
         <p class="text-900 font-normal">Add more event</p>
     </section>
