@@ -66,7 +66,7 @@ const addInstructor = () => {
     <p class="title">Assign Instructor</p>
 
     <!-- table -->
-    <DataTable :value="instructorData" selectionMode="single">
+    <DataTable :value="instructorData" selectionMode="single" tableStyle="min-width: 40rem">
       <Column field="courseName">
         <template #header>
           <div>
@@ -113,7 +113,7 @@ const addInstructor = () => {
 
     <!-- modal -->
     <Dialog v-model:visible="visible" v-for="(data, index) in instructorData" :key="index" modal header="Header"
-      :style="{ width: '50vw' }">
+      :style="{ width: '30vw' }" :breakpoints="{ '764px': '80vw' }">
       <template #header>
         <div class="flex flex-row align-items-center">
           <Avatar label="M" class="modal-image mr-2" shape="circle" />
@@ -135,6 +135,7 @@ const addInstructor = () => {
     <!-- input instructor -->
     <InputText type="text" v-show="instructorInput" class="w-full" v-model="userInput" @keydown="handleKeyPress" />
     <Button size="small" label="Add new intructor" class="w-full mt-4 btn-add-intructor" @click="addInstructor" />
+    <Button size="small" label="SAVE" class="w-full my-4 btn-default" />
   </section>
 </template>
 
@@ -206,4 +207,6 @@ const addInstructor = () => {
   background-color: #D9D5EC;
   padding: 1px;
 }
+
+
 </style>

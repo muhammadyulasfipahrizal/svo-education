@@ -30,29 +30,27 @@ const dataList = ref<ICourse[]>([{
 </script>
 
 <template>
-    <section>
-        <Card class="my-5 shadow-5">
+    <section class="grid">
+        <Card class="my-5 shadow-5 col-12">
             <template #content>
-                <div class="flex justify-content-between align-items-center w-8/12">
-                    <h1 class="title">Material sources</h1>
-                    <Button label="NEW" @click="$router.push('/admin/create/material/add')" class="btn-new"></Button>
+                <div class="grid col-12 align-items-center justify-content-center">
+                    <h1 class="title text-2xl sm:text-3xl col-7 md:col-8 lg:col-10">Material sources</h1>
+                    <Button label="NEW" @click="$router.push('/admin/create/material/add')" class="btn-new col-5 md:col-4 lg:col-2"></Button>
                 </div>
             </template>
         </Card>
 
-        <div class="col-12 grid p-0 m-0">
-            <template v-for="(event, idx) of dataList">
-                <div
-                class="item-flex col-6 sm:col-4 md:col-4 lg:col-4 py-0 px-0 m-0 px-2 cursor-pointer list-item">
-                    <img :src="event.image" :alt="event.title" />
-                    <div class="flex gap-1 justify-content-center align-items-center">
+        <article class="grid col-12">
+            <div v-for="(event, idx) of dataList" class="col-6 md:col-4 lg:col-4 xl:col-3">
+                <div class="grid cursor-pointer list-item align-items-center justify-content-center">
+                    <img :src="event.image" :alt="event.title" class="col-10"/>
+                    <div class="grid">
                         <h3 class="card-title">{{ event.title }}</h3>
-                        <Button size="small" link icon="pi pi-pencil" ></Button>
-                        <Button size="small" link icon="pi pi-trash"></Button>
+                        <Button size="small" link icon="pi pi-pencil"></Button>
                     </div>
                 </div>
-            </template>
-        </div>
+            </div>
+        </article>
     </section>
 </template>
 
