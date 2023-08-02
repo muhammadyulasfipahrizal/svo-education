@@ -24,16 +24,16 @@ const addNewTask = () => {
 
 <template>
     <section class="my-3">
-        <p class="title">Assigned daily task</p>
-        <div class="flex flex-column mx-auto mt-3 list w-full">
-            <p class="text-day mb-3">Monday</p>
+        <p class="text text-2xl font-bold">Assigned daily task</p>
+        <div class="flex flex-column mx-auto mt-3 wrapper">
+            <p class="text text-lg mb-3 font-semibold">Monday</p>
             <Card>
                 <template #content>
                     <div class="flex flex-column" v-for="(task, taskindex) in taskData" :key="taskindex">
                         <div class="flex flex-row align-items-center mb-3">
                             <div class="flex flex-column ">
-                                <p contenteditable class="text-task mb-2">{{ task.taskName }}</p>
-                                <p contenteditable class="text-desc">{{ task.taskDesc }}</p>
+                                <p contenteditable class="text font-medium mb-2">{{ task.taskName }}</p>
+                                <p contenteditable class="text text-desc">{{ task.taskDesc }}</p>
                             </div>
                             <Button label="go" class="btn-orange ml-auto" />
                         </div>
@@ -48,39 +48,14 @@ const addNewTask = () => {
 </template>
 
 <style scoped lang="scss">
-.title {
-    color: var(--font-1, #001125);
-    font-size: 25px;
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 160%;
-}
-
-.text-day {
+.text {
     color: var(--font-1, #001125);
     font-family: Inter;
-    font-size: 20px;
     font-style: normal;
-    font-weight: 600;
     line-height: 160%;
 }
-
-.text-task {
-    color: var(--fonts-primary, #25213B);
-    font-family: Inter;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-}
-
 .text-desc {
     color: var(--fonts-primary-variant, #6E6893);
-    font-family: Inter;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
     line-height: normal;
     letter-spacing: 0.7px;
 }
@@ -105,8 +80,8 @@ const addNewTask = () => {
 }
 
 @media only screen and (min-width: 768px) {
-    .list {
-      width: 75vw;
+    .wrapper{
+      width: 65vw;
     }
   }
 </style>
