@@ -376,6 +376,11 @@ export default {
       margin: 5px;
       background: rgba(250, 250, 250, 0.50);
     }
+
+    table tr td span:hover {
+        background-color: #E96853;
+        color: white;
+    }
   
     table td>span {
       border-radius: 5px;
@@ -386,6 +391,8 @@ export default {
   
     table td>span:focus {
       box-shadow: none;
+      background: #E96853;
+      color: white;
     }
   
     table td>span.p-highlight {
