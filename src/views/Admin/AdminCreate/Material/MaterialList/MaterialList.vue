@@ -33,9 +33,9 @@ const dataList = ref<ICourse[]>([{
     <section class="grid">
         <Card class="my-5 shadow-5 col-12">
             <template #content>
-                <div class="flex justify-content-between align-items-center">
-                    <h1 class="title">Material sources</h1>
-                    <Button label="NEW" @click="$router.push('/admin/create/material/add')" class="btn-new"></Button>
+                <div class="grid col-12 align-items-center justify-content-center">
+                    <h1 class="title text-2xl sm:text-3xl col-7 md:col-8 lg:col-10">Material sources</h1>
+                    <Button label="NEW" @click="$router.push('/admin/create/material/add')" class="btn-new col-5 md:col-4 lg:col-2"></Button>
                 </div>
             </template>
         </Card>
