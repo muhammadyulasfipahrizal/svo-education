@@ -259,17 +259,7 @@ export default {
                 <div class="flex flex-column">
                     <p class="font-medium font-semibold text-2xl">Calander</p>
                     <div class="flex justify-content-center">
-                      <Calendar inline showWeek class="calendar">
-                        <!-- for badge calendar -->
-                        <template #date="slotProps">
-                          <strong v-if="slotProps.date.day > 10 && slotProps.date.day < 15"
-                            class="flex flex-column justify-content-center align-items-center gap-0">
-                            <p>{{ slotProps.date.day }}</p>
-                            <Badge value="2" class="badge text-xs flex justify-content-center align-items-center"></Badge>
-                          </strong>
-                          <template v-else>{{ slotProps.date.day }}</template>
-                        </template>
-                      </Calendar>
+                      <Calendar inline></Calendar>
                     </div>
                   </div>
 
