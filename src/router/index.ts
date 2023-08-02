@@ -39,6 +39,16 @@ const router = createRouter({
       component: () => import('../views/Admin/AdminStudentProgress/AdminStudentProgressDetail.vue')
     },
     {
+      path: '/admin/progress/guest',
+      name: 'admin-progress-guest',
+      component: () => import('../views/Admin/AdminGuestProgress/AdminGuestProgress.vue')
+    },
+    {
+      path: '/admin/progress/guest/:courseId',
+      name: 'admin-progress-guest-detail',
+      component: () => import('../views/Admin/AdminGuestProgress/AdminGuestProgressDetail.vue')
+    },
+    {
       path: '/admin/instructor-grade',
       name: 'admin-instructor-grade',
       component: () => import('../views/Admin/AdminGrades/InstructorGrades/InstructorGrades.vue')
