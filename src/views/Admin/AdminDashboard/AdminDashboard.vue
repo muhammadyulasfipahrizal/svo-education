@@ -312,7 +312,7 @@ export default {
 }
 
 ::v-deep(.calendar) {
-    border-radius: 20px;
+    border-radius: 10px;
 
     .p-datepicker-calendar table td {
       padding: 0 !important;
