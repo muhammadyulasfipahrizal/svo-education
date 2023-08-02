@@ -168,40 +168,42 @@ const quizList = ref<{ title: string; }[]>([
                 <div class="grid">
                     <div class="col-12 lg:col-7">
                         <div class="flex flex-column align-items-start justify-content-start gap-3 ">
-                            <InputText type="text" label="Title" v-model="title" class="p-inputtext-lg w-full" required
+                            <InputText type="text" label="Title" v-model="title" class="p-inputtext-lg w-full mt-6" required
                                 placeholder="Title" />
 
-                            <div class="grid gap-2 align-items-start md:align-items-center">
-                                <div class="col-12 md:col-8 grid gap-2">
-                                    <h1 class="col-12 md:col-7 lg:col-7 instructor text-2xl text-900 font-bold min-w-max">
+                            <div class="grid gap-2 align-items-start md:align-items-center w-full">
+                                <div class="col-12 grid gap-2">
+                                    <h1 class="col-5 md:col-2 lg:col-2 instructor text-2xl text-900 font-bold min-w-max">
                                         Instructor By
                                     </h1>
                                     <Dropdown v-model="selectedInstructor" :options="instructorList" optionLabel="name"
-                                        placeholder="Select Instructor" class="w-full md:w-14rem p-inputtext-sm col-12 md:col-5 lg:col-7" size="small" />
-                                </div>
-                                <div class="col-12 md:col-4 flex gap-1">
-                                    <i class="pi-thumbs-up pi mt-1"></i>
-                                    <p class="text-900 font-normal">0%</p>
-                                    <p>|</p>
-                                    <i class="pi-thumbs-down pi mt-1"></i>
-                                    <p class="text-900 font-normal">0%</p>
+                                        placeholder="Select Instructor" class="md:w-full md:w-14rem p-inputtext-sm col-6 md:col-4" size="small" />
+                                    <div class="col-12 md:col-4 flex gap-1">
+                                        <i class="pi-thumbs-up pi mt-1"></i>
+                                        <p class="text-900 font-normal">0%</p>
+                                        <p>|</p>
+                                        <i class="pi-thumbs-down pi mt-1"></i>
+                                        <p class="text-900 font-normal">0%</p>
+                                    </div>    
                                 </div>
                             </div>
 
-                            <div class="grid w-full gap-3 p-2 flex-column md:flex-row">
-                                <div class="col card shadow-1 flex flex-column">
-                                    <div class="flex gap-1 align-items-center">
-                                        <i class="pi-star-fill pi"></i>
-                                        <h3 class="text-sm text-900">Ratings</h3>
+                            <div class="grid w-full gap-3 p-2">
+                                <div class="col-12 md:col-4 lg:col-3 card shadow-1 flex flex-column">
+                                    <div class="flex flex-row md:flex-column gap-2 md:gap-0 align-items-center md:align-items-start">
+                                        <div class="flex gap-1 align-items-center">
+                                            <i class="pi-star-fill pi"></i>
+                                            <h3 class="text-sm text-900">Ratings</h3>
+                                        </div>
+                                        <p class="text-900 text-xs">
+                                            0/5 (0 ratings)
+                                        </p>
                                     </div>
-                                    <p class="text-900 text-xs">
-                                        0/5 (0 ratings)
-                                    </p>
                                     <p class="text-900 text-xs">
                                         0 already enroll
                                     </p>
                                 </div>
-                                <div class="col card shadow-1 flex flex-column gap-1">
+                                <div class="col-12 md:col-4 lg:col-4 card shadow-1 gap-1">
                                     <div class="flex gap-1 align-items-center">
                                         <img src="/assets/icon/stopwatch.png" class="w-1rem" />
                                         <h3 class="text-sm text-900">Total Hours</h3>
@@ -215,18 +217,17 @@ const quizList = ref<{ title: string; }[]>([
                                         <p class="text-bold textxs">min</p>
                                     </div>
                                 </div>
-                                <div class="col card shadow-1 flex flex-column gap-1">
+                                <div class="col-12 md:col-2 lg:col-4 card shadow-1 flex flex-column gap-1">
                                     <div class="flex gap-1 align-items-center">
                                         <img src="/assets/icon/chat.png" class="w-1rem" />
                                         <h3 class="text-sm text-900">Language</h3>
                                     </div>
                                     <div class="flex align-items-center">
                                         <Dropdown v-model="selectedLanguage" :options="languageList" optionLabel="name"
-                                            placeholder="Select Language" class="w-full md:w-14rem p-inputtext-sm"
+                                            placeholder="Select Language" class="w-full p-inputtext-sm"
                                             size="small" />
                                     </div>
                                 </div>
-
                             </div>
 
                             <Button label="ENROLL" class="btn-default md:w-max mb-3 md:mb-0" />
@@ -519,6 +520,10 @@ const quizList = ref<{ title: string; }[]>([
     background: #D9D9D9;
 }
 
+.p-inputtext-lg {
+    height: 100px;
+}
+
 .card-container {
     border-radius: 10px;
     border: 1px solid #E5E5E5;
@@ -617,6 +622,16 @@ const quizList = ref<{ title: string; }[]>([
     .header {
         background: var(--suggested-light-grey, #EEE);
         padding: 10px;
+        color: var(--font-1, #001125);
     }
+}
+
+::v-deep(.p-accordion-header){
+    color: var(--font-1, #001125);
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 32px;
 }
 </style>

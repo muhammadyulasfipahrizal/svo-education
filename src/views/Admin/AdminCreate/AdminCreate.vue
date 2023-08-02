@@ -1,10 +1,66 @@
 <script setup lang="ts">
 import router from '@/router';
 import { ref, onMounted } from 'vue';
-
 const activeMenu = ref<string>('/admin/create/course');
 
+interface CategoryData {
+    title: string;
+    location: string;
+}
+
+const categoryData = ref<CategoryData[]>([
+  { 
+    title: "ADD COURSE",
+    location: "/admin/create/course",
+  },
+  { 
+    title: "PREPARE QUESTIONS",
+    location: "/admin/create/question",
+  },
+  { 
+    title: "MATERIAL SOURCES",
+    location: "/admin/create/material",
+  },
+  { 
+    title: "ASSIGN INSTRUCTOR",
+    location: "/admin/create/instructor",
+  },
+  { 
+    title: "ASSIGN DAILY TASK",
+    location: "/admin/create/task",
+  },
+]);
+
+const dialogData = ref<CategoryData[]>([...categoryData.value]);
+
+const userInput = ref('');
+
+const addDialog = () => {
+  if (userInput.value.trim() !== '') {
+    const newDialogData = {
+      title: userInput.value,
+      location: ""
+    };
+    dialogData.value.push(newDialogData);
+    userInput.value = '';
+  }
+};
+
+const addCategory = () => {
+  categoryData.value = [...dialogData.value];
+};
+
+const removeDialog = (event: MouseEvent, index: number) => {
+  event.stopPropagation();
+  dialogData.value.splice(index, 1);
+};
+
 const goToLocation = (location: string) => router.push(location);
+
+const visible = ref(false);
+const showModal = () => {
+  visible.value = true;
+};
 
 onMounted(() => {
     activeMenu.value = router.currentRoute.value.fullPath;
@@ -15,43 +71,55 @@ router.afterEach((to, from) => {
 </script>
 
 <template>
-    <main class="flex px-5 justify-content-between">
+    <main class="grid px-5 justify-content-between">
         <section class="event-list w-full">
-            <h1 class="font-bold mb-2 title">Admin Create</h1>
+            <h1 class="font-bold mb-2 title col-12">Create</h1>
 
-            <article class="flex gap-2">
-                <div class="grid gap-2">
-                    <Button size="small" class="col-12 md:col-3 lg:col-2 btn-header min-w-max" @click="goToLocation('/admin/create/course')"
-                        :class="{ active: activeMenu.startsWith('/admin/create/course') }">
-                        <i class="pi pi-plus"></i>
-                        <p class="text-900 font-bold ml-2 text-white">ADD COURSES</p>
-                    </Button>
-                    <Button size="small" class="col-12 md:col-3 lg:col-2 btn-header min-w-max" @click="goToLocation('/admin/create/question')"
-                        :class="{ active: activeMenu.startsWith('/admin/create/question') }">
-                        <i class="pi pi-plus"></i>
-                        <p class="text-900 font-bold ml-2 text-white">PREPARE QUESTIONS</p>
-                    </Button>
-                    <Button size="small" class="col-12 md:col-3 lg:col-2 btn-header min-w-max" @click="goToLocation('/admin/create/material')"
-                        :class="{ active: activeMenu.startsWith('/admin/create/material') }">
-                        <i class="pi pi-plus"></i>
-                        <p class="text-900 font-bold ml-2 text-white">MATERIAL SOURCES</p>
-                    </Button>
-                    <Button size="small" class="col-12 md:col-3 lg:col-2 btn-header min-w-max" @click="goToLocation('/admin/create/instructor')"
-                        :class="{ active: activeMenu.startsWith('/admin/create/instructor') }">
-                        <i class="pi pi-plus"></i>
-                        <p class="text-900 font-bold ml-2 text-white">ASSIGN INSTRUCTOR</p>
-                    </Button>
-                    <Button size="small" class="col-12 md:col-3 lg:col-2 btn-header min-w-max" @click="goToLocation('/admin/create/task')"
-                        :class="{ active: activeMenu.startsWith('/admin/create/task') }">
-                        <i class="pi pi-plus"></i>
-                        <p class="text-900 font-bold ml-2 text-white">ASSIGN DAILY TASK</p>
-                    </Button>
-                </div>
+            <article class="flex gap-2 overflow-x-scroll col-12">
+                    <div v-for="(data, index) in categoryData" :key="index">
+                        <Button size="small" class="btn-header min-w-max" @click="goToLocation(data.location)"
+                            :class="{ active: activeMenu.startsWith(data.location) }">
+                            <i class="pi pi-plus" @click="addDialog"></i>
+                            <p class="text-900 font-bold ml-2 text-white">{{ data.title }}</p>
+                        </Button>
+                    </div>
+                        <Button size="small" class="btn-header min-w-min" @click="showModal">
+                            <i class="pi pi-plus"></i>
+                        </Button>
             </article>
 
             <article>
                 <router-view></router-view>
             </article>
+
+            <Dialog v-model:visible="visible" modal header="Header"
+            :style="{ width: '30vw' }">
+                <template #header>
+                    <div class="flex flex-row align-items-center">
+                    <p class="modal-student-name">Existing title</p>
+                    </div>
+                </template>
+                <div>
+                    <div v-for="(data, index) in dialogData" :key="index" class="flex flex-row align-items-center">
+                        <div class="w-full">
+                            <p contenteditable>{{ data.title }}</p>
+                        </div>
+                        <div class="flex flex-row gap-4">
+                            <i class="pi pi-pencil"></i>
+                            <i class="pi pi-trash" @click="removeDialog($event, index)"></i>
+                        </div>
+                    </div>
+                    <div class="mt-2 flex flex-row align-items-center gap-2">
+                        <InputText type="text" class="w-full" v-model="userInput" placeholder="Add new title" />
+                        <i class="pi pi-plus w-min" @click="addDialog"></i>
+                    </div>
+                    <div class="flex flex-row gap-2">
+                        <Button size="small" label="Cancel" severity="danger" class="w-full my-4" />
+                        <Button size="small" label="Save" class="w-full my-4 btn-default" @click="addCategory"/>
+                    </div>
+                    
+                </div>
+            </Dialog>
         </section>
     </main>
 </template>
@@ -96,4 +164,14 @@ router.afterEach((to, from) => {
     text-align: left;
 }
 
+  /* width */
+  ::-webkit-scrollbar {
+    height: 10px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #dddd; 
+    border-radius: 10px;
+  }
 </style>
