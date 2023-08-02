@@ -42,7 +42,7 @@ const addMaterial = (index: number) => {
         <p class="title">Material Sources</p>
         <div v-for="(material, index) in materialData" :key="index">
             <div class="flex flex-row align-items-center mt-3">
-                <p contenteditable class="material-header">{{ material.heading }}</p>
+                <p contenteditable class="text font-bold text-xl sm:text-2xl md:text-3xl">{{ material.heading }}</p>
                 <Button size="small" class="btn-add ml-auto">
                     <i class="pi pi-plus"></i>
                     <p class="text-900 font-bold ml-2 text-white" @click="addMaterial(index)">ADD</p>
@@ -50,19 +50,19 @@ const addMaterial = (index: number) => {
             </div>
             <div class="flex flex-column">
                      <ol>
-                         <li class="list-style my-3" v-for="(item, itemIndex) in material.items" :key="itemIndex">
+                         <li class="text text-lg my-3" v-for="(item, itemIndex) in material.items" :key="itemIndex">
                              <div class="flex flex-row align-items-center mx-2">
                                  <Dropdown
                                      optionLabel="name" placeholder="Select a City" 
                                      class="mr-3">
                                  </Dropdown>
-                                 <p contenteditable class="material-list-text">{{ item.website }}</p>
+                                 <p contenteditable class="text text-lg">{{ item.website }}</p>
                              </div>
                          </li>
                      </ol>
             </div>
         </div>
-        <Button size="small" label="Add new material sources" class="w-full mt-4 btn-add-material"
+        <Button size="small" label="Add new material sources" class="w-full text text-white mt-4 btn-add-material"
             @click="addNewMaterial" />
     </section>
 
@@ -107,31 +107,11 @@ const addMaterial = (index: number) => {
     }
 }
 
-.material-header {
+.text {
     color: #000;
-    font-size: 25px;
     font-family: Inter;
     font-style: normal;
-    font-weight: 700;
     line-height: 160%;
-}
-
-.list-style {
-    color: #000;
-    font-size: 20px;
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}
-
-.material-list-text {
-    color: #000;
-    font-size: 20px;
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
 }
 
 .btn-add-material {
