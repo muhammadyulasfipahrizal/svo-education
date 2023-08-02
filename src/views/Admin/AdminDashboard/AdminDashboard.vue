@@ -259,17 +259,17 @@ export default {
                 <div class="flex flex-column">
                     <p class="font-medium font-semibold text-2xl">Calander</p>
                     <div class="flex justify-content-center">
-                      <Calendar inline showWeek class="calendar">
-                        <!-- for badge calendar -->
-                        <template #date="slotProps">
-                          <strong v-if="slotProps.date.day > 10 && slotProps.date.day < 15"
-                            class="flex flex-column justify-content-center align-items-center gap-0">
-                            <p>{{ slotProps.date.day }}</p>
-                            <Badge value="2" class="badge text-xs flex justify-content-center align-items-center"></Badge>
-                          </strong>
-                          <template v-else>{{ slotProps.date.day }}</template>
-                        </template>
-                      </Calendar>
+                        <Calendar v-model="date" inline showWeek class="calendar">
+                            <!-- for badge calendar -->
+                            <template #date="slotProps">
+                              <strong v-if="slotProps.date.day > 10 && slotProps.date.day < 15"
+                                class="flex flex-column justify-content-center align-items-center gap-0">
+                                <p>{{ slotProps.date.day }}</p>
+                                <Badge value="2" class="badge text-xs flex justify-content-center align-items-center"></Badge>
+                              </strong>
+                              <template v-else>{{ slotProps.date.day }}</template>
+                            </template>
+                          </Calendar>
                     </div>
                   </div>
 
@@ -321,11 +321,60 @@ export default {
     }
 }
 
-::v-deep(.calendar) {
-    border-radius: 20px;
+  /* width */
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #E96853; 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #E96853; 
+  }
 
+  @media (min-width: 1400px){
+    ::v-deep(.calendar) {
+        width: 450px;
+        table td>span {
+            width: 50px;
+            height: 50px;
+            font-size: 15px;
+          }
+    }
+  }
+
+.text-gray {
+    color: #9F9F9F;
+}
+
+::v-deep(.calendar) {
+    border: 1px solid #D9D5EC;
+    background: #FFF;
+    max-height: 500px;
+  
     .p-datepicker-calendar table td {
-      padding: 0 !important;
+      padding: 0.25rem !important;
+    }
+  
+    .p-datepicker {
+      overflow: hidden;
+    }
+  
+    .p-datepicker-header {
+      padding: 0.5rem;
+    }
+  
+    table tr td {
+      width: 50px;
+      height: 50px;
+      padding: 5px;
+      margin: 5px;
+      background: rgba(250, 250, 250, 0.50);
     }
   
     table td>span {
@@ -360,35 +409,4 @@ export default {
       background: #E96853 !important;
     }
   }
-
-  /* width */
-  ::-webkit-scrollbar {
-    width: 5px;
-  }
-   
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #E96853; 
-    border-radius: 10px;
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #E96853; 
-  }
-
-  @media (min-width: 1400px){
-    ::v-deep(.calendar) {
-        width: 450px;
-        table td>span {
-            width: 50px;
-            height: 50px;
-            font-size: 15px;
-          }
-    }
-  }
-
-.text-gray {
-    color: #9F9F9F;
-}
 </style>
