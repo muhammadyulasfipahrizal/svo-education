@@ -145,42 +145,57 @@ const instructorNew = ref();
         <i class="pi pi-fw pi-plus-circle upload-icon"></i>
         <h3 class="upload-text">Add more live event</h3>
       </div>
-      <div class="grid overflow-hidden" v-else>
+      <div class="grid overflow-hidden relative" v-else>
         <video class="col-12" height="500" :src="videoUrls[0].url" controls></video>
+        <div class="absolute top-0 right-0 p-2 m-2">
+          <div class="flex flex-row align-items-center gap-2">
+            <svg width="40" height="40" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M5.28544 4.11517C5.61088 4.44061 5.61088 4.96825 5.28544 5.29368C2.68111 7.89802 2.68111 12.1205 5.28544 14.7248C5.61088 15.0502 5.61088 15.5779 5.28544 15.9033C4.96001 16.2288 4.43237 16.2288 4.10693 15.9033C0.851725 12.6481 0.851725 7.37038 4.10693 4.11517C4.43237 3.78973 4.96001 3.78973 5.28544 4.11517ZM15.8951 4.11517C19.1503 7.37038 19.1503 12.6481 15.8951 15.9033C15.5696 16.2288 15.042 16.2288 14.7166 15.9033C14.3911 15.5779 14.3911 15.0502 14.7166 14.7248C17.3209 12.1205 17.3209 7.89802 14.7166 5.29368C14.3911 4.96825 14.3911 4.44061 14.7166 4.11517C15.042 3.78973 15.5696 3.78973 15.8951 4.11517ZM7.75765 6.50965C8.08309 6.83509 8.08309 7.36273 7.75765 7.68816C6.48185 8.96396 6.48185 11.0324 7.75765 12.3082C8.08309 12.6337 8.08309 13.1613 7.75765 13.4868C7.43222 13.8122 6.90458 13.8122 6.57914 13.4868C4.65247 11.5601 4.65247 8.43633 6.57914 6.50965C6.90458 6.18421 7.43222 6.18421 7.75765 6.50965ZM13.5563 6.50965C15.4829 8.43633 15.4829 11.5601 13.5563 13.4868C13.2308 13.8122 12.7032 13.8122 12.3777 13.4868C12.0523 13.1613 12.0523 12.6337 12.3777 12.3082C13.6535 11.0324 13.6535 8.96396 12.3777 7.68816C12.0523 7.36273 12.0523 6.83509 12.3777 6.50965C12.7032 6.18421 13.2308 6.18421 13.5563 6.50965ZM10.0677 8.8175C10.7581 8.8175 11.3177 9.37715 11.3177 10.0675C11.3177 10.7579 10.7581 11.3175 10.0677 11.3175C9.37734 11.3175 8.8177 10.7579 8.8177 10.0675C8.8177 9.37715 9.37734 8.8175 10.0677 8.8175Z"
+                fill="#BE2F00" />
+            </svg>
+            <div class="view-count">
+              <i class="pi pi-fw pi-eye"></i>
+              <span class="view-count-text">92</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="grid ">
-      <div v-for="(video, index) in videoUrls" :key="index" class="col-12 md:col-4 lg:col-4 xl:col-4">
-        <div class="card-video border-1 border-round-xl border-300">
+      <div v-for="(video, index) in videoUrls" :key="index" class="col-12 md:col-4 lg:col-4 xl:col-4 min-w-max" >
+        <div class="border-1 border-round-xl border-300">
           <div class="flex flex-column gap-2">
-            <div class="flex gap-2 justify-content-center align-items-center">
-              <p class="text-sm font-bold">Event 1</p>
-              <Button icon="pi pi-pencil" size="small" @click="openModal(index)" link></Button>
-              <Button icon="pi pi-trash" size="small" @click="deleteCard(index)" link></Button>
+            <div class="flex justify-content-center align-items-center my-2">
+                <p class="text-sm font-bold mr-2">Event 1</p>
+                <i class="pi pi-pencil mr-2" size="small" @click="openModal(index)" link></i>
+                <i class="pi pi-trash" size="small" @click="deleteCard(index)" link></i>
             </div>
             <video height="235" :src="video.url" controls="false" class="w-full"></video>
             <div class="px-2">
               <div class="flex align-items-center">
                 <!-- live icon -->
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M5.28544 4.11517C5.61088 4.44061 5.61088 4.96825 5.28544 5.29368C2.68111 7.89802 2.68111 12.1205 5.28544 14.7248C5.61088 15.0502 5.61088 15.5779 5.28544 15.9033C4.96001 16.2288 4.43237 16.2288 4.10693 15.9033C0.851725 12.6481 0.851725 7.37038 4.10693 4.11517C4.43237 3.78973 4.96001 3.78973 5.28544 4.11517ZM15.8951 4.11517C19.1503 7.37038 19.1503 12.6481 15.8951 15.9033C15.5696 16.2288 15.042 16.2288 14.7166 15.9033C14.3911 15.5779 14.3911 15.0502 14.7166 14.7248C17.3209 12.1205 17.3209 7.89802 14.7166 5.29368C14.3911 4.96825 14.3911 4.44061 14.7166 4.11517C15.042 3.78973 15.5696 3.78973 15.8951 4.11517ZM7.75765 6.50965C8.08309 6.83509 8.08309 7.36273 7.75765 7.68816C6.48185 8.96396 6.48185 11.0324 7.75765 12.3082C8.08309 12.6337 8.08309 13.1613 7.75765 13.4868C7.43222 13.8122 6.90458 13.8122 6.57914 13.4868C4.65247 11.5601 4.65247 8.43633 6.57914 6.50965C6.90458 6.18421 7.43222 6.18421 7.75765 6.50965ZM13.5563 6.50965C15.4829 8.43633 15.4829 11.5601 13.5563 13.4868C13.2308 13.8122 12.7032 13.8122 12.3777 13.4868C12.0523 13.1613 12.0523 12.6337 12.3777 12.3082C13.6535 11.0324 13.6535 8.96396 12.3777 7.68816C12.0523 7.36273 12.0523 6.83509 12.3777 6.50965C12.7032 6.18421 13.2308 6.18421 13.5563 6.50965ZM10.0677 8.8175C10.7581 8.8175 11.3177 9.37715 11.3177 10.0675C11.3177 10.7579 10.7581 11.3175 10.0677 11.3175C9.37734 11.3175 8.8177 10.7579 8.8177 10.0675C8.8177 9.37715 9.37734 8.8175 10.0677 8.8175Z"
-                    fill="#BE2F00" />
-                </svg>
-                <div class="view-count ml-2">
-                  <i class="pi pi-fw pi-eye"></i>
-                  <span class="view-count-text">92</span>
+                <div class="flex flex-row justify-content-center align-items-center gap-2">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M5.28544 4.11517C5.61088 4.44061 5.61088 4.96825 5.28544 5.29368C2.68111 7.89802 2.68111 12.1205 5.28544 14.7248C5.61088 15.0502 5.61088 15.5779 5.28544 15.9033C4.96001 16.2288 4.43237 16.2288 4.10693 15.9033C0.851725 12.6481 0.851725 7.37038 4.10693 4.11517C4.43237 3.78973 4.96001 3.78973 5.28544 4.11517ZM15.8951 4.11517C19.1503 7.37038 19.1503 12.6481 15.8951 15.9033C15.5696 16.2288 15.042 16.2288 14.7166 15.9033C14.3911 15.5779 14.3911 15.0502 14.7166 14.7248C17.3209 12.1205 17.3209 7.89802 14.7166 5.29368C14.3911 4.96825 14.3911 4.44061 14.7166 4.11517C15.042 3.78973 15.5696 3.78973 15.8951 4.11517ZM7.75765 6.50965C8.08309 6.83509 8.08309 7.36273 7.75765 7.68816C6.48185 8.96396 6.48185 11.0324 7.75765 12.3082C8.08309 12.6337 8.08309 13.1613 7.75765 13.4868C7.43222 13.8122 6.90458 13.8122 6.57914 13.4868C4.65247 11.5601 4.65247 8.43633 6.57914 6.50965C6.90458 6.18421 7.43222 6.18421 7.75765 6.50965ZM13.5563 6.50965C15.4829 8.43633 15.4829 11.5601 13.5563 13.4868C13.2308 13.8122 12.7032 13.8122 12.3777 13.4868C12.0523 13.1613 12.0523 12.6337 12.3777 12.3082C13.6535 11.0324 13.6535 8.96396 12.3777 7.68816C12.0523 7.36273 12.0523 6.83509 12.3777 6.50965C12.7032 6.18421 13.2308 6.18421 13.5563 6.50965ZM10.0677 8.8175C10.7581 8.8175 11.3177 9.37715 11.3177 10.0675C11.3177 10.7579 10.7581 11.3175 10.0677 11.3175C9.37734 11.3175 8.8177 10.7579 8.8177 10.0675C8.8177 9.37715 9.37734 8.8175 10.0677 8.8175Z"
+                      fill="#BE2F00" />
+                  </svg>
+                  <div>
+                    <i class="pi pi-fw pi-eye"></i>
+                    <span class="view-count-text">92</span>
+                  </div>
+                  <i class="pi pi-thumbs-up text-red-500" size="small" link></i>
+                  <i class="pi pi-heart-fill text-red-700" size="small" link></i>
+                  <p class="text-sm font-900">42k</p>
                 </div>
-                <Button icon="pi pi-thumbs-up" size="small" link></Button>
-                <Button icon="pi pi-heart" size="small" link></Button>
-                <p class="text-sm font-900">42k</p>
               </div>
-              <div class="card-data">
-                <img src="/assets/img/instructor.png" alt="Profile" class="card-profile" />
+              <div class="card-data mb-2">
+                <img src="/assets/img/instructor.png" alt="Profile" class="card-profile" style="width: 50px; height:50px"/>
                 <div class="flex flex-column gap-0">
-                  <p class="p-0 m-0 text-sm card-title">{{ video.details?.title }}</p>
+                  <p class="p-0 m-0 card-title">{{ video.details?.title }}</p>
                   <p class="p-0 m-0 text-sm">by <span>{{ video.details?.instructor }}</span></p>
-                </div>
+                </div>  
               </div>
             </div>
           </div>
@@ -190,7 +205,7 @@ const instructorNew = ref();
       <div
         class="col-12 md:col-4 lg:col-4 xl:col-4 cursor-pointer"
         v-if="videoUrls.length > 0" @click="openModal(null)">
-        <div class="card-video border-1 border-round-xl border-300 flex flex-column md:flex-row justify-content-center align-items-center p-8 h-full">
+        <div class="border-1 border-round-xl border-300 flex flex-column md:flex-row justify-content-center align-items-center p-8 h-full min-w-max">
           <div class="card-content">
             <i class="pi pi-fw pi-plus-circle upload-icon"></i>
             <h3 class="upload-text">Add more live event</h3>
@@ -199,8 +214,13 @@ const instructorNew = ref();
       </div>
     </div>
     <!-- Modal -->
-    <Dialog v-model:visible="showModal" modal header="Upload new media" class="modal min-w-min" :style="{ width: '50vw' }"
+    <Dialog v-model:visible="showModal" modal header="" class="modal min-w-min" :style="{ width: '50vw' }"
       :breakpoints="{ '764px': '70vw' }">
+      <template #header>
+        <div class="text-2xl font-bold">
+          Upload new media
+        </div>
+      </template>
       <div class="upload-section">
         <label class="upload-label" v-if="!selectedVideo">
           <input ref="fileInput" type="file" accept="video/*" style="display: none" @change="handleFileChange" />
@@ -208,22 +228,23 @@ const instructorNew = ref();
           <p>Or</p>
           <p class="modal-select-file">Select File</p>
         </label>
-        <video v-else :src="selectedVideo"></video>
+        <video v-else :src="selectedVideo" class="min-w-full"></video>
         <p class="max-file-size">Maximum file size: 8 MB</p>
       </div>
       <h3 class="live-video-details">Live Video Details</h3>
-      <div class="profile-section">
+      <div class="profile-section flex flex-row align-items-center gap-4">
         <input type="file" ref="fileInput" accept="image/*" style="display: none" @change="handleImageChange" />
         <img :src="profileImage" alt="Profile" class="modal-profile" @click="changeProfileImage" />
-      </div>
-      <div class="flex gap-2">
-        <InputText v-model="currentCard.details.title" small placeholder="Title" class="p-inputtext-sm" />
         <div class="flex gap-2">
-          <p class="text-700 text-normal">by</p>
-          <Dropdown v-model="instructorNew" :options="instructors" optionLabel="name" placeholder="Instructor name"
-            class="w-full md:w-14rem filter-toggle"></Dropdown>
+          <InputText v-model="currentCard.details.title" small placeholder="Title" class="p-inputtext-sm" />
+          <div class="flex gap-2">
+            <p class="text-700 text-normal">by</p>
+            <Dropdown v-model="instructorNew" :options="instructors" optionLabel="name" placeholder="Instructor name"
+              class="w-full md:w-14rem filter-toggle"></Dropdown>
+          </div>
         </div>
       </div>
+      
       <template #footer>
         <div class="flex justify-content-center align-items-center py-2">
           <Button size="small" class="w-full save-button" @click="saveVideo">Save</Button>
@@ -305,13 +326,13 @@ const instructorNew = ref();
 }
 
 .view-count {
-  border: 1px solid #000;
-  padding: 0 2px;
+  border: 1px solid black;
+  background: white;
+  padding: 6px 8px;
   border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 10px;
 }
 
 .view-count-text {
@@ -405,14 +426,13 @@ const instructorNew = ref();
 }
 
 .live-video-details {
-  margin-top: 30px;
+  margin-top: 20px;
   font-size: 30px;
   font-weight: bold;
 }
 
 .profile-section {
   text-align: start;
-  margin-bottom: 20px;
 }
 
 .profile-icon {
