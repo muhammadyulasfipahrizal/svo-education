@@ -97,19 +97,19 @@ const eventList = ref<EventItem[]>([
         <EventAdd @on-add="onAddEvent" />
       </div>
     </div>
-<<<<<<< HEAD
-    <div>
-      <h1 class="font-bold mb-2">Calendar</h1>
-      <div class="flex justify-content-center">
-        <Calendar v-model="date" inline showWeek class="calendar" >
-=======
     <div class="col-12 md:col-4 lg:col-3 xl:col-3">
       <h1 class="font-bold mb-2">Calendar</h1>
       <div class="flex justify-content-start">
+        <Calendar v-model="date" inline showWeek class="calendar">
+          <!-- for badge calendar -->
+          <template #date="slotProps">
+            <strong v-if="slotProps.date.day > 10 && slotProps.date.day < 15"
+              class="flex flex-column justify-content-center align-items-center gap-0">
               <p>{{ slotProps.date.day }}</p>
               <Badge value="2" class="badge text-xs flex justify-content-center align-items-center"></Badge>
             </strong>
             <template v-else>{{ slotProps.date.day }}</template>
+          </template>
         </Calendar>
       </div>
     </div>
@@ -210,11 +210,6 @@ const eventList = ref<EventItem[]>([
 .card-row {
   width: 750px;
 }
-<<<<<<< HEAD
-::v-deep(.calendar) {
-  border-radius: 20px;
-  width: 400px;
-=======
 
 ::v-deep(.calendar) {
   border-radius: 20px;
@@ -222,7 +217,6 @@ const eventList = ref<EventItem[]>([
   background: #FFF;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   max-height: 400px;
->>>>>>> 32b633dd4fdb714ede7fdc7fdede0e4a5131a752
 
   .p-datepicker-calendar table td {
     // padding: 0.25rem !important;
@@ -247,11 +241,7 @@ const eventList = ref<EventItem[]>([
 
   table td>span {
     border-radius: 5px;
-<<<<<<< HEAD
-    width: 30px;
-=======
     width: 36px;
->>>>>>> 32b633dd4fdb714ede7fdc7fdede0e4a5131a752
     height: 50px;
     font-size: 15px;
   }
