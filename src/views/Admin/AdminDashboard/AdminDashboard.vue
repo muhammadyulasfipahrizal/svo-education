@@ -386,6 +386,8 @@ export default {
   
     table td>span:focus {
       box-shadow: none;
+      background: #E96853;
+      color: white;
     }
   
     table td>span.p-highlight {
