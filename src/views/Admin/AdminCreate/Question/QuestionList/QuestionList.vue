@@ -36,8 +36,8 @@ const dataList = ref<ICourse[]>([{
             </template>
         </Card>
 
-        <article class="grid col-12">
-            <div v-for="(event, idx) of dataList" class="col-6 md:col-4 lg:col-4 xl:col-3">
+        <article class="grid col-12 p-0 m-0">
+            <div v-for="(event, idx) of dataList" class="item-flex col-6 sm:col-4 md:col-4 lg:col-4 xl:col-4 py-0 px-0 mx-0 my-3 md:my-3">
                 <div class="grid cursor-pointer list-item align-items-center justify-content-center">
                     <img :src="event.image" :alt="event.title" class="col-10"/>
                     <div class="grid">
