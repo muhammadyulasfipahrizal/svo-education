@@ -257,5 +257,9 @@ const attributes = ref([
       }
     }
   }
+
+  .vc-weekend {
+    background-color: #f7f7f7;
+  }
 }
 </style>

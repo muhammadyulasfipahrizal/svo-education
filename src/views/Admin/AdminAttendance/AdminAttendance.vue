@@ -1,28 +1,76 @@
 <template>
-  <section
-    class="grid overflow-hidden flex-column md:flex-row px-2 md:px-2 lg:px-2 xl:px-2 py-2">
-    <h1 class="text-900 font-bold text-3xl">My Attendance</h1>
-    <div class="col-12 grid align-items-center mb-3 filter-search">
-      <Button label="Filter" icon="pi pi-filter-fill" size="small" class="filter-button col-3" />
-      <span class="p-input-icon-left col-6">
+  <section class="grid overflow-hidden flex-column md:flex-row px-2 md:px-2 lg:px-2 xl:px-2 py-2">
+    <h1 class="text-900 font-bold text-3xl col-12">My Attendance</h1>
+    <div class="col-12 grid align-items-center filter-search px-3 lg:px-0">
+      <Button label="Filter" icon="pi pi-filter-fill" size="small" class="filter-button col-3 md:col-2" />
+      <span class="p-input-icon-left col-5">
         <i class="pi pi-search search-icon pl-1" />
-        <InputText placeholder="Search by class" class="search-bar h-10 w-96 p-input text-sm" />
+        <InputText placeholder="Search by class" class="search-bar h-10 w-96 md:w-full p-input text-sm" />
       </span>
       <Button size="small" class="btn-orange ml-auto col-2">
         <i class="block pi pi-download md:mr-2"></i>
         <p class="hidden sm:block md:block lg:block xl:block">DOWNLOAD</p>
       </Button>
     </div>
-    <div class="col-12 flex flex-column flex-wrap md:flex-row p-0 m-0">
-      <div class="flex flex-row mb-3">
-        <Dropdown optionLabel="name" placeholder="December" class="w-10rem mr-2" />
-        <Dropdown optionLabel="name" placeholder="2022" class="w-8rem mr-2" />
+    <div class="col-12 flex flex-column flex-wrap md:flex-row md:p-0 md:m-0">
+      <div class="flex flex-row mb-3 px-0 md:px-2 lg:px-0">
+        <Dropdown optionLabel="name" v-model="selectedMonth" placeholder="Month" :options="monthList" class="w-10rem mr-2"
+          style="height: 52px">
+          <template #value="slotProps">
+            <div v-if="slotProps.value" class="flex align-items-center">
+              <div class="text-900 font-bold text-lg">{{ slotProps.value.name }}</div>
+            </div>
+            <span v-else>
+              {{ slotProps.placeholder }}
+            </span>
+          </template>
+          <template #option="slotProps">
+            <div class="flex align-items-center">
+              <div class="text-900 font-bold text-lg">{{ slotProps.option.name }}</div>
+            </div>
+          </template>
+        </Dropdown>
+        <Dropdown optionLabel="name" v-model="selectedYear" placeholder="Year" :options="yearList" class="w-8rem mr-2"
+          style="height: 52px">
+          <template #value="slotProps">
+            <div v-if="slotProps.value" class="flex align-items-center">
+              <div class="text-900 font-bold text-lg">{{ slotProps.value.name }}</div>
+            </div>
+            <span v-else>
+              {{ slotProps.placeholder }}
+            </span>
+          </template>
+          <template #option="slotProps">
+            <div class="flex align-items-center">
+              <div class="text-900 font-bold text-lg">{{ slotProps.option.name }}</div>
+            </div>
+          </template>
+        </Dropdown>
       </div>
-      <Dropdown v-model="selectedCity" :options="cities" optionLabel="name" placeholder="Select a City"
-        class="w-14rem mb-3" />
+      <Dropdown optionLabel="courseName" :options="courseList" v-model="selectedCourse" placeholder="Course Name"
+        class="w-full md:w-15rem md:flex" style="height: 52px">
+        <template #value="slotProps">
+          <div v-if="slotProps.value" class="flex align-items-center">
+            <img :alt="slotProps.value.courseName" :src="slotProps.value.image" class="mr-2"
+              style="width: 55px; height: 30px" />
+            <div class="text-900 font-bold text-lg">{{ slotProps.value.courseName }}</div>
+          </div>
+          <span v-else>
+            {{ slotProps.placeholder }}
+          </span>
+        </template>
+        <template #option="slotProps">
+          <div class="flex align-items-center">
+            <img :alt="slotProps.option.courseName" :src="slotProps.option.image" class="mr-2"
+              style="width: 55px; height: 30px" />
+            <div class="text-900 font-bold text-lg">{{ slotProps.option.courseName }}</div>
+          </div>
+        </template>
+      </Dropdown>
     </div>
     <div class="col-12 grid p-0 m-0">
-      <div class="item-flex col-6 sm:col-4 md:col-4 lg:col-4 py-0 px-0 m-0 px-2" v-for="(card, index) in cardData">
+      <div class="item-flex col-6 sm:col-4 md:col-4 lg:col-4 xl:col-4 py-0 px-0 m-0 px-2"
+        v-for="(card, index) in cardData">
         <AttendanceCalendar :key="index" :card="card" />
       </div>
     </div>
@@ -36,15 +84,24 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import AttendanceCalendar from './AttendanceCalander.vue';
+import { courseDataMock } from '../AdminStudentProgress/Course.mock';
+const selectedMonth = ref();
+const selectedYear = ref();
+function generateArrayOfYears() {
+  var max = new Date().getFullYear()
+  var min = max - 50
+  var years = []
 
-const selectedCity = ref();
-const cities = ref([
-  { name: 'New York', code: 'NY' },
-  { name: 'Rome', code: 'RM' },
-  { name: 'London', code: 'LDN' },
-  { name: 'Istanbul', code: 'IST' },
-  { name: 'Paris', code: 'PRS' }
-]);
+  for (var i = max; i >= min; i--) {
+    years.push({ name: i, id: i })
+  }
+  return years
+}
+
+const monthList = ref(["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"].map((month) => ({ name: month, id: month })))
+const yearList = ref(generateArrayOfYears());
+const selectedCourse = ref();
+const courseList = ref(courseDataMock);
 
 const cardData = ref([
   {
