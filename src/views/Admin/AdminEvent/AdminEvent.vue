@@ -85,7 +85,7 @@ const eventList = ref<EventItem[]>([
 
 <template>
   <section class="grid overflow-hidden flex-column md:flex-row pl-4 pr-4 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2">
-    <div class="col-12 md:col-8 lg:col-9 xl:col-9">
+    <div class="col-12 md:col-8 lg:col-8 xl:col-8">
       <h1 class="font-bold mb-2">Ongoing Event</h1>
       <div class="grid justify-center flex-wrap gap-2 flex-column md:flex-row">
         <template v-for="item in eventList">
@@ -94,7 +94,7 @@ const eventList = ref<EventItem[]>([
         <EventAdd @on-add="onAddEvent" />
       </div>
     </div>
-    <div class="col-12 md:col-4 lg:col-3 xl:col-3">
+    <div class="col-12 md:col-4 lg:col-4 xl:col-4">
       <h1 class="font-bold mb-2">Calendar</h1>
       <div class="flex justify-content-start">
         <Calendar v-model="date" inline showWeek class="calendar">
@@ -110,7 +110,8 @@ const eventList = ref<EventItem[]>([
         </Calendar>
       </div>
     </div>
-    <div class="col-12 md:hide lg:hide xl:hide py-2">
+
+    <div class="col-12 md:hidden lg:hidden xl:hidden py-2">
       <div class="flex gap-2 align-items-center my-3">
         <i class="pi pi-calendar"></i>
         <p class="text-md font-grey-500 font-bold">
@@ -148,7 +149,7 @@ const eventList = ref<EventItem[]>([
 
 
   <!-- MODAL Upload -->
-  <Dialog v-model:visible="visible" modal header="Upload new Media">
+  <Dialog v-model:visible="visible" modal header="Upload new Media" :style="{ width: '50vw' }" :breakpoints="{ '960px': '75vw', '641px': '90vw' }">
     <div class="flex flex-column gap-2 py-2">
       <!-- FILE Upload -->
       <div
