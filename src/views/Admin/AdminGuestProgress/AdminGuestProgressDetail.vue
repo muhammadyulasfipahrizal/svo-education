@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import router from '@/router';
 import { useRoute } from 'vue-router';
 import { courseDataMock } from '../AdminStudentProgress/Course.mock';
 import { guestProgressDataMock } from './GuestProgress.mock';
