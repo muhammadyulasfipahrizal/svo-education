@@ -12,6 +12,7 @@ interface IStudent {
   percentage: string;
   passFail: string;
   attendance: number;
+  image: string;
   days: string[];
 }
 
@@ -24,14 +25,10 @@ const studentData = ref<IStudent[]>([
     percentage: '80%',
     passFail: 'Passed',
     attendance: 5,
+    image: '/assets/img/student/student.png',
     days: [
       'passed',
       'passed',
-      'passed',
-      'passed',
-      'not passed',
-      'not passed',
-      'not passed',
       'not passed',
       'not passed',
       'not passed',
@@ -44,16 +41,12 @@ const studentData = ref<IStudent[]>([
     progress: 80,
     percentage: '100%',
     passFail: 'Passed',
-    attendance: 9,
+    attendance: 4,
+    image: '/assets/img/instructor.png',
     days: [
       'passed',
       'passed',
       'passed',
-      'passed',
-      'not passed',
-      'not passed',
-      'not passed',
-      'not passed',
       'not passed',
       'not passed',
     ],
@@ -99,11 +92,11 @@ const selectedCourse = ref();
     <div class="grid col-12">
       <div class="col-12">
         <Dropdown optionLabel="courseName" :options="courses" v-model="selectedCourse" placeholder="Course Name"
-          class="w-full md:w-14rem md:flex">
+          class="w-full md:w-20rem md:flex">
           <template #value="slotProps">
             <div v-if="slotProps.value" class="flex align-items-center">
-              <img :alt="slotProps.value.courseName" :src="slotProps.value.image" class="mr-2" style="width: 53px" />
-              <div class="text-900 font-bold text-lg">{{ slotProps.value.courseName }}</div>
+              <img :alt="slotProps.value.courseName" :src="slotProps.value.image" class="mr-2" style="width: 60px;" />
+              <div class="text-900 font-medium text-2xl mx-4">{{ slotProps.value.courseName }}</div>
             </div>
             <span v-else>
               {{ slotProps.placeholder }}
@@ -117,32 +110,32 @@ const selectedCourse = ref();
           </template>
         </Dropdown>
       </div>
-      <div class="col-12 flex flex-row align-items-center justify-content-between mb-3 filter-search pr-3">
+      <div class="col-12 flex flex-row align-items-center justify-content-between filter-search pr-3">
         <div class="col-10 md:col-10 lg:col-10 lg:col-10">
           <Button label="Filter" icon="pi pi-filter-fill" size="small" class="filter-button mr-3" />
           <span class="p-input-icon-left w-7">
             <i class="pi pi-search search-icon" />
-            <InputText placeholder="Search by Name" class="search-bar p-inputtext-sm w-full" />
+            <InputText placeholder="Search by Name" class="search-bar p-inputtext-sm" style="width: 450px;"/>
           </span>
         </div>
-        <Button label="DOWNLOAD" icon="pi pi-download" size="small" class="btn-orange hidden md:block" />
+        <Button label="DOWNLOAD" icon="pi pi-download" size="small" class="btn-orange hidden md:block" style="width: 150px; height:50px"/>
         <Button icon="pi pi-download" size="small" class="btn-orange col-2 block md:hidden" />
       </div>
 
       <!-- table -->
       <div class="col-12 pr-3">
-        <DataTable :value="studentData" paginator :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]" sortMode="multiple"
+        <DataTable :value="studentData" sortMode="multiple"
           tableStyle="min-width: 50rem" dataKey="id" v-model:selection="checkedStudent" class="shadow-2 detail-table">
-          <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
+          <Column selectionMode="multiple" headerStyle="width: 3rem" ></Column>
           <Column field="name" class="text-white" headerStyle="width: 4rem">
             <template #header>
-              <div>
+              <div class="flex justify-content-center w-full">
                 <p class="header-text">Name</p>
               </div>
             </template>
             <template #body="{ data }">
               <div class="flex flex-row align-items-center">
-                <Avatar label="M" class="data-image mr-2" shape="circle" />
+                <img :src="data.image" alt=""  class="mr-3" style="width: 45px; height: 45px;">
                 <div class="flex flex-column">
                   <p class="name-text">{{ data.name }}</p>
                   <p class="name-email">{{ data.email }}</p>
@@ -150,66 +143,84 @@ const selectedCourse = ref();
               </div>
             </template>
           </Column>
-          <Column field="progress" sortable class="text-white">
+          <Column field="progress" class="text-white">
             <template #header>
-              <div>
-                <p class="header-text">Progress</p>
+              <div class="flex justify-content-center w-full">
+                <div class="flex flex-row align-items-center gap-2">
+                  <p class="header-text">Progress</p>
+                  <i class="pi pi-sort text-lg"></i>
+                </div>
               </div>
             </template>
             <template #body="{ data }">
               <div class="flex flex-column">
-                <div class="progress-bar-container my-2 flex flex-column">
+                <div class="progress-bar-container my-2 flex flex-column justify-content-center w-full">
                   <div class="progress-bar" :style="{ width: data.progress + '%' }"></div>
                 </div>
                 <p class="progress-text">{{ data.progress }} % completed</p>
               </div>
             </template>
           </Column>
-          <Column field="percentage" sortable>
+          <Column field="percentage">
             <template #header>
-              <div>
-                <p class="header-text">Percentage</p>
+              <div class="flex justify-content-center w-full">
+                <div class="flex flex-row align-items-center gap-2">
+                  <p class="header-text">Percentage</p>
+                  <i class="pi pi-sort text-lg"></i>
+                </div>
               </div>
             </template>
             <template #body="{ data }">
-              <p class="percatage-text">{{ data.percentage }}</p>
+              <div class="flex justify-content-center w-full">
+                <p class="percatage-text">{{ data.percentage }}</p>
+              </div>
             </template>
           </Column>
-          <Column field="passFail" sortable>
+          <Column field="passFail">
             <template #header>
-              <div>
-                <p class="header-text">P/F</p>
+              <div class="flex justify-content-center w-full">
+                <div class="flex flex-row align-items-center gap-2">
+                  <p class="header-text">P/F</p>
+                  <i class="pi pi-sort text-lg"></i>
+                </div>
               </div>
             </template>
             <template #body="{ data }">
-              <div class="flex flex-row align-items-center">
-                <p class="mr-2 pass-text">{{ data.passFail }}</p>
-                <i class="pi pi-check-circle pass-icon"></i>
+              <div class="flex justify-content-center w-full align-items-center">
+                <p class="mr-3 pass-text">{{ data.passFail }}</p>
+                <i class="pi pi-check-circle pass-icon text-2xl"></i>
               </div>
             </template>
           </Column>
           <Column field="attendance">
             <template #header>
-              <div>
+              <div class="flex justify-content-center w-full">
                 <p class="header-text">Attendance</p>
               </div>
             </template>
             <template #body="{ data }">
               <div>
-                <p class="attendance-text">{{ data.attendance }}</p>
+                <p class="attendance-text">{{ data.attendance }}/5</p>
               </div>
             </template>
           </Column>
           <Column>
             <template #header>
-              <div>
+              <div class="flex justify-content-center w-full">
                 <p class="header-text">Student Profile</p>
               </div>
             </template>
             <template #body="{ data }">
-              <Button label="Info" class="btn-orange" @click="showModal(data)" />
+              <div class="flex justify-content-center w-full align-items-center">
+                <Button label="Info" class="btn-orange" @click="showModal(data)" style="width: 120px; heigth: 39px" />
+              </div>
             </template>
           </Column>
+          <template #footer>
+            <div class="flex flex-row align-items-center justify-content-between">
+              <p>Showing data 1 to 10 of  256K entries</p>
+            </div>
+          </template>
         </DataTable>
       </div>
     </div>
@@ -235,8 +246,10 @@ const selectedCourse = ref();
         <template v-for="col of columns">
           <Column field="status" :header="col.header">
             <template #body>
-              <i v-if="col.value === 'passed'" class="pi pi-check-circle correct-color"></i>
-              <i v-else class="pi pi-exclamation-circle correct-color"></i>
+              <div>
+                <i v-if="col.value === 'passed'" class="pi pi-check-circle correct-color"></i>
+                <i v-else class="pi pi-exclamation-circle correct-color"></i>
+              </div>
             </template>
           </Column>
         </template>
@@ -321,8 +334,7 @@ const selectedCourse = ref();
   
 <style scoped>
 :deep(.p-paginator) {
-  position: absolute;
-  right: 0;
+  height: 50px;
 }
 
 :deep(.p-paginator .p-paginator-pages .p-paginator-page) {
@@ -432,7 +444,7 @@ const selectedCourse = ref();
 
 .name-text {
   color: var(--fonts-primary, #25213B);
-  font-size: 14px;
+  font-size: 16px;
   font-family: Inter;
   font-weight: 500;
 }
@@ -487,7 +499,7 @@ const selectedCourse = ref();
 <style lang="scss" scoped>
 ::v-deep(.detail-table) {
   .p-datatable-wrapper {
-    border-radius: 10px;
+    border-radius: 5px;
   }
 
   .p-datatable-thead>tr>th {
@@ -506,6 +518,16 @@ const selectedCourse = ref();
       background: #006785;
       color: var(--white, #FFF);
     }
+  }
+}
+
+::v-deep(.p-datatable){
+  .p-datatable-footer {
+    background: white;
+    height: 55px;
+    font-size: 14px;
+    color: #B5B7C0;
+    font-weight: 500;
   }
 }
 </style>

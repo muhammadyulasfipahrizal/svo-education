@@ -8,73 +8,79 @@
         @rowSelect="handleRowSelect">
         <Column field="courseName">
           <template #header>
-            <div>
+            <div class="flex justify-content-center w-full">
               <p class="header-text">Course Name</p>
             </div>
           </template>
           <template #body="{ data }">
             <div class="flex flex-row align-items-center w-full">
-              <img src="/assets/svo-academy.png" class="data-image" />
+              <img src="/assets/img/course/ui-ux-design.png" class="data-image mr-2" style="width: 58px; height: 39px;"/>
               <p class="data-text">{{ data.courseName }}</p>
             </div>
           </template>
         </Column>
         <Column field="enrollment">
           <template #header>
-            <div>
+            <div class="flex justify-content-center w-full">
               <p class="header-text">Enrollment</p>
             </div>
           </template>
           <template #body="{ data }">
-            <div>
+            <div class="flex justify-content-center w-full">
               <p class="data-text">{{ data.enrollment }}</p>
             </div>
           </template>
         </Column>
         <Column field="progress">
           <template #header>
-            <div>
+            <div class="flex justify-content-center w-full">
               <p class="header-text">Progress</p>
             </div>
           </template>
           <template #body="{ data }">
-            <div class="progress-bar-container my-2">
-              <div class="progress-bar" :style="{ width: data.progress + '%' }"></div>
+            <div class="flex flex-column align-items-center w-full">
+              <div>
+                <div class="progress-bar-container">
+                  <div class="progress-bar" :style="{ width: data.progress + '%' }"></div>
+                </div>
+                <p class="font-bold text-sm align-sekf-start">{{ data.progress }}% completed</p>
+              </div>
             </div>
+            
           </template>
         </Column>
         <Column field="startDate">
           <template #header>
-            <div>
+            <div class="flex justify-content-center w-full">
               <p class="header-text">Start Date</p>
             </div>
           </template>
           <template #body="{ data }">
-            <div>
+            <div class="flex justify-content-center w-full">
               <p class="data-text">{{ data.startDate }}</p>
             </div>
           </template>
         </Column>
         <Column field="endDate">
           <template #header>
-            <div>
+            <div class="flex justify-content-center w-full">
               <p class="header-text">End Date</p>
             </div>
           </template>
           <template #body="{ data }">
-            <div>
+            <div class="flex justify-content-center w-full">
               <p class="data-text">{{ data.endDate }}</p>
             </div>
           </template>
         </Column>
         <Column field="duration">
           <template #header>
-            <div>
+            <div class="flex justify-content-center w-full">
               <p class="header-text">Duration</p>
             </div>
           </template>
           <template #body="{ data }">
-            <div class="flex flex-row align-items-center">
+            <div class="flex justify-content-center align-items-center w-full">
               <i class="pi pi-clock mr-2"></i>
               <p class="data-text">{{ data.duration }}</p>
             </div>
