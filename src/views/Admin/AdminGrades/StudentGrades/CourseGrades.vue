@@ -19,30 +19,44 @@ const getStudentCount = (courseId: number) => {
 </script>
 
 <template>
-    <section class="grid overflow-hidden flex-column md:flex-row pl-3 pr-3 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2 py-2">
+    <section
+        class="grid overflow-hidden flex-column md:flex-row pl-3 pr-3 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2 py-2">
         <h1 class="text-900 font-bold text-3xl pl-2">Student Grades</h1>
         <div class="col-12">
             <DataTable :value="courseList" paginator :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]" sortMode="multiple"
                 tableStyle="min-width: 50rem" dataKey="id" class="shadow-2">
-                <Column field="name" header="Course Name">
+                <Column field="name">
+                    <template #header>
+                        <div class="flex justify-content-center align-items-center w-full">
+                            <p class="font-bold text-lg">Course Name</p>
+                        </div>
+                    </template>
                     <template #body="value">
                         <div class="flex gap-2 align-items-center">
                             <img :src="value.data.image" alt="" style="width: 39px; height: 39px;" />
-                            <h4 class="text-900 font-semibold">
+                            <h4 class="text-900 font-bold text-lg">
                                 <RouterLink class="btn-link" :to="'/admin/course-grade/' + value.data.id + '/student'">{{
                                     value.data.name }}</RouterLink>
                             </h4>
                         </div>
                     </template>
                 </Column>
-                <Column field="student_count" header="Students">
-                    <template #body="value">
-                        <div class="flex gap-1 flex-column align-items-start">
-                            <h4 class="text-900 font-semibold">{{ getStudentCount(value.data.id) }}</h4>
+                <Column field="student_count">
+                    <template #header>
+                        <div class="flex justify-content-center align-items-center w-full">
+                            <p class="font-bold text-lg">Students</p>
                         </div>
                     </template>
+                    <template #body="value">
+                        <h4 class="text-900 text-center font-semibold">{{ getStudentCount(value.data.id) }}</h4>
+                    </template>
                 </Column>
-                <Column field="progress" header="Progress">
+                <Column field="progress">
+                    <template #header>
+                        <div class="flex justify-content-center align-items-center w-full">
+                            <p class="font-bold text-lg">Progress</p>
+                        </div>
+                    </template>
                     <template #body="value">
                         <div class="flex flex-column gap-2">
                             <div class="flex border-round" style="border-radius: 8px; background: #D9D9D9; height: 10px;">
@@ -54,19 +68,34 @@ const getStudentCount = (courseId: number) => {
                         </div>
                     </template>
                 </Column>
-                <Column field="non" header="Non" sortable>
+                <Column field="non" sortable>
+                    <template #header>
+                        <div class="flex justify-content-center align-items-center w-full">
+                            <p class="font-bold text-lg">Non</p>
+                        </div>
+                    </template>
                     <template #body="value">
-                        <p class="text-900 font-normal text-sm font-bold">50</p>
+                        <p class="text-900 font-normal text-center text-sm font-bold">50</p>
                     </template>
                 </Column>
-                <Column field="passed" header="Passed" sortable>
+                <Column field="passed" sortable>
+                    <template #header>
+                        <div class="flex justify-content-center align-items-center w-full">
+                            <p class="font-bold text-lg">Passed</p>
+                        </div>
+                    </template>
                     <template #body="value">
-                        <p class="text-900 font-normal text-sm font-bold">80</p>
+                        <p class="text-900 font-normal text-center text-sm font-bold">80</p>
                     </template>
                 </Column>
-                <Column field="failed" header="Failed" sortable>
+                <Column field="failed" sortable>
+                    <template #header>
+                        <div class="flex justify-content-center align-items-center w-full">
+                            <p class="font-bold text-lg">Failed</p>
+                        </div>
+                    </template>
                     <template #body="value">
-                        <p class="text-900 font-normal text-sm font-bold">20</p>
+                        <p class="text-900 font-normal text-center text-sm font-bold">20</p>
                     </template>
                 </Column>
             </DataTable>
@@ -107,9 +136,6 @@ const getStudentCount = (courseId: number) => {
 }
 
 ::v-deep(.p-datatable) {
-    .p-datatable-wrapper {
-        border-radius: 10px;
-    }
 
     .p-datatable-thead>tr>th {
         background: #006785;
