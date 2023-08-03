@@ -1,7 +1,10 @@
 <script setup lang="ts">
-import type router from '@/router';
 import { format } from 'date-fns';
 import { ref, onMounted, watchEffect } from "vue";
+import { eventDummyData } from './EventDummyData';
+import type { Event } from './Event.type'
+
+const eventList = ref<Event[]>(eventDummyData)
 
 const date = ref();
 const visible = ref(false);
@@ -99,9 +102,18 @@ const decrementTicketCount = () => ticketCount.value - 1 < 1 ? ticketCount.value
                 <Button @click="$router.push('/admin/event')" link class="btn-back" size="small" icon="pi pi-angle-left" />
                 <h1 class="font-bold">Ongoing Event</h1>
             </div>
-
             <div class="flex gap-2 flex-column md:w-full ">
-                <img src="/assets/img/event/innovations.png" alt="" class="w-full" />
+                <Carousel :value="eventList" :numVisible="1" :numScroll="1">
+                    <template #item="value">
+                        <div class="flex flex-row">
+                            <img 
+                            :src="value.data.image"
+                            alt="certifications"
+                            class="w-full"
+                            >
+                        </div>
+                    </template>
+                </Carousel>
                 <InputText v-model="title" class="title text-2xl font-bold" />
                 <Textarea v-model="description" rows="10" />
             </div>
