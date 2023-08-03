@@ -65,6 +65,16 @@ onMounted(() => {
 
 
 const isLargeScreen = ref(false);
+const attributes = ref([
+  {
+    highlight: {
+      color: 'gray',
+    },
+    dates: [
+      [new Date(2022, 10, 7), new Date(2022, 10, 9)],
+    ],
+  },
+]);
 
 watchEffect(() => {
     const handleResize = () => {
@@ -79,11 +89,6 @@ watchEffect(() => {
         window.removeEventListener('resize', handleResize);
     };
 });
-const range = ref({
-    start: new Date(2020, 0, 6),
-    end: new Date(2020, 0, 10),
-});
-
 const decrementTicketCount = () => ticketCount.value - 1 < 1 ? ticketCount.value : ticketCount.value--;
 </script>
 
@@ -97,27 +102,27 @@ const decrementTicketCount = () => ticketCount.value - 1 < 1 ? ticketCount.value
 
             <div class="flex gap-2 flex-column md:w-full ">
                 <img src="/assets/img/event/innovations.png" alt="" class="w-full" />
-                <InputText v-model="title" class="title" />
+                <InputText v-model="title" class="title text-2xl font-bold" />
                 <Textarea v-model="description" rows="10" />
             </div>
         </div>
 
         <div class="col-12 md:col-4 lg:col-4">
             <div class="calendar">
-                <h1 class="font-bold mb-2">Calendar</h1>
+                <h1 class="font-bold">Calendar</h1>
                 <div class="flex">
-                    <VDatePicker v-model.range="range" disabled mode="date" class="datepicker w-full" />
+                    <VDatePicker v-model.range="attributes" disabled mode="date" class="datepicker w-full" :attributes="attributes"/>
                 </div>
             </div>
 
             <!-- Information -->
             <h1 class="font-bold mb-2 mt-3">Event Information</h1>
             <div>
-                <div class="w-full">
-                    <img src="/assets/img/ticket.png" alt="ticket" class="w-full" />
+                <div class="w-full flex flex-column align-items-center ">
+                    <img src="/assets/img/ticket.png" alt="ticket" class="mb-3" style="width: 185px"/>
                     <div class="grid">
                         <div class="col-7">
-                            <InputText v-model="ticketType" class="border-noround w-full" />
+                            <InputText v-model="ticketType" class="border-noround w-full font-bold" />
                         </div>
                         <div class="col-5">
                             <div class="flex border-red-500 border-1 align-items-center p-1 border-round gap-1">
@@ -137,31 +142,33 @@ const decrementTicketCount = () => ticketCount.value - 1 < 1 ? ticketCount.value
                 </div>
                 <div class="grid py-2">
                     <span class="p-input-icon-left col-12 md:col-6 lg:col-6 xl:col-6 py-1">
-                        <i class="pi pi-map-marker"></i>
-                        <InputText class="p-inputtext-sm w-full" type="text" v-model="location" placeholder="Location" />
+                        <i class="pi pi-map-marker ml-1"></i>
+                        <InputText class="p-inputtext-sm w-full" type="text" v-model="location" placeholder="Location" 
+                        style="background: #D9D9D9; height: 35px;"/>
                     </span>
                     <span class="p-input-icon-left col-12 md:col-6 lg:col-6 xl:col-6 py-1">
-                        <i class="pi pi-calendar"></i>
+                        <i class="pi pi-calendar ml-1"></i>
                         <InputText class="p-inputtext-sm w-full" v-model="calendar" placeholder="Calendar"
-                            @click="showCalendar" />
+                            @click="showCalendar" style="background: #D9D9D9; height: 35px;"/>
                         <Calendar v-model="calendar" id="calendar" placeholder="Calendars"
-                            @date-select="onDateSelectCalendarRef" class="calendarRef" ref="calendarRef" />
+                            @date-select="onDateSelectCalendarRef" class="calendarRef" ref="calendarRef" 
+                            style="background: #D9D9D9; height: 35px;"/>
                     </span>
                     <span class="p-input-icon-left col-12 md:col-6 lg:col-6 xl:col-6 py-1">
-                        <i class="pi pi-clock"></i>
+                        <i class="pi pi-clock ml-1"></i>
                         <InputText class="p-inputtext-sm w-full" v-model="time" placeholder="Time"
-                            @click="showTimepicker" />
+                            @click="showTimepicker" style="background: #D9D9D9; height: 35px;"/>
                         <Calendar id="time-picker" placeholder="Time" @date-select="onTimeSelect" timeOnly class="timeRef"
                             ref="timeRef" />
                     </span>
                     <span class="p-input-icon-left col-12 md:col-6 lg:col-6 xl:col-6 py-1">
-                        <i class="pi pi-ticket"></i>
+                        <i class="pi pi-ticket ml-1"></i>
                         <InputText class="p-inputtext-sm w-full" type="text" v-model="ticketPrice"
-                            placeholder="Ticket price" />
+                            placeholder="Ticket price" style="background: #D9D9D9; height: 35px;"/>
                     </span>
                 </div>
 
-                <Button class="btn-add my-2 text-center">Add to cart for RM {{ ticketPrice }}</Button>
+                <Button class="btn-add my-2 text-center justify-content-center">Add to cart for RM {{ ticketPrice }}</Button>
             </div>
         </div>
         <div class="col-12 pr-2">
@@ -181,7 +188,7 @@ const decrementTicketCount = () => ticketCount.value - 1 < 1 ? ticketCount.value
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
-.calendar .vc-day {
+.calendar .vc-day { 
     pointer-events: none
 }
 

@@ -17,30 +17,30 @@ const goToDetail = () => {
             <p class="col-12 text-700 font-medium text-xs py-0 m-0">at {{ props.item.location }}</p>
             <div class="col-12 flex py-1 gap-2 align-items-center">
                 <i class="pi pi-calendar"></i>
-                <p class="text-700 text-super-small">{{ format(new Date(props.item.date), 'EEE, MMM Lo, yyyy') }}</p>
+                <p class="text-700 text-super-small md:text-xs font-italic">{{ format(new Date(props.item.date), 'EEE, MMM Lo, yyyy') }}</p>
             </div>
             <div class="col-12 flex py-1 gap-2 align-items-center">
                 <i class="pi pi-clock"></i>
-                <p class="text-700 text-super-small">Start at {{ format(new Date(props.item.date), 'hh:mm aa') }}</p>
+                <p class="text-700 text-super-small md:text-xs font-italic">Start at {{ format(new Date(props.item.date), 'hh:mm aa') }}</p>
             </div>
             <div class="col-12 flex py-1 gap-2 align-items-center">
                 <i class="pi pi-ticket"></i>
-                <p class="text-700 text-super-small">Start from RM {{ props.item.ticket_prize }}</p>
+                <p class="text-700 text-super-small md:text-xs font-italic">Start from RM {{ props.item.ticket_prize }}</p>
             </div>
             <div class="flex col-12">
                 <Button label="BUY" class="btn-buy"></Button>
             </div>
         </article>
         <div class="flex gap-2 align-items-center justify-content-center">
-            <p class="text-900 font-semibold">Event 1</p>
-            <Button link size="small" @click="goToDetail">
-                <i class="pi pi-pencil"></i>
-            </Button>
-
-            <Button link size="small">
-                <i class="pi pi-trash"></i>
-            </Button>
-
+            <p class="text-900 font-semibold text-lg">Event 1</p>
+            <div>
+                <Button link size="small" @click="goToDetail" class="justify-content-center" style="width:20px">
+                    <i class="pi pi-pencil text-700 text-sm"></i>
+                </Button>
+                <Button link size="small" class="justify-content-center" style="width:20px">
+                    <i class="pi pi-trash text-700 text-sm"></i>
+                </Button>
+            </div>
         </div>
     </section>
 </template>
