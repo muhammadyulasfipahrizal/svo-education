@@ -30,7 +30,8 @@ const onSelectProfile = (v: Instructor) => {
 </script>
 
 <template>
-    <section class="grid overflow-hidden flex-column md:flex-row pl-3 pr-3 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2 py-2">
+    <section
+        class="grid overflow-hidden flex-column md:flex-row pl-3 pr-3 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2 py-2">
         <h1 class="text-900 font-bold text-3xl">Instructor Grades</h1>
         <div class="pl-2 col-12 flex flex-column gap-2 my-2">
             <!-- FILTER -->
@@ -49,7 +50,12 @@ const onSelectProfile = (v: Instructor) => {
             <DataTable :value="instructorList" paginator :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]" sortMode="multiple"
                 v-model:selection="checkedInstructor" class="shadow-2 p-datatable-sm" tableStyle="min-width: 80rem">
                 <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
-                <Column field="name" header="Name">
+                <Column field="name">
+                    <template #header>
+                        <div class="flex justify-content-center align-items-center w-full">
+                            <p class="font-bold text-lg">Name</p>
+                        </div>
+                    </template>
                     <template #body="value">
                         <div class="flex gap-2 align-items-center">
                             <img :src="value.data.image" alt="" style="width: 39px; height: 39px;" />
@@ -62,7 +68,12 @@ const onSelectProfile = (v: Instructor) => {
                         </div>
                     </template>
                 </Column>
-                <Column field="course" header="Course" sortable class="w-5">
+                <Column field="course" sortable class="w-4">
+                    <template #header>
+                        <div class="flex justify-content-center align-items-center w-full">
+                            <p class="font-bold text-lg">Course</p>
+                        </div>
+                    </template>
                     <template #body="value">
                         <div class="flex gap-1 flex-column align-items-start">
                             <h4 class="text-900 font-semibold">{{ value.data.work_as }}</h4>
@@ -72,8 +83,26 @@ const onSelectProfile = (v: Instructor) => {
                         </div>
                     </template>
                 </Column>
-                <Column field="department" header="Department" sortable class="w-3"></Column>
-                <Column field="quantity" header="Would take again" sortable class="w-3">
+                <Column field="department" sortable class="w-3">
+                    <template #header>
+                        <div class="flex justify-content-center align-items-center w-full">
+                            <p class="font-bold text-lg">Department</p>
+                        </div>
+                    </template>
+                    <template #body="value">
+                        <div class="flex gap-1 flex-column align-items-center">
+                            <p class="text-lg font-bold">
+                                {{ value.data.department }}
+                            </p>
+                        </div>
+                    </template>
+                </Column>
+                <Column field="quantity" sortable class="w-3">
+                    <template #header>
+                        <div class="flex justify-content-center align-items-center w-full">
+                            <p class="font-bold text-lg">Would take again</p>
+                        </div>
+                    </template>
                     <template #body="value">
                         <div class="flex gap-1 flex-column align-items-center">
                             <h4 class="text-900 font-bold">{{ parseFloat(((value.data.rating.ratings.helpful +
@@ -86,7 +115,12 @@ const onSelectProfile = (v: Instructor) => {
                         </div>
                     </template>
                 </Column>
-                <Column field="profile" header="Profile" class="w-full" style="min-width: 5rem;">
+                <Column field="profile" class="w-full" style="min-width: 5rem;">
+                    <template #header>
+                        <div class="flex justify-content-center align-items-center w-full">
+                            <p class="font-bold text-lg">Profile</p>
+                        </div>
+                    </template>
                     <template #body="value">
                         <Button class="w-full btn-orange" @click="onSelectProfile(value.data)">
                             <span class="text-lg font-semibold">
@@ -95,7 +129,12 @@ const onSelectProfile = (v: Instructor) => {
                         </Button>
                     </template>
                 </Column>
-                <Column field="message" header="Message">
+                <Column field="message">
+                    <template #header>
+                        <div class="flex justify-content-center align-items-center w-full">
+                            <p class="font-bold text-lg">Message</p>
+                        </div>
+                    </template>
                     <template #body="value">
                         <Button link size="small" @click="$router.push('/admin/message/instructor/' + value.data.id)">
                             <img src="/assets/icon/reply.png" class="w-2rem" />
@@ -179,9 +218,6 @@ const onSelectProfile = (v: Instructor) => {
 }
 
 ::v-deep(.p-datatable) {
-    .p-datatable-wrapper {
-        border-radius: 10px;
-    }
 
     .p-datatable-thead>tr>th {
         background: #006785;

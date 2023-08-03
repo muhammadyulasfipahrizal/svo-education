@@ -70,8 +70,8 @@ onMounted(() => {
 <template>
     <section
         class="grid overflow-hidden flex-column md:flex-row pl-3 pr-3 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2 py-2">
-        <h1 class="text-900 font-bold text-3xl pl-2">Student Grades</h1>
-        <div class="pl-2 col-12 flex flex-column gap-2 my-2">
+        <h1 class="text-900 font-bold text-3xl px-2 md:px-3">Student Grades</h1>
+        <div class="px-2 md:px-3 col-12 flex flex-column gap-2 my-2">
             <!-- FILTER -->
             <div class="card flex justify-content-start">
                 <Dropdown v-model="selectedCourse" :options="courseList" optionLabel="name" placeholder="Select a course"
@@ -95,9 +95,9 @@ onMounted(() => {
                     </template>
                 </Dropdown>
             </div>
-            <div class="grid w-full justify-content-center align-items-center">
+            <div class="grid w-full px-2 md:px-3 align-items-center">
                 <div
-                    class="col-10 md:col-9 lg:col-10 xl:col-10 grid align-items-center filter-search align-items-center py-0 my-2">
+                    class="col-10 md:col-11 lg:col-10 xl:col-10 grid align-items-center filter-search align-items-center py-0 my-2">
                     <Button label="Filter" icon="pi pi-filter-fill" size="small"
                         class="filter-button col-2 md:col-3 xl:col-2" />
                     <span class="p-input-icon-left col-10 md:col-6 xl:col-6 py-0">
@@ -106,7 +106,7 @@ onMounted(() => {
                     </span>
                 </div>
                 <Button label="DOWNLOAD " size="small" icon="pi pi-download"
-                    class="download-button col-2 flex justify-content-center align-items-center md:col-3 lg:col-2 xl:col-2"></Button>
+                    class="download-button col-2 flex text-right justify-content-center align-items-center md:col-1 lg:col-2 xl:col-2"></Button>
             </div>
 
             <DataTable :value="studentList" paginator :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]" sortMode="multiple"
@@ -274,10 +274,6 @@ onMounted(() => {
 }
 
 ::v-deep(.p-datatable) {
-    .p-datatable-wrapper {
-        border-radius: 10px;
-    }
-
     .p-datatable-thead>tr>th {
         background: #006785;
         color: white;
