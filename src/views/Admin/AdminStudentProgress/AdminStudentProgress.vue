@@ -1,93 +1,97 @@
 <template>
-  <section class="grid overflow-hidden flex-column md:flex-row pl-4 pr-4 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2">
-    <div class="flex flex-row align-items-center col-12">
-      <h1 class="text-4xl font-bold ">Student Progress</h1>
-    </div>
-    <div class="col-12">
-      <DataTable :value="courseData" class="shadow-2" selectionMode="single" :selection="selectedCourse"
-        @rowSelect="handleRowSelect">
-        <Column field="courseName">
-          <template #header>
-            <div class="flex justify-content-center w-full">
-              <p class="header-text">Course Name</p>
-            </div>
-          </template>
-          <template #body="{ data }">
-            <div class="flex flex-row align-items-center w-full">
-              <img src="/assets/img/course/ui-ux-design.png" class="data-image mr-2" style="width: 58px; height: 39px;"/>
-              <p class="data-text">{{ data.courseName }}</p>
-            </div>
-          </template>
-        </Column>
-        <Column field="enrollment">
-          <template #header>
-            <div class="flex justify-content-center w-full">
-              <p class="header-text">Enrollment</p>
-            </div>
-          </template>
-          <template #body="{ data }">
-            <div class="flex justify-content-center w-full">
-              <p class="data-text">{{ data.enrollment }}</p>
-            </div>
-          </template>
-        </Column>
-        <Column field="progress">
-          <template #header>
-            <div class="flex justify-content-center w-full">
-              <p class="header-text">Progress</p>
-            </div>
-          </template>
-          <template #body="{ data }">
-            <div class="flex flex-column align-items-center w-full">
-              <div>
-                <div class="progress-bar-container">
-                  <div class="progress-bar" :style="{ width: data.progress + '%' }"></div>
-                </div>
-                <p class="font-bold text-sm align-sekf-start">{{ data.progress }}% completed</p>
+  <section class="px-2 sm:px-5">
+    <section
+      class="grid overflow-hidden flex-column md:flex-row pl-4 pr-4 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2">
+      <div class="flex flex-row align-items-center col-12">
+        <h1 class="text-4xl font-bold ">Student Progress</h1>
+      </div>
+      <div class="col-12">
+        <DataTable :value="courseData" class="shadow-2" selectionMode="single" :selection="selectedCourse"
+          @rowSelect="handleRowSelect">
+          <Column field="courseName">
+            <template #header>
+              <div class="flex justify-content-center w-full">
+                <p class="header-text">Course Name</p>
               </div>
-            </div>
-            
-          </template>
-        </Column>
-        <Column field="startDate">
-          <template #header>
-            <div class="flex justify-content-center w-full">
-              <p class="header-text">Start Date</p>
-            </div>
-          </template>
-          <template #body="{ data }">
-            <div class="flex justify-content-center w-full">
-              <p class="data-text">{{ data.startDate }}</p>
-            </div>
-          </template>
-        </Column>
-        <Column field="endDate">
-          <template #header>
-            <div class="flex justify-content-center w-full">
-              <p class="header-text">End Date</p>
-            </div>
-          </template>
-          <template #body="{ data }">
-            <div class="flex justify-content-center w-full">
-              <p class="data-text">{{ data.endDate }}</p>
-            </div>
-          </template>
-        </Column>
-        <Column field="duration">
-          <template #header>
-            <div class="flex justify-content-center w-full">
-              <p class="header-text">Duration</p>
-            </div>
-          </template>
-          <template #body="{ data }">
-            <div class="flex justify-content-center align-items-center w-full">
-              <i class="pi pi-clock mr-2"></i>
-              <p class="data-text">{{ data.duration }}</p>
-            </div>
-          </template>
-        </Column>
-      </DataTable>
-    </div>
+            </template>
+            <template #body="{ data }">
+              <div class="flex flex-row align-items-center w-full">
+                <img src="/assets/img/course/ui-ux-design.png" class="data-image mr-2"
+                  style="width: 58px; height: 39px;" />
+                <p class="data-text">{{ data.courseName }}</p>
+              </div>
+            </template>
+          </Column>
+          <Column field="enrollment">
+            <template #header>
+              <div class="flex justify-content-center w-full">
+                <p class="header-text">Enrollment</p>
+              </div>
+            </template>
+            <template #body="{ data }">
+              <div class="flex justify-content-center w-full">
+                <p class="data-text">{{ data.enrollment }}</p>
+              </div>
+            </template>
+          </Column>
+          <Column field="progress">
+            <template #header>
+              <div class="flex justify-content-center w-full">
+                <p class="header-text">Progress</p>
+              </div>
+            </template>
+            <template #body="{ data }">
+              <div class="flex flex-column align-items-center w-full">
+                <div>
+                  <div class="progress-bar-container">
+                    <div class="progress-bar" :style="{ width: data.progress + '%' }"></div>
+                  </div>
+                  <p class="font-bold text-sm align-sekf-start">{{ data.progress }}% completed</p>
+                </div>
+              </div>
+
+            </template>
+          </Column>
+          <Column field="startDate">
+            <template #header>
+              <div class="flex justify-content-center w-full">
+                <p class="header-text">Start Date</p>
+              </div>
+            </template>
+            <template #body="{ data }">
+              <div class="flex justify-content-center w-full">
+                <p class="data-text">{{ data.startDate }}</p>
+              </div>
+            </template>
+          </Column>
+          <Column field="endDate">
+            <template #header>
+              <div class="flex justify-content-center w-full">
+                <p class="header-text">End Date</p>
+              </div>
+            </template>
+            <template #body="{ data }">
+              <div class="flex justify-content-center w-full">
+                <p class="data-text">{{ data.endDate }}</p>
+              </div>
+            </template>
+          </Column>
+          <Column field="duration">
+            <template #header>
+              <div class="flex justify-content-center w-full">
+                <p class="header-text">Duration</p>
+              </div>
+            </template>
+            <template #body="{ data }">
+              <div class="flex justify-content-center align-items-center w-full">
+                <i class="pi pi-clock mr-2"></i>
+                <p class="data-text">{{ data.duration }}</p>
+              </div>
+            </template>
+          </Column>
+        </DataTable>
+      </div>
+    </section>
   </section>
 </template>
 
@@ -159,9 +163,6 @@ const handleRowSelect = (event: DataTableRowSelectEvent) => {
 
 <style lang="scss" scoped>
 ::v-deep(.p-datatable) {
-  .p-datatable-wrapper {
-    border-radius: 10px;
-  }
 
   .p-datatable-thead>tr>th {
     background: #006785;

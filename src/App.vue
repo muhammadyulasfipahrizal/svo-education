@@ -7,7 +7,7 @@ import HeaderLayout from './components/HeaderLayout.vue'
 <template>
   <div id="root" class="min-h-screen flex relative md:static surface-ground">
     <SidebarLayout />
-    <div class="bg-white min-h-screen flex flex-column relative flex-auto main-content">
+    <div class="min-h-screen flex flex-column relative flex-auto main-content">
       <HeaderLayout />
       <RouterView />
     </div>
@@ -16,6 +16,10 @@ import HeaderLayout from './components/HeaderLayout.vue'
 
 
 <style scope>
+.main-content {
+  background: #F9FAFE;
+}
+
 @media only screen and (max-width: 768px) {
   #root {
     display: flex;

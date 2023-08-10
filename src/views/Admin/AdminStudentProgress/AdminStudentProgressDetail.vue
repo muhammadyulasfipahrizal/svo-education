@@ -84,146 +84,150 @@ const selectedCourse = ref();
 </script>
 
 <template>
-  <section class="grid overflow-hidden flex-column md:flex-row pl-4 pr-4 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2">
-    <div class="col-12 flex flex-row align-items-center my-2">
-      <i class="pi pi-chevron-left mr-3 back-arrow cursor-pointer" @click="$router.push('/admin/progress/student')"></i>
-      <h1 class="text-4xl font-bold ">Student Progress</h1>
-    </div>
-    <div class="grid col-12">
-      <div class="col-12">
-        <Dropdown optionLabel="courseName" :options="courses" v-model="selectedCourse" placeholder="Course Name"
-          class="w-full md:w-20rem md:flex">
-          <template #value="slotProps">
-            <div v-if="slotProps.value" class="flex align-items-center">
-              <img :alt="slotProps.value.courseName" :src="slotProps.value.image" class="mr-2" style="width: 60px;" />
-              <div class="text-900 font-medium text-2xl mx-4">{{ slotProps.value.courseName }}</div>
-            </div>
-            <span v-else>
-              {{ slotProps.placeholder }}
-            </span>
-          </template>
-          <template #option="slotProps">
-            <div class="flex align-items-center">
-              <img :alt="slotProps.option.courseName" :src="slotProps.option.image" class="mr-2" style="width: 53px" />
-              <div class="text-900 font-bold text-lg">{{ slotProps.option.courseName }}</div>
-            </div>
-          </template>
-        </Dropdown>
+  <section class="px-2 sm:px-5">
+    <section
+      class="grid overflow-hidden flex-column md:flex-row pl-4 pr-4 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2">
+      <div class="col-12 flex flex-row align-items-center my-2">
+        <i class="pi pi-chevron-left mr-3 back-arrow cursor-pointer" @click="$router.push('/admin/progress/student')"></i>
+        <h1 class="text-4xl font-bold ">Student Progress</h1>
       </div>
-      <div class="col-12 flex flex-row align-items-center justify-content-between filter-search pr-3">
-        <div class="col-10 md:col-10 lg:col-10 lg:col-10">
-          <Button label="Filter" icon="pi pi-filter-fill" size="small" class="filter-button mr-3" />
-          <span class="p-input-icon-left w-7">
-            <i class="pi pi-search search-icon" />
-            <InputText placeholder="Search by Name" class="search-bar p-inputtext-sm" style="width: 450px;"/>
-          </span>
+      <div class="grid col-12">
+        <div class="col-12">
+          <Dropdown optionLabel="courseName" :options="courses" v-model="selectedCourse" placeholder="Course Name"
+            class="w-full md:w-20rem md:flex">
+            <template #value="slotProps">
+              <div v-if="slotProps.value" class="flex align-items-center">
+                <img :alt="slotProps.value.courseName" :src="slotProps.value.image" class="mr-2" style="width: 60px;" />
+                <div class="text-900 font-medium text-2xl mx-4">{{ slotProps.value.courseName }}</div>
+              </div>
+              <span v-else>
+                {{ slotProps.placeholder }}
+              </span>
+            </template>
+            <template #option="slotProps">
+              <div class="flex align-items-center">
+                <img :alt="slotProps.option.courseName" :src="slotProps.option.image" class="mr-2" style="width: 53px" />
+                <div class="text-900 font-bold text-lg">{{ slotProps.option.courseName }}</div>
+              </div>
+            </template>
+          </Dropdown>
         </div>
-        <Button label="DOWNLOAD" icon="pi pi-download" size="small" class="btn-orange hidden md:block" style="width: 150px; height:50px"/>
-        <Button icon="pi pi-download" size="small" class="btn-orange col-2 block md:hidden" />
-      </div>
+        <div class="col-12 flex flex-row align-items-center justify-content-between filter-search pr-3">
+          <div class="col-10 md:col-10 lg:col-10 lg:col-10">
+            <Button label="Filter" icon="pi pi-filter-fill" size="small" class="filter-button mr-3" />
+            <span class="p-input-icon-left w-7">
+              <i class="pi pi-search search-icon" />
+              <InputText placeholder="Search by Name" class="search-bar p-inputtext-sm" style="width: 450px;" />
+            </span>
+          </div>
+          <Button label="DOWNLOAD" icon="pi pi-download" size="small" class="btn-orange hidden md:block"
+            style="width: 150px; height:50px" />
+          <Button icon="pi pi-download" size="small" class="btn-orange col-2 block md:hidden" />
+        </div>
 
-      <!-- table -->
-      <div class="col-12 pr-3">
-        <DataTable :value="studentData" sortMode="multiple"
-          tableStyle="min-width: 50rem" dataKey="id" v-model:selection="checkedStudent" class="shadow-2 detail-table">
-          <Column selectionMode="multiple" headerStyle="width: 3rem" ></Column>
-          <Column field="name" class="text-white" headerStyle="width: 4rem">
-            <template #header>
-              <div class="flex justify-content-center w-full">
-                <p class="header-text">Name</p>
-              </div>
-            </template>
-            <template #body="{ data }">
-              <div class="flex flex-row align-items-center">
-                <img :src="data.image" alt=""  class="mr-3" style="width: 45px; height: 45px;">
+        <!-- table -->
+        <div class="col-12 pr-3">
+          <DataTable :value="studentData" sortMode="multiple" tableStyle="min-width: 50rem" dataKey="id"
+            v-model:selection="checkedStudent" class="shadow-2 detail-table">
+            <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
+            <Column field="name" class="text-white" headerStyle="width: 4rem">
+              <template #header>
+                <div class="flex justify-content-center w-full">
+                  <p class="header-text">Name</p>
+                </div>
+              </template>
+              <template #body="{ data }">
+                <div class="flex flex-row align-items-center">
+                  <img :src="data.image" alt="" class="mr-3" style="width: 45px; height: 45px;">
+                  <div class="flex flex-column">
+                    <p class="name-text">{{ data.name }}</p>
+                    <p class="name-email">{{ data.email }}</p>
+                  </div>
+                </div>
+              </template>
+            </Column>
+            <Column field="progress" class="text-white">
+              <template #header>
+                <div class="flex justify-content-center w-full">
+                  <div class="flex flex-row align-items-center gap-2">
+                    <p class="header-text">Progress</p>
+                    <i class="pi pi-sort text-lg"></i>
+                  </div>
+                </div>
+              </template>
+              <template #body="{ data }">
                 <div class="flex flex-column">
-                  <p class="name-text">{{ data.name }}</p>
-                  <p class="name-email">{{ data.email }}</p>
+                  <div class="progress-bar-container my-2 flex flex-column justify-content-center w-full">
+                    <div class="progress-bar" :style="{ width: data.progress + '%' }"></div>
+                  </div>
+                  <p class="progress-text">{{ data.progress }} % completed</p>
                 </div>
-              </div>
-            </template>
-          </Column>
-          <Column field="progress" class="text-white">
-            <template #header>
-              <div class="flex justify-content-center w-full">
-                <div class="flex flex-row align-items-center gap-2">
-                  <p class="header-text">Progress</p>
-                  <i class="pi pi-sort text-lg"></i>
+              </template>
+            </Column>
+            <Column field="percentage">
+              <template #header>
+                <div class="flex justify-content-center w-full">
+                  <div class="flex flex-row align-items-center gap-2">
+                    <p class="header-text">Percentage</p>
+                    <i class="pi pi-sort text-lg"></i>
+                  </div>
                 </div>
-              </div>
-            </template>
-            <template #body="{ data }">
-              <div class="flex flex-column">
-                <div class="progress-bar-container my-2 flex flex-column justify-content-center w-full">
-                  <div class="progress-bar" :style="{ width: data.progress + '%' }"></div>
+              </template>
+              <template #body="{ data }">
+                <div class="flex justify-content-center w-full">
+                  <p class="percatage-text">{{ data.percentage }}</p>
                 </div>
-                <p class="progress-text">{{ data.progress }} % completed</p>
-              </div>
-            </template>
-          </Column>
-          <Column field="percentage">
-            <template #header>
-              <div class="flex justify-content-center w-full">
-                <div class="flex flex-row align-items-center gap-2">
-                  <p class="header-text">Percentage</p>
-                  <i class="pi pi-sort text-lg"></i>
+              </template>
+            </Column>
+            <Column field="passFail">
+              <template #header>
+                <div class="flex justify-content-center w-full">
+                  <div class="flex flex-row align-items-center gap-2">
+                    <p class="header-text">P/F</p>
+                    <i class="pi pi-sort text-lg"></i>
+                  </div>
                 </div>
-              </div>
-            </template>
-            <template #body="{ data }">
-              <div class="flex justify-content-center w-full">
-                <p class="percatage-text">{{ data.percentage }}</p>
-              </div>
-            </template>
-          </Column>
-          <Column field="passFail">
-            <template #header>
-              <div class="flex justify-content-center w-full">
-                <div class="flex flex-row align-items-center gap-2">
-                  <p class="header-text">P/F</p>
-                  <i class="pi pi-sort text-lg"></i>
+              </template>
+              <template #body="{ data }">
+                <div class="flex justify-content-center w-full align-items-center">
+                  <p class="mr-3 pass-text">{{ data.passFail }}</p>
+                  <i class="pi pi-check-circle pass-icon text-2xl"></i>
                 </div>
+              </template>
+            </Column>
+            <Column field="attendance">
+              <template #header>
+                <div class="flex justify-content-center w-full">
+                  <p class="header-text">Attendance</p>
+                </div>
+              </template>
+              <template #body="{ data }">
+                <div>
+                  <p class="attendance-text">{{ data.attendance }}/5</p>
+                </div>
+              </template>
+            </Column>
+            <Column>
+              <template #header>
+                <div class="flex justify-content-center w-full">
+                  <p class="header-text">Student Profile</p>
+                </div>
+              </template>
+              <template #body="{ data }">
+                <div class="flex justify-content-center w-full align-items-center">
+                  <Button label="Info" class="btn-orange" @click="showModal(data)" style="width: 120px; heigth: 39px" />
+                </div>
+              </template>
+            </Column>
+            <template #footer>
+              <div class="flex flex-row align-items-center justify-content-between">
+                <p>Showing data 1 to 10 of 256K entries</p>
               </div>
             </template>
-            <template #body="{ data }">
-              <div class="flex justify-content-center w-full align-items-center">
-                <p class="mr-3 pass-text">{{ data.passFail }}</p>
-                <i class="pi pi-check-circle pass-icon text-2xl"></i>
-              </div>
-            </template>
-          </Column>
-          <Column field="attendance">
-            <template #header>
-              <div class="flex justify-content-center w-full">
-                <p class="header-text">Attendance</p>
-              </div>
-            </template>
-            <template #body="{ data }">
-              <div>
-                <p class="attendance-text">{{ data.attendance }}/5</p>
-              </div>
-            </template>
-          </Column>
-          <Column>
-            <template #header>
-              <div class="flex justify-content-center w-full">
-                <p class="header-text">Student Profile</p>
-              </div>
-            </template>
-            <template #body="{ data }">
-              <div class="flex justify-content-center w-full align-items-center">
-                <Button label="Info" class="btn-orange" @click="showModal(data)" style="width: 120px; heigth: 39px" />
-              </div>
-            </template>
-          </Column>
-          <template #footer>
-            <div class="flex flex-row align-items-center justify-content-between">
-              <p>Showing data 1 to 10 of  256K entries</p>
-            </div>
-          </template>
-        </DataTable>
+          </DataTable>
+        </div>
       </div>
-    </div>
+    </section>
   </section>
 
   <!-- modal -->
@@ -521,7 +525,7 @@ const selectedCourse = ref();
   }
 }
 
-::v-deep(.p-datatable){
+::v-deep(.p-datatable) {
   .p-datatable-footer {
     background: white;
     height: 55px;

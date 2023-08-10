@@ -14,6 +14,45 @@ export const courseDummyData: Course[] = [
         enrolled: 150000,
         image: '/assets/img/course/ui-ux-design.png',
     },
+    {
+        id: 2,
+        name: "MARKETING",
+        instructor: 'Kelly Knight',
+        attandance: 100,
+        position: 2,
+        rating: {
+            total_rating: 10000,
+            rating: 4.5,
+        },
+        enrolled: 150000,
+        image: '/assets/img/course/ui-ux-design.png',
+    },
+    {
+        id: 3,
+        name: "FINANCE",
+        instructor: 'James Smith',
+        attandance: 100,
+        position: 3,
+        rating: {
+            total_rating: 10000,
+            rating: 4.5,
+        },
+        enrolled: 140000,
+        image: '/assets/img/course/finance.png',
+    },
+    {
+        id: 4,
+        name: "AI INTELLIGENCE",
+        instructor: 'Rain James',
+        attandance: 100,
+        position: 4,
+        rating: {
+            total_rating: 10000,
+            rating: 4.5,
+        },
+        enrolled: 130000,
+        image: '/assets/img/course/ai-inteligence.png',
+    },
 
 ]
 
@@ -24,7 +63,7 @@ export const instructorDummyData: Instructor[] = [
         name: "David Burn",
         rating: 100,
         enrolled: 10,
-        image: '/assets/img/instructor.png',
+        image: '/assets/img/instructor-2.png',
     },
 ]
 
