@@ -22,38 +22,41 @@ onMounted(() => {
 </script>
 
 <template>
-    <section class="grid overflow-hidden flex-column md:flex-row pl-3 pr-3 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2 py-2">
-        <div class="flex align-items-center col-12">
-            <Button icon="pi pi-angle-left" size="small" link @click="$router.push('/admin/instructor-grade')"></Button>
-            <h1 class="text-900 font-bold text-3xl">Instructor Grades</h1>
-        </div>
-        <div class="flex flex-column gap-3 col-12">
-            <div class="flex flex-column md:flex-row gap-3 align-items-center justify-content-center w-full">
-                <h1 class="text-900 font-bold text-xl">
-                    Leave a message for instructor
-                </h1>
-                <h1 class="text-900 font-bold text-3xl text-orange-400">
-                    {{ selectedProfile?.name }}
-                </h1>
+    <section class="px-2 sm:px-5">
+        <section
+            class="grid overflow-hidden flex-column md:flex-row pl-3 pr-3 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2 py-2">
+            <div class="flex align-items-center col-12">
+                <Button icon="pi pi-angle-left" size="small" link @click="$router.push('/admin/instructor-grade')"></Button>
+                <h1 class="text-900 font-bold text-3xl">Instructor Grades</h1>
             </div>
-            <div class="flex justify-content-center w-full">
-                <img :src="selectedProfile?.image" alt="" class="w-5rem " />
+            <div class="flex flex-column gap-3 col-12">
+                <div class="flex flex-column md:flex-row gap-3 align-items-center justify-content-center w-full">
+                    <h1 class="text-900 font-bold text-xl">
+                        Leave a message for instructor
+                    </h1>
+                    <h1 class="text-900 font-bold text-3xl text-orange-400">
+                        {{ selectedProfile?.name }}
+                    </h1>
+                </div>
+                <div class="flex justify-content-center w-full">
+                    <img :src="selectedProfile?.image" alt="" class="w-5rem " />
+                </div>
+                <div class="flex flex-column gap-3 w-full px-3">
+                    <h1 class="text-900 font-bold text-3rem">
+                        Message
+                    </h1>
+                    <Textarea class="message" disabled v-model="message" autoResize rows="5"></Textarea>
+                    <Button size="small" class="btn-send">
+                        <template #default>
+                            <div class="flex gap-2 justify-content-center align-items-center w-full">
+                                <h1 class="text-900 font-bold text-lg text-white">SEND MESSAGE</h1>
+                                <i class="pi pi-send"></i>
+                            </div>
+                        </template>
+                    </Button>
+                </div>
             </div>
-            <div class="flex flex-column gap-3 w-full px-3">
-                <h1 class="text-900 font-bold text-3rem">
-                    Message
-                </h1>
-                <Textarea class="message" disabled v-model="message" autoResize rows="5"></Textarea>
-                <Button size="small" class="btn-send">
-                    <template #default>
-                        <div class="flex gap-2 justify-content-center align-items-center w-full">
-                            <h1 class="text-900 font-bold text-lg text-white">SEND MESSAGE</h1>
-                            <i class="pi pi-send"></i>
-                        </div>
-                    </template>
-                </Button>
-            </div>
-        </div>
+        </section>
     </section>
 </template>
 

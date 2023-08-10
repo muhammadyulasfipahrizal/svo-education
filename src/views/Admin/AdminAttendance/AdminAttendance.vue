@@ -1,24 +1,60 @@
 <template>
-  <section class="grid overflow-hidden flex-column md:flex-row px-2 md:px-2 lg:px-2 xl:px-2 py-2">
-    <h1 class="text-900 font-bold text-3xl col-12">My Attendance</h1>
-    <div class="col-12 grid align-items-center filter-search px-3 lg:px-0">
-      <Button label="Filter" icon="pi pi-filter-fill" size="small" class="filter-button col-3 md:col-2" />
-      <span class="p-input-icon-left col-5">
-        <i class="pi pi-search search-icon pl-1" />
-        <InputText placeholder="Search by class" class="search-bar h-10 w-96 md:w-full p-input text-sm" />
-      </span>
-      <Button size="small" class="btn-orange ml-auto col-2">
-        <i class="block pi pi-download md:mr-2"></i>
-        <p class="hidden sm:block md:block lg:block xl:block">DOWNLOAD</p>
-      </Button>
-    </div>
-    <div class="col-12 flex flex-column flex-wrap md:flex-row md:p-0 md:m-0">
-      <div class="flex flex-row mb-3 px-0 md:px-2 lg:px-0">
-        <Dropdown optionLabel="name" v-model="selectedMonth" placeholder="Month" :options="monthList" class="w-10rem mr-2"
-          style="height: 52px">
+  <section class="px-2 sm:px-5">
+    <section class="grid overflow-hidden flex-column md:flex-row px-2 md:px-2 lg:px-2 xl:px-2 py-2">
+      <h1 class="text-900 font-bold text-3xl col-12">My Attendance</h1>
+      <div class="col-12 grid align-items-center filter-search px-3 lg:px-0">
+        <Button label="Filter" icon="pi pi-filter-fill" size="small" class="filter-button col-3 md:col-2" />
+        <span class="p-input-icon-left col-5">
+          <i class="pi pi-search search-icon pl-1" />
+          <InputText placeholder="Search by class" class="search-bar h-10 w-96 md:w-full p-input text-sm" />
+        </span>
+        <Button size="small" class="btn-orange ml-auto col-2">
+          <i class="block pi pi-download md:mr-2"></i>
+          <p class="hidden sm:block md:block lg:block xl:block">DOWNLOAD</p>
+        </Button>
+      </div>
+      <div class="col-12 flex flex-column flex-wrap md:flex-row md:p-0 md:m-0">
+        <div class="flex flex-row mb-3 px-0 md:px-2 lg:px-0">
+          <Dropdown optionLabel="name" v-model="selectedMonth" placeholder="Month" :options="monthList"
+            class="w-10rem mr-2" style="height: 52px">
+            <template #value="slotProps">
+              <div v-if="slotProps.value" class="flex align-items-center">
+                <div class="text-900 font-bold text-lg">{{ slotProps.value.name }}</div>
+              </div>
+              <span v-else>
+                {{ slotProps.placeholder }}
+              </span>
+            </template>
+            <template #option="slotProps">
+              <div class="flex align-items-center">
+                <div class="text-900 font-bold text-lg">{{ slotProps.option.name }}</div>
+              </div>
+            </template>
+          </Dropdown>
+          <Dropdown optionLabel="name" v-model="selectedYear" placeholder="Year" :options="yearList" class="w-8rem mr-2"
+            style="height: 52px">
+            <template #value="slotProps">
+              <div v-if="slotProps.value" class="flex align-items-center">
+                <div class="text-900 font-bold text-lg">{{ slotProps.value.name }}</div>
+              </div>
+              <span v-else>
+                {{ slotProps.placeholder }}
+              </span>
+            </template>
+            <template #option="slotProps">
+              <div class="flex align-items-center">
+                <div class="text-900 font-bold text-lg">{{ slotProps.option.name }}</div>
+              </div>
+            </template>
+          </Dropdown>
+        </div>
+        <Dropdown optionLabel="courseName" :options="courseList" v-model="selectedCourse" placeholder="Course Name"
+          class="w-full md:w-15rem md:flex" style="height: 52px">
           <template #value="slotProps">
             <div v-if="slotProps.value" class="flex align-items-center">
-              <div class="text-900 font-bold text-lg">{{ slotProps.value.name }}</div>
+              <img :alt="slotProps.value.courseName" :src="slotProps.value.image" class="mr-2"
+                style="width: 55px; height: 30px" />
+              <div class="text-900 font-bold text-lg">{{ slotProps.value.courseName }}</div>
             </div>
             <span v-else>
               {{ slotProps.placeholder }}
@@ -26,58 +62,24 @@
           </template>
           <template #option="slotProps">
             <div class="flex align-items-center">
-              <div class="text-900 font-bold text-lg">{{ slotProps.option.name }}</div>
-            </div>
-          </template>
-        </Dropdown>
-        <Dropdown optionLabel="name" v-model="selectedYear" placeholder="Year" :options="yearList" class="w-8rem mr-2"
-          style="height: 52px">
-          <template #value="slotProps">
-            <div v-if="slotProps.value" class="flex align-items-center">
-              <div class="text-900 font-bold text-lg">{{ slotProps.value.name }}</div>
-            </div>
-            <span v-else>
-              {{ slotProps.placeholder }}
-            </span>
-          </template>
-          <template #option="slotProps">
-            <div class="flex align-items-center">
-              <div class="text-900 font-bold text-lg">{{ slotProps.option.name }}</div>
+              <img :alt="slotProps.option.courseName" :src="slotProps.option.image" class="mr-2"
+                style="width: 55px; height: 30px" />
+              <div class="text-900 font-bold text-lg">{{ slotProps.option.courseName }}</div>
             </div>
           </template>
         </Dropdown>
       </div>
-      <Dropdown optionLabel="courseName" :options="courseList" v-model="selectedCourse" placeholder="Course Name"
-        class="w-full md:w-15rem md:flex" style="height: 52px">
-        <template #value="slotProps">
-          <div v-if="slotProps.value" class="flex align-items-center">
-            <img :alt="slotProps.value.courseName" :src="slotProps.value.image" class="mr-2"
-              style="width: 55px; height: 30px" />
-            <div class="text-900 font-bold text-lg">{{ slotProps.value.courseName }}</div>
-          </div>
-          <span v-else>
-            {{ slotProps.placeholder }}
-          </span>
-        </template>
-        <template #option="slotProps">
-          <div class="flex align-items-center">
-            <img :alt="slotProps.option.courseName" :src="slotProps.option.image" class="mr-2"
-              style="width: 55px; height: 30px" />
-            <div class="text-900 font-bold text-lg">{{ slotProps.option.courseName }}</div>
-          </div>
-        </template>
-      </Dropdown>
-    </div>
-    <div class="col-12 grid p-0 m-0">
-      <div class="item-flex col-6 sm:col-4 md:col-4 lg:col-4 xl:col-4 py-0 px-0 m-0 px-2"
-        v-for="(card, index) in cardData">
-        <AttendanceCalendar :key="index" :card="card" />
+      <div class="col-12 grid p-0 m-0">
+        <div class="item-flex col-6 sm:col-4 md:col-4 lg:col-4 xl:col-4 py-0 px-0 m-0 px-2"
+          v-for="(card, index) in cardData">
+          <AttendanceCalendar :key="index" :card="card" />
+        </div>
       </div>
-    </div>
-    <Paginator :rows="10" :totalRecords="120" :template="{
-      '992px': 'CurrentPageReport PrevPageLink  NextPageLink',
-      default: 'CurrentPageReport PrevPageLink PageLinks NextPageLink',
-    }" currentPageReportTemplate='Showing data {first} to {last} of {totalRecords} entries' class="col-12" />
+      <Paginator :rows="10" :totalRecords="120" :template="{
+        '992px': 'CurrentPageReport PrevPageLink  NextPageLink',
+        default: 'CurrentPageReport PrevPageLink PageLinks NextPageLink',
+      }" currentPageReportTemplate='Showing data {first} to {last} of {totalRecords} entries' class="col-12" />
+    </section>
   </section>
 </template>
 

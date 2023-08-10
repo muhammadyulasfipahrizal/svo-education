@@ -1,38 +1,41 @@
 <template>
-  <section class="grid overflow-hidden flex-column md:flex-row pl-4 pr-4 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2">
-    <div class="flex flex-row align-items-center col-12">
-      <h1 class="text-4xl font-bold ">Guest Progress</h1>
-    </div>
-    <div class="col-12">
-      <DataTable :value="guestProgressList" class="shadow-2" selectionMode="single" :selection="selectedCourse"
-        @rowSelect="handleRowSelect">
-        <Column field="dealerName">
-          <template #header>
-            <div class="flex justify-content-center w-full">
-              <p class="header-text">Dealer Name</p>
-            </div>
-          </template>
-          <template #body="{ data }">
-            <div class="grid align-items-center w-full col-offset-3">
-              <img :src="data.image" class="data-image border-circle col-6 text-right" />
-              <p class="col-6 data-text">{{ data.code }} ({{ data.name }})</p>
-            </div>
-          </template>
-        </Column>
-        <Column field="recruited">
-          <template #header>
-            <div class="flex justify-content-center w-full">
-              <p class="header-text">Guest Recruited</p>
-            </div>
-          </template>
-          <template #body="{ data }">
-            <div class="flex justify-content-center w-full">
-              <p class="data-text">{{ data.recruited }}</p>
-            </div>
-          </template>
-        </Column>
-      </DataTable>
-    </div>
+  <section class="px-2 sm:px-5">
+    <section
+      class="grid overflow-hidden flex-column md:flex-row pl-4 pr-4 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2">
+      <div class="flex flex-row align-items-center col-12">
+        <h1 class="text-4xl font-bold ">Guest Progress</h1>
+      </div>
+      <div class="col-12">
+        <DataTable :value="guestProgressList" class="shadow-2" selectionMode="single" :selection="selectedCourse"
+          @rowSelect="handleRowSelect">
+          <Column field="dealerName">
+            <template #header>
+              <div class="flex justify-content-center w-full">
+                <p class="header-text">Dealer Name</p>
+              </div>
+            </template>
+            <template #body="{ data }">
+              <div class="grid align-items-center w-full col-offset-3">
+                <img :src="data.image" class="data-image border-circle col-6 text-right" />
+                <p class="col-6 data-text">{{ data.code }} ({{ data.name }})</p>
+              </div>
+            </template>
+          </Column>
+          <Column field="recruited">
+            <template #header>
+              <div class="flex justify-content-center w-full">
+                <p class="header-text">Guest Recruited</p>
+              </div>
+            </template>
+            <template #body="{ data }">
+              <div class="flex justify-content-center w-full">
+                <p class="data-text">{{ data.recruited }}</p>
+              </div>
+            </template>
+          </Column>
+        </DataTable>
+      </div>
+    </section>
   </section>
 </template>
 

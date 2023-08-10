@@ -68,100 +68,103 @@ onMounted(() => {
 </script>
 
 <template>
-    <section
-        class="grid overflow-hidden flex-column md:flex-row pl-3 pr-3 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2 py-2">
-        <h1 class="text-900 font-bold text-3xl px-2 md:px-3">Student Grades</h1>
-        <div class="px-2 md:px-3 col-12 flex flex-column gap-2 my-2">
-            <!-- FILTER -->
-            <div class="card flex justify-content-start">
-                <Dropdown v-model="selectedCourse" :options="courseList" optionLabel="name" placeholder="Select a course"
-                    class="w-full md:w-14rem hidden md:flex">
-                    <template #value="slotProps">
-                        <div v-if="slotProps.value" class="flex align-items-center">
-                            <img :alt="slotProps.value.name" :src="slotProps.value.image" class="mr-2"
-                                style="width: 53px" />
-                            <div class="text-900 font-bold text-lg">{{ slotProps.value.name }}</div>
-                        </div>
-                        <span v-else>
-                            {{ slotProps.placeholder }}
-                        </span>
-                    </template>
-                    <template #option="slotProps">
-                        <div class="flex align-items-center">
-                            <img :alt="slotProps.option.name" :src="slotProps.option.image" class="mr-2"
-                                style="width: 53px" />
-                            <div class="text-900 font-bold text-lg">{{ slotProps.option.name }}</div>
-                        </div>
-                    </template>
-                </Dropdown>
-            </div>
-            <div class="grid w-full px-2 md:px-3 align-items-center">
-                <div
-                    class="col-10 md:col-11 lg:col-10 xl:col-10 grid align-items-center filter-search align-items-center py-0 my-2">
-                    <Button label="Filter" icon="pi pi-filter-fill" size="small"
-                        class="filter-button col-2 md:col-3 xl:col-2" />
-                    <span class="p-input-icon-left col-10 md:col-6 xl:col-6 py-0">
-                        <i class="pi pi-search search-icon ml-2" />
-                        <InputText placeholder="Search by name" class="search-bar w-full p-inputtext-sm" />
-                    </span>
-                </div>
-                <Button label="DOWNLOAD " size="small" icon="pi pi-download"
-                    class="download-button col-2 flex text-right justify-content-center align-items-center md:col-1 lg:col-2 xl:col-2"></Button>
-            </div>
-
-            <DataTable :value="studentList" paginator :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]" sortMode="multiple"
-                tableStyle="min-width: 50rem" dataKey="id" v-model:selection="checkedInstructor" class="shadow-2">
-                <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
-                <Column field="name" header="Name">
-                    <template #body="value">
-                        <div class="flex gap-2 align-items-center">
-                            <img :src="value.data.student.image" alt="" style="width: 39px; height: 39px;" />
-                            <div class="flex gap-1 flex-column align-items-start">
-                                <h4 class="text-900 font-semibold">{{ value.data.student.name }}</h4>
-                                <p class="text-500 font-normal">
-                                    {{ value.data.student.email }}
-                                </p>
+    <section class="px-2 sm:px-5">
+        <section
+            class="grid overflow-hidden flex-column md:flex-row pl-3 pr-3 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2 py-2">
+            <h1 class="text-900 font-bold text-3xl px-2 md:px-3">Student Grades</h1>
+            <div class="px-2 md:px-3 col-12 flex flex-column gap-2 my-2">
+                <!-- FILTER -->
+                <div class="card flex justify-content-start">
+                    <Dropdown v-model="selectedCourse" :options="courseList" optionLabel="name"
+                        placeholder="Select a course" class="w-full md:w-14rem hidden md:flex">
+                        <template #value="slotProps">
+                            <div v-if="slotProps.value" class="flex align-items-center">
+                                <img :alt="slotProps.value.name" :src="slotProps.value.image" class="mr-2"
+                                    style="width: 53px" />
+                                <div class="text-900 font-bold text-lg">{{ slotProps.value.name }}</div>
                             </div>
-                        </div>
-                    </template>
-                </Column>
-                <Column field="course" header="Course" sortable>
-                    <template #body="value">
-                        <div class="flex gap-1 flex-column align-items-start">
-                            <h4 class="text-900 font-semibold">{{ value.data.courses[0].course.name }}</h4>
-                        </div>
-                    </template>
-                </Column>
-                <Column field="upline" header="Upline" sortable>
-                    <template #body="value">
-                        <div class="flex gap-1 flex-column align-items-start">
-                            <h4 class="text-900 font-semibold">{{ value.data.student.upline }}</h4>
-                        </div>
-                    </template>
-                </Column>
-                <Column field="branch" header="Branch" sortable>
-                    <template #body="value">
-                        <div class="flex gap-1 flex-column align-items-start">
-                            <h4 class="text-900 font-semibold">{{ value.data.student.city_branch }}</h4>
-                        </div>
-                    </template>
-                </Column>
-                <Column field="profile" header="Profile">
-                    <template #body="value">
-                        <Button class="btn-orange" @click="onSelectProfile(value.data)" size="small">
-                            <span class="text-md font-bold">Profile</span>
-                        </Button>
-                    </template>
-                </Column>
-                <Column field="message" header="Message">
-                    <template #body="value">
-                        <Button link size="small" @click="$router.push('/admin/message/student/' + value.data.id)">
-                            <img src="/assets/icon/reply.png" class="w-2rem" />
-                        </Button>
-                    </template>
-                </Column>
-            </DataTable>
-        </div>
+                            <span v-else>
+                                {{ slotProps.placeholder }}
+                            </span>
+                        </template>
+                        <template #option="slotProps">
+                            <div class="flex align-items-center">
+                                <img :alt="slotProps.option.name" :src="slotProps.option.image" class="mr-2"
+                                    style="width: 53px" />
+                                <div class="text-900 font-bold text-lg">{{ slotProps.option.name }}</div>
+                            </div>
+                        </template>
+                    </Dropdown>
+                </div>
+                <div class="grid w-full px-2 md:px-3 align-items-center">
+                    <div
+                        class="col-10 md:col-11 lg:col-10 xl:col-10 grid align-items-center filter-search align-items-center py-0 my-2">
+                        <Button label="Filter" icon="pi pi-filter-fill" size="small"
+                            class="filter-button col-2 md:col-3 xl:col-2" />
+                        <span class="p-input-icon-left col-10 md:col-6 xl:col-6 py-0">
+                            <i class="pi pi-search search-icon ml-2" />
+                            <InputText placeholder="Search by name" class="search-bar w-full p-inputtext-sm" />
+                        </span>
+                    </div>
+                    <Button label="DOWNLOAD " size="small" icon="pi pi-download"
+                        class="download-button col-2 flex text-right justify-content-center align-items-center md:col-1 lg:col-2 xl:col-2"></Button>
+                </div>
+
+                <DataTable :value="studentList" paginator :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]"
+                    sortMode="multiple" tableStyle="min-width: 50rem" dataKey="id" v-model:selection="checkedInstructor"
+                    class="shadow-2">
+                    <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
+                    <Column field="name" header="Name">
+                        <template #body="value">
+                            <div class="flex gap-2 align-items-center">
+                                <img :src="value.data.student.image" alt="" style="width: 39px; height: 39px;" />
+                                <div class="flex gap-1 flex-column align-items-start">
+                                    <h4 class="text-900 font-semibold">{{ value.data.student.name }}</h4>
+                                    <p class="text-500 font-normal">
+                                        {{ value.data.student.email }}
+                                    </p>
+                                </div>
+                            </div>
+                        </template>
+                    </Column>
+                    <Column field="course" header="Course" sortable>
+                        <template #body="value">
+                            <div class="flex gap-1 flex-column align-items-start">
+                                <h4 class="text-900 font-semibold">{{ value.data.courses[0].course.name }}</h4>
+                            </div>
+                        </template>
+                    </Column>
+                    <Column field="upline" header="Upline" sortable>
+                        <template #body="value">
+                            <div class="flex gap-1 flex-column align-items-start">
+                                <h4 class="text-900 font-semibold">{{ value.data.student.upline }}</h4>
+                            </div>
+                        </template>
+                    </Column>
+                    <Column field="branch" header="Branch" sortable>
+                        <template #body="value">
+                            <div class="flex gap-1 flex-column align-items-start">
+                                <h4 class="text-900 font-semibold">{{ value.data.student.city_branch }}</h4>
+                            </div>
+                        </template>
+                    </Column>
+                    <Column field="profile" header="Profile">
+                        <template #body="value">
+                            <Button class="btn-orange" @click="onSelectProfile(value.data)" size="small">
+                                <span class="text-md font-bold">Profile</span>
+                            </Button>
+                        </template>
+                    </Column>
+                    <Column field="message" header="Message">
+                        <template #body="value">
+                            <Button link size="small" @click="$router.push('/admin/message/student/' + value.data.id)">
+                                <img src="/assets/icon/reply.png" class="w-2rem" />
+                            </Button>
+                        </template>
+                    </Column>
+                </DataTable>
+            </div>
+        </section>
     </section>
 
     <!-- MODAL Profile -->
