@@ -3,7 +3,7 @@
     <section
       class="grid overflow-hidden flex-column md:flex-row pl-4 pr-4 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2">
       <div class="flex flex-row align-items-center col-12">
-        <h1 class="text-4xl font-bold ">Guest Progress</h1>
+        <h1 class="title-head">Guest Progress</h1>
       </div>
       <div class="col-12">
         <DataTable :value="guestProgressList" class="shadow-2" selectionMode="single" :selection="selectedCourse"

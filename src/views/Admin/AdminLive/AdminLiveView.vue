@@ -139,7 +139,7 @@ const instructorNew = ref();
 <template>
   <section class="px-2 sm:px-5">
     <section class="grid pl-4 pr-4 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2 py-2 w-full py-3">
-      <h1>Live video for you</h1>
+      <h1 class="title-head py-2">Live video for you</h1>
       <div class="border-1 surface-border surface-0 mb-3 w-full" @click="openModal(null)">
         <div v-if="!videoUrls[0]" class="p-5 flex justify-content-center align-items-center h-30rem cursor-pointer">
           <i class="pi pi-fw pi-plus-circle upload-icon"></i>

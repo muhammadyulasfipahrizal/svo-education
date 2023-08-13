@@ -71,7 +71,7 @@ onMounted(() => {
     <section class="px-2 sm:px-5">
         <section
             class="grid overflow-hidden flex-column md:flex-row pl-3 pr-3 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2 py-2">
-            <h1 class="text-900 font-bold text-3xl px-2 md:px-3">Student Grades</h1>
+            <h1 class="title-head px-2 md:px-3">Student Grades</h1>
             <div class="px-2 md:px-3 col-12 flex flex-column gap-2 my-2">
                 <!-- FILTER -->
                 <div class="card flex justify-content-start">

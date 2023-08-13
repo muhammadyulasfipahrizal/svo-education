@@ -105,7 +105,7 @@ const selectedGuest = ref();
       class="grid overflow-hidden flex-column md:flex-row pl-4 pr-4 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2">
       <div class="col-12 flex flex-row align-items-center my-2">
         <i class="pi pi-chevron-left mr-3 back-arrow cursor-pointer" @click="$router.push('/admin/progress/guest')"></i>
-        <h1 class="text-4xl font-bold ">Guest Progress</h1>
+        <h1 class="title-head">Guest Progress</h1>
       </div>
       <div class="grid col-12">
         <div class="col-12">
