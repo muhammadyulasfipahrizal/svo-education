@@ -246,7 +246,7 @@ export default {
                     <div>
                         <VirtualScroller :items="activitiesList" :itemSize="50" style=" height: 537px">
                             <template v-slot:item="{ item }">
-                                <Card class="border-1 surface-border border-round mb-2 p-0 m-0 card">
+                                <Card class="border-1 shadow-0 border-round mb-2 p-0 m-0 card mr-3" style="box-shadow: none;"> 
                                     <template #content>
                                         <p class="text-lg font-bold text-orange-400">{{ item.start_time }} - {{
                                             item.end_time }}</p>

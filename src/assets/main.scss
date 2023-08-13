@@ -36,7 +36,35 @@ a,
 
 .item-flex {
   margin-right: 5px;
+
   @media screen and (min-width: 992px) {
     flex: 1 0 18%;
   }
+}
+
+.p-dialog {
+
+  .p-dialog-header {
+    border: 0 !important;
+    padding: 10px 10px 0 10px !important;
+    color: var(--font-1, #001125);
+    font-family: Inter;
+    font-size: 35px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 160%;
+  }
+
+  .p-dialog-content {
+    padding: 0 10px !important;
+  }
+}
+
+.title-head {
+  color: #000;
+  font-family: Inter;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 160%;
 }

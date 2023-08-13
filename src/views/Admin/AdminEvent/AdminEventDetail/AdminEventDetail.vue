@@ -69,14 +69,14 @@ onMounted(() => {
 
 const isLargeScreen = ref(false);
 const attributes = ref([
-  {
-    highlight: {
-      color: 'gray',
+    {
+        highlight: {
+            color: 'gray',
+        },
+        dates: [
+            [new Date(2022, 10, 7), new Date(2022, 10, 9)],
+        ],
     },
-    dates: [
-      [new Date(2022, 10, 7), new Date(2022, 10, 9)],
-    ],
-  },
 ]);
 
 watchEffect(() => {
@@ -98,24 +98,23 @@ const decrementTicketCount = () => ticketCount.value - 1 < 1 ? ticketCount.value
 <template>
     <section class="grid flex-column md:flex-row pr-2 pl-2 md:pl-2 lg:pl-0 xl:pl-0">
         <div class="event-list col-12 md:col-8 lg:col-8">
-            <div class="flex gap-1 align-items-center">
+            <div class="flex gap-1 align-items-center px-3">
                 <Button @click="$router.push('/admin/event')" link class="btn-back" size="small" icon="pi pi-angle-left" />
-                <h1 class="font-bold">Ongoing Event</h1>
+                <h1 class="title-head">Ongoing Event</h1>
             </div>
             <div class="flex gap-2 flex-column md:w-full ">
                 <Carousel :value="eventList" :numVisible="1" :numScroll="1">
                     <template #item="value">
                         <div class="flex flex-row">
-                            <img 
-                            :src="value.data.image"
-                            alt="certifications"
-                            class="w-full"
-                            >
+                            <img :src="value.data.image" alt="certifications" class="w-full">
                         </div>
                     </template>
                 </Carousel>
-                <InputText v-model="title" class="title text-2xl font-bold" />
-                <Textarea v-model="description" rows="10" />
+                <InputText v-model="title" class="title text-2xl font-bold mx-3" />
+                <Textarea v-model="description" rows="10" class="mx-3" />
+            </div>
+            <div class="col-12 px-3">
+                <Button label="SAVE" @click="$router.push('/admin/event')" class="w-full  btn-save"></Button>
             </div>
         </div>
 
@@ -123,7 +122,8 @@ const decrementTicketCount = () => ticketCount.value - 1 < 1 ? ticketCount.value
             <div class="calendar">
                 <h1 class="font-bold">Calendar</h1>
                 <div class="flex">
-                    <VDatePicker v-model.range="attributes" disabled mode="date" class="datepicker w-full" :attributes="attributes"/>
+                    <VDatePicker v-model.range="attributes" disabled mode="date" class="datepicker w-full"
+                        :attributes="attributes" />
                 </div>
             </div>
 
@@ -131,7 +131,7 @@ const decrementTicketCount = () => ticketCount.value - 1 < 1 ? ticketCount.value
             <h1 class="font-bold mb-2 mt-3">Event Information</h1>
             <div>
                 <div class="w-full flex flex-column align-items-center ">
-                    <img src="/assets/img/ticket.png" alt="ticket" class="mb-3" style="width: 185px"/>
+                    <img src="/assets/img/ticket.png" alt="ticket" class="mb-3" style="width: 185px" />
                     <div class="grid">
                         <div class="col-7">
                             <InputText v-model="ticketType" class="border-noround w-full font-bold" />
@@ -155,36 +155,34 @@ const decrementTicketCount = () => ticketCount.value - 1 < 1 ? ticketCount.value
                 <div class="grid py-2">
                     <span class="p-input-icon-left col-12 md:col-6 lg:col-6 xl:col-6 py-1">
                         <i class="pi pi-map-marker ml-1"></i>
-                        <InputText class="p-inputtext-sm w-full" type="text" v-model="location" placeholder="Location" 
-                        style="background: #D9D9D9; height: 35px;"/>
+                        <InputText class="p-inputtext-sm w-full" type="text" v-model="location" placeholder="Location"
+                            style="background: #D9D9D9; height: 35px;" />
                     </span>
                     <span class="p-input-icon-left col-12 md:col-6 lg:col-6 xl:col-6 py-1">
                         <i class="pi pi-calendar ml-1"></i>
                         <InputText class="p-inputtext-sm w-full" v-model="calendar" placeholder="Calendar"
-                            @click="showCalendar" style="background: #D9D9D9; height: 35px;"/>
+                            @click="showCalendar" style="background: #D9D9D9; height: 35px;" />
                         <Calendar v-model="calendar" id="calendar" placeholder="Calendars"
-                            @date-select="onDateSelectCalendarRef" class="calendarRef" ref="calendarRef" 
-                            style="background: #D9D9D9; height: 35px;"/>
+                            @date-select="onDateSelectCalendarRef" class="calendarRef" ref="calendarRef"
+                            style="background: #D9D9D9; height: 35px;" />
                     </span>
                     <span class="p-input-icon-left col-12 md:col-6 lg:col-6 xl:col-6 py-1">
                         <i class="pi pi-clock ml-1"></i>
-                        <InputText class="p-inputtext-sm w-full" v-model="time" placeholder="Time"
-                            @click="showTimepicker" style="background: #D9D9D9; height: 35px;"/>
+                        <InputText class="p-inputtext-sm w-full" v-model="time" placeholder="Time" @click="showTimepicker"
+                            style="background: #D9D9D9; height: 35px;" />
                         <Calendar id="time-picker" placeholder="Time" @date-select="onTimeSelect" timeOnly class="timeRef"
                             ref="timeRef" />
                     </span>
                     <span class="p-input-icon-left col-12 md:col-6 lg:col-6 xl:col-6 py-1">
                         <i class="pi pi-ticket ml-1"></i>
                         <InputText class="p-inputtext-sm w-full" type="text" v-model="ticketPrice"
-                            placeholder="Ticket price" style="background: #D9D9D9; height: 35px;"/>
+                            placeholder="Ticket price" style="background: #D9D9D9; height: 35px;" />
                     </span>
                 </div>
 
-                <Button class="btn-add my-2 text-center justify-content-center">Add to cart for RM {{ ticketPrice }}</Button>
+                <Button class="btn-add my-2 text-center justify-content-center">Add to cart for RM {{ ticketPrice
+                }}</Button>
             </div>
-        </div>
-        <div class="col-12 pr-2">
-            <Button label="SAVE" @click="$router.push('/admin/event')" class="w-full  btn-save"></Button>
         </div>
     </section>
 </template>
@@ -200,7 +198,7 @@ const decrementTicketCount = () => ticketCount.value - 1 < 1 ? ticketCount.value
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
-.calendar .vc-day { 
+.calendar .vc-day {
     pointer-events: none
 }
 

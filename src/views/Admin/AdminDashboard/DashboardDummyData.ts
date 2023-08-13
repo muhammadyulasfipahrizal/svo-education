@@ -89,9 +89,37 @@ export const activitiesDummyData: Activities[] = [
     },
     {
         id: 2,
-        start_time: '08:00',
+        start_time: '09:00',
         end_time: '10:00',
-        activity: 'Plan CRM training sessions'
+        activity: 'Conduct customer feedback surveys'
+
+    },
+    {
+        id: 3,
+        start_time: '10:00',
+        end_time: '12:00',
+        activity: 'Set reminders for contract renewals'
+
+    },
+    {
+        id: 4,
+        start_time: '13:00',
+        end_time: '14:00',
+        activity: 'Client meeting'
+
+    },
+    {
+        id: 5,
+        start_time: '14:00',
+        end_time: '15:00',
+        activity: 'Find supplier for updates'
+
+    },
+    {
+        id: 2,
+        start_time: '09:00',
+        end_time: '10:00',
+        activity: 'Conduct customer feedback surveys'
 
     },
     {
@@ -102,10 +130,52 @@ export const activitiesDummyData: Activities[] = [
 
     },
     {
+        id: 2,
+        start_time: '09:00',
+        end_time: '10:00',
+        activity: 'Conduct customer feedback surveys'
+
+    },
+    {
         id: 1,
         start_time: '08:00',
         end_time: '10:00',
         activity: 'Plan CRM training sessions'
+
+    },
+    {
+        id: 2,
+        start_time: '09:00',
+        end_time: '10:00',
+        activity: 'Conduct customer feedback surveys'
+
+    },
+    {
+        id: 1,
+        start_time: '08:00',
+        end_time: '10:00',
+        activity: 'Plan CRM training sessions'
+
+    },
+    {
+        id: 2,
+        start_time: '09:00',
+        end_time: '10:00',
+        activity: 'Conduct customer feedback surveys'
+
+    },
+    {
+        id: 1,
+        start_time: '08:00',
+        end_time: '10:00',
+        activity: 'Plan CRM training sessions'
+
+    },
+    {
+        id: 2,
+        start_time: '09:00',
+        end_time: '10:00',
+        activity: 'Conduct customer feedback surveys'
 
     },
 ]
