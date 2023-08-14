@@ -4,7 +4,7 @@ export const instructorDummyData: Instructor[] = [
     {
         id: 1,
         name: "John Smith",
-        image: '/assets/img/instructor.png',
+        image: '/assets/img/instructor-2.png',
         email: "john.smith@example.com",
         work_as: "Assistant Professor",
         department: "Computer Science",
@@ -40,7 +40,7 @@ export const instructorDummyData: Instructor[] = [
     {
         id: 3,
         name: "David Brown",
-        image: '/assets/img/instructor.png',
+        image: '/assets/img/instructor-2.png',
         email: "david.brown@example.com",
         work_as: "Associate Professor",
         department: "Physics",
@@ -76,7 +76,7 @@ export const instructorDummyData: Instructor[] = [
     {
         id: 2,
         name: "Michael Wilson",
-        image: '/assets/img/instructor.png',
+        image: '/assets/img/instructor-2.png',
         email: "michael.wilson@example.com",
         work_as: "Assistant Professor",
         department: "Biology",
@@ -112,7 +112,7 @@ export const instructorDummyData: Instructor[] = [
     {
         id: 2,
         name: "Daniel Johnson",
-        image: '/assets/img/instructor.png',
+        image: '/assets/img/instructor-2.png',
         email: "daniel.johnson@example.com",
         work_as: "Associate Professor",
         department: "Economics",

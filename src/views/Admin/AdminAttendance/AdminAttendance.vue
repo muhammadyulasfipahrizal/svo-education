@@ -1,8 +1,8 @@
 <template>
-  <section class="px-2 sm:px-5">
-    <section class="grid overflow-hidden flex-column md:flex-row px-2 md:px-2 lg:px-2 xl:px-2 py-2">
+  <section class="px-2 sm:px-4">
+    <section class="grid overflow-hidden flex-column md:flex-row px-2 md:px-0 lg:px-0 xl:px-0 py-2">
       <h1 class="text-900 font-bold text-3xl col-12">My Attendance</h1>
-      <div class="col-12 grid align-items-center filter-search px-3 lg:px-0">
+      <div class="col-12 grid align-items-center filter-search px-3 lg:px-2">
         <Button label="Filter" icon="pi pi-filter-fill" size="small" class="filter-button col-3 md:col-2" />
         <span class="p-input-icon-left col-5">
           <i class="pi pi-search search-icon pl-1" />
@@ -70,8 +70,8 @@
         </Dropdown>
       </div>
       <div class="col-12 grid p-0 m-0">
-        <div class="item-flex col-6 sm:col-4 md:col-4 lg:col-4 xl:col-4 py-0 px-0 m-0 px-2"
-          v-for="(card, index) in cardData">
+        <div class="item-flex col-6 sm:col-4 md:col-4 lg:col-4 xl:col-4 py-0 px-0 m-0 px-1"
+          style="margin-left: -10px; max-width: 220px;" v-for="(card, index) in cardData">
           <AttendanceCalendar :key="index" :card="card" />
         </div>
       </div>
