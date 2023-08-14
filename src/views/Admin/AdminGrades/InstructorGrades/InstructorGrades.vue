@@ -52,89 +52,91 @@ const onSelectProfile = (v: Instructor) => {
                     sortMode="multiple" v-model:selection="checkedInstructor" class="shadow-2 p-datatable-sm"
                     tableStyle="min-width: 80rem">
                     <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
-                    <Column field="name">
+                    <Column field="name" class="w-2">
                         <template #header>
-                            <div class="flex justify-content-center align-items-center w-full">
-                                <p class="font-bold text-lg">Name</p>
+                            <div class="flex justify-content-center align-items-center">
+                                <p class="font-bold text-sm">Name</p>
                             </div>
                         </template>
                         <template #body="value">
                             <div class="flex gap-2 align-items-center">
                                 <img :src="value.data.image" alt="" style="width: 39px; height: 39px;" />
                                 <div class="flex flex-column align-items-start">
-                                    <h4 class="p-0 text-900 font-semibold">{{ value.data.name }}</h4>
-                                    <p class="p-0 text-500 font-normal">
+                                    <h4 class="p-0 text-900 font-semibold text-sm">{{ value.data.name }}</h4>
+                                    <p class="p-0 text-500 font-normal text-sm" style="color: #808081">
                                         {{ value.data.email }}
                                     </p>
                                 </div>
                             </div>
                         </template>
                     </Column>
-                    <Column field="course" sortable class="w-4">
+                    <Column field="course" sortable class="w-2">
                         <template #header>
                             <div class="flex justify-content-center align-items-center w-full">
-                                <p class="font-bold text-lg">Course</p>
+                                <p class="font-bold text-sm">Course</p>
                             </div>
                         </template>
                         <template #body="value">
                             <div class="flex gap-1 flex-column align-items-start">
-                                <h4 class="text-900 font-semibold">{{ value.data.work_as }}</h4>
-                                <p class="text-500 font-normal">
+                                <h4 class="p-0 text-900 font-semibold text-sm">{{ value.data.work_as }}</h4>
+                                <p class="p-0 text-500 font-normal text-sm" style="color: #808081">
                                     {{ value.data.rating.rating }}/5 ({{ value.data.rating.total_rating }} ratings)
                                 </p>
                             </div>
                         </template>
                     </Column>
-                    <Column field="department" sortable class="w-3">
+                    <Column field="department" sortable class="w-2">
                         <template #header>
                             <div class="flex justify-content-center align-items-center w-full">
-                                <p class="font-bold text-lg">Department</p>
+                                <p class="font-bold text-sm">Department</p>
                             </div>
                         </template>
                         <template #body="value">
-                            <div class="flex gap-1 flex-column align-items-center">
-                                <p class="text-lg font-bold">
+                            <div class="flex gap-1 flex-column align-items-center justify-content-center">
+                                <p class="text-sm font-bold">
                                     {{ value.data.department }}
                                 </p>
                             </div>
                         </template>
                     </Column>
-                    <Column field="quantity" sortable class="w-3">
+                    <Column field="quantity" sortable class="w-2">
                         <template #header>
                             <div class="flex justify-content-center align-items-center w-full">
-                                <p class="font-bold text-lg">Would take again</p>
+                                <p class="font-bold text-sm">Would take again</p>
                             </div>
                         </template>
                         <template #body="value">
                             <div class="flex gap-1 flex-column align-items-center">
-                                <h4 class="text-900 font-bold">{{ parseFloat(((value.data.rating.ratings.helpful +
+                                <h4 class="text-900 font-bold text-sm">{{ parseFloat(((value.data.rating.ratings.helpful +
                                     value.data.rating.ratings.easiness + value.data.rating.ratings.clarity) /
                                     3 + 95).toString()).toFixed(2) }}%
                                 </h4>
-                                <p class="text-500 font-normal">
+                                <p class="text-500 font-normal text-sm" style="color: #808081">
                                     {{ value.data.rating.total_vote }} <span class="text-500">voted</span>
                                 </p>
                             </div>
                         </template>
                     </Column>
-                    <Column field="profile" class="w-full" style="min-width: 5rem;">
+                    <Column field="profile" class="w-2rem" style="min-width: 2rem;">
                         <template #header>
                             <div class="flex justify-content-center align-items-center w-full">
-                                <p class="font-bold text-lg">Profile</p>
+                                <p class="font-bold text-sm">Profile</p>
                             </div>
                         </template>
                         <template #body="value">
-                            <Button class="w-full btn-orange" @click="onSelectProfile(value.data)">
-                                <span class="text-lg font-semibold">
-                                    Profile
-                                </span>
-                            </Button>
+                            <div class="flex justify-content-center">
+                                <Button class="w-5rem btn-orange" @click="onSelectProfile(value.data)">
+                                    <span class="text-sm font-semibold">
+                                        Profile
+                                    </span>
+                                </Button>
+                            </div>
                         </template>
                     </Column>
-                    <Column field="message">
+                    <Column field="message" class="w-2rem" style="min-width: 5rem;">
                         <template #header>
                             <div class="flex justify-content-center align-items-center w-full">
-                                <p class="font-bold text-lg">Message</p>
+                                <p class="font-bold text-sm">Message</p>
                             </div>
                         </template>
                         <template #body="value">
