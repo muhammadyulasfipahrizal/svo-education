@@ -214,8 +214,21 @@
           </router-link>
           <ul
             class="list-none py-0 pl-3 pr-0 m-0 overflow-y-hidden transition-all transition-duration-400 transition-ease-in-out"
-            :class="{ hidden: !subMenuState['grades'] }">
+            :class="{ hidden: !subMenuState['profiles'] }">
+            <li>
+              <router-link to="/admin/profile/instructors" class="grid gap-2 menuitem-link"
+                :class="{ active: isActive('/admin/profile/instructors') }">
+                <span class="menuitem-text">Instructors</span>
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/admin/profile/students" class="grid gap-2 menuitem-link"
+                :class="{ active: isActive('/admin/profile/students') }">
+                <span class="menuitem-text">Students</span>
+              </router-link>
+            </li>
           </ul>
+          
         </li>
 
       </ul>

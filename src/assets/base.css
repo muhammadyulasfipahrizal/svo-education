@@ -122,3 +122,22 @@ body {
   background: #E96853 !important;
   border: none !important;
 }
+
+.btn-primary {
+  display: flex;
+  height: 45px;
+  padding: 8px 28px;
+  justify-content: center;
+  align-items: center;
+  color: #FFF;
+  text-align: center;
+  font-size: 20px;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-transform: uppercase;
+  border-radius: 4px;
+  background: #00C0DD !important;
+  border: none !important;
+}

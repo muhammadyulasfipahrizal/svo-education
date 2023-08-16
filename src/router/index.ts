@@ -147,6 +147,23 @@ const router = createRouter({
         },
       ]
     },
+    // Profile Instructor
+    {
+      path: '/admin/profile/instructors',
+      name: 'admin-profile-instructors',
+      component: () => import('../views/Admin/AdminProfile/Instructors/AdminProfileInstructors.vue'),
+      meta: {
+        pageName: 'Profile'
+      }
+    },
+    {
+      path: '/admin/profile/instructors/:id',
+      name: 'admin-profile-instructors-view',
+      component: () => import('../views/Admin/AdminProfile/Instructors/AdminProfileInstuctorView.vue'),
+      meta: {
+        pageName: 'Profile'
+      }
+    },
     {
       path: '/dashboard/calander',
       name: 'admin-dashboard-calander',
@@ -167,7 +184,6 @@ const router = createRouter({
       name: 'admin-dashboard-settings',
       component: () => import('../views/Admin/AdminDashboard/DashboardSettings/DashboardSettings.vue'),
     },
-
   ]
 })
 
