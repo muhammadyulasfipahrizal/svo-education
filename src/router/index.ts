@@ -147,6 +147,26 @@ const router = createRouter({
         },
       ]
     },
+    {
+      path: '/dashboard/calander',
+      name: 'admin-dashboard-calander',
+      component: () => import('../views/Admin/AdminDashboard/DashboardCalander/DasboardCalander.vue'),
+    },
+    {
+      path: '/dashboard/cart',
+      name: 'admin-dashboard-cart',
+      component: () => import('../views/Admin/AdminDashboard/DashboardCart/DashboardCart.vue'),
+    },
+    {
+      path: '/dashboard/cart/checkout',
+      name: 'admin-dashboard-cart-checkout',
+      component: () => import('../views/Admin/AdminDashboard/DashboardCart/CartCheckout/CartChekout.vue'),
+    },
+    {
+      path: '/dashboard/settings',
+      name: 'admin-dashboard-settings',
+      component: () => import('../views/Admin/AdminDashboard/DashboardSettings/DashboardSettings.vue'),
+    },
 
   ]
 })

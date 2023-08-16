@@ -5,8 +5,21 @@
       <div class="flex justify-content-between mt-2 mx-5 align-items-center surface-0 surface-border relative md:static">
         <div class="flex">
           <div class="card flex justify-content-center">
-            <Dropdown v-model="selectedFilter" :options="filterData" optionLabel="name" placeholder="FILTER"
-              class="w-full md:w-10rem filter-toggle"></Dropdown>
+
+              <Dropdown v-model="selectedFilter" :options="filterData" optionLabel="label" 
+                optionGroupLabel="label" optionGroupChildren="items" placeholder="FILTER" 
+                class="w-full md:w-10rem filter-toggle">
+                <template #optiongroup="slotProps">
+                        <div class="font-bold text-xl flex flex-row">{{ slotProps.option.label }}</div>
+                </template>
+                <template #option="slotProps">
+                  <div class="flex flex-row gap-2">
+                    <Checkbox :binary="true" />
+                    <div class="">{{ slotProps.option.label }}</div>
+                  </div>
+                </template>
+            </Dropdown>
+
           </div>
         </div>
         <ul
@@ -28,7 +41,7 @@
           <li>
             <div class="v-border"></div>
           </li>
-          <li><a
+          <li><a href="/dashboard/calander"
               class="flex p-3 md:px-3 md:py-2 align-items-center text-600 hover:text-900 hover:surface-100 font-medium border-round cursor-pointer transition-duration-150 transition-colors p-ripple">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 class="text-base md:text-2xl mr-2 md:mr-0">
@@ -38,7 +51,7 @@
               </svg>
               <span class="block md:hidden font-medium">Calendar</span><span class="p-ink" role="presentation"></span></a>
           </li>
-          <li><a
+          <li><a 
               class="flex p-3 md:px-3 md:py-2 align-items-center text-600 hover:text-900 hover:surface-100 font-medium border-round cursor-pointer transition-duration-150 transition-colors p-ripple">
               <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"
                 class="text-base md:text-2xl mr-2 md:mr-0 p-overlay-badge">
@@ -54,7 +67,8 @@
               <span class="block md:hidden font-medium">Notifications</span><span class="p-ink"
                 role="presentation"></span></a>
           </li>
-          <li><a
+
+          <li><a @click="toggleDekstop"
               class="flex p-3 md:px-3 md:py-2 align-items-center text-600 hover:text-900 hover:surface-100 font-medium border-round cursor-pointer transition-duration-150 transition-colors p-ripple">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"
                 class="text-base md:text-2xl mr-2 md:mr-0 p-overlay-badge">
@@ -62,11 +76,37 @@
                   d="M15.1767 11.1868H3.99387C3.78202 11.1868 3.57885 11.1027 3.42905 10.9528C3.27925 10.8029 3.19509 10.5997 3.19509 10.3878C3.19509 10.1759 3.27925 9.97261 3.42905 9.82276C3.57885 9.67291 3.78202 9.58872 3.99387 9.58872H12.3331C12.8672 9.58875 13.386 9.41029 13.8071 9.08166C14.2282 8.75304 14.5275 8.29309 14.6575 7.77486L15.9755 2.58895C16.0054 2.47102 16.008 2.34781 15.9831 2.22872C15.9581 2.10962 15.9064 1.9978 15.8317 1.90176C15.754 1.80326 15.6542 1.72445 15.5404 1.6717C15.4266 1.61895 15.302 1.59374 15.1767 1.59812H3.80216C3.63736 1.13183 3.33242 0.727943 2.92915 0.441831C2.52588 0.15572 2.04402 0.00138997 1.54962 0H0.798773C0.586925 0 0.383754 0.0841864 0.233955 0.234039C0.0841562 0.383892 0 0.587136 0 0.79906C0 1.01098 0.0841562 1.21423 0.233955 1.36408C0.383754 1.51393 0.586925 1.59812 0.798773 1.59812H1.54962C1.73209 1.5928 1.91087 1.65017 2.05621 1.76066C2.20154 1.87115 2.30466 2.02811 2.34839 2.20541L2.39632 2.58895L3.7782 7.9906C3.14265 8.01921 2.5445 8.29921 2.11533 8.769C1.68615 9.23879 1.46111 9.85988 1.48971 10.4957C1.51831 11.1314 1.79821 11.7298 2.26783 12.1591C2.73745 12.5885 3.35832 12.8136 3.99387 12.785H4.13764C4.00627 13.147 3.96406 13.5355 4.01458 13.9173C4.06509 14.2992 4.20685 14.6632 4.42785 14.9787C4.64885 15.2941 4.94258 15.5516 5.28416 15.7294C5.62575 15.9072 6.00513 16 6.39018 16C6.77524 16 7.15462 15.9072 7.4962 15.7294C7.83779 15.5516 8.13152 15.2941 8.35251 14.9787C8.57351 14.6632 8.71527 14.2992 8.76579 13.9173C8.81631 13.5355 8.77409 13.147 8.64272 12.785H10.5278C10.3965 13.147 10.3542 13.5355 10.4048 13.9173C10.4553 14.2992 10.597 14.6632 10.818 14.9787C11.039 15.2941 11.3328 15.5516 11.6743 15.7294C12.0159 15.9072 12.3953 16 12.7804 16C13.1654 16 13.5448 15.9072 13.8864 15.7294C14.228 15.5516 14.5217 15.2941 14.7427 14.9787C14.9637 14.6632 15.1055 14.2992 15.156 13.9173C15.2065 13.5355 15.1643 13.147 15.0329 12.785H15.1767C15.3885 12.785 15.5917 12.7008 15.7415 12.5509C15.8913 12.4011 15.9755 12.1978 15.9755 11.9859C15.9755 11.774 15.8913 11.5707 15.7415 11.4209C15.5917 11.271 15.3885 11.1868 15.1767 11.1868ZM14.3779 3.19624L13.1079 7.38332C13.0641 7.56061 12.961 7.71757 12.8157 7.82806C12.6703 7.93856 12.4916 7.99592 12.3091 7.9906H5.41568L4.21752 3.19624H14.3779ZM6.39018 14.3831C6.2322 14.3831 6.07777 14.3362 5.94641 14.2484C5.81505 14.1606 5.71267 14.0358 5.65221 13.8898C5.59176 13.7438 5.57594 13.5831 5.60676 13.4281C5.63758 13.2731 5.71366 13.1308 5.82537 13.019C5.93708 12.9073 6.0794 12.8311 6.23435 12.8003C6.3893 12.7695 6.5499 12.7853 6.69586 12.8458C6.84182 12.9063 6.96657 13.0087 7.05434 13.1401C7.14211 13.2715 7.18896 13.426 7.18896 13.584C7.18896 13.7959 7.1048 13.9992 6.955 14.149C6.8052 14.2989 6.60203 14.3831 6.39018 14.3831ZM12.7804 14.3831C12.6224 14.3831 12.468 14.3362 12.3366 14.2484C12.2052 14.1606 12.1029 14.0358 12.0424 13.8898C11.9819 13.7438 11.9661 13.5831 11.9969 13.4281C12.0278 13.2731 12.1038 13.1308 12.2155 13.019C12.3273 12.9073 12.4696 12.8311 12.6245 12.8003C12.7795 12.7695 12.9401 12.7853 13.086 12.8458C13.232 12.9063 13.3568 13.0087 13.4445 13.1401C13.5323 13.2715 13.5791 13.426 13.5791 13.584C13.5791 13.7959 13.495 13.9992 13.3452 14.149C13.1954 14.2989 12.9922 14.3831 12.7804 14.3831Z"
                   fill="black" />
               </svg>
-
               <span class="block md:hidden font-medium">Cart</span><span class="p-ink" role="presentation"></span></a>
           </li>
+
+          <OverlayPanel ref="toggleCartDekstop" style="width:425px" showCloseIcon > 
+            <Panel header="Header">
+              <div class="grid">
+                <p class="col-12 text-lg font-bold">Cart</p>
+                <div class="grid w-full align-items-center">
+                  <img src="/public/assets/img/course/ui-ux-design.png" alt="ui ux design course" 
+                     class="col-6" style="width: 200px; height: 128px;">
+                  <div class="col-6">
+                    <p class="text-xl font-bold">UI UX Designing</p>
+                    <p class="grey font-bold">by David Burn</p>
+                  </div>
+                </div>
+                <Divider class="p-0 m-0"/>
+                <div class="flex flex-row align-items-center gap-2 pt-2">
+                  <p class="text-2xl font-bold">Total: <span class="font-bold orange">
+                    RM 49.99 </span><span class="line-through light-grey">
+                      RM 69.99</span></p>
+                  <p class="font-bold cart-coupon">50% off</p>
+                </div>
+              </div>
+              <a href="/dashboard/cart">
+                <Button size="small" label="GO TO CART" class="w-full mt-2 btn-default" style="height: 40px;"/>
+              </a>
+            </Panel>
+          </OverlayPanel>
+
           <li class="border-top-1 surface-border md:border-top-none">
-            <a
+            <a href="/dashboard/settings"
               class="flex p-3 md:px-3 md:py-2 gap-1 align-items-center hover:surface-100 font-medium border-round cursor-pointer transition-duration-150 transition-colors p-ripple"><img
                 src="/assets/img/admin-profile-image.png" class="mr-3 md:mr-0" style="width: 32px; height: 32px;">
               <div class="block">
@@ -119,7 +159,7 @@
           </div>
           <ul
             class="list-right list-none p-0 m-0 hidden flex align-items-center select-none surface-section border-none surface-border right-0 top-100 shadow-none ">
-            <li><a
+            <li><a href="dashboard/calander"
                 class="flex px-3 py-2 align-items-center text-600 hover:text-900 hover:surface-100 font-medium border-round cursor-pointer transition-duration-150 transition-colors p-ripple"><i
                   class="pi pi-calendar text-2xl mr-2 mr-0"></i>
               </a>
@@ -129,11 +169,39 @@
                 <i class="pi pi-bell text-2xl mr-2 mr-0 p-overlay-badge"></i>
               </a>
             </li>
-            <li><a
+            <li><a @click="toggleMobile"
                 class="flex px-3 py-2 align-items-center text-600 hover:text-900 hover:surface-100 font-medium border-round cursor-pointer transition-duration-150 transition-colors p-ripple"><i
                   class="pi pi-shopping-cart text-2xl mr-2 mr-0 p-overlay-badge"></i>
               </a>
             </li>
+            <OverlayPanel ref="toggleCartMobile" style="width: 95vw" showCloseIcon > 
+              <Panel header="Header">
+                <div class="grid">
+                  <p class="col-12 text-lg font-bold">Cart</p>
+                  <div class="grid w-full align-items-center justify-content-center">
+                    <img src="/public/assets/img/course/ui-ux-design.png" alt="ui ux design course" 
+                       class="col-12">
+                    <div class="col-12 flex flex-column w-full align-items-center">
+                      <p class="text-4xl font-bold">UI UX Designing</p>
+                      <p class="text-2xl grey font-bold">by David Burn</p>
+                    </div>
+                  </div>
+                  <Divider class="p-0 m-0"/>
+                  <div class="flex flex-column w-full text-4xl justify-content-center align-items-center gap-1 pt-2">
+                    <p class="font-bold">Total:</p>
+                    <p class="font-bold orange">RM 49.99</p>
+                    <p class="line-through light-grey">RM 69.99</p>
+                    <div class="flex cart-coupon w-full justify-content-center ">
+                      <p class="text-2xl">50% off</p>
+                    </div>
+                    
+                  </div>
+                </div>
+                <a href="/dashboard/cart">
+                  <Button size="small" label="GO TO CART" class="w-full mt-2 btn-default" style="height: 50px;"/>
+                </a>
+              </Panel>
+            </OverlayPanel>
           </ul>
         </div>
 
@@ -151,12 +219,35 @@ import { ref, onMounted, watchEffect } from "vue";
 
 const selectedFilter = ref();
 const filterData = ref([
-  { name: 'New York', code: 'NY' },
-  { name: 'Rome', code: 'RM' },
-  { name: 'London', code: 'LDN' },
-  { name: 'Istanbul', code: 'IST' },
-  { name: 'Paris', code: 'PRS' }
+    {
+        label: 'Subject',
+        code: 'SU',
+        items: [
+            { label: 'Arts', value: 'Arts' },
+            { label: 'IT', value: 'IT' },
+            { label: 'Marketting', value: 'Marketting' },
+        ]
+    },
+    {
+        label: 'Level',
+        code: 'LE',
+        items: [
+            { label: 'Beginner', value: 'Beginner' },
+            { label: 'Intermediate', value: 'Intermediate' },
+            { label: 'Advanced', value: 'Advanced' },
+        ]
+    },
+    {
+        label: 'Time',
+        code: 'TI',
+        items: [
+            { label: '1 week', value: '1 week' },
+            { label: '1 month', value: '1 month' },
+            { label: '1 year', value: '1 year' },
+        ]
+    }
 ]);
+
 const search = ref();
 onMounted(() => {
 
@@ -183,6 +274,15 @@ watchEffect(() => {
     window.removeEventListener('resize', handleResize);
   };
 });
+
+const toggleCartMobile = ref();
+const toggleCartDekstop = ref();
+const toggleDekstop = (event: any) => {
+  toggleCartDekstop.value.toggle(event);
+}
+const toggleMobile = (event: any) => {
+  toggleCartMobile.value.toggle(event);
+}
 </script>
 
 <style scoped lang="scss">
@@ -211,6 +311,11 @@ watchEffect(() => {
     line-height: 19px;
     letter-spacing: 0em;
     text-align: left;
+  }
+
+  .p-dropdown-items {
+    display: flex;
+    flex-direction: row;
   }
 
   .p-dropdown-trigger svg path {
@@ -335,9 +440,41 @@ watchEffect(() => {
   background-color: #006785;
 }
 
+.grey {
+  color: #9F9F9F;
+}
+
+.light-grey {
+  color: #D9D9D9;
+}
+
+.orange {
+  color: #E26954;
+}
+
 .icon-angle-right {
   &::before {
     color: black;
   }
+}
+
+.cart-coupon {
+  background: #E26954;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+::v-deep(.p-button-label) {
+  font-weight: 500;
+}
+
+::v-deep(.p-overlaypanel) {
+  .p-overlaypanel-close {
+    top: 1rem;
+    right: 1rem;
+    background: white;
+    color: black;
+  } 
 }
 </style>
