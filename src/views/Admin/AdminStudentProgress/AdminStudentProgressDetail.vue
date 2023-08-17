@@ -423,7 +423,7 @@ const getBackgroundColor = (progress: number) => {
 
 <style lang="scss" scoped>
 :deep(.p-paginator) {
-  height: 50px;
+  height: 70px;
 }
 
 :deep(.p-paginator .p-paginator-pages .p-paginator-page) {

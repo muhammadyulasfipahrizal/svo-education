@@ -108,26 +108,71 @@ const courseList = ref(courseDataMock);
 const cardData = ref([
   {
     label: 'P',
-    name: 'jackson',
-    currentDay: 'Day 5',
-    progress: 20,
-    attendance: 4,
-    percent: 20,
+    name: 'Aaron Anderson',
+    currentDay: 'Day 30',
+    progress: 100,
+    attendance: 30,
+    percent: 100,
     iconMarkup: '<i class="pi pi-thumbs-up"></i>'
   },
   {
     label: 'W',
-    name: 'chris',
-    currentDay: 'Day 3',
-    progress: 40,
-    attendance: 2,
-    percent: 40,
+    name: 'Abigail Adams',
+    currentDay: 'Day 30',
+    progress: 100,
+    attendance: 30,
+    percent: 100,
     iconMarkup: '<i class="pi pi-thumbs-down"></i>'
   },
   {
     label: 'M',
-    name: 'john',
-    currentDay: 'Day 7',
+    name: 'Adie Choy',
+    currentDay: 'Day 30',
+    progress: 93,
+    attendance: 28,
+    percent: 93,
+    iconMarkup: '<i class="pi pi-thumbs-up"></i>'
+  },
+  {
+    label: 'M',
+    name: 'Adam Allen',
+    currentDay: 'Day 30',
+    progress: 83,
+    attendance: 25,
+    percent: 83,
+    iconMarkup: '<i class="pi pi-thumbs-up"></i>'
+  },
+  {
+    label: 'M',
+    name: 'Avery Tucker',
+    currentDay: 'Day 30',
+    progress: 66,
+    attendance: 20,
+    percent: 66,
+    iconMarkup: '<i class="pi pi-thumbs-up"></i>'
+  },
+  {
+    label: 'M',
+    name: 'Adrian Armstrong',
+    currentDay: 'Day 30',
+    progress: 100,
+    attendance: 30,
+    percent: 100,
+    iconMarkup: '<i class="pi pi-thumbs-up"></i>'
+  },
+  {
+    label: 'M',
+    name: 'Aisha Archer',
+    currentDay: 'Day 30',
+    progress: 50,
+    attendance: 15,
+    percent: 50,
+    iconMarkup: '<i class="pi pi-thumbs-down"></i>'
+  },
+  {
+    label: 'M',
+    name: 'Alex Adams',
+    currentDay: 'Day 30',
     progress: 70,
     attendance: 6,
     percent: 70,
@@ -135,29 +180,20 @@ const cardData = ref([
   },
   {
     label: 'M',
-    name: 'john',
-    currentDay: 'Day 7',
-    progress: 70,
-    attendance: 6,
-    percent: 70,
+    name: 'Alexa Andrews',
+    currentDay: 'Day 30',
+    progress: 83,
+    attendance: 25,
+    percent: 83,
     iconMarkup: '<i class="pi pi-thumbs-up"></i>'
   },
   {
     label: 'M',
-    name: 'john',
-    currentDay: 'Day 7',
-    progress: 70,
-    attendance: 6,
-    percent: 70,
-    iconMarkup: '<i class="pi pi-thumbs-up"></i>'
-  },
-  {
-    label: 'M',
-    name: 'john',
-    currentDay: 'Day 7',
-    progress: 70,
-    attendance: 6,
-    percent: 70,
+    name: 'Allan Alvarez',
+    currentDay: 'Day 30',
+    progress: 100,
+    attendance: 30,
+    percent: 100,
     iconMarkup: '<i class="pi pi-thumbs-up"></i>'
   },
 ]);

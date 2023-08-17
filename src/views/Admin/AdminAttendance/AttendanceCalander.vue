@@ -9,9 +9,9 @@
       <p class="font-semibold text-xs">Current Day:</p>
       <p class="current-day text-xs">{{ card.currentDay }}</p>
     </div>
-    <ProgressBar class="w-full mx-2 progressbar" :value="50"></ProgressBar>
+    <ProgressBar class="w-full mx-2 progressbar" :value="card.progress"></ProgressBar>
     <div class="flex justify-content-between align-items-center text-xs col-12 py-0">
-      <p class="">Attendance: {{ card.attendance }}/5 days</p>
+      <p class="">Attendance: {{ card.attendance }}/30 days</p>
       <p class="">{{ card.percent }}%</p>
     </div>
     <div class="col-12 p-0">

@@ -3,63 +3,8 @@ import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { courseDataMock } from '../AdminStudentProgress/Course.mock';
 import { guestProgressDataMock } from './GuestProgress.mock';
-
-
-interface IGuest {
-  id: string;
-  name: string;
-  email: string;
-  progress: number;
-  percentage: string;
-  passFail: string;
-  attendance: number;
-  days: string[];
-}
-
-const guestListData = ref<IGuest[]>([
-  {
-    id: '1',
-    name: 'John Tason',
-    email: 'JohnToson@gmail.com',
-    progress: 50,
-    percentage: '80%',
-    passFail: 'Passed',
-    attendance: 5,
-    days: [
-      'passed',
-      'passed',
-      'passed',
-      'passed',
-      'not passed',
-      'not passed',
-      'not passed',
-      'not passed',
-      'not passed',
-      'not passed',
-    ],
-  },
-  {
-    id: '2',
-    name: 'Isabel Tray',
-    email: 'IsabelT@gmail.com',
-    progress: 80,
-    percentage: '100%',
-    passFail: 'Passed',
-    attendance: 9,
-    days: [
-      'passed',
-      'passed',
-      'passed',
-      'passed',
-      'not passed',
-      'not passed',
-      'not passed',
-      'not passed',
-      'not passed',
-      'not passed',
-    ],
-  },
-]);
+import { guestListData } from './AdminGuestProgressDetailData/GuestProgressDetailDummyData'
+import type { IGuest } from './AdminGuestProgressDetailData/GuestProgressDetail.type'
 
 const visible = ref(false);
 const currentStudent = ref<IGuest | null>(null);
@@ -110,7 +55,7 @@ const selectedGuest = ref();
       <div class="grid col-12">
         <div class="col-12">
           <Dropdown optionLabel="courseName" :options="courses" v-model="selectedCourse" placeholder="Course Name"
-            class="w-full md:w-14rem md:flex">
+            class="w-full md:w-15rem md:flex">
             <template #value="slotProps">
               <div v-if="slotProps.value" class="flex align-items-center">
                 <img :alt="slotProps.value.courseName" :src="slotProps.value.image" class="mr-2" style="width: 53px" />
@@ -157,8 +102,8 @@ const selectedGuest = ref();
                 </div>
               </template>
               <template #body="{ data }">
-                <div class="flex flex-row align-items-center">
-                  <Avatar label="M" class="data-image mr-2" shape="circle" />
+                <div class="flex flex-row align-items-center gap-2">
+                  <img src="/assets/img/avatar.png" alt="" style="width: 40px; height: 40px">
                   <div class="flex flex-column">
                     <p class="name-text">{{ data.name }}</p>
                     <p class="name-email">{{ data.email }}</p>
@@ -313,8 +258,6 @@ const selectedGuest = ref();
   
 <style scoped>
 :deep(.p-paginator) {
-  position: absolute;
-  right: 0;
 }
 
 :deep(.p-paginator .p-paginator-pages .p-paginator-page) {

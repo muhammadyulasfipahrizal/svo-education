@@ -48,9 +48,9 @@ const onSelectProfile = (v: Instructor) => {
                 </div>
             </div>
             <div class="col-12">
-                <DataTable :value="instructorList" paginator :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]"
+                <DataTable :value="instructorList" paginator :rows="10" :rowsPerPageOptions="[5, 10, 20, 50]"
                     sortMode="multiple" v-model:selection="checkedInstructor" class="shadow-2 p-datatable-sm"
-                    tableStyle="min-width: 80rem">
+                    tableStyle="min-width: 60rem">
                     <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
                     <Column field="name" class="w-2">
                         <template #header>
