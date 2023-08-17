@@ -157,7 +157,7 @@ onMounted(() => {
                     </Column>
                     <Column field="message" header="Message">
                         <template #body="value">
-                            <Button link size="small" @click="$router.push('/admin/message/student/' + value.data.id)">
+                            <Button link size="small" @click="$router.push('/admin/grade/student/' + value.data.id + '/message')">
                                 <img src="/assets/icon/reply.png" class="w-2rem" />
                             </Button>
                         </template>

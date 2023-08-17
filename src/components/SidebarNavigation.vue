@@ -46,6 +46,7 @@
           </router-link>
         </li>
 
+        <!-- PROGRESS -->
         <li>
           <router-link to="" @click="openProgress('progress')" class="grid gap-2 menuitem-link"
             :class="{ active: isActive('/admin/progress') }">
@@ -85,10 +86,10 @@
           </ul>
         </li>
 
-
+        <!-- GRADES -->
         <li>
           <router-link to="" @click="openSub('grades')" class="grid gap-2 menuitem-link"
-            :class="{ active: isActive('/admin/grades') }">
+            :class="{ active: isActive('/admin/grade') }">
             <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
               <g id="Group">
                 <path id="Vector"
@@ -120,14 +121,14 @@
             class="list-none py-0 pl-3 pr-0 m-0 overflow-y-hidden transition-all transition-duration-400 transition-ease-in-out"
             :class="{ hidden: !subMenuState['grades'] }">
             <li>
-              <router-link to="/admin/instructor-grade" class="grid gap-2 menuitem-link"
-                :class="{ active: isActive('/admin/instructor-grade') }">
+              <router-link to="/admin/grade/instructor" class="grid gap-2 menuitem-link"
+                :class="{ active: isActive('/admin/grade/instructor') }">
                 <span class="menuitem-text">Instructors</span>
               </router-link>
             </li>
             <li>
-              <router-link to="/admin/course-grade" class="grid gap-2 menuitem-link"
-                :class="{ active: isActive('/admin/course-grade') }">
+              <router-link to="/admin/grade/course" class="grid gap-2 menuitem-link"
+                :class="{ active: isActive('/admin/grade/course') }">
                 <span class="menuitem-text">Students</span>
               </router-link>
             </li>
@@ -240,7 +241,7 @@
 import { ref } from 'vue'
 import { useRoute } from 'vue-router';
 const route = useRoute();
-const isActive = (routePath: string) => route.path === routePath;
+const isActive = (routePath: string) => route.path.includes(routePath);
 const subMenuState = ref({
   'grades': false,
   'progress': false,

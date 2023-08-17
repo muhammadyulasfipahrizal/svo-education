@@ -61,10 +61,17 @@ a,
 }
 
 .title-head {
-  color: #000;
-  font-family: Inter;
-  font-size: 25px;
+  color: var(--font-1, #001125);
+  font-family: Inter, sans-serif;
+  font-size: 35px;
   font-style: normal;
   font-weight: 700;
   line-height: 160%;
+}
+
+.p-datepicker {
+  table td>span:not(.p-highlight):focus {
+    background: transparent !important;
+    color: black !important;
+  }
 }

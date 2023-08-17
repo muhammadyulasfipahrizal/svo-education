@@ -9,7 +9,12 @@ export interface Course {
         rating: number;
     },
     enrolled: number;
+    enrollment: number;
     image: string;
+    startDate: string;
+    endDate: string;
+    duration: string;
+    progress: number;
 }
 
 export interface Instructor {

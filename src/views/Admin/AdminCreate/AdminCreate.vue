@@ -21,10 +21,10 @@ const categoryData = ref<CategoryData[]>([
     title: "MATERIAL SOURCES",
     location: "/admin/create/material",
   },
-  { 
-    title: "ASSIGN INSTRUCTOR",
-    location: "/admin/create/instructor",
-  },
+  // { 
+  //   title: "ASSIGN INSTRUCTOR",
+  //   location: "/admin/create/instructor",
+  // },
   { 
     title: "ASSIGN DAILY TASK",
     location: "/admin/create/task",

@@ -5,12 +5,12 @@ import router from "@/router";
 const props = defineProps<{ item: EventItem }>();
 
 const goToDetail = () => {
-    router.push('/admin/event-detail/1')
+    router.push('/admin/event/1')
 }
 </script>
 
 <template>
-    <section class="flex flex-column gap-2 w-full md:w-4 lg:w-4 xl:w-4">
+    <section class="flex flex-column gap-2 w-full md:w-4 lg:w-4 xl:w-4 sm:max-w-14rem">
         <article class="border-1 surface-0 surface-border pt-2">
             <img src="/assets/img/event/innovations.png" class="col-12 py-0 w-full" />
             <h2 class="col-12 text-900 font-bold text-sm py-0 m-0">{{ props.item.name }}</h2>
