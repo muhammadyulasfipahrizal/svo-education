@@ -100,7 +100,7 @@ const selectedGuest = ref();
 </script>
 
 <template>
-  <section class="px-2 sm:px-5">
+  <section class="px-2 sm:px-2">
     <section
       class="grid overflow-hidden flex-column md:flex-row pl-4 pr-4 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2">
       <div class="col-12 flex flex-row align-items-center my-2">
@@ -146,8 +146,9 @@ const selectedGuest = ref();
 
         <!-- table -->
         <div class="col-12 pr-3">
-          <DataTable :value="guestListData" paginator :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]" sortMode="multiple"
-            tableStyle="min-width: 50rem" dataKey="id" v-model:selection="checkedStudent" class="shadow-2 detail-table">
+          <DataTable :value="guestListData" removableSort paginator :rows="10" :rowsPerPageOptions="[5, 10, 20, 50]"
+            sortMode="multiple" tableStyle="min-width: 50rem" dataKey="id" v-model:selection="checkedStudent"
+            class="shadow-2 detail-table">
             <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
             <Column field="name" class="text-white" headerStyle="width: 4rem">
               <template #header>
@@ -493,6 +494,65 @@ const selectedGuest = ref();
     &:hover {
       background: #006785;
       color: var(--white, #FFF);
+    }
+  }
+
+  .p-datatable-footer {
+    background: white;
+    height: 55px;
+    font-size: 14px;
+    color: #B5B7C0;
+    font-weight: 500;
+  }
+
+  .p-paginator-bottom {
+    .p-paginator {
+      justify-content: flex-end;
+      gap: 15px;
+    }
+
+    .p-paginator-pages {
+      gap: 15px;
+      display: flex;
+    }
+
+    .p-link {
+      width: 27px;
+      height: 27px;
+      color: #404B52;
+      font-family: Poppins;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 100%;
+      letter-spacing: -0.14px;
+      border-radius: 4px;
+      border: 1px solid #EEE;
+      background: #F5F5F5;
+      border-radius: 4px;
+      border: 1px solid #EEE;
+      background: #F5F5F5;
+      min-width: unset;
+
+      &.p-highlight {
+        color: white;
+        border: 1px solid var(--svo-dark-color, #006785);
+        background: var(--svo-dark-color, #006785);
+      }
+
+      svg {
+        width: 9px;
+        height: 14px;
+
+        path {
+          fill: #404B52;
+        }
+      }
+    }
+
+    .p-dropdown {
+      height: 27px;
+      align-items: center;
     }
   }
 }

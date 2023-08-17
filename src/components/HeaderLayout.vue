@@ -2,7 +2,7 @@
   <div id="app-header">
 
     <div v-show="!isMobile">
-      <div class="flex justify-content-between mt-2 mx-5 align-items-center surface-0 surface-border relative md:static">
+      <div class="flex justify-content-between mt-2 align-items-center surface-0 surface-border relative md:static px-2">
         <div class="flex">
           <div class="card flex justify-content-center">
             <div @click="toggleDropdown" class="cursor-pointer	flex flex-row align-items-center justify-content-between px-2 ml-2 filter-toggle w-9rem">

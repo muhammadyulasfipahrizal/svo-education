@@ -5,19 +5,22 @@ import HeaderLayout from './components/HeaderLayout.vue'
 </script>
 
 <template>
-  <div id="root" class="min-h-screen flex relative md:static surface-ground">
+  <div id="root" class="min-h-screen flex relative md:static">
     <SidebarLayout />
     <div class="min-h-screen flex flex-column relative flex-auto main-content">
       <HeaderLayout />
-      <RouterView />
+      <section class="px-2 sm:px-2 my-2">
+        <RouterView />
+      </section>
     </div>
   </div>
 </template>
 
 
 <style scope>
-.main-content {
-  background: #F9FAFE;
+#root {
+  background: #f9fafc;
+  gap: 10px;
 }
 
 @media only screen and (max-width: 768px) {

@@ -140,7 +140,7 @@ const onSelectProfile = (v: Instructor) => {
                             </div>
                         </template>
                         <template #body="value">
-                            <Button link size="small" @click="$router.push('/admin/message/instructor/' + value.data.id)">
+                            <Button link size="small" @click="$router.push('/admin/grade/instructor/' + value.data.id + '/message')">
                                 <img src="/assets/icon/reply.png" class="w-2rem" />
                             </Button>
                         </template>

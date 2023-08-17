@@ -36,7 +36,7 @@ const getStudentCount = (courseId: number) => {
                             <div class="flex gap-2 align-items-center">
                                 <img :src="value.data.image" alt="" style="width: 39px; height: 39px;" />
                                 <h4 class="text-900 font-bold text-lg">
-                                    <RouterLink class="btn-link" :to="'/admin/course-grade/' + value.data.id + '/student'">
+                                    <RouterLink class="btn-link" :to="'/admin/grade/course/' + value.data.id + '/student'">
                                         {{
                                             value.data.name }}</RouterLink>
                                 </h4>

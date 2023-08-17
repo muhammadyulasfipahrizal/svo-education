@@ -1,5 +1,5 @@
 <template>
-  <section class="px-2 sm:px-5">
+  <section class="px-2 sm:px-2">
     <section
       class="grid overflow-hidden flex-column md:flex-row pl-4 pr-4 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2">
       <div class="flex flex-row align-items-center col-12">
@@ -16,9 +16,8 @@
             </template>
             <template #body="{ data }">
               <div class="flex flex-row align-items-center w-full">
-                <img src="/assets/img/course/ui-ux-design.png" class="data-image mr-2"
-                  style="width: 58px; height: 39px;" />
-                <p class="data-text">{{ data.courseName }}</p>
+                <img :src="data.image" class="data-image mr-2" style="width: 58px; height: 39px;" />
+                <p class="data-text">{{ data.name }}</p>
               </div>
             </template>
           </Column>
@@ -30,7 +29,7 @@
             </template>
             <template #body="{ data }">
               <div class="flex justify-content-center w-full">
-                <p class="data-text">{{ data.enrollment }}</p>
+                <p class="data-text">{{ Number(data.enrollment).toLocaleString() }}</p>
               </div>
             </template>
           </Column>
@@ -99,11 +98,9 @@
 import { ref } from 'vue';
 import router from '@/router';
 import type { DataTableRowSelectEvent } from 'primevue/datatable';
-import { courseDataMock } from './Course.mock';
+import { courseDummyData } from '../AdminDashboard/DashboardDummyData';
 
-const courseData = ref(courseDataMock);
-
-const showDetail = ref(false);
+const courseData = ref(courseDummyData);
 const selectedCourse = ref(null);
 
 
@@ -136,9 +133,12 @@ const handleRowSelect = (event: DataTableRowSelectEvent) => {
 
 .data-text {
   color: var(--fonts-primary, #25213B);
-  font-size: 20px;
-  font-family: Inter;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
   font-weight: 500;
+  line-height: normal;
 }
 
 .progress-bar-container {
