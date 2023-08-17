@@ -71,7 +71,7 @@ router.afterEach((to, from) => {
 </script>
 
 <template>
-    <main class="grid px-5 justify-content-between">
+    <main class="grid justify-content-between">
         <section class="event-list w-full">
             <h1 class="font-bold mb-2 title col-12">Create</h1>
 
@@ -88,7 +88,7 @@ router.afterEach((to, from) => {
                         </Button>
             </article>
 
-            <article>
+            <article class="px-4 md:px-5">
                 <router-view></router-view>
             </article>
 
