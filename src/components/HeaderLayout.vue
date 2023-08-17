@@ -5,20 +5,25 @@
       <div class="flex justify-content-between mt-2 mx-5 align-items-center surface-0 surface-border relative md:static">
         <div class="flex">
           <div class="card flex justify-content-center">
+            <div @click="toggleDropdown" class="cursor-pointer	flex flex-row align-items-center justify-content-between px-2 ml-2 filter-toggle w-9rem">
+              <p class="font-semibold text-filter">Filter</p>
+              <i class="text-lg pi pi-angle-down"></i>
+            </div>
 
-              <Dropdown v-model="selectedFilter" :options="filterData" optionLabel="label" 
-                optionGroupLabel="label" optionGroupChildren="items" placeholder="FILTER" 
-                class="w-full md:w-10rem filter-toggle">
-                <template #optiongroup="slotProps">
-                        <div class="font-bold text-xl flex flex-row">{{ slotProps.option.label }}</div>
-                </template>
-                <template #option="slotProps">
-                  <div class="flex flex-row gap-2">
-                    <Checkbox :binary="true" />
-                    <div class="">{{ slotProps.option.label }}</div>
+            <OverlayPanel ref="toggleDashboardDropdown" style="width: 400px;">
+              <Panel>
+                <div class="flex flex-row gap-4">
+                  <div v-for="category in filterData" :key="category.label" class="flex flex-column align-items-start">
+                    <p class="text-xl font-bold">{{ category.label }}</p>
+                    <div v-for="item in category.items" :key="item.value" class="flex flex-row gap-2">
+                      <input :id="item.value" :value="item.value" type="checkbox" :name="category.label">
+                      <label :for="item.value">{{ item.value }}</label>
+                    </div>
+                    <p class="pt-1 font-bold cursor-pointer">Show more...</p>
                   </div>
-                </template>
-            </Dropdown>
+                </div>
+              </Panel>
+            </OverlayPanel>
 
           </div>
         </div>
@@ -154,8 +159,25 @@
 
         <div class="flex flex-row align-items-center justify-content-between mt-2 px-2">
           <div class="card flex justify-content-center">
-            <Dropdown v-model="selectedFilter" :options="filterData" optionLabel="name" placeholder="FILTER"
-              class="w-full md:w-14rem filter-toggle"></Dropdown>
+            <div @click="toggleDropdown" class="cursor-pointer	flex flex-row align-items-center justify-content-between px-2 ml-2 filter-toggle w-9rem">
+              <p class="font-semibold text-filter">Filter</p>
+              <i class="text-lg pi pi-angle-down"></i>
+            </div>
+
+            <OverlayPanel ref="toggleDashboardDropdown" class="w-max">
+              <Panel>
+                <div class="flex flex-column md:flex-row gap-4">
+                  <div v-for="category in filterData" :key="category.label" class="flex flex-column align-items-start">
+                    <p class="text-xl font-bold">{{ category.label }}</p>
+                    <div v-for="item in category.items" :key="item.value" class="flex flex-row gap-2">
+                      <input :id="item.value" :value="item.value" type="checkbox" :name="category.label">
+                      <label :for="item.value">{{ item.value }}</label>
+                    </div>
+                    <p class="pt-1 font-bold cursor-pointer">Show more...</p>
+                  </div>
+                </div>
+              </Panel>
+            </OverlayPanel>
           </div>
           <ul
             class="list-right list-none p-0 m-0 hidden flex align-items-center select-none surface-section border-none surface-border right-0 top-100 shadow-none ">
@@ -217,35 +239,40 @@ import Dropdown from 'primevue/dropdown';
 import SidebarNavigation from './SidebarNavigation.vue';
 import { ref, onMounted, watchEffect } from "vue";
 
-const selectedFilter = ref();
-const filterData = ref([
-    {
-        label: 'Subject',
-        code: 'SU',
-        items: [
-            { label: 'Arts', value: 'Arts' },
-            { label: 'IT', value: 'IT' },
-            { label: 'Marketting', value: 'Marketting' },
-        ]
-    },
-    {
-        label: 'Level',
-        code: 'LE',
-        items: [
-            { label: 'Beginner', value: 'Beginner' },
-            { label: 'Intermediate', value: 'Intermediate' },
-            { label: 'Advanced', value: 'Advanced' },
-        ]
-    },
-    {
-        label: 'Time',
-        code: 'TI',
-        items: [
-            { label: '1 week', value: '1 week' },
-            { label: '1 month', value: '1 month' },
-            { label: '1 year', value: '1 year' },
-        ]
-    }
+interface FilterItem {
+  value: string;
+}
+
+interface FilterCategory {
+  label: string;
+  items: FilterItem[];
+}
+
+const filterData = ref<FilterCategory[]>([
+  {
+    label: 'Subject',
+    items: [
+      { value: 'Arts' },
+      { value: 'IT' },
+      { value: 'Marketing' },
+    ],
+  },
+  {
+    label: 'Level',
+    items: [
+      { value: 'Beginner' },
+      { value: 'Intermediate' },
+      { value: 'Advanced' },
+    ],
+  },
+  {
+    label: 'Time',
+    items: [
+      { value: '1 week' },
+      { value: '1 month' },
+      { value: '1 year' },
+    ],
+  },
 ]);
 
 const search = ref();
@@ -277,11 +304,15 @@ watchEffect(() => {
 
 const toggleCartMobile = ref();
 const toggleCartDekstop = ref();
+const toggleDashboardDropdown = ref();
 const toggleDekstop = (event: any) => {
   toggleCartDekstop.value.toggle(event);
 }
 const toggleMobile = (event: any) => {
   toggleCartMobile.value.toggle(event);
+}
+const toggleDropdown = (event: any) => {
+  toggleDashboardDropdown.value.toggle(event);
 }
 </script>
 
@@ -476,5 +507,15 @@ const toggleMobile = (event: any) => {
     background: white;
     color: black;
   } 
+}
+
+.text-filter{
+  color: var(--backgrounds-primary, #FFF);
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  text-transform: uppercase;
 }
 </style>
