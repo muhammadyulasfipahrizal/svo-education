@@ -277,7 +277,7 @@ const checkIfEventExist = (date: string) => {
                 </div>
 
                 <div>
-                    <VirtualScroller :items="activitiesList" :itemSize="50" style=" height: 537px">
+                    <VirtualScroller :items="activitiesList" :itemSize="50" class="h-screen">
                         <template v-slot:item="{ item }">
                             <Card class="border-1 shadow-0 border-round mb-2 p-0 m-0 card mr-3" style="box-shadow: none;">
                                 <template #content>

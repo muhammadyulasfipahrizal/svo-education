@@ -7,7 +7,7 @@
       </div>
       <div class="col-12">
         <DataTable :value="guestProgressList" class="shadow-2" selectionMode="single" :selection="selectedCourse"
-          @rowSelect="handleRowSelect">
+          @rowSelect="handleRowSelect" paginator :rows="10">
           <Column field="dealerName">
             <template #header>
               <div class="flex justify-content-center w-full">

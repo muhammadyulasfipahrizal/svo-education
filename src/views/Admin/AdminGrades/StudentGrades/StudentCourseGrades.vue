@@ -110,14 +110,14 @@ onMounted(() => {
                         class="download-button col-2 flex text-right justify-content-center align-items-center md:col-1 lg:col-2 xl:col-2"></Button>
                 </div>
 
-                <DataTable :value="studentList" paginator :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]"
+                <DataTable :value="studentList" paginator :rows="10" :rowsPerPageOptions="[5, 10, 20, 50]"
                     sortMode="multiple" tableStyle="min-width: 50rem" dataKey="id" v-model:selection="checkedInstructor"
                     class="shadow-2">
                     <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
                     <Column field="name" header="Name">
                         <template #body="value">
                             <div class="flex gap-2 align-items-center">
-                                <img :src="value.data.student.image" alt="" style="width: 39px; height: 39px;" />
+                                <img :src="value.data.student.image" alt="" style="width: 39px; height: 39px; border-radius: 50%; object-fit: cover;" />
                                 <div class="flex gap-1 flex-column align-items-start">
                                     <h4 class="text-900 font-semibold">{{ value.data.student.name }}</h4>
                                     <p class="text-500 font-normal">

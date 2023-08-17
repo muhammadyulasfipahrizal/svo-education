@@ -40,7 +40,7 @@ onMounted(() => {
                     </h1>
                 </div>
                 <div class="flex justify-content-center w-full">
-                    <img :src="selectedProfile?.image" alt="" class="w-12rem" />
+                    <img :src="selectedProfile?.image" alt="" class="w-12rem" style="border-radius: 50%; object-fit: cover;"/>
                 </div>
                 <div class="flex flex-column gap-3 w-full px-3">
                     <h1 class="text-900 font-bold text-3rem">
