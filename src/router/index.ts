@@ -164,6 +164,23 @@ const router = createRouter({
         pageName: 'Profile'
       }
     },
+    // Customize
+    {
+      path: '/admin/customize',
+      name: 'admin-customize',
+      component: () => import('../views/Admin/AdminCustomize/AdminCustomizeList.vue'),
+      meta: {
+        pageName: 'Customize'
+      }
+    },
+    {
+      path: '/admin/customize/editor',
+      name: 'admin-customize-editor',
+      component: () => import('../views/Admin/AdminCustomize/AdminCustomizeEditor.vue'),
+      meta: {
+        pageName: 'Customize'
+      }
+    },
     {
       path: '/dashboard/calander',
       name: 'admin-dashboard-calander',
