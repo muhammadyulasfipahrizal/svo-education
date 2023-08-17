@@ -25,9 +25,27 @@ const addNewTask = () => {
 <template>
     <section class="my-3">
         <p class="text text-2xl font-bold">Assigned daily task</p>
-        <div class="flex flex-column mx-auto mt-3 wrapper">
+        <div class="flex flex-column px-2 md:px-3 w-full mt-3 wrapper">
             <p class="text text-lg mb-3 font-semibold">Monday</p>
-            <Card>
+            <Card class="border-card">
+                <template #content>
+                    <div class="flex flex-column" v-for="(task, taskindex) in taskData" :key="taskindex">
+                        <div class="flex flex-row align-items-center mb-3">
+                            <div class="flex flex-column ">
+                                <p contenteditable class="text font-medium mb-2">{{ task.taskName }}</p>
+                                <p contenteditable class="text text-desc">{{ task.taskDesc }}</p>
+                            </div>
+                            <Button label="go" class="btn-orange ml-auto" />
+                        </div>
+                        <div class="line mb-5"></div>
+                    </div>
+                </template>
+            </Card>
+            <Button size="small" label="Add new columns" class="w-full mt-4 btn-orange" @click="addNewTask"/>
+        </div>
+        <div class="flex flex-column px-3 w-full mt-3 wrapper">
+            <p class="text text-lg mb-3 font-semibold">Tuesday</p>
+            <Card class="border-card">
                 <template #content>
                     <div class="flex flex-column" v-for="(task, taskindex) in taskData" :key="taskindex">
                         <div class="flex flex-row align-items-center mb-3">
@@ -72,6 +90,10 @@ const addNewTask = () => {
 .btn-add-columns {
     background: var(--suggested-orange, #E96853);
     border: none;
+}
+
+.border-card {
+    border: 1px solid #D9D5EC;
 }
 
 .line {
