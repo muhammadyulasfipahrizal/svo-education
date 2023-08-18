@@ -1,20 +1,20 @@
 <template>
   <div class="border-2 surface-border grid align-items-center justify-content-center w-full p-0 m-0 mb-3 border-round-xl">
-    <div class="flex align-items-center justify-content-center avatar-container col-12 p-0">
-      <Avatar :label="card.label" class="my-1" size="xlarge" shape="circle" />
+    <div class="flex align-items-center justify-content-center avatar-container col-12 px-0">
+      <img :src="card.image" class="border-circle w-4rem h-4rem" />
       <span v-html="card.iconMarkup" :class="getIconClass(card.iconMarkup)" class="absolute"></span>
     </div>
     <p class="font-bold text-base col-12 text-center p-0">{{ card.name }}</p>
-    <div class="flex justify-content-center align-items-center col-12 text-center py-0">
+    <div class="flex justify-content-center align-items-center col-12 text-center py-2">
       <p class="font-semibold text-xs">Current Day:</p>
-      <p class="current-day text-xs">{{ card.currentDay }}</p>
+      <p class="current-day text-xs">DAY {{ card.currentDay }}</p>
     </div>
-    <ProgressBar class="w-full mx-2 progressbar" :value="card.progress"></ProgressBar>
+    <ProgressBar class="w-full mx-2 progressbar" :value="card.attendance / 30 * 100"></ProgressBar>
     <div class="flex justify-content-between align-items-center text-xs col-12 py-0">
       <p class="">Attendance: {{ card.attendance }}/30 days</p>
-      <p class="">{{ card.percent }}%</p>
+      <p class="">{{ Math.round(card.attendance / 30 * 100) }}%</p>
     </div>
-    <div class="col-12 p-0">
+    <div class="col-12 p-0 ">
       <Calendar borderless :locale="calendarLocale" :attributes="attributes" class="w-full" />
     </div>
   </div>
@@ -24,6 +24,7 @@
 import { ref } from 'vue';
 import { Calendar } from 'v-calendar';
 import 'v-calendar/style.css';
+import { startOfMonth, endOfMonth, eachDayOfInterval } from 'date-fns';
 
 const props = defineProps({
   card: {
@@ -54,36 +55,30 @@ const getIconClass = (iconMarkup: string) => {
 
   return '';
 };
-
+const currentDate = new Date();
+const firstDayOfMonth = startOfMonth(currentDate);
+const lastDayOfMonth = endOfMonth(currentDate);
+const daysOfMonthArray = eachDayOfInterval({ start: firstDayOfMonth, end: lastDayOfMonth });
+const greenDays = []
+const redDays = []
+for (const day of daysOfMonthArray) {
+  if (day.getDate() > 1 && day.getDate() < 15) {
+    greenDays.push(day)
+  } else {
+    redDays.push(day)
+  }
+}
 const attributes = ref([
   {
     // Boolean
     dot: 'green',
-    dates: [
-      new Date(2018, 0, 1),
-      new Date(2018, 0, 10),
-      new Date(2018, 0, 22),
-    ],
+    content: 'green',
+    dates: greenDays,
   },
   {
     dot: 'red',
-    dates: [
-      new Date(2018, 0, 4),
-      new Date(2018, 0, 10),
-      new Date(2018, 0, 15),
-    ],
-  },
-  {
-    dot: {
-      style: {
-        backgroundColor: 'brown',
-      },
-    },
-    dates: [
-      new Date(2018, 0, 12),
-      new Date(2018, 0, 26),
-      new Date(2018, 0, 15),
-    ],
+    content: 'red',
+    dates: redDays
   },
 ]);
 

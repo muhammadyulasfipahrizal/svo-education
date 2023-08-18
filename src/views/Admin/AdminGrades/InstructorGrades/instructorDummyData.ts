@@ -11,11 +11,11 @@ export const instructorDummyData: Instructor[] = [
         rating: {
             total_rating: 100,
             total_vote: 50,
-            rating: 4.5,
+            rating: 4,
             ratings: {
-                helpful: 2.3,
-                easiness: 4.7,
-                clarity: 4.6,
+                helpful: 2,
+                easiness: 4,
+                clarity: 4,
             },
         },
     },
@@ -29,11 +29,11 @@ export const instructorDummyData: Instructor[] = [
         rating: {
             total_rating: 80,
             total_vote: 40,
-            rating: 4.2,
+            rating: 4,
             ratings: {
-                helpful: 4.0,
-                easiness: 4.4,
-                clarity: 4.1,
+                helpful: 4,
+                easiness: 4,
+                clarity: 4,
             },
         },
     },
@@ -47,11 +47,11 @@ export const instructorDummyData: Instructor[] = [
         rating: {
             total_rating: 120,
             total_vote: 60,
-            rating: 4.8,
+            rating: 4,
             ratings: {
-                helpful: 4.5,
-                easiness: 4.9,
-                clarity: 4.7,
+                helpful: 4,
+                easiness: 4,
+                clarity: 4,
             },
         },
     },
@@ -65,11 +65,11 @@ export const instructorDummyData: Instructor[] = [
         rating: {
             total_rating: 90,
             total_vote: 45,
-            rating: 4.3,
+            rating: 4,
             ratings: {
-                helpful: 4.2,
-                easiness: 4.4,
-                clarity: 4.3,
+                helpful: 4,
+                easiness: 4,
+                clarity: 4,
             },
         },
     },
@@ -83,10 +83,10 @@ export const instructorDummyData: Instructor[] = [
         rating: {
             total_rating: 75,
             total_vote: 35,
-            rating: 4.0,
+            rating: 4,
             ratings: {
                 helpful: 3.9,
-                easiness: 4.1,
+                easiness: 4,
                 clarity: 3.8,
             },
         },
@@ -101,11 +101,11 @@ export const instructorDummyData: Instructor[] = [
         rating: {
             total_rating: 110,
             total_vote: 55,
-            rating: 4.6,
+            rating: 4,
             ratings: {
-                helpful: 4.4,
-                easiness: 4.8,
-                clarity: 4.5,
+                helpful: 4,
+                easiness: 4,
+                clarity: 4,
             },
         },
     },
@@ -119,11 +119,11 @@ export const instructorDummyData: Instructor[] = [
         rating: {
             total_rating: 95,
             total_vote: 50,
-            rating: 4.5,
+            rating: 4,
             ratings: {
-                helpful: 4.3,
-                easiness: 4.6,
-                clarity: 4.4,
+                helpful: 4,
+                easiness: 4,
+                clarity: 4,
             },
         },
     },
@@ -137,11 +137,11 @@ export const instructorDummyData: Instructor[] = [
         rating: {
             total_rating: 85,
             total_vote: 40,
-            rating: 4.2,
+            rating: 4,
             ratings: {
-                helpful: 4.0,
-                easiness: 4.3,
-                clarity: 4.1,
+                helpful: 4,
+                easiness: 4,
+                clarity: 4,
             },
         },
     },
@@ -155,11 +155,11 @@ export const instructorDummyData: Instructor[] = [
         rating: {
             total_rating: 105,
             total_vote: 55,
-            rating: 4.7,
+            rating: 4,
             ratings: {
-                helpful: 4.5,
-                easiness: 4.8,
-                clarity: 4.6,
+                helpful: 4,
+                easiness: 4,
+                clarity: 4,
             },
         },
     },
@@ -173,11 +173,11 @@ export const instructorDummyData: Instructor[] = [
         rating: {
             total_rating: 115,
             total_vote: 60,
-            rating: 4.8,
+            rating: 4,
             ratings: {
-                helpful: 4.6,
-                easiness: 4.9,
-                clarity: 4.7,
+                helpful: 4,
+                easiness: 4,
+                clarity: 4,
             },
         },
     },
@@ -191,11 +191,11 @@ export const instructorDummyData: Instructor[] = [
         rating: {
             total_rating: 100,
             total_vote: 50,
-            rating: 4.5,
+            rating: 4,
             ratings: {
-                helpful: 4.3,
-                easiness: 4.7,
-                clarity: 4.6,
+                helpful: 4,
+                easiness: 4,
+                clarity: 4,
             },
         },
     },
@@ -209,11 +209,11 @@ export const instructorDummyData: Instructor[] = [
         rating: {
             total_rating: 80,
             total_vote: 40,
-            rating: 4.2,
+            rating: 4,
             ratings: {
-                helpful: 4.0,
-                easiness: 4.4,
-                clarity: 4.1,
+                helpful: 4,
+                easiness: 4,
+                clarity: 4,
             },
         },
     },
@@ -227,11 +227,11 @@ export const instructorDummyData: Instructor[] = [
         rating: {
             total_rating: 120,
             total_vote: 60,
-            rating: 4.8,
+            rating: 4,
             ratings: {
-                helpful: 4.5,
-                easiness: 4.9,
-                clarity: 4.7,
+                helpful: 4,
+                easiness: 4,
+                clarity: 4,
             },
         },
     },
@@ -245,11 +245,11 @@ export const instructorDummyData: Instructor[] = [
         rating: {
             total_rating: 90,
             total_vote: 45,
-            rating: 4.3,
+            rating: 4,
             ratings: {
-                helpful: 4.2,
-                easiness: 4.4,
-                clarity: 4.3,
+                helpful: 4,
+                easiness: 4,
+                clarity: 4,
             },
         },
     },
@@ -263,10 +263,10 @@ export const instructorDummyData: Instructor[] = [
         rating: {
             total_rating: 75,
             total_vote: 35,
-            rating: 4.0,
+            rating: 4,
             ratings: {
                 helpful: 3.9,
-                easiness: 4.1,
+                easiness: 4,
                 clarity: 3.8,
             },
         },
@@ -281,11 +281,11 @@ export const instructorDummyData: Instructor[] = [
         rating: {
             total_rating: 110,
             total_vote: 55,
-            rating: 4.6,
+            rating: 4,
             ratings: {
-                helpful: 4.4,
-                easiness: 4.8,
-                clarity: 4.5,
+                helpful: 4,
+                easiness: 4,
+                clarity: 4,
             },
         },
     },
@@ -299,11 +299,11 @@ export const instructorDummyData: Instructor[] = [
         rating: {
             total_rating: 95,
             total_vote: 50,
-            rating: 4.5,
+            rating: 4,
             ratings: {
-                helpful: 4.3,
-                easiness: 4.6,
-                clarity: 4.4,
+                helpful: 4,
+                easiness: 4,
+                clarity: 4,
             },
         },
     },
@@ -317,11 +317,11 @@ export const instructorDummyData: Instructor[] = [
         rating: {
             total_rating: 85,
             total_vote: 40,
-            rating: 4.2,
+            rating: 4,
             ratings: {
-                helpful: 4.0,
-                easiness: 4.3,
-                clarity: 4.1,
+                helpful: 4,
+                easiness: 4,
+                clarity: 4,
             },
         },
     },
@@ -335,11 +335,11 @@ export const instructorDummyData: Instructor[] = [
         rating: {
             total_rating: 105,
             total_vote: 55,
-            rating: 4.7,
+            rating: 4,
             ratings: {
-                helpful: 4.5,
-                easiness: 4.8,
-                clarity: 4.6,
+                helpful: 4,
+                easiness: 4,
+                clarity: 4,
             },
         },
     },
@@ -353,11 +353,11 @@ export const instructorDummyData: Instructor[] = [
         rating: {
             total_rating: 115,
             total_vote: 60,
-            rating: 4.8,
+            rating: 4,
             ratings: {
-                helpful: 4.6,
-                easiness: 4.9,
-                clarity: 4.7,
+                helpful: 4,
+                easiness: 4,
+                clarity: 4,
             },
         },
     },
@@ -371,11 +371,11 @@ export const instructorDummyData: Instructor[] = [
         rating: {
             total_rating: 100,
             total_vote: 50,
-            rating: 4.5,
+            rating: 4,
             ratings: {
-                helpful: 4.3,
-                easiness: 4.7,
-                clarity: 4.6,
+                helpful: 4,
+                easiness: 4,
+                clarity: 4,
             },
         },
     },
@@ -389,9 +389,9 @@ export const instructorDummyData: Instructor[] = [
         rating: {
             total_rating: 80,
             total_vote: 40,
-            rating: 4.2,
+            rating: 4,
             ratings: {
-                helpful: 4.0,
+                helpful: 4,
                 easiness: 4,
                 clarity: 3.1
             }

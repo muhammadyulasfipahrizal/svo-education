@@ -70,7 +70,7 @@ const getBackgroundColor = (progress: number) => {
 </script>
 
 <template>
-  <section class="px-2 sm:px-2">
+  <section class="px-2">
     <section
       class="grid overflow-hidden flex-column md:flex-row pl-4 pr-4 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2">
       <div class="col-12 flex flex-row align-items-center my-2">
@@ -100,10 +100,10 @@ const getBackgroundColor = (progress: number) => {
         </div>
         <div class="col-12 flex flex-row align-items-center justify-content-between filter-search pr-3">
           <div class="col-10 md:col-10 lg:col-10 lg:col-10 grid">
-            <Button label="Filter" icon="pi pi-filter-fill" size="small" class="filter-button sm:mr-3 col-4" />
-            <span class="p-input-icon-left w-7 col-8">
+            <Button label="Filter" icon="pi pi-filter-fill" size="small" class="filter-button sm:mr-3 col-1 h-3rem" />
+            <span class="p-input-icon-left w-7 col-8 p-0 h-3rem">
               <i class="pi pi-search search-icon" />
-              <InputText placeholder="Search by Name" class="search-bar p-inputtext-sm w-full" style="width: 450px;" />
+              <InputText placeholder="Search by Name" class="search-bar p-inputtext-sm w-full h-full" style="width: 450px;" />
             </span>
           </div>
           <Button label="DOWNLOAD" icon="pi pi-download" size="small" class="btn-orange hidden md:block"
@@ -163,7 +163,7 @@ const getBackgroundColor = (progress: number) => {
               </template>
               <template #body="{ data }">
                 <div class="flex justify-content-center w-full">
-                  <p class="percatage-text">{{ data.percentage }}</p>
+                  <p class="percatage-text">{{ data.percentage }}%</p>
                 </div>
               </template>
             </Column>

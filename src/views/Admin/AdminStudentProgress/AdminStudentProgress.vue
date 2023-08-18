@@ -1,5 +1,5 @@
 <template>
-  <section class="px-2 sm:px-2">
+  <section>
     <section
       class="grid overflow-hidden flex-column md:flex-row pl-4 pr-4 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2">
       <div class="flex flex-row align-items-center col-12">
@@ -40,15 +40,13 @@
               </div>
             </template>
             <template #body="{ data }">
-              <div class="flex flex-column align-items-center w-full">
-                <div>
-                  <div class="progress-bar-container">
-                    <div class="progress-bar" :style="{ width: data.progress + '%' }"></div>
-                  </div>
-                  <p class="font-bold text-sm align-sekf-start">{{ data.progress }}% completed</p>
+              <div class="flex flex-column">
+                <div class="progress-bar-container my-2 flex flex-column justify-content-center w-full">
+                  <div class="progress-bar"
+                    :style="{ width: data.progress + '%', backgroundColor: getBackgroundColor(data.progress) }"></div>
                 </div>
+                <p class="progress-text">{{ data.progress }} % completed</p>
               </div>
-
             </template>
           </Column>
           <Column field="startDate">
@@ -107,7 +105,12 @@ const selectedCourse = ref(null);
 const handleRowSelect = (event: DataTableRowSelectEvent) => {
   router.push('/admin/progress/student/' + event.data.id)
 }
-
+const getBackgroundColor = (progress: number) => {
+  if (progress > 70) {
+    return '#659872';
+  }
+  return '#EFAE1C';
+}
 </script>
 
 <style scoped>

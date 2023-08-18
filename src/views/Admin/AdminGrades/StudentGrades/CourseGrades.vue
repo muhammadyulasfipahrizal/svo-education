@@ -2,10 +2,11 @@
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import { ref } from 'vue';
-import type { ICourse } from "./CourseInterface";
-import { courses, studentGrades } from "./StudentGrade.type";
+import { studentGrades } from "./StudentGrade.type";
+import type { Course } from '../../AdminDashboard/Dashboard.type';
+import { courseDummyData } from '../../AdminDashboard/DashboardDummyData';
 
-const courseList = ref<ICourse[]>(courses);
+const courseList = ref<Course[]>(courseDummyData);
 const getStudentCount = (courseId: number) => {
     let count = 0;
     for (const student of studentGrades) {
@@ -16,16 +17,22 @@ const getStudentCount = (courseId: number) => {
     }
     return count;
 }
+const getBackgroundColor = (progress: number) => {
+    if (progress > 70) {
+        return '#659872';
+    }
+    return '#EFAE1C';
+}
 </script>
 
 <template>
-    <section class="px-2 sm:px-5">
+    <section class="px-2">
         <section
             class="grid overflow-hidden flex-column md:flex-row pl-3 pr-3 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2 py-2">
             <h1 class="title-head pl-2">Student Grades</h1>
             <div class="col-12">
-                <DataTable :value="courseList" sortMode="multiple"
-                    tableStyle="min-width: 50rem" dataKey="id" class="shadow-2">
+                <DataTable :value="courseList" removableSort paginator :rows="10" :rowsPerPageOptions="[5, 10, 20, 50]"
+                    sortMode="multiple" tableStyle="min-width: 50rem" dataKey="id" class="shadow-2">
                     <Column field="name">
                         <template #header>
                             <div class="flex justify-content-center align-items-center w-full">
@@ -59,15 +66,14 @@ const getStudentCount = (courseId: number) => {
                                 <p class="font-bold text-lg">Progress</p>
                             </div>
                         </template>
-                        <template #body="value">
-                            <div class="flex flex-column gap-2">
-                                <div class="flex border-round"
-                                    style="border-radius: 8px; background: #D9D9D9; height: 10px;">
-                                    <div class="flex border-round" style="width: 30%; background: #EFAE1C"></div>
+                        <template #body="{ data }">
+                            <div class="flex flex-column">
+                                <div class="progress-bar-container my-2 flex flex-column justify-content-center w-full">
+                                    <div class="progress-bar"
+                                        :style="{ width: data.progress + '%', backgroundColor: getBackgroundColor(data.progress) }">
+                                    </div>
                                 </div>
-                                <h4 class="text-900 font-bold text-sm">
-                                    30% completed
-                                </h4>
+                                <p class="progress-text">{{ data.progress }} % completed</p>
                             </div>
                         </template>
                     </Column>
@@ -101,6 +107,11 @@ const getStudentCount = (courseId: number) => {
                             <p class="text-900 font-normal text-center text-sm font-bold">20</p>
                         </template>
                     </Column>
+                    <template #footer>
+                        <div class="flex flex-row align-items-center justify-content-between">
+                            <p>Showing data 1 to 10 of 256K entries</p>
+                        </div>
+                    </template>
                 </DataTable>
             </div>
         </section>
@@ -139,8 +150,25 @@ const getStudentCount = (courseId: number) => {
     }
 }
 
-::v-deep(.p-datatable) {
+.btn-link {
+    text-decoration: none;
+    color: black;
+}
 
+:deep(.p-paginator) {
+    height: 50px;
+}
+
+:deep(.p-paginator .p-paginator-pages .p-paginator-page) {
+    color: #6D5BD0;
+    text-align: center;
+    font-size: 16px;
+    font-family: Inter;
+    font-weight: 600;
+    background-color: white;
+}
+
+::v-deep(.p-datatable) {
     .p-datatable-thead>tr>th {
         background: #006785;
         color: white;
@@ -156,13 +184,90 @@ const getStudentCount = (courseId: number) => {
         &:hover {
             background: #006785;
             color: var(--white, #FFF);
+        }
+    }
 
+    .p-datatable-footer {
+        background: white;
+        height: 55px;
+        font-size: 14px;
+        color: #B5B7C0;
+        font-weight: 500;
+    }
+
+    .p-paginator-bottom {
+        .p-paginator {
+            justify-content: flex-end;
+            gap: 15px;
+        }
+
+        .p-paginator-pages {
+            gap: 15px;
+            display: flex;
+        }
+
+        .p-link {
+            width: 27px;
+            height: 27px;
+            color: #404B52;
+            font-family: Poppins;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 100%;
+            letter-spacing: -0.14px;
+            border-radius: 4px;
+            border: 1px solid #EEE;
+            background: #F5F5F5;
+            border-radius: 4px;
+            border: 1px solid #EEE;
+            background: #F5F5F5;
+            min-width: unset;
+
+            &.p-highlight {
+                color: white;
+                border: 1px solid var(--svo-dark-color, #006785);
+                background: var(--svo-dark-color, #006785);
+            }
+
+            svg {
+                width: 9px;
+                height: 14px;
+
+                path {
+                    fill: #404B52;
+                }
+            }
+        }
+
+        .p-dropdown {
+            height: 27px;
+            align-items: center;
         }
     }
 }
 
-.btn-link {
-    text-decoration: none;
-    color: black;
+.progress-bar-container {
+    width: 200px;
+    height: 10px;
+    background-color: #D9D9D9;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: #EFAE1C;
+    transition: width 0.5s;
+}
+
+.progress-text {
+    color: #000;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.7px;
 }
 </style>

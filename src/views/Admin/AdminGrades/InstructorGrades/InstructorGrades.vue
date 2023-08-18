@@ -30,7 +30,7 @@ const onSelectProfile = (v: Instructor) => {
 </script>
 
 <template>
-    <section class="px-2 sm:px-5">
+    <section class="px-2">
         <section
             class="grid overflow-hidden flex-column md:flex-row pl-3 pr-3 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2 py-2">
             <h1 class="title-head">Instructor Grades</h1>
@@ -48,11 +48,11 @@ const onSelectProfile = (v: Instructor) => {
                 </div>
             </div>
             <div class="col-12">
-                <DataTable :value="instructorList" paginator :rows="10" :rowsPerPageOptions="[5, 10, 20, 50]"
+                <DataTable :value="instructorList" removableSort paginator :rows="10" :rowsPerPageOptions="[5, 10, 20, 50]"
                     sortMode="multiple" v-model:selection="checkedInstructor" class="shadow-2 p-datatable-sm"
-                    tableStyle="min-width: 60rem">
-                    <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
-                    <Column field="name" class="w-2">
+                    tableStyle="min-width: 80rem">
+                    <Column selectionMode="multiple" headerStyle="width: 0.5rem"></Column>
+                    <Column field="name" class="w-1">
                         <template #header>
                             <div class="flex justify-content-center align-items-center">
                                 <p class="font-bold text-sm">Name</p>
@@ -140,11 +140,17 @@ const onSelectProfile = (v: Instructor) => {
                             </div>
                         </template>
                         <template #body="value">
-                            <Button link size="small" @click="$router.push('/admin/grade/instructor/' + value.data.id + '/message')">
+                            <Button link size="small"
+                                @click="$router.push('/admin/grade/instructor/' + value.data.id + '/message')">
                                 <img src="/assets/icon/reply.png" class="w-2rem" />
                             </Button>
                         </template>
                     </Column>
+                    <template #footer>
+                        <div class="flex flex-row align-items-center justify-content-between">
+                            <p>Showing data 1 to 10 of 256K entries</p>
+                        </div>
+                    </template>
                 </DataTable>
             </div>
         </section>
@@ -255,6 +261,80 @@ const onSelectProfile = (v: Instructor) => {
         display: none;
         margin: 0;
         padding: 0;
+    }
+}
+
+:deep(.p-paginator) {
+    height: 50px;
+}
+
+:deep(.p-paginator .p-paginator-pages .p-paginator-page) {
+    color: #6D5BD0;
+    text-align: center;
+    font-size: 16px;
+    font-family: Inter;
+    font-weight: 600;
+    background-color: white;
+}
+
+::v-deep(.p-datatable) {
+    .p-datatable-footer {
+        background: white;
+        height: 55px;
+        font-size: 14px;
+        color: #B5B7C0;
+        font-weight: 500;
+    }
+
+    .p-paginator-bottom {
+        .p-paginator {
+            justify-content: flex-end;
+            gap: 15px;
+        }
+
+        .p-paginator-pages {
+            gap: 15px;
+            display: flex;
+        }
+
+        .p-link {
+            width: 27px;
+            height: 27px;
+            color: #404B52;
+            font-family: Poppins;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 100%;
+            letter-spacing: -0.14px;
+            border-radius: 4px;
+            border: 1px solid #EEE;
+            background: #F5F5F5;
+            border-radius: 4px;
+            border: 1px solid #EEE;
+            background: #F5F5F5;
+            min-width: unset;
+
+            &.p-highlight {
+                color: white;
+                border: 1px solid var(--svo-dark-color, #006785);
+                background: var(--svo-dark-color, #006785);
+            }
+
+            svg {
+                width: 9px;
+                height: 14px;
+
+                path {
+                    fill: #404B52;
+                }
+            }
+        }
+
+        .p-dropdown {
+            height: 27px;
+            align-items: center;
+        }
     }
 }
 </style>
