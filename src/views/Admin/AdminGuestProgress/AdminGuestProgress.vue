@@ -6,8 +6,8 @@
         <h1 class="title-head">Guest Progress</h1>
       </div>
       <div class="col-12">
-        <DataTable :value="guestProgressList" class="shadow-2" selectionMode="single" :selection="selectedCourse"
-          @rowSelect="handleRowSelect" paginator :rows="10">
+        <DataTable :value="guestProgressList" class="shadow-2" removableSort paginator :rows="10" selectionMode="single"
+          :selection="selectedCourse" @rowSelect="handleRowSelect">
           <Column field="dealerName">
             <template #header>
               <div class="flex justify-content-center w-full">
@@ -33,6 +33,11 @@
               </div>
             </template>
           </Column>
+          <template #footer>
+            <div class="flex flex-row align-items-center justify-content-between">
+              <p>Showing data 1 to 10 of 256K entries</p>
+            </div>
+          </template>
         </DataTable>
       </div>
     </section>
@@ -124,5 +129,75 @@ const handleRowSelect = (event: DataTableRowSelectEvent) => {
       color: var(--white, #FFF);
     }
   }
+
+  .p-datatable-footer {
+    background: white;
+    height: 55px;
+    font-size: 14px;
+    color: #B5B7C0;
+    font-weight: 500;
+  }
+
+  .p-paginator-bottom {
+    .p-paginator {
+      justify-content: flex-end;
+      gap: 15px;
+    }
+
+    .p-paginator-pages {
+      gap: 15px;
+      display: flex;
+    }
+
+    .p-link {
+      width: 27px;
+      height: 27px;
+      color: #404B52;
+      font-family: Poppins;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 100%;
+      letter-spacing: -0.14px;
+      border-radius: 4px;
+      border: 1px solid #EEE;
+      background: #F5F5F5;
+      border-radius: 4px;
+      border: 1px solid #EEE;
+      background: #F5F5F5;
+      min-width: unset;
+
+      &.p-highlight {
+        color: white;
+        border: 1px solid var(--svo-dark-color, #006785);
+        background: var(--svo-dark-color, #006785);
+      }
+
+      svg {
+        width: 9px;
+        height: 14px;
+
+        path {
+          fill: #404B52;
+        }
+      }
+    }
+
+    .p-dropdown {
+      height: 27px;
+      align-items: center;
+    }
+  }
+}
+
+:deep(.p-paginator) {}
+
+:deep(.p-paginator .p-paginator-pages .p-paginator-page) {
+  color: #6D5BD0;
+  text-align: center;
+  font-size: 16px;
+  font-family: Inter;
+  font-weight: 600;
+  background-color: white;
 }
 </style>
