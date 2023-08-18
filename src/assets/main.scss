@@ -75,3 +75,8 @@ a,
     color: black !important;
   }
 }
+
+*:focus {
+  box-shadow: none !important;
+  outline: none !important;
+}
