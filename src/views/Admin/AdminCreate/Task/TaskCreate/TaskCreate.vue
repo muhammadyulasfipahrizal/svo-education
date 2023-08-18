@@ -37,7 +37,7 @@ const addNewTask = () => {
                             </div>
                             <Button label="go" class="btn-orange ml-auto" />
                         </div>
-                        <div class="line mb-5"></div>
+                        <div class="line"></div>
                     </div>
                 </template>
             </Card>
@@ -55,7 +55,7 @@ const addNewTask = () => {
                             </div>
                             <Button label="go" class="btn-orange ml-auto" />
                         </div>
-                        <div class="line mb-5"></div>
+                        <div class="line"></div>
                     </div>
                 </template>
             </Card>

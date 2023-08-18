@@ -8,7 +8,7 @@ import { ref } from 'vue';
 const title = ref<string>('');
 
 // instructor
-const selectedInstructor = ref<string>();
+const selectedInstructor = ref<string>('');
 const instructorList = ref([
     { name: 'Instructor 1', code: 'I1' },
     { name: 'Instructor 2', code: 'I2' },
@@ -19,7 +19,7 @@ const instructorList = ref([
 ]);
 const totalHour = ref<number>(0);
 const totalMinute = ref<number>(0);
-const selectedLanguage = ref<string>();
+const selectedLanguage = ref<string>('');
 const languageList = ref([
     { name: 'Melayu', code: 'I1' },
     { name: 'English', code: 'I2' },
@@ -168,29 +168,33 @@ const quizList = ref<{ title: string; }[]>([
                 <div class="grid">
                     <div class="col-12 lg:col-7">
                         <div class="flex flex-column align-items-start justify-content-start gap-3 ">
-                            <InputText type="text" label="Title" v-model="title" class="p-inputtext-lg w-full mt-6" required
+                            <InputText type="text" label="Title" v-model="title" class="p-inputtext-lg w-full mt-6 h-4rem" required
                                 placeholder="Title" />
 
                             <div class="grid gap-2 align-items-start md:align-items-center w-full">
-                                <div class="col-12 grid gap-2">
+                                <div class="col-12 grid gap-2 align-items-center">
                                     <h1 class="col-5 md:col-2 lg:col-2 instructor text-2xl text-900 font-bold min-w-max">
                                         Instructor By
                                     </h1>
-                                    <Dropdown v-model="selectedInstructor" :options="instructorList" optionLabel="name"
-                                        placeholder="Select Instructor" class="md:w-full md:w-14rem p-inputtext-sm col-6 md:col-4" size="small" />
+                                    <Dropdown v-model="selectedInstructor"
+                                        v-bind:class="{ selected: selectedInstructor !== '' }" :options="instructorList"
+                                        optionLabel="name" placeholder="Select Instructor"
+                                        class="md:w-full md:w-14rem p-inputtext-sm col-6 md:col-4 h-2rem flex align-items-center"
+                                        size="small" />
                                     <div class="col-12 md:col-4 flex gap-1">
                                         <i class="pi-thumbs-up pi mt-1"></i>
                                         <p class="text-900 font-normal">0%</p>
                                         <p>|</p>
                                         <i class="pi-thumbs-down pi mt-1"></i>
                                         <p class="text-900 font-normal">0%</p>
-                                    </div>    
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="grid w-full gap-3 p-2">
                                 <div class="col-12 md:col-4 lg:col-3 card shadow-1 flex flex-column">
-                                    <div class="flex flex-row md:flex-column gap-2 md:gap-0 align-items-center md:align-items-start">
+                                    <div
+                                        class="flex flex-row md:flex-column gap-2 md:gap-0 align-items-center md:align-items-start">
                                         <div class="flex gap-1 align-items-center">
                                             <i class="pi-star-fill pi"></i>
                                             <h3 class="text-sm text-900">Ratings</h3>
@@ -224,8 +228,9 @@ const quizList = ref<{ title: string; }[]>([
                                     </div>
                                     <div class="flex align-items-center">
                                         <Dropdown v-model="selectedLanguage" :options="languageList" optionLabel="name"
-                                            placeholder="Select Language" class="w-full p-inputtext-sm"
-                                            size="small" />
+                                            placeholder="Select Language"
+                                            class="w-full p-inputtext-sm h-2rem flex align-items-center"
+                                            v-bind:class="{ selected: selectedLanguage !== '' }" size="small" />
                                     </div>
                                 </div>
                             </div>
@@ -235,7 +240,7 @@ const quizList = ref<{ title: string; }[]>([
                     </div>
                     <div class="col-12 lg:col-5">
                         <div class="col-12">
-                            <UploadImage class="w-full upload-image " style="height: 257px"/>
+                            <UploadImage class="w-full upload-image " style="height: 257px" />
                         </div>
                         <div class="flex justify-content-center align-items-center gap-2 my-2 col-12">
                             <div class="card-price flex justify-content-center align-items-center flex-column p-2">
@@ -321,7 +326,7 @@ const quizList = ref<{ title: string; }[]>([
                 <div class="card py-3">
                     <div class="row">
                         <div class="col-12 md:col-8 lg:col-6 xl:col-4">
-                            <UploadVideo class="upload-video w-full"/>
+                            <UploadVideo class="upload-video w-full" />
                             <h4 class="text-900 text-xl font-bold my-3 text-center">
                                 Course Preview
                             </h4>
@@ -479,6 +484,7 @@ const quizList = ref<{ title: string; }[]>([
 .upload-video {
     height: 300px;
 }
+
 .title {
     font-family: Inter;
     font-size: 35px;
@@ -513,11 +519,6 @@ const quizList = ref<{ title: string; }[]>([
         width: inherit;
         height: inherit;
     }
-}
-
-.p-inputtext-sm,
-.p-inputtext-lg {
-    background: #D9D9D9;
 }
 
 .p-inputtext-lg {
@@ -626,7 +627,7 @@ const quizList = ref<{ title: string; }[]>([
     }
 }
 
-::v-deep(.p-accordion-header){
+::v-deep(.p-accordion-header) {
     color: var(--font-1, #001125);
     font-family: Inter;
     font-size: 20px;

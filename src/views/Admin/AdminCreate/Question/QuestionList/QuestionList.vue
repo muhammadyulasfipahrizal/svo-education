@@ -27,19 +27,20 @@ const dataList = ref<ICourse[]>([{
 
 <template>
     <section class="grid">
-        <Card class="my-5 shadow-5 col-12">
-            <template #content>
-                <div class="grid col-12 align-items-center justify-content-center">
-                    <h1 class="title text-2xl sm:text-3xl col-7 md:col-8 lg:col-10">Prepare Questions</h1>
-                    <Button label="NEW" @click="$router.push('/admin/create/question/add')" class="btn-new col-5 md:col-4 lg:col-2"></Button>
-                </div>
-            </template>
-        </Card>
+        <div class="my-5 shadow-5 col-12 h-5rem border-round">
+            <div class="grid col-12 align-items-center justify-content-center">
+                <h1 class="title text-2xl sm:text-3xl col-7 md:col-8 lg:col-10">Prepare Questions</h1>
+                <Button label="NEW" @click="$router.push('/admin/create/question/add')"
+                    class="btn-new col-5 md:col-4 lg:col-2"></Button>
+            </div>
+        </div>
 
-        <article class="grid col-12 p-0 m-0">
-            <div v-for="(event, idx) of dataList" class="item-flex col-6 sm:col-4 md:col-4 lg:col-4 xl:col-4 py-0 px-0 mx-0 my-3 md:my-3">
-                <div class="grid cursor-pointer list-item align-items-center justify-content-center">
-                    <img :src="event.image" :alt="event.title" class="col-10"/>
+        <article class="grid col-12 p-0 m-0 gap-2">
+            <div v-for="(event, idx) of dataList"
+                class="item-flex col-6 sm:col-4 md:col-4 lg:col-4 xl:col-4 py-0 px-0 mx-0 my-3 md:my-3"
+                style="max-width: 210px;">
+                <div class="grid cursor-pointer list-item align-items-center justify-content-center m-0 p-0">
+                    <img :src="event.image" :alt="event.title" class="col-10" />
                     <div class="grid">
                         <h3 class="card-title">{{ event.title }}</h3>
                         <Button size="small" link icon="pi pi-pencil"></Button>
