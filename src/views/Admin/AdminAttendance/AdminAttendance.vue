@@ -1,5 +1,5 @@
 <template>
-  <section class="px-2 sm:px-4">
+  <section class="px-2">
     <section class="grid overflow-hidden flex-column md:flex-row px-2 md:px-0 lg:px-0 xl:px-0 py-2">
       <h1 class="text-900 font-bold text-3xl col-12">My Attendance</h1>
       <div class="col-12 grid align-items-center filter-search px-3 lg:px-2">
@@ -75,18 +75,21 @@
           <AttendanceCalendar :key="index" :card="card" />
         </div>
       </div>
-      <Paginator :rows="10" :totalRecords="120" :template="{
+      <Paginator :rows="10" :totalRecords="mockAttendance.length" :template="{
         '992px': 'CurrentPageReport PrevPageLink  NextPageLink',
         default: 'CurrentPageReport PrevPageLink PageLinks NextPageLink',
-      }" currentPageReportTemplate='Showing data {first} to {last} of {totalRecords} entries' class="col-12" />
+      }" currentPageReportTemplate='Showing data {first} to {last} of {totalRecords} entries' class="col-12"
+        @page="pageChanged" />
     </section>
   </section>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import AttendanceCalendar from './AttendanceCalander.vue';
 import { courseDataMock } from '../AdminStudentProgress/Course.mock';
+import { mockAttendance } from './mockAttendance';
+import type { PageState } from 'primevue/paginator';
 const selectedMonth = ref();
 const selectedYear = ref();
 function generateArrayOfYears() {
@@ -104,100 +107,23 @@ const monthList = ref(["January", "February", "March", "April", "May", "June", "
 const yearList = ref(generateArrayOfYears());
 const selectedCourse = ref();
 const courseList = ref(courseDataMock);
-
-const cardData = ref([
-  {
-    label: 'P',
-    name: 'Aaron Anderson',
-    currentDay: 'Day 30',
-    progress: 100,
-    attendance: 30,
-    percent: 100,
-    iconMarkup: '<i class="pi pi-thumbs-up"></i>'
-  },
-  {
-    label: 'W',
-    name: 'Abigail Adams',
-    currentDay: 'Day 30',
-    progress: 100,
-    attendance: 30,
-    percent: 100,
-    iconMarkup: '<i class="pi pi-thumbs-down"></i>'
-  },
-  {
-    label: 'M',
-    name: 'Adie Choy',
-    currentDay: 'Day 30',
-    progress: 93,
-    attendance: 28,
-    percent: 93,
-    iconMarkup: '<i class="pi pi-thumbs-up"></i>'
-  },
-  {
-    label: 'M',
-    name: 'Adam Allen',
-    currentDay: 'Day 30',
-    progress: 83,
-    attendance: 25,
-    percent: 83,
-    iconMarkup: '<i class="pi pi-thumbs-up"></i>'
-  },
-  {
-    label: 'M',
-    name: 'Avery Tucker',
-    currentDay: 'Day 30',
-    progress: 66,
-    attendance: 20,
-    percent: 66,
-    iconMarkup: '<i class="pi pi-thumbs-up"></i>'
-  },
-  {
-    label: 'M',
-    name: 'Adrian Armstrong',
-    currentDay: 'Day 30',
-    progress: 100,
-    attendance: 30,
-    percent: 100,
-    iconMarkup: '<i class="pi pi-thumbs-up"></i>'
-  },
-  {
-    label: 'M',
-    name: 'Aisha Archer',
-    currentDay: 'Day 30',
-    progress: 50,
-    attendance: 15,
-    percent: 50,
-    iconMarkup: '<i class="pi pi-thumbs-down"></i>'
-  },
-  {
-    label: 'M',
-    name: 'Alex Adams',
-    currentDay: 'Day 30',
-    progress: 70,
-    attendance: 6,
-    percent: 70,
-    iconMarkup: '<i class="pi pi-thumbs-up"></i>'
-  },
-  {
-    label: 'M',
-    name: 'Alexa Andrews',
-    currentDay: 'Day 30',
-    progress: 83,
-    attendance: 25,
-    percent: 83,
-    iconMarkup: '<i class="pi pi-thumbs-up"></i>'
-  },
-  {
-    label: 'M',
-    name: 'Allan Alvarez',
-    currentDay: 'Day 30',
-    progress: 100,
-    attendance: 30,
-    percent: 100,
-    iconMarkup: '<i class="pi pi-thumbs-up"></i>'
-  },
-]);
-
+const cardData = ref(mockAttendance);
+const perPage = ref(10);
+const pageChanged = (page: PageState) => {
+  const startIndex = page.page * perPage.value;
+  const endIndex = startIndex + perPage.value;
+  const data = [...mockAttendance];
+  const filteredData = data.slice(startIndex, endIndex);
+  cardData.value = filteredData;
+}
+onMounted(() => {
+  pageChanged({
+    first: 10,
+    page: 0,
+    pageCount: mockAttendance.length,
+    rows: 10,
+  })
+})
 </script>
 
 <style scoped>
@@ -275,48 +201,80 @@ const cardData = ref([
   border: none;
 }
 
-::v-deep(.p-paginator) {
+:deep(.p-paginator) {
+  height: 50px;
+}
+
+:deep(.p-paginator) {
+  justify-content: space-around;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  gap: 0;
+  padding: 0;
+
+
+  .p-paginator-pages {
+    gap: 15px;
+    display: flex;
+
+    .p-paginator-page {
+      color: #6D5BD0;
+      text-align: center;
+      font-size: 16px;
+      font-family: Inter;
+      font-weight: 600;
+      background-color: white;
+    }
+  }
+
+  .p-link {
+    width: 27px;
+    height: 27px;
+    color: #404B52;
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: -0.14px;
+    border-radius: 4px;
+    border: 1px solid #EEE;
+    background: #F5F5F5;
+    border-radius: 4px;
+    border: 1px solid #EEE;
+    background: #F5F5F5;
+    min-width: unset;
+
+    &.p-highlight {
+      color: white;
+      border: 1px solid var(--svo-dark-color, #006785);
+      background: var(--svo-dark-color, #006785);
+    }
+
+    svg {
+      width: 9px;
+      height: 14px;
+
+      path {
+        fill: #404B52;
+      }
+    }
+  }
+
+  .p-dropdown {
+    height: 27px;
+    align-items: center;
+  }
+
   .p-paginator-current {
-    margin-right: auto;
-  }
-
-  .p-paginator-pages>.p-paginator-page {
-    border-radius: 4px;
-    border: 1px solid #EEE;
-    background: #F5F5F5;
-  }
-
-  .p-paginator-pages>.p-paginator-page:active {
-    border-radius: 4px;
-    border: 1px solid var(--primary, #00C0DD);
-    background: var(--primary, #00C0DD);
-    color: white;
-  }
-
-  .p-paginator-prev {
-    border-radius: 4px;
-    border: 1px solid #EEE;
-    background: #F5F5F5;
-  }
-
-  .p-paginator-prev:active {
-    border-radius: 4px;
-    border: 1px solid var(--primary, #00C0DD);
-    background: var(--primary, #00C0DD);
-    color: white;
-  }
-
-  .p-paginator-next {
-    border-radius: 4px;
-    border: 1px solid #EEE;
-    background: #F5F5F5;
-  }
-
-  .p-paginator-next:active {
-    border-radius: 4px;
-    border: 1px solid var(--primary, #00C0DD);
-    background: var(--primary, #00C0DD);
-    color: white;
+    text-align: left;
+    width: 80%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: flex-start;
+    cursor: default;
   }
 }
 </style>

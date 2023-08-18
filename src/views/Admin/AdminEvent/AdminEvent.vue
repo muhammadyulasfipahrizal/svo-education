@@ -93,76 +93,78 @@ const branchList = ref([
 </script>
 
 <template>
-  <section
-    class="grid overflow-hidden flex-column md:flex-row pl-4 pr-4 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2 px-2 min-h-full">
-    <div class="col-12 md:col-8 lg:col-8 xl:col-8 px-2 bg-white">
-      <div class="flex justify-content-between align-items-center">
-        <h1 class="font-bold mb-2 title-head">Ongoing Event</h1>
-        <button @click="onAddEvent" class="btn-orange w-5rem p-0 cursor-pointer">
-          <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
-            <path d="M10.5 14.1693V5.83594" stroke="white" stroke-width="1.5" stroke-linecap="round" />
-            <path d="M6.33268 10L14.666 10" stroke="white" stroke-width="1.5" stroke-linecap="round" />
-          </svg>
-          <span class="text-base font-semibold">ADD</span>
-        </button>
-      </div>
-      <div class="grid justify-center flex-wrap gap-2 flex-column md:flex-row px-2">
-        <template v-for="item in eventList">
-          <EventItem :item="item" />
-        </template>
-      </div>
-    </div>
-    <div class="col-12 md:col-4 lg:col-4 xl:col-4">
-      <h1 class="font-bold mb-2 title-text">Calendar</h1>
-      <div class="flex justify-content-start">
-        <Calendar v-model="date" inline class="calendar">
-          <!-- for badge calendar -->
-          <template #date="slotProps">
-            <strong v-if="slotProps.date.day > 10 && slotProps.date.day < 15"
-              class="flex flex-column justify-content-center align-items-center gap-0">
-              <p>{{ slotProps.date.day }}</p>
-              <Badge value="2" class="badge flex justify-content-center align-items-center"></Badge>
-            </strong>
-            <template v-else>{{ slotProps.date.day }}</template>
+  <section class="px-2">
+    <section
+      class="grid overflow-hidden flex-column md:flex-row pl-4 pr-4 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2 px-2 min-h-full">
+      <div class="col-12 md:col-8 lg:col-8 xl:col-8 px-2 bg-white">
+        <div class="flex justify-content-between align-items-center">
+          <h1 class="font-bold mb-2 title-head">Ongoing Event</h1>
+          <button @click="onAddEvent" class="btn-orange w-5rem p-0 cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
+              <path d="M10.5 14.1693V5.83594" stroke="white" stroke-width="1.5" stroke-linecap="round" />
+              <path d="M6.33268 10L14.666 10" stroke="white" stroke-width="1.5" stroke-linecap="round" />
+            </svg>
+            <span class="text-base font-semibold">ADD</span>
+          </button>
+        </div>
+        <div class="grid justify-center flex-wrap gap-2 flex-column md:flex-row px-2">
+          <template v-for="item in eventList">
+            <EventItem :item="item" />
           </template>
-        </Calendar>
+        </div>
       </div>
-    </div>
+      <div class="col-12 md:col-4 lg:col-4 xl:col-4">
+        <h1 class="font-bold mb-2 title-text">Calendar</h1>
+        <div class="flex justify-content-start">
+          <Calendar v-model="date" inline class="calendar">
+            <!-- for badge calendar -->
+            <template #date="slotProps">
+              <strong v-if="slotProps.date.day > 10 && slotProps.date.day < 15"
+                class="flex flex-column justify-content-center align-items-center gap-0">
+                <p>{{ slotProps.date.day }}</p>
+                <Badge value="2" class="badge flex justify-content-center align-items-center"></Badge>
+              </strong>
+              <template v-else>{{ slotProps.date.day }}</template>
+            </template>
+          </Calendar>
+        </div>
+      </div>
 
-    <div class="col-12 md:hidden lg:hidden xl:hidden py-2">
-      <div class="flex gap-2 align-items-center my-3">
-        <i class="pi pi-calendar"></i>
-        <p class="text-md font-grey-500 font-bold">
-          {{ format(new Date(), 'dd-MMM-yyyy') }}
-        </p>
+      <div class="col-12 md:hidden lg:hidden xl:hidden py-2">
+        <div class="flex gap-2 align-items-center my-3">
+          <i class="pi pi-calendar"></i>
+          <p class="text-md font-grey-500 font-bold">
+            {{ format(new Date(), 'dd-MMM-yyyy') }}
+          </p>
+        </div>
+        <div class="grid surface-0 p-2 border-300 border-1 border-round gap-2">
+          <div class="border-round border-1 p-2 flex flex-column w-full">
+            <p class="text-sm font-bold text-orange-400">
+              {{ format(new Date(), 'HH:mm aa') }} - {{ format(new Date(), 'HH:mm aa') }}
+            </p>
+            <p class="text-sm font-bold">Plan CRM training sessions</p>
+          </div>
+          <div class="border-round border-1 p-2 flex flex-column w-full">
+            <p class="text-sm font-bold text-orange-400">
+              {{ format(new Date(), 'HH:mm aa') }} - {{ format(new Date(), 'HH:mm aa') }}
+            </p>
+            <p class="text-sm font-bold">Plan CRM training sessions</p>
+          </div>
+          <div class="border-round border-1 p-2 flex flex-column w-full">
+            <p class="text-sm font-bold text-orange-400">
+              {{ format(new Date(), 'HH:mm aa') }} - {{ format(new Date(), 'HH:mm aa') }}
+            </p>
+            <p class="text-sm font-bold">Plan CRM training sessions</p>
+          </div>
+          <div class="border-round border-1 p-2 flex flex-column w-full">
+            <p class="text-sm font-bold text-orange-400">
+              {{ format(new Date(), 'HH:mm aa') }} - {{ format(new Date(), 'HH:mm aa') }}
+            </p>
+            <p class="text-sm font-bold">Plan CRM training sessions</p>
+          </div>
+        </div>
       </div>
-      <div class="grid surface-0 p-2 border-300 border-1 border-round gap-2">
-        <div class="border-round border-1 p-2 flex flex-column w-full">
-          <p class="text-sm font-bold text-orange-400">
-            {{ format(new Date(), 'HH:mm aa') }} - {{ format(new Date(), 'HH:mm aa') }}
-          </p>
-          <p class="text-sm font-bold">Plan CRM training sessions</p>
-        </div>
-        <div class="border-round border-1 p-2 flex flex-column w-full">
-          <p class="text-sm font-bold text-orange-400">
-            {{ format(new Date(), 'HH:mm aa') }} - {{ format(new Date(), 'HH:mm aa') }}
-          </p>
-          <p class="text-sm font-bold">Plan CRM training sessions</p>
-        </div>
-        <div class="border-round border-1 p-2 flex flex-column w-full">
-          <p class="text-sm font-bold text-orange-400">
-            {{ format(new Date(), 'HH:mm aa') }} - {{ format(new Date(), 'HH:mm aa') }}
-          </p>
-          <p class="text-sm font-bold">Plan CRM training sessions</p>
-        </div>
-        <div class="border-round border-1 p-2 flex flex-column w-full">
-          <p class="text-sm font-bold text-orange-400">
-            {{ format(new Date(), 'HH:mm aa') }} - {{ format(new Date(), 'HH:mm aa') }}
-          </p>
-          <p class="text-sm font-bold">Plan CRM training sessions</p>
-        </div>
-      </div>
-    </div>
+    </section>
   </section>
 
 

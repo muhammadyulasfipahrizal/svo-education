@@ -1,4 +1,5 @@
-import type { ICourse } from "./CourseInterface";
+import type { Course } from "../../AdminDashboard/Dashboard.type";
+import { courseDummyData } from "../../AdminDashboard/DashboardDummyData";
 
 export interface Student {
     id: number;
@@ -14,7 +15,7 @@ export interface IStudentGrade {
     student: Student;
     courses: {
         completion: number; // percentage
-        course: ICourse;
+        course: Course;
     }[]
 }
 
@@ -184,39 +185,6 @@ export const students: Student[] = [
     
 ];
 
-// Dummy data for courses
-export const courses: ICourse[] = [
-    {
-        id: 1,
-        name: "UI UX Design",
-        image: "/assets/img/course/ui-ux-design.png"
-    },
-    {
-        id: 2,
-        name: "Finance",
-        image: "/assets/img/course/finance.png"
-    },
-    {
-        id: 3,
-        name: "Marketing",
-        image: "/assets/img/course/marketing.png"
-    },
-    {
-        id: 4,
-        name: "Content Writer",
-        image: "/assets/img/course/content-writer.jpeg"
-    },
-    {
-        id: 5,
-        name: "Gaming",
-        image: "/assets/img/course/gaming.jpeg"
-    },
-    {
-        id: 5,
-        name: "Info Technology",
-        image: "/assets/img/course/technology.png"
-    },
-];
 
 // Generate student grades
 export const studentGrades: IStudentGrade[] = students.map((student) => {
@@ -224,7 +192,7 @@ export const studentGrades: IStudentGrade[] = students.map((student) => {
 
     // Randomly select two courses for each student
     for (let i = 0; i < 2; i++) {
-        const randomCourse = courses[Math.floor(Math.random() * courses.length)];
+        const randomCourse = courseDummyData[Math.floor(Math.random() * courseDummyData.length)];
         const completionPercentage = Math.floor(Math.random() * 101); // Random percentage between 0 and 100
 
         studentCourses.push({
@@ -242,5 +210,5 @@ export const studentGrades: IStudentGrade[] = students.map((student) => {
 });
 
 console.log(students);
-console.log(courses);
+console.log(courseDummyData);
 console.log(studentGrades);
