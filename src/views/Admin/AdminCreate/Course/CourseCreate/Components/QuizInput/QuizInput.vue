@@ -56,7 +56,7 @@ watchEffect(() => {
         <div class="grid">
             <div class="col-4 px-0">
                 <Dropdown v-model="selectedType" :options="typeList" optionLabel="name" placeholder="Select Type"
-                    class="w-full md:w-14rem">
+                    class="w-full md:w-14rem selected">
                     <template #value="slotProps">
                         <div v-if="slotProps.value" class="flex align-items-center gap-2">
                             <RadioButton v-if="slotProps.value.code === 'radio'" value="model" />
@@ -84,7 +84,7 @@ watchEffect(() => {
                 <div class="grid pl-3">
                     <div class="col-11">
                         <div class="flex align-items-center gap-2">
-                            <RadioButton :inputId="'answer_radio' + key" name="answer_radio" :value="answer.title" />
+                            <RadioButton :inputId="'answer_radio' + key" name="answer_radio" v-model="radioSelected" :value="answer.title" />
                             <label :for="'answer_radio' + key" class="ml-2">{{ numberToChar(key) }}.</label>
                             <InputText v-model="answer.title" class="border-0 w-full" />
                         </div>
@@ -99,7 +99,7 @@ watchEffect(() => {
         </div>
 
         <div class="flex flex-column gap-2" v-if="selectedType?.code === 'text'">
-            <Textarea rows="4" class="w-full" />
+            <Textarea rows="4" class="w-full" placeholder="Please fill description" />
         </div>
     </div>
 </template>

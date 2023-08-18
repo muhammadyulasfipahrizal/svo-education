@@ -1,5 +1,5 @@
 <template>
-  <section class=" py-4 sm:px-3">
+  <section class=" py-4">
     <div
       class="grid overflow-hidden flex-column px-2 md:px-3 lg:pl-0 lg:px-3">
       <div class="flex flex-column col-12 gap-2 md:gap-0 justify-content-between">

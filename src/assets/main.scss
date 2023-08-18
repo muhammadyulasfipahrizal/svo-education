@@ -80,3 +80,22 @@ a,
   box-shadow: none !important;
   outline: none !important;
 }
+
+.p-inputtext-sm,
+.p-inputtext-lg {
+  &:placeholder-shown {
+    background-color: #D9D9D9 !important;
+  }
+}
+
+.p-dropdown {
+  &:not(.selected) {
+    background-color: #D9D9D9;
+  }
+}
+
+textarea {
+  &:placeholder-shown {
+    background-color: #D9D9D9 !important;
+  }
+}

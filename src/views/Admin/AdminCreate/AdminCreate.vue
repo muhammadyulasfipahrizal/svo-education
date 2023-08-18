@@ -88,7 +88,7 @@ router.afterEach((to, from) => {
                         </Button>
             </article>
 
-            <article class="px-4 md:px-5">
+            <article class="px-2 bg-white">
                 <router-view></router-view>
             </article>
 
