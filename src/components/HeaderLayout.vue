@@ -10,21 +10,6 @@
               <i class="text-lg pi pi-angle-down"></i>
             </div>
 
-            <OverlayPanel ref="toggleDashboardDropdown" style="width: 400px;">
-              <Panel>
-                <div class="flex flex-row gap-4">
-                  <div v-for="category in filterData" :key="category.label" class="flex flex-column align-items-start">
-                    <p class="text-xl font-bold">{{ category.label }}</p>
-                    <div v-for="item in category.items" :key="item.value" class="flex flex-row gap-2">
-                      <input :id="item.value" :value="item.value" type="checkbox" :name="category.label">
-                      <label :for="item.value">{{ item.value }}</label>
-                    </div>
-                    <p class="pt-1 font-bold cursor-pointer">Show more...</p>
-                  </div>
-                </div>
-              </Panel>
-            </OverlayPanel>
-
           </div>
         </div>
         <ul
@@ -56,7 +41,7 @@
               </svg>
               <span class="block md:hidden font-medium">Calendar</span><span class="p-ink" role="presentation"></span></a>
           </li>
-          <li><a 
+          <li><a @click="toggleDekstopNotification"
               class="flex p-3 md:px-3 md:py-2 align-items-center text-600 hover:text-900 hover:surface-100 font-medium border-round cursor-pointer transition-duration-150 transition-colors p-ripple">
               <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"
                 class="text-base md:text-2xl mr-2 md:mr-0 p-overlay-badge">
@@ -72,6 +57,24 @@
               <span class="block md:hidden font-medium">Notifications</span><span class="p-ink"
                 role="presentation"></span></a>
           </li>
+
+          <OverlayPanel ref="toggleNotificationDekstop" style="width: 700px" showCloseIcon > 
+            <Panel header="Header">
+              <div class="grid">
+                <p class="col-12 text-lg font-bold text">Notification</p>
+                <div v-for="(item, index) in notificationData" :key="index" class="grid col-12">
+                  <p class="col-12 dark-grey text">{{ item.date }}</p>
+                  <div v-for="(massage, notificationIndex) in item.massage" :key="notificationIndex" class="flex flex-row align-items-center justify-content-between col-12 px-4 py-1">
+                    <div class="flex flex-row align-items-center gap-2">
+                      <i class="pi pi-circle-fill blue text-xs"></i>
+                      <p class="text">{{ massage.subject }} <span class="font-bold">{{massage.verb}}</span> {{ massage.object }}</p>
+                    </div>
+                    <p class="align-self-end dark-grey text">{{ massage.time }}</p>
+                  </div>
+                </div>
+              </div>
+            </Panel>
+          </OverlayPanel>
 
           <li><a @click="toggleDekstop"
               class="flex p-3 md:px-3 md:py-2 align-items-center text-600 hover:text-900 hover:surface-100 font-medium border-round cursor-pointer transition-duration-150 transition-colors p-ripple">
@@ -181,16 +184,35 @@
           </div>
           <ul
             class="list-right list-none p-0 m-0 hidden flex align-items-center select-none surface-section border-none surface-border right-0 top-100 shadow-none ">
-            <li><a href="dashboard/calander"
+            <li><a href="/dashboard/calander"
                 class="flex px-3 py-2 align-items-center text-600 hover:text-900 hover:surface-100 font-medium border-round cursor-pointer transition-duration-150 transition-colors p-ripple"><i
                   class="pi pi-calendar text-2xl mr-2 mr-0"></i>
               </a>
             </li>
-            <li><a
+            <li><a @click="toggleMobileNotification"
                 class="flex px-3 py-2 align-items-center text-600 hover:text-900 hover:surface-100 font-medium border-round cursor-pointer transition-duration-150 transition-colors p-ripple">
                 <i class="pi pi-bell text-2xl mr-2 mr-0 p-overlay-badge"></i>
               </a>
             </li>
+
+            <OverlayPanel ref="toggleNotificationMobile" style="width: 95vw" showCloseIcon> 
+              <Panel header="Header">
+                <div class="grid px-5">
+                  <p class="col-12 text-2xl font-bold text">Notification</p>
+                  <div v-for="(item, index) in notificationData" :key="index" class="grid col-12">
+                    <p class="col-12 text-xl dark-grey text">{{ item.date }}</p>
+                    <div v-for="(massage, notificationIndex) in item.massage" :key="notificationIndex" class="flex flex-column align-items-start col-12 px-4 py-1 text-xl">
+                      <div class="flex flex-row align-items-center gap-2">
+                        <i class="pi pi-circle-fill blue text-xs"></i>
+                        <p class="text">{{ massage.subject }} <span class="font-bold">{{massage.verb}}</span> {{ massage.object }}</p>
+                      </div>
+                      <p class="dark-grey text">{{ massage.time }}</p>
+                    </div>
+                  </div>
+                </div>
+              </Panel>
+            </OverlayPanel>
+
             <li><a @click="toggleMobile"
                 class="flex px-3 py-2 align-items-center text-600 hover:text-900 hover:surface-100 font-medium border-round cursor-pointer transition-duration-150 transition-colors p-ripple"><i
                   class="pi pi-shopping-cart text-2xl mr-2 mr-0 p-overlay-badge"></i>
@@ -238,6 +260,21 @@
 import Dropdown from 'primevue/dropdown';
 import SidebarNavigation from './SidebarNavigation.vue';
 import { ref, onMounted, watchEffect } from "vue";
+import { notificationDummyData } from '../views/Admin/AdminDashboard/DashboardNotification/DashboardNotificatioDummyData';
+
+interface Massage {
+    subject: string;
+    time: string;
+    verb: string;
+    object: string;
+}
+
+interface Inotif {
+    date: string;
+    massage: Massage[];
+}
+
+const notificationData = ref<Inotif[]>(notificationDummyData)
 
 interface FilterItem {
   value: string;
@@ -304,7 +341,18 @@ watchEffect(() => {
 
 const toggleCartMobile = ref();
 const toggleCartDekstop = ref();
+const toggleNotificationDekstop = ref();
+const toggleNotificationMobile = ref();
 const toggleDashboardDropdown = ref();
+
+const toggleDekstopNotification = (event: any) => {
+  toggleNotificationDekstop.value.toggle(event);
+}
+
+const toggleMobileNotification = (event: any) => {
+  toggleNotificationMobile.value.toggle(event);
+}
+
 const toggleDekstop = (event: any) => {
   toggleCartDekstop.value.toggle(event);
 }
@@ -320,6 +368,12 @@ const toggleDropdown = (event: any) => {
 .header-left {
   display: flex;
   align-items: center;
+}
+
+.text {
+  font-family: Inter;
+  font-style: normal;
+  line-height: 160%
 }
 
 .filter-dropdown {
@@ -471,12 +525,20 @@ const toggleDropdown = (event: any) => {
   background-color: #006785;
 }
 
+.blue {
+  color: #00C0DD;
+}
+
 .grey {
   color: #9F9F9F;
 }
 
 .light-grey {
   color: #D9D9D9;
+}
+
+.dark-grey {
+  color: #6D7382;
 }
 
 .orange {
