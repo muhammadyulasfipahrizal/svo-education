@@ -98,7 +98,9 @@ const getBackgroundColor = (progress: number) => {
         <div class="col-12 pr-3">
           <DataTable :value="guestListData" removableSort paginator :rows="10" :rowsPerPageOptions="[5, 10, 20, 50]"
             sortMode="multiple" tableStyle="min-width: 50rem" dataKey="id" v-model:selection="checkedStudent"
-            class="shadow-2 detail-table">
+            class="shadow-2 detail-table"
+            paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
+            currentPageReportTemplate="Showing data {first} to {last} of {totalRecords} entries">
             <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
             <Column field="name" class="text-white" headerStyle="width: 4rem">
               <template #header>
@@ -195,11 +197,7 @@ const getBackgroundColor = (progress: number) => {
                 </div>
               </template>
             </Column>
-            <template #footer>
-              <div class="flex flex-row align-items-center justify-content-between">
-                <p>Showing data 1 to 10 of 256K entries</p>
-              </div>
-            </template>
+
           </DataTable>
         </div>
       </div>
@@ -332,8 +330,7 @@ const getBackgroundColor = (progress: number) => {
 </template>
   
 <style scoped>
-:deep(.p-paginator) {
-}
+:deep(.p-paginator) {}
 
 :deep(.p-paginator .p-paginator-pages .p-paginator-page) {
   color: #6D5BD0;

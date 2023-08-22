@@ -50,7 +50,9 @@ const onSelectProfile = (v: Instructor) => {
             <div class="col-12">
                 <DataTable :value="instructorList" removableSort paginator :rows="10" :rowsPerPageOptions="[5, 10, 20, 50]"
                     sortMode="multiple" v-model:selection="checkedInstructor" class="shadow-2 p-datatable-sm"
-                    tableStyle="min-width: 80rem">
+                    tableStyle="min-width: 80rem"
+                    paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
+                    currentPageReportTemplate="Showing data {first} to {last} of {totalRecords} entries">
                     <Column selectionMode="multiple" headerStyle="width: 0.5rem"></Column>
                     <Column field="name" class="w-1">
                         <template #header>
@@ -146,11 +148,6 @@ const onSelectProfile = (v: Instructor) => {
                             </Button>
                         </template>
                     </Column>
-                    <template #footer>
-                        <div class="flex flex-row align-items-center justify-content-between">
-                            <p>Showing data 1 to 10 of 256K entries</p>
-                        </div>
-                    </template>
                 </DataTable>
             </div>
         </section>
@@ -160,29 +157,29 @@ const onSelectProfile = (v: Instructor) => {
     <!-- MODAL Profile -->
     <Dialog v-model:visible="modalProfile" modal :style="{ width: '40vw' }" :breakpoints="{ '764px': '90vw' }">
         <template #header>
-            <div class="flex gap-2 align-items-center">
+            <div class="flex gap-2 align-items-center p-2">
                 <img :src="selectedProfile?.image" alt="" style="width: 39px; height: 39px;" />
-                <div class="h4 text-900 font-bold">{{ selectedProfile?.name }}</div>
+                <div class="title-text">{{ selectedProfile?.name }}</div>
             </div>
         </template>
-        <div class="flex flex-column gap-2 py-3">
-            <div class="flex flex-column gap-3 align-items-center">
+        <div class="flex flex-column gap-2 p-2">
+            <div class="flex flex-column gap-2 align-items-center">
                 <div class="flex align-items-center justify-content-between w-full">
                     <h3 class="text-900 font-bold text-sm">Helpfullness</h3>
                     <star-rating :show-rating="false" :round-start-rating="false" :star-size="16" inactive-color="#FFF"
-                        active-color="#E96853" read-only
+                        border-color="#E96853" :border-width="1" active-color="#E96853" read-only :padding="0.99"
                         :rating="(selectedProfile?.rating.ratings.helpful || 0)"></star-rating>
                 </div>
                 <div class="flex align-items-center justify-content-between w-full">
                     <h3 class="text-900 font-bold text-sm">Easiness</h3>
                     <star-rating :show-rating="false" :round-start-rating="false" :star-size="16" inactive-color="#FFF"
-                        active-color="#E96853" read-only
+                        border-color="#E96853" :border-width="1" :padding="0.99" active-color="#E96853" read-only
                         :rating="(selectedProfile?.rating.ratings.easiness || 0)"></star-rating>
                 </div>
                 <div class="flex align-items-center justify-content-between w-full">
                     <h3 class="text-900 font-bold text-sm">Clarity</h3>
                     <star-rating :show-rating="false" :round-start-rating="false" :star-size="16" inactive-color="#FFF"
-                        active-color="#E96853" read-only
+                        border-color="#E96853" :border-width="1" :padding="0.99" active-color="#E96853" read-only
                         :rating="(selectedProfile?.rating.ratings.clarity || 0)"></star-rating>
                 </div>
             </div>
@@ -191,7 +188,9 @@ const onSelectProfile = (v: Instructor) => {
                 <h3 class="text-900 font-bold text-sm">Overall rating ({{ selectedProfile?.rating.total_rating }} rated)
                 </h3>
                 <star-rating :show-rating="false" :round-start-rating="false" :star-size="16" inactive-color="#FFF"
-                    active-color="#E96853" read-only :rating="selectedProfile?.rating.ratings_overall"></star-rating>
+                    border-color="#E96853" :border-width="1" :padding="0.99" active-color="#E96853" read-only
+                    :rating="selectedProfile?.rating.ratings_overall">
+                </star-rating>
             </div>
         </div>
     </Dialog>
@@ -336,5 +335,14 @@ const onSelectProfile = (v: Instructor) => {
             align-items: center;
         }
     }
+}
+
+.title-text {
+    color: var(--font-1, #001125);
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 160%;
 }
 </style>

@@ -7,7 +7,9 @@
       </div>
       <div class="col-12">
         <DataTable :value="guestProgressList" class="shadow-2" removableSort paginator :rows="10" selectionMode="single"
-          :selection="selectedCourse" @rowSelect="handleRowSelect">
+          :selection="selectedCourse" @rowSelect="handleRowSelect"
+          paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
+          currentPageReportTemplate="Showing data {first} to {last} of {totalRecords} entries">
           <Column field="dealerName">
             <template #header>
               <div class="flex justify-content-center w-full">
@@ -33,11 +35,6 @@
               </div>
             </template>
           </Column>
-          <template #footer>
-            <div class="flex flex-row align-items-center justify-content-between">
-              <p>Showing data 1 to 10 of 256K entries</p>
-            </div>
-          </template>
         </DataTable>
       </div>
     </section>
