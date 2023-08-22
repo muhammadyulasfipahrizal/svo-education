@@ -271,12 +271,12 @@ const getBackgroundColor = (progress: number) => {
         <template v-for="col of columns">
           <Column field="status">
             <template #header>
-              <div class="w-6rem flex justify-content-center align-items-center">
+              <div class="w-5rem flex justify-content-center align-items-center">
                 {{ col.header }}
               </div>
             </template>
             <template #body>
-              <div class="w-6rem flex justify-content-center align-items-center">
+              <div class="w-5rem flex justify-content-center align-items-center">
                 <svg v-if="col.value === 'passed'" xmlns="http://www.w3.org/2000/svg" width="15" height="15"
                   viewBox="0 0 15 15" fill="none">
                   <rect width="15" height="15" rx="7.5" fill="#659872" />
@@ -304,7 +304,7 @@ const getBackgroundColor = (progress: number) => {
         </svg></button>
     </div>
     <div class="px-2">
-      <div class="flex flex-row align-items-center my-4 gap-2">
+      <div class="flex flex-row align-items-center -mt-3 mb-2 gap-2 ">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
           <rect width="24" height="24" rx="12" fill="#659872" />
           <path
@@ -399,7 +399,7 @@ const getBackgroundColor = (progress: number) => {
         </div>
       </div>
       <div class="line"></div>
-      <div class="flex flex-row align-items-center my-4">
+      <div class="flex flex-row align-items-center mt-3 mb-4">
         <div class="flex flex-row align-items-center gap-2">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
             <rect width="24" height="24" rx="12" fill="#659872" />

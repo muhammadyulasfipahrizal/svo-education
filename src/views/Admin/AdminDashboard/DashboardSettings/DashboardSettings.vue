@@ -11,10 +11,13 @@
                             <p class="text-sm font-normal">TraceyTam@gmail.com</p>
                         </div>
                         <div class="relative">
-                            <img src="/assets/img/admin-profile-image.png" alt="">
-                            <i class="pi pi-trash trash-icon"></i>
+                            <img :src="uploadedImage" alt="" style="max-width: 100px; max-height: 100px object-fit: cover;" class="border-circle">
+                            <i class="pi pi-trash trash-icon" @click="deleteImage"></i>
                         </div>
-                        <Button size="small" label="Upload New Photo" class="btn-save btn-upload"></Button>
+                        <label for="file-input" class="upload-photo-button">
+                            Upload New Photo
+                            <input id="file-input" type="file" accept="image/*" @change="handleImageUpload" class="hidden">
+                        </label>
                     </div>
                 </template>
             </Card>
@@ -148,6 +151,25 @@ const selectedSocial = ref();
 const social = ref([
     { name: 'Facebook username'},
 ]);
+
+const uploadedImage = ref('/assets/img/admin-profile-image.png');
+
+const handleImageUpload = (payload: Event) => {
+    const target = payload.target as HTMLInputElement;
+    const file = target.files?.[0];
+
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = () => {
+            uploadedImage.value = reader.result as string;
+        };
+        reader.readAsDataURL(file);
+    }
+};
+
+const deleteImage = () => {
+    uploadedImage.value = '/assets/img/admin-profile-image.png';
+};
 </script>
 
 <style lang="scss" scoped>
@@ -203,7 +225,15 @@ const social = ref([
         background: #F4F2FF;
         
     }
-    li a {
+    .p-tabview-nav a{
+        background: #F4F2FF;
+    }
+
+    .p-tabview-nav a>span{
+        color: black;
+    }
+
+    .p-tabview-nav li.p-highlight .p-tabview-nav-link{
         background: #F4F2FF;
     }
 }
@@ -226,4 +256,24 @@ const social = ref([
     border: 1px solid #006785;
     color: #006785;
 }
+
+.upload-photo-button {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #00C0DD;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color: var(--bg-1, #FFF);
+    text-align: center;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 160%;
+  }
+  
+  .upload-photo-button:hover {
+    background-color: #006785;
+  }
 </style>
