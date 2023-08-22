@@ -2,16 +2,18 @@
   <section class="px-2">
     <section class="grid overflow-hidden flex-column md:flex-row px-2 md:px-0 lg:px-0 xl:px-0 py-2">
       <h1 class="text-900 font-bold text-3xl col-12">My Attendance</h1>
-      <div class="col-12 grid align-items-center filter-search px-3 lg:px-2">
-        <Button label="Filter" icon="pi pi-filter-fill" size="small" class="filter-button col-3 md:col-2" />
-        <span class="p-input-icon-left col-5">
-          <i class="pi pi-search search-icon pl-1" />
-          <InputText placeholder="Search by class" class="search-bar h-10 w-96 md:w-full p-input text-sm" />
-        </span>
-        <Button size="small" class="btn-orange ml-auto col-2">
-          <i class="block pi pi-download md:mr-2"></i>
-          <p class="hidden sm:block md:block lg:block xl:block">DOWNLOAD</p>
-        </Button>
+      <div class="pl-2 col-12 flex flex-column gap-2 my-2">
+        <!-- FILTER -->
+        <div class="flex justify-content-start md:justify-content-between align-items-center w-full">
+          <div class="flex flex-row align-items-center filter-search align-items-center">
+            <Button label="Filter" icon="pi pi-filter-fill" size="small" class="filter-button mr-3" />
+            <span class="p-input-icon-left mr-3">
+              <i class="pi pi-search search-icon" />
+              <InputText placeholder="Search by name" class="search-bar p-inputtext-sm w-25rem" />
+            </span>
+          </div>
+          <Button label="DOWNLOAD" size="small" icon="pi pi-download" class="btn-orange"></Button>
+        </div>
       </div>
       <div class="col-12 flex flex-column flex-wrap md:flex-row md:p-0 md:m-0">
         <div class="flex flex-row mb-3 px-0 md:px-2 lg:px-0">
