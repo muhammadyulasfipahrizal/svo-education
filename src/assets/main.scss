@@ -99,3 +99,94 @@ textarea {
     background-color: #D9D9D9 !important;
   }
 }
+
+.p-paginator {
+  justify-content: flex-start !important;
+  width: 100%;
+  padding: 10px !important;
+  margin: 0;
+  gap: 0;
+  padding: 0;
+  height: 50px !important;
+
+
+  .p-paginator-pages {
+    gap: 15px;
+    display: flex;
+
+    .p-paginator-page {
+      color: #6D5BD0;
+      text-align: center;
+      font-size: 16px;
+      font-family: Inter;
+      font-weight: 600;
+      background-color: white;
+    }
+  }
+
+  .p-link {
+    width: 27px;
+    height: 27px;
+    color: #404B52;
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: -0.14px;
+    border-radius: 4px;
+    border: 1px solid #EEE;
+    background: #F5F5F5;
+    border-radius: 4px;
+    border: 1px solid #EEE;
+    background: #F5F5F5;
+    min-width: unset;
+
+    &.p-highlight {
+      color: white;
+      border: 1px solid var(--svo-dark-color, #006785);
+      background: var(--svo-dark-color, #006785);
+    }
+
+    svg {
+      width: 9px;
+      height: 14px;
+
+      path {
+        fill: #404B52;
+      }
+    }
+  }
+
+  .p-dropdown {
+    height: 27px;
+    align-items: center;
+  }
+
+  .p-paginator-current {
+    text-align: left;
+    width: 72%;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex;
+    justify-content: flex-start;
+    cursor: default;
+
+    background: white;
+    height: 21px !important;
+    font-size: 14px !important;
+    color: #B5B7C0 !important;
+  }
+
+  @media screen and (max-width: 767px) {
+    height: 100px !important;
+    gap: 2px !important;
+    .p-paginator-current {
+      width: 100%;
+    }
+
+    .p-paginator-pages {
+      gap: 2px !important;
+    }
+  }
+}

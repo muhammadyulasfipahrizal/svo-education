@@ -114,7 +114,9 @@ onMounted(() => {
 
                 <DataTable :value="studentList" removableSort paginator :rows="10" :rowsPerPageOptions="[5, 10, 20, 50]"
                     sortMode="multiple" tableStyle="min-width: 50rem" dataKey="id" v-model:selection="checkedInstructor"
-                    class="shadow-2">
+                    class="shadow-2"
+                    paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
+                    currentPageReportTemplate="Showing data {first} to {last} of {totalRecords} entries">
                     <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
                     <Column field="name" header="Name">
                         <template #body="value">
@@ -166,11 +168,6 @@ onMounted(() => {
                             </Button>
                         </template>
                     </Column>
-                    <template #footer>
-                        <div class="flex flex-row align-items-center justify-content-between">
-                            <p>Showing data 1 to 10 of 256K entries</p>
-                        </div>
-                    </template>
                 </DataTable>
             </div>
         </section>

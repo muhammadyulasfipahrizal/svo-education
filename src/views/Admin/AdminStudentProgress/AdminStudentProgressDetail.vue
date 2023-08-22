@@ -71,13 +71,12 @@ const getBackgroundColor = (progress: number) => {
 
 <template>
   <section class="px-2">
-    <section
-      class="grid overflow-hidden flex-column md:flex-row pl-4 pr-4 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2">
+    <section class="grid overflow-hidden flex-column md:flex-row pl-0 pr-0 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2">
       <div class="col-12 flex flex-row align-items-center my-2">
         <i class="pi pi-chevron-left mr-3 back-arrow cursor-pointer" @click="$router.push('/admin/progress/student')"></i>
         <h1 class="title-head">Student Progress</h1>
       </div>
-      <div class="grid col-12">
+      <div class="grid col-12 p-0 m-0">
         <div class="col-12">
           <Dropdown optionLabel="courseName" :options="courses" v-model="selectedCourse" placeholder="Course Name"
             class="w-full md:w-20rem md:flex">
@@ -98,12 +97,14 @@ const getBackgroundColor = (progress: number) => {
             </template>
           </Dropdown>
         </div>
-        <div class="col-12 flex flex-row align-items-center justify-content-between filter-search pr-3">
-          <div class="col-10 md:col-10 lg:col-10 lg:col-10 grid">
-            <Button label="Filter" icon="pi pi-filter-fill" size="small" class="filter-button sm:mr-3 col-1 h-3rem" />
+        <div class="col-12 flex flex-row justify-content-between filter-search pr-3">
+          <div class="col-10 md:col-10 lg:col-10 lg:col-10 grid gap-2">
+            <Button label="Filter" icon="pi pi-filter-fill" size="small"
+              class="filter-button sm:mr-3 col-1 h-3rem w-auto" />
             <span class="p-input-icon-left w-7 col-8 p-0 h-3rem">
               <i class="pi pi-search search-icon" />
-              <InputText placeholder="Search by Name" class="search-bar p-inputtext-sm w-full h-full" style="width: 450px;" />
+              <InputText placeholder="Search by Name" class="search-bar p-inputtext-sm w-full h-full"
+                style="width: 450px;" />
             </span>
           </div>
           <Button label="DOWNLOAD" icon="pi pi-download" size="small" class="btn-orange hidden md:block"
@@ -115,7 +116,9 @@ const getBackgroundColor = (progress: number) => {
         <div class="col-12 pr-3">
           <DataTable :value="studentData" removableSort paginator :rows="10" :rowsPerPageOptions="[5, 10, 20, 50]"
             tableStyle="min-width: 50rem" sortMode="multiple" dataKey="id" v-model:selection="checkedStudent"
-            class="shadow-2 detail-table">
+            class="shadow-2 detail-table"
+            paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
+            currentPageReportTemplate="Showing data {first} to {last} of {totalRecords} entries">
             <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
             <Column field="name" class="text-white" headerStyle="width: 4rem">
               <template #header>
@@ -232,11 +235,7 @@ const getBackgroundColor = (progress: number) => {
                 </div>
               </template>
             </Column>
-            <template #footer>
-              <div class="flex flex-row align-items-center justify-content-between">
-                <p>Showing data 1 to 10 of 256K entries</p>
-              </div>
-            </template>
+
           </DataTable>
         </div>
       </div>
