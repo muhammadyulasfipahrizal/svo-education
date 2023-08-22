@@ -47,7 +47,7 @@ export const courseDataMock = [
         startDate: '12 Jun 2023',
         endDate: '03 Jul 2023',
         duration: '3W',
-        image: "/assets/img/course/marketing.png"
+        image: "/assets/img/course/content-writer.jpeg"
     },
     {
         id: "5",
@@ -57,7 +57,7 @@ export const courseDataMock = [
         startDate: '21 Aug 2023',
         endDate: '21 Aug 2024',
         duration: '1Y',
-        image: "/assets/img/course/marketing.png"
+        image: "/assets/img/course/gaming.jpeg"
     },
     {
         id: "6",
@@ -67,6 +67,6 @@ export const courseDataMock = [
         startDate: '09 Sep 2023',
         endDate: '10 Sep 2024',
         duration: '1D',
-        image: "/assets/img/course/marketing.png"
+        image: "/assets/img/course/technology.png"
     },
 ];

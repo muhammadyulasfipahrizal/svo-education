@@ -1,7 +1,7 @@
 <template>
   <div class="border-2 surface-border grid align-items-center justify-content-center w-full p-0 m-0 mb-3 border-round-xl">
     <div class="flex align-items-center justify-content-center avatar-container col-12 px-0">
-      <img :src="card.image" class="border-circle w-4rem h-4rem" />
+      <img :src="card.image" class="border-circle w-4rem h-4rem object-cover" style="object-fit: cover" />
       <span v-html="card.iconMarkup" :class="getIconClass(card.iconMarkup)" class="absolute"></span>
     </div>
     <p class="font-bold text-base col-12 text-center p-0">{{ card.name }}</p>
@@ -255,6 +255,55 @@ const attributes = ref([
 
   .vc-weekend {
     background-color: #f7f7f7;
+  }
+
+  /**
+   * change style of sat (7) and sun (1)
+   */
+
+  .vc-day {
+    border: 1px solid #EEE;
+    background: var(--white, #FFF);
+    align-items: flex-start;
+
+    .vc-day-content {
+      color: var(--correct-color, #659872);
+      font-family: Poppins;
+      font-size: 10px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 100%;
+      /* 10px */
+      letter-spacing: -0.1px;
+    }
+
+    .vc-day-layer {
+      margin-bottom: 4px;
+
+      .vc-dots {
+        width: 2px;
+        height: 2px;
+
+        .vc-dot {
+          width: inherit;
+          height: inherit;
+        }
+      }
+    }
+
+    &.weekday-position-1,
+    &.weekday-position-7 {
+      border: 1px solid #EEE;
+      background: var(--suggested-grey, #D9D9D9);
+
+      .vc-day-content {
+        color: white !important;
+      }
+
+      .vc-dots {
+        display: none;
+      }
+    }
   }
 }
 </style>
