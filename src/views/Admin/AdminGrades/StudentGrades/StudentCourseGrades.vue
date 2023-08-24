@@ -132,21 +132,87 @@ onMounted(() => {
                             </div>
                         </template>
                     </Column>
-                    <Column field="course" header="Course" sortable>
+                    <Column field="course" header="Course" sortable class="center">
+                        <template #sorticon="{ sorted, sortOrder }">
+                            <div class="flex justify-content-center align-items-center">
+                                <template v-if="!sorted">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19" viewBox="0 0 18 19"
+                                        fill="none">
+                                        <path
+                                            d="M5.2202 7.84912L8.57777 3.66525C8.87645 3.27825 9.36864 3.27825 9.66789 3.66525L13.0255 7.84912C13.3241 8.23612 13.1835 8.55225 12.6739 8.55225H5.57233C5.0627 8.55225 4.92208 8.23556 5.22077 7.84912H5.2202ZM13.0249 11.1538L9.66733 15.3377C9.36864 15.7247 8.87645 15.7247 8.5772 15.3377L5.21964 11.1538C4.92095 10.7668 5.06158 10.4507 5.5712 10.4507H12.6728C13.1824 10.4507 13.323 10.7674 13.0243 11.1538H13.0249Z"
+                                            fill="white" />
+                                    </svg>
+                                </template>
+                                <template v-else>
+                                    <svg class="mx-2" v-if="(sortOrder as unknown as number) > 0"
+                                        xmlns="http://www.w3.org/2000/svg" width="10.033" height="5">
+                                        <path d="m5.016 0-2.51 2.5L0 4.999 5.016 5l5.017-.001L7.525 2.5 5.016 0z" />
+                                    </svg>
+                                    <svg class="mx-2" v-if="(sortOrder as unknown as number) < 0"
+                                        xmlns="http://www.w3.org/2000/svg" width="10.033" height="5">
+                                        <path d="M5.016 0 0 .003 2.506 2.5 5.016 5l2.509-2.5L10.033.003 5.016 0z" />
+                                    </svg>
+                                </template>
+                            </div>
+                        </template>
                         <template #body="value">
                             <div class="flex gap-1 flex-column align-items-start">
                                 <h4 class="text-900 font-semibold">{{ value.data.courses[0].course.name }}</h4>
                             </div>
                         </template>
                     </Column>
-                    <Column field="upline" header="Upline" sortable>
+                    <Column field="upline" header="Upline" sortable class="center">
+                        <template #sorticon="{ sorted, sortOrder }">
+                            <div class="flex justify-content-center align-items-center">
+                                <template v-if="!sorted">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19" viewBox="0 0 18 19"
+                                        fill="none">
+                                        <path
+                                            d="M5.2202 7.84912L8.57777 3.66525C8.87645 3.27825 9.36864 3.27825 9.66789 3.66525L13.0255 7.84912C13.3241 8.23612 13.1835 8.55225 12.6739 8.55225H5.57233C5.0627 8.55225 4.92208 8.23556 5.22077 7.84912H5.2202ZM13.0249 11.1538L9.66733 15.3377C9.36864 15.7247 8.87645 15.7247 8.5772 15.3377L5.21964 11.1538C4.92095 10.7668 5.06158 10.4507 5.5712 10.4507H12.6728C13.1824 10.4507 13.323 10.7674 13.0243 11.1538H13.0249Z"
+                                            fill="white" />
+                                    </svg>
+                                </template>
+                                <template v-else>
+                                    <svg class="mx-2" v-if="(sortOrder as unknown as number) > 0"
+                                        xmlns="http://www.w3.org/2000/svg" width="10.033" height="5">
+                                        <path d="m5.016 0-2.51 2.5L0 4.999 5.016 5l5.017-.001L7.525 2.5 5.016 0z" />
+                                    </svg>
+                                    <svg class="mx-2" v-if="(sortOrder as unknown as number) < 0"
+                                        xmlns="http://www.w3.org/2000/svg" width="10.033" height="5">
+                                        <path d="M5.016 0 0 .003 2.506 2.5 5.016 5l2.509-2.5L10.033.003 5.016 0z" />
+                                    </svg>
+                                </template>
+                            </div>
+                        </template>
                         <template #body="value">
                             <div class="flex gap-1 flex-column align-items-start">
                                 <h4 class="text-900 font-semibold">{{ value.data.student.upline }}</h4>
                             </div>
                         </template>
                     </Column>
-                    <Column field="branch" header="Branch" sortable>
+                    <Column field="branch" header="Branch" sortable class="center">
+                        <template #sorticon="{ sorted, sortOrder }">
+                            <div class="flex justify-content-center align-items-center">
+                                <template v-if="!sorted">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19" viewBox="0 0 18 19"
+                                        fill="none">
+                                        <path
+                                            d="M5.2202 7.84912L8.57777 3.66525C8.87645 3.27825 9.36864 3.27825 9.66789 3.66525L13.0255 7.84912C13.3241 8.23612 13.1835 8.55225 12.6739 8.55225H5.57233C5.0627 8.55225 4.92208 8.23556 5.22077 7.84912H5.2202ZM13.0249 11.1538L9.66733 15.3377C9.36864 15.7247 8.87645 15.7247 8.5772 15.3377L5.21964 11.1538C4.92095 10.7668 5.06158 10.4507 5.5712 10.4507H12.6728C13.1824 10.4507 13.323 10.7674 13.0243 11.1538H13.0249Z"
+                                            fill="white" />
+                                    </svg>
+                                </template>
+                                <template v-else>
+                                    <svg class="mx-2" v-if="(sortOrder as unknown as number) > 0"
+                                        xmlns="http://www.w3.org/2000/svg" width="10.033" height="5">
+                                        <path d="m5.016 0-2.51 2.5L0 4.999 5.016 5l5.017-.001L7.525 2.5 5.016 0z" />
+                                    </svg>
+                                    <svg class="mx-2" v-if="(sortOrder as unknown as number) < 0"
+                                        xmlns="http://www.w3.org/2000/svg" width="10.033" height="5">
+                                        <path d="M5.016 0 0 .003 2.506 2.5 5.016 5l2.509-2.5L10.033.003 5.016 0z" />
+                                    </svg>
+                                </template>
+                            </div>
+                        </template>
                         <template #body="value">
                             <div class="flex gap-1 flex-column align-items-start">
                                 <h4 class="text-900 font-semibold">{{ value.data.student.city_branch }}</h4>

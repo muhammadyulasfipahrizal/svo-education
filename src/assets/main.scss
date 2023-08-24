@@ -181,12 +181,28 @@ textarea {
   @media screen and (max-width: 767px) {
     height: 100px !important;
     gap: 2px !important;
+
     .p-paginator-current {
       width: 100%;
     }
 
     .p-paginator-pages {
       gap: 2px !important;
+    }
+  }
+}
+
+.object-cover {
+  object-fit: cover;
+}
+
+.p-datatable {
+  th {
+    &.center {
+      .p-column-header-content {
+        display: flex;
+        justify-content: center !important;
+      }
     }
   }
 }

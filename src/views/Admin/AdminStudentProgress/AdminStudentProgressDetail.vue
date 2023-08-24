@@ -71,7 +71,8 @@ const getBackgroundColor = (progress: number) => {
 
 <template>
   <section class="px-2">
-    <section class="grid overflow-hidden flex-column md:flex-row pl-0 pr-0 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2">
+    <section
+      class="grid overflow-hidden flex-column md:flex-row pl-0 pr-0 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2">
       <div class="col-12 flex flex-row align-items-center my-2">
         <i class="pi pi-chevron-left mr-3 back-arrow cursor-pointer" @click="$router.push('/admin/progress/student')"></i>
         <h1 class="title-head">Student Progress</h1>
@@ -79,7 +80,7 @@ const getBackgroundColor = (progress: number) => {
       <div class="grid col-12 p-0 m-0">
         <div class="col-12">
           <Dropdown optionLabel="courseName" :options="courses" v-model="selectedCourse" placeholder="Course Name"
-            class="w-full md:w-20rem md:flex">
+            class="w-full md:w-20rem md:flex" :class="{ 'selected': selectedCourse }">
             <template #value="slotProps">
               <div v-if="slotProps.value" class="flex align-items-center">
                 <img :alt="slotProps.value.courseName" :src="slotProps.value.image" class="mr-2" style="width: 60px;" />
@@ -122,13 +123,13 @@ const getBackgroundColor = (progress: number) => {
             <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
             <Column field="name" class="text-white" headerStyle="width: 4rem">
               <template #header>
-                <div class="flex justify-content-center w-full">
+                <div class="flex justify-content-center">
                   <p class="header-text">Name</p>
                 </div>
               </template>
               <template #body="{ data }">
                 <div class="flex flex-row align-items-center">
-                  <img :src="data.image" alt="" class="mr-3 w-3rem h-3rem border-circle">
+                  <img :src="data.image" alt="" class="mr-3 w-3rem h-3rem border-circle object-cover">
                   <div class="flex flex-column">
                     <p class="name-text">{{ data.name }}</p>
                     <p class="name-email">{{ data.email }}</p>
@@ -136,14 +137,30 @@ const getBackgroundColor = (progress: number) => {
                 </div>
               </template>
             </Column>
-            <Column sortable field="progress" class="text-white">
-              <template #header>
-                <div class="flex justify-content-center w-full">
-                  <div class="flex flex-row align-items-center gap-2">
-                    <p class="header-text">Progress</p>
-                    <!-- <i class="pi pi-sort text-lg"></i> -->
-                  </div>
+            <Column sortable field="progress" class="text-white center">
+              <template #sorticon="{ sorted, sortOrder }">
+                <div class="flex justify-content-center align-items-center">
+                  <template v-if="!sorted">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19" viewBox="0 0 18 19" fill="none">
+                      <path
+                        d="M5.2202 7.84912L8.57777 3.66525C8.87645 3.27825 9.36864 3.27825 9.66789 3.66525L13.0255 7.84912C13.3241 8.23612 13.1835 8.55225 12.6739 8.55225H5.57233C5.0627 8.55225 4.92208 8.23556 5.22077 7.84912H5.2202ZM13.0249 11.1538L9.66733 15.3377C9.36864 15.7247 8.87645 15.7247 8.5772 15.3377L5.21964 11.1538C4.92095 10.7668 5.06158 10.4507 5.5712 10.4507H12.6728C13.1824 10.4507 13.323 10.7674 13.0243 11.1538H13.0249Z"
+                        fill="white" />
+                    </svg>
+                  </template>
+                  <template v-else>
+                    <svg class="mx-2" v-if="(sortOrder as unknown as number) > 0" xmlns="http://www.w3.org/2000/svg"
+                      width="10.033" height="5">
+                      <path d="m5.016 0-2.51 2.5L0 4.999 5.016 5l5.017-.001L7.525 2.5 5.016 0z" />
+                    </svg>
+                    <svg class="mx-2" v-if="(sortOrder as unknown as number) < 0" xmlns="http://www.w3.org/2000/svg"
+                      width="10.033" height="5">
+                      <path d="M5.016 0 0 .003 2.506 2.5 5.016 5l2.509-2.5L10.033.003 5.016 0z" />
+                    </svg>
+                  </template>
                 </div>
+              </template>
+              <template #header>
+                <p class="header-text">Progress</p>
               </template>
               <template #body="{ data }">
                 <div class="flex flex-column">
@@ -155,14 +172,30 @@ const getBackgroundColor = (progress: number) => {
                 </div>
               </template>
             </Column>
-            <Column sortable field="percentage">
-              <template #header>
-                <div class="flex justify-content-center w-full">
-                  <div class="flex flex-row align-items-center gap-2">
-                    <p class="header-text">Percentage</p>
-                    <!-- <i class="pi pi-sort text-lg"></i> -->
-                  </div>
+            <Column sortable field="percentage" class="center">
+              <template #sorticon="{ sorted, sortOrder }">
+                <div class="flex justify-content-center align-items-center">
+                  <template v-if="!sorted">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19" viewBox="0 0 18 19" fill="none">
+                      <path
+                        d="M5.2202 7.84912L8.57777 3.66525C8.87645 3.27825 9.36864 3.27825 9.66789 3.66525L13.0255 7.84912C13.3241 8.23612 13.1835 8.55225 12.6739 8.55225H5.57233C5.0627 8.55225 4.92208 8.23556 5.22077 7.84912H5.2202ZM13.0249 11.1538L9.66733 15.3377C9.36864 15.7247 8.87645 15.7247 8.5772 15.3377L5.21964 11.1538C4.92095 10.7668 5.06158 10.4507 5.5712 10.4507H12.6728C13.1824 10.4507 13.323 10.7674 13.0243 11.1538H13.0249Z"
+                        fill="white" />
+                    </svg>
+                  </template>
+                  <template v-else>
+                    <svg class="mx-2" v-if="(sortOrder as unknown as number) > 0" xmlns="http://www.w3.org/2000/svg"
+                      width="10.033" height="5">
+                      <path d="m5.016 0-2.51 2.5L0 4.999 5.016 5l5.017-.001L7.525 2.5 5.016 0z" />
+                    </svg>
+                    <svg class="mx-2" v-if="(sortOrder as unknown as number) < 0" xmlns="http://www.w3.org/2000/svg"
+                      width="10.033" height="5">
+                      <path d="M5.016 0 0 .003 2.506 2.5 5.016 5l2.509-2.5L10.033.003 5.016 0z" />
+                    </svg>
+                  </template>
                 </div>
+              </template>
+              <template #header>
+                <p class="header-text">Percentage</p>
               </template>
               <template #body="{ data }">
                 <div class="flex justify-content-center w-full">
@@ -170,14 +203,30 @@ const getBackgroundColor = (progress: number) => {
                 </div>
               </template>
             </Column>
-            <Column sortable field="passFail">
-              <template #header>
-                <div class="flex justify-content-center w-full">
-                  <div class="flex flex-row align-items-center gap-2">
-                    <p class="header-text">P/F</p>
-                    <!-- <i class="pi pi-sort text-lg"></i> -->
-                  </div>
+            <Column sortable field="passFail" class="center">
+              <template #sorticon="{ sorted, sortOrder }">
+                <div class="flex justify-content-center align-items-center">
+                  <template v-if="!sorted">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19" viewBox="0 0 18 19" fill="none">
+                      <path
+                        d="M5.2202 7.84912L8.57777 3.66525C8.87645 3.27825 9.36864 3.27825 9.66789 3.66525L13.0255 7.84912C13.3241 8.23612 13.1835 8.55225 12.6739 8.55225H5.57233C5.0627 8.55225 4.92208 8.23556 5.22077 7.84912H5.2202ZM13.0249 11.1538L9.66733 15.3377C9.36864 15.7247 8.87645 15.7247 8.5772 15.3377L5.21964 11.1538C4.92095 10.7668 5.06158 10.4507 5.5712 10.4507H12.6728C13.1824 10.4507 13.323 10.7674 13.0243 11.1538H13.0249Z"
+                        fill="white" />
+                    </svg>
+                  </template>
+                  <template v-else>
+                    <svg class="mx-2" v-if="(sortOrder as unknown as number) > 0" xmlns="http://www.w3.org/2000/svg"
+                      width="10.033" height="5">
+                      <path d="m5.016 0-2.51 2.5L0 4.999 5.016 5l5.017-.001L7.525 2.5 5.016 0z" />
+                    </svg>
+                    <svg class="mx-2" v-if="(sortOrder as unknown as number) < 0" xmlns="http://www.w3.org/2000/svg"
+                      width="10.033" height="5">
+                      <path d="M5.016 0 0 .003 2.506 2.5 5.016 5l2.509-2.5L10.033.003 5.016 0z" />
+                    </svg>
+                  </template>
                 </div>
+              </template>
+              <template #header>
+                <p class="header-text">P/F</p>
               </template>
               <template #body="{ data }">
                 <div class="flex justify-content-center w-full align-items-center">
@@ -211,11 +260,9 @@ const getBackgroundColor = (progress: number) => {
                 </div>
               </template>
             </Column>
-            <Column field="attendance">
+            <Column field="attendance" class="center">
               <template #header>
-                <div class="flex justify-content-center w-full">
-                  <p class="header-text">Attendance</p>
-                </div>
+                <p class="header-text">Attendance</p>
               </template>
               <template #body="{ data }">
                 <div>
@@ -225,7 +272,7 @@ const getBackgroundColor = (progress: number) => {
             </Column>
             <Column>
               <template #header>
-                <div class="flex justify-content-center w-full">
+                <div class="flex justify-content-center">
                   <p class="header-text">Student Profile</p>
                 </div>
               </template>
@@ -683,6 +730,11 @@ const getBackgroundColor = (progress: number) => {
       height: 27px;
       align-items: center;
     }
+  }
+
+  .p-sortable-column-icon {
+    background: url("/assets/icon/plus.png");
+    // background: red;
   }
 }
 

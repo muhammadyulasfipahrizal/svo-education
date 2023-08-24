@@ -60,7 +60,7 @@ const getBackgroundColor = (progress: number) => {
       <div class="grid col-12">
         <div class="col-12">
           <Dropdown optionLabel="courseName" :options="courses" v-model="selectedCourse" placeholder="Course Name"
-            class="w-full md:w-15rem md:flex">
+            class="w-full md:w-15rem md:flex" :class="{ 'selected': selectedCourse }">
             <template #value="slotProps">
               <div v-if="slotProps.value" class="flex align-items-center">
                 <img :alt="slotProps.value.courseName" :src="slotProps.value.image" class="mr-2" style="width: 53px" />
@@ -78,7 +78,7 @@ const getBackgroundColor = (progress: number) => {
             </template>
           </Dropdown>
         </div>
-        <div class="col-12 flex flex-row align-items-center justify-content-between filter-search pr-3">
+        <div class="col-12 flex flex-row align-items-center justify-content-between filter-search px-3">
           <div class="col-10 md:col-10 lg:col-10 lg:col-10 grid gap-2 align-items-center">
             <div class="grid mt-1 mr-1 align-items-center gap-2" v-if="selectedGuest">
               <img :src="selectedGuest.image" class="w-2rem h-2rem border-circle" />
@@ -90,7 +90,7 @@ const getBackgroundColor = (progress: number) => {
               <InputText placeholder="Search by Name" class="search-bar p-inputtext-sm w-full h-full" />
             </span>
           </div>
-          <Button label="DOWNLOAD" icon="pi pi-download" size="small" class="btn-orange hidden md:block" />
+          <Button label="DOWNLOAD" icon="pi pi-download" size="small" class="col-2 btn-orange hidden md:block" />
           <Button icon="pi pi-download" size="small" class="btn-orange col-2 block md:hidden" />
         </div>
 
@@ -119,14 +119,35 @@ const getBackgroundColor = (progress: number) => {
                 </div>
               </template>
             </Column>
-            <Column field="progress" sortable class="text-white">
+            <Column sortable field="progress" class="text-white center">
+              <template #sorticon="{ sorted, sortOrder }">
+                <div class="flex justify-content-center align-items-center">
+                  <template v-if="!sorted">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19" viewBox="0 0 18 19" fill="none">
+                      <path
+                        d="M5.2202 7.84912L8.57777 3.66525C8.87645 3.27825 9.36864 3.27825 9.66789 3.66525L13.0255 7.84912C13.3241 8.23612 13.1835 8.55225 12.6739 8.55225H5.57233C5.0627 8.55225 4.92208 8.23556 5.22077 7.84912H5.2202ZM13.0249 11.1538L9.66733 15.3377C9.36864 15.7247 8.87645 15.7247 8.5772 15.3377L5.21964 11.1538C4.92095 10.7668 5.06158 10.4507 5.5712 10.4507H12.6728C13.1824 10.4507 13.323 10.7674 13.0243 11.1538H13.0249Z"
+                        fill="white" />
+                    </svg>
+                  </template>
+                  <template v-else>
+                    <svg class="mx-2" v-if="(sortOrder as unknown as number) > 0" xmlns="http://www.w3.org/2000/svg"
+                      width="10.033" height="5">
+                      <path d="m5.016 0-2.51 2.5L0 4.999 5.016 5l5.017-.001L7.525 2.5 5.016 0z" />
+                    </svg>
+                    <svg class="mx-2" v-if="(sortOrder as unknown as number) < 0" xmlns="http://www.w3.org/2000/svg"
+                      width="10.033" height="5">
+                      <path d="M5.016 0 0 .003 2.506 2.5 5.016 5l2.509-2.5L10.033.003 5.016 0z" />
+                    </svg>
+                  </template>
+                </div>
+              </template>
               <template #header>
-                <div class="w-full text-center">
+                <div class="flex justify-content-center align-items-center">
                   <p class="header-text">Progress</p>
                 </div>
               </template>
               <template #body="{ data }">
-                <div class="flex flex-column justify-content-center">
+                <div class="flex flex-column">
                   <div class="progress-bar-container my-2 flex flex-column justify-content-center w-full">
                     <div class="progress-bar"
                       :style="{ width: data.progress + '%', backgroundColor: getBackgroundColor(data.progress) }"></div>
@@ -135,23 +156,63 @@ const getBackgroundColor = (progress: number) => {
                 </div>
               </template>
             </Column>
-            <Column field="percentage" sortable>
+            <Column sortable field="percentage" class="center">
+              <template #sorticon="{ sorted, sortOrder }">
+                <div class="flex justify-content-center align-items-center">
+                  <template v-if="!sorted">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19" viewBox="0 0 18 19" fill="none">
+                      <path
+                        d="M5.2202 7.84912L8.57777 3.66525C8.87645 3.27825 9.36864 3.27825 9.66789 3.66525L13.0255 7.84912C13.3241 8.23612 13.1835 8.55225 12.6739 8.55225H5.57233C5.0627 8.55225 4.92208 8.23556 5.22077 7.84912H5.2202ZM13.0249 11.1538L9.66733 15.3377C9.36864 15.7247 8.87645 15.7247 8.5772 15.3377L5.21964 11.1538C4.92095 10.7668 5.06158 10.4507 5.5712 10.4507H12.6728C13.1824 10.4507 13.323 10.7674 13.0243 11.1538H13.0249Z"
+                        fill="white" />
+                    </svg>
+                  </template>
+                  <template v-else>
+                    <svg class="mx-2" v-if="(sortOrder as unknown as number) > 0" xmlns="http://www.w3.org/2000/svg"
+                      width="10.033" height="5">
+                      <path d="m5.016 0-2.51 2.5L0 4.999 5.016 5l5.017-.001L7.525 2.5 5.016 0z" />
+                    </svg>
+                    <svg class="mx-2" v-if="(sortOrder as unknown as number) < 0" xmlns="http://www.w3.org/2000/svg"
+                      width="10.033" height="5">
+                      <path d="M5.016 0 0 .003 2.506 2.5 5.016 5l2.509-2.5L10.033.003 5.016 0z" />
+                    </svg>
+                  </template>
+                </div>
+              </template>
               <template #header>
-                <div class="w-full text-center">
+                <div class="flex justify-content-center">
                   <p class="header-text">Percentage</p>
                 </div>
               </template>
               <template #body="{ data }">
-                <div class="justify-content-center flex">
+                <div class="flex justify-content-center w-full">
                   <p class="percatage-text">{{ data.percentage }}%</p>
                 </div>
               </template>
             </Column>
-            <Column field="passFail" sortable>
-              <template #header>
-                <div class="w-full text-center">
-                  <p class="header-text">P/F</p>
+            <Column sortable field="passFail" class="center">
+              <template #sorticon="{ sorted, sortOrder }">
+                <div class="flex justify-content-center align-items-center">
+                  <template v-if="!sorted">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19" viewBox="0 0 18 19" fill="none">
+                      <path
+                        d="M5.2202 7.84912L8.57777 3.66525C8.87645 3.27825 9.36864 3.27825 9.66789 3.66525L13.0255 7.84912C13.3241 8.23612 13.1835 8.55225 12.6739 8.55225H5.57233C5.0627 8.55225 4.92208 8.23556 5.22077 7.84912H5.2202ZM13.0249 11.1538L9.66733 15.3377C9.36864 15.7247 8.87645 15.7247 8.5772 15.3377L5.21964 11.1538C4.92095 10.7668 5.06158 10.4507 5.5712 10.4507H12.6728C13.1824 10.4507 13.323 10.7674 13.0243 11.1538H13.0249Z"
+                        fill="white" />
+                    </svg>
+                  </template>
+                  <template v-else>
+                    <svg class="mx-2" v-if="(sortOrder as unknown as number) > 0" xmlns="http://www.w3.org/2000/svg"
+                      width="10.033" height="5">
+                      <path d="m5.016 0-2.51 2.5L0 4.999 5.016 5l5.017-.001L7.525 2.5 5.016 0z" />
+                    </svg>
+                    <svg class="mx-2" v-if="(sortOrder as unknown as number) < 0" xmlns="http://www.w3.org/2000/svg"
+                      width="10.033" height="5">
+                      <path d="M5.016 0 0 .003 2.506 2.5 5.016 5l2.509-2.5L10.033.003 5.016 0z" />
+                    </svg>
+                  </template>
                 </div>
+              </template>
+              <template #header>
+                <p class="header-text">P/F</p>
               </template>
               <template #body="{ data }">
                 <div class="flex justify-content-center w-full align-items-center">
