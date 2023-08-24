@@ -3,6 +3,7 @@ import UploadVideo from './Components/UploadVideo/UploadVideo.vue'
 import UploadImage from './Components/UploadImage/UploadImage.vue'
 import QuizInput from './Components/QuizInput/QuizInput.vue'
 import { ref } from 'vue';
+import type { InputNumberBlurEvent } from 'primevue/inputnumber';
 
 
 const title = ref<string>('');
@@ -121,6 +122,12 @@ const syllabusAccordionData = ref<ISyllabusAccordion[]>([{
     duration: 5
 }])
 
+const resizeInput = (e: InputNumberBlurEvent, className: string) => {
+    const inputEl = document.querySelector(className) as HTMLElement
+    if (!e.value || String(e.value).length < 2) inputEl.style.width = '18px !important'
+    else inputEl.style.width = (String(e.value).length * 10) + 'px'
+}
+
 const onChangeSyllabusTitle = (e: string, key: number) => {
     syllabusAccordionData.value[key].title = e;
 }
@@ -213,10 +220,10 @@ const quizList = ref<{ title: string; }[]>([
                                         <h3 class="text-sm text-900">Total Hours</h3>
                                     </div>
                                     <div class="flex justify-content-start align-items-center gap-2">
-                                        <InputNumber v-model="totalHour" inputId="withoutgrouping" :useGrouping="false"
-                                            class="instructor-total-input" />
+                                        <InputNumber v-model="totalHour" inputId="withoutgrouping" @input="e => resizeInput(e, '.instructor-total-input.hour')" :useGrouping="false"
+                                            class="instructor-total-input hour" id="instructor-total-input-hour" />
                                         <p class="text-bold textxs">hour</p>
-                                        <InputNumber v-model="totalMinute" class="instructor-total-input"
+                                        <InputNumber v-model="totalMinute" @input="e => resizeInput(e, '.instructor-total-input.min')" class="instructor-total-input min"
                                             inputId="withoutgrouping" :useGrouping="false" />
                                         <p class="text-bold textxs">min</p>
                                     </div>
