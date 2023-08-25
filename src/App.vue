@@ -19,7 +19,8 @@ import HeaderLayout from './components/HeaderLayout.vue'
 
 <style scope>
 #root {
-  background: #f9fafc;
+  /* background: #f9fafc; */
+  background: white;
 }
 
 @media only screen and (max-width: 768px) {
