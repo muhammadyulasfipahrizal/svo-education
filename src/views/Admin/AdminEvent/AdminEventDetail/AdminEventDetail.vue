@@ -156,27 +156,27 @@ const decrementTicketCount = () => ticketCount.value - 1 < 1 ? ticketCount.value
                     <span class="p-input-icon-left col-12 md:col-6 lg:col-6 xl:col-6 py-1">
                         <i class="pi pi-map-marker ml-1"></i>
                         <InputText class="p-inputtext-sm w-full" type="text" v-model="location" placeholder="Location"
-                            style="background: #D9D9D9; height: 35px;" />
+                             />
                     </span>
                     <span class="p-input-icon-left col-12 md:col-6 lg:col-6 xl:col-6 py-1">
                         <i class="pi pi-calendar ml-1"></i>
                         <InputText class="p-inputtext-sm w-full" v-model="calendar" placeholder="Calendar"
-                            @click="showCalendar" style="background: #D9D9D9; height: 35px;" />
+                            @click="showCalendar"  />
                         <Calendar v-model="calendar" id="calendar" placeholder="Calendars"
                             @date-select="onDateSelectCalendarRef" class="calendarRef" ref="calendarRef"
-                            style="background: #D9D9D9; height: 35px;" />
+                             />
                     </span>
                     <span class="p-input-icon-left col-12 md:col-6 lg:col-6 xl:col-6 py-1">
                         <i class="pi pi-clock ml-1"></i>
                         <InputText class="p-inputtext-sm w-full" v-model="time" placeholder="Time" @click="showTimepicker"
-                            style="background: #D9D9D9; height: 35px;" />
+                             />
                         <Calendar id="time-picker" placeholder="Time" @date-select="onTimeSelect" timeOnly class="timeRef"
                             ref="timeRef" />
                     </span>
                     <span class="p-input-icon-left col-12 md:col-6 lg:col-6 xl:col-6 py-1">
                         <i class="pi pi-ticket ml-1"></i>
                         <InputText class="p-inputtext-sm w-full" type="text" v-model="ticketPrice"
-                            placeholder="Ticket price" style="background: #D9D9D9; height: 35px;" />
+                            placeholder="Ticket price"  />
                     </span>
                 </div>
 
