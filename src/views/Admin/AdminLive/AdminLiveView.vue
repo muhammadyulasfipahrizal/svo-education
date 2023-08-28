@@ -222,7 +222,7 @@ const instructorNew = ref();
             Upload new media
           </div>
         </template>
-        <div class="upload-section">
+        <div class="upload-section px-1">
           <label class="upload-label" v-if="!selectedVideo">
             <input ref="fileInput" type="file" accept="video/*" style="display: none" @change="handleFileChange" />
             <span class="modal-upload-text">Drop Files Here</span>
@@ -236,12 +236,13 @@ const instructorNew = ref();
         <div class="profile-section flex flex-row align-items-center gap-4">
           <input type="file" ref="fileInput" accept="image/*" style="display: none" @change="handleImageChange" />
           <img :src="profileImage" alt="Profile" class="modal-profile" @click="changeProfileImage" />
-          <div class="flex gap-2">
-            <InputText v-model="currentCard.details.title" small placeholder="Title" class="p-inputtext-sm" />
-            <div class="flex gap-2">
+          <div class="grid align-items-center">
+            <InputText v-model="currentCard.details.title" size="small" placeholder="Title"
+              class="col-6 p-inputtext-sm h-3rem" />
+            <div class="flex gap-2 col-6 align-items-center h-3rem">
               <p class="text-700 text-normal">by</p>
               <Dropdown v-model="instructorNew" :options="instructors" optionLabel="name" placeholder="Instructor name"
-                class="w-full md:w-14rem filter-toggle"></Dropdown>
+                class="w-full md:w-14rem h-3rem flex align-items-center" :class="{ selected: instructorNew }"></Dropdown>
             </div>
           </div>
         </div>
@@ -470,35 +471,5 @@ const instructorNew = ref();
   border: none;
   border-radius: 4px;
   cursor: pointer;
-}
-
-.p-inputtext-sm {
-  background-color: #D9D9D9;
-  width: 139px;
-  height: 30px;
-}
-
-::v-deep(.filter-toggle) {
-  background-color: #D9D9D9;
-  border-radius: 6px;
-  color: #808081;
-  height: 32px;
-
-  .p-dropdown-label {
-    padding: 5px 10px 5px 10px;
-    font-size: 15px;
-    // font-weight: 600;
-    line-height: 19px;
-    letter-spacing: 0em;
-    text-align: left;
-  }
-
-  .p-dropdown-trigger svg path {
-    fill: #808081;
-  }
-
-  i {
-    margin: 0 0.5rem;
-  }
 }
 </style>

@@ -103,8 +103,8 @@ const checkIfEventExist = (date: string) => {
                         <span class="text-900 font-bold">see all</span> <i class="font-medium pi pi-arrow-right"></i>
                     </Button>
                 </div>
-                <DataTable :value="courseList" :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]" dataKey="id"
-                    class="shadow-2">
+                <DataTable :value="courseList.sort((a, b) => a.position - b.position).filter((v, k) => k <= 2)" :rows="5"
+                    :rowsPerPageOptions="[5, 10, 20, 50]" dataKey="id" class="shadow-2">
                     <Column field="position" header="Position">
                         <template #body="value">
                             <div class="flex flex-row justify-content-center align-items-center gap-2">
@@ -170,7 +170,8 @@ const checkIfEventExist = (date: string) => {
                     <Column field="instructor-name" header="Instructor name">
                         <template #body="value">
                             <div class="flex flex-row align-items-center justify-content-start gap-4">
-                                <img :src="value.data.image" alt="" style="width: 40px; height: 40px;" class="border-circle">
+                                <img :src="value.data.image" alt="" style="width: 40px; height: 40px;"
+                                    class="border-circle">
                                 <div class="flex flex-column">
                                     <p class="text-lg font-medium">{{ value.data.name }}</p>
                                 </div>
@@ -217,7 +218,8 @@ const checkIfEventExist = (date: string) => {
                     <Column field="student-name" header="Student name">
                         <template #body="value">
                             <div class="flex flex-row align-items-center justify-content-start gap-4">
-                                <img :src="value.data.image" alt="" style="width: 40px; height: 40px;" class="border-circle">
+                                <img :src="value.data.image" alt="" style="width: 40px; height: 40px;"
+                                    class="border-circle">
                                 <div class="flex flex-column">
                                     <p class="text-lg font-medium">{{ value.data.name }}</p>
                                 </div>
