@@ -100,99 +100,116 @@ textarea {
   }
 }
 
-.p-paginator {
-  width: 100%;
-  padding: 10px !important;
-  margin: 0;
-  padding: 0;
-  height: 50px !important;
-  gap: 0 !important;
+.p-datatable {
+  .p-paginator-bottom {
+    .p-paginator {
+      width: 100%;
+      padding: 10px !important;
+      margin: 0;
+      padding: 0;
+      height: 50px !important;
+      gap: 0 !important;
+      display: flex;
+      flex-direction: row;
+      /* Make the buttons layout horizontally */
+      align-items: center;
+      /* Vertically center-align the buttons */
 
-  button {
-    margin: 0 7.5px !important;
-  }
+      button {
+        margin: 0 7.5px !important;
+      }
 
 
-  .p-paginator-pages {
-    gap: 0 !important;
-    display: flex;
+      .p-paginator-pages {
+        display: flex;
+        flex-direction: row;
+        gap: 0 !important;
+        display: flex;
 
-    .p-paginator-page {
-      color: #6D5BD0;
-      text-align: center;
-      font-size: 16px;
-      font-family: Inter;
-      font-weight: 600;
-      background-color: white;
-    }
-  }
+        .p-paginator-page {
+          color: #6D5BD0;
+          text-align: center;
+          font-size: 16px;
+          font-family: Inter;
+          font-weight: 600;
+          background-color: white;
+        }
+      }
 
-  .p-link {
-    width: 27px;
-    height: 27px;
-    color: #404B52;
-    font-family: Poppins;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 100%;
-    letter-spacing: -0.14px;
-    border-radius: 4px;
-    border: 1px solid #EEE;
-    background: #F5F5F5;
-    border-radius: 4px;
-    border: 1px solid #EEE;
-    background: #F5F5F5;
-    min-width: unset;
+      .p-paginator-first {
+        margin-left: auto !important;
+      }
 
-    &.p-highlight {
-      color: white;
-      border: 1px solid var(--svo-dark-color, #006785);
-      background: var(--svo-dark-color, #006785);
-    }
+      .p-link {
+        width: 27px;
+        height: 27px;
+        color: #404B52 !important;
+        font-family: Poppins;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 100%;
+        letter-spacing: -0.14px;
+        border-radius: 4px;
+        border: 1px solid #EEE !important;
+        background: #F5F5F5 !important;
+        border-radius: 4px;
+        border: 1px solid #EEE;
+        background: #F5F5F5;
+        min-width: unset;
 
-    svg {
-      width: 9px;
-      height: 14px;
+        &.p-highlight {
+          color: white !important;
+          border: 1px solid var(--svo-dark-color, #006785) !important;
+          background: var(--svo-dark-color, #006785) !important;
+        }
 
-      path {
-        fill: #404B52;
+        svg {
+          width: 9px;
+          height: 14px;
+
+          path {
+            fill: #404B52;
+          }
+        }
+      }
+
+      .p-dropdown {
+        height: 27px;
+        align-items: center;
+        background: transparent;
+      }
+
+      .p-paginator-current {
+        text-align: left;
+        width: 60%;
+        padding: 0 !important;
+        margin: 0 !important;
+        display: flex;
+        justify-content: flex-start;
+        cursor: default;
+
+        background: white;
+        height: 21px !important;
+        font-size: 14px !important;
+        color: #B5B7C0 !important;
+      }
+
+      @media screen and (max-width: 767px) {
+        height: 100px !important;
+        gap: 2px !important;
+
+        .p-paginator-current {
+          width: 100%;
+        }
+
+        .p-paginator-pages {
+          gap: 2px !important;
+        }
       }
     }
   }
 
-  .p-dropdown {
-    height: 27px;
-    align-items: center;
-  }
-
-  .p-paginator-current {
-    text-align: left;
-    width: 60%;
-    padding: 0 !important;
-    margin: 0 !important;
-    display: flex;
-    justify-content: flex-start;
-    cursor: default;
-
-    background: white;
-    height: 21px !important;
-    font-size: 14px !important;
-    color: #B5B7C0 !important;
-  }
-
-  @media screen and (max-width: 767px) {
-    height: 100px !important;
-    gap: 2px !important;
-
-    .p-paginator-current {
-      width: 100%;
-    }
-
-    .p-paginator-pages {
-      gap: 2px !important;
-    }
-  }
 }
 
 .object-cover {

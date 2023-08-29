@@ -258,56 +258,7 @@ const getBackgroundColor = (progress: number) => {
         font-weight: 500;
     }
 
-    .p-paginator-bottom {
-        .p-paginator {
-            justify-content: flex-end;
-            gap: 15px;
-        }
-
-        .p-paginator-pages {
-            gap: 15px;
-            display: flex;
-        }
-
-        .p-link {
-            width: 27px;
-            height: 27px;
-            color: #404B52;
-            font-family: Poppins;
-            font-size: 14px;
-            font-style: normal;
-            font-weight: 500;
-            line-height: 100%;
-            letter-spacing: -0.14px;
-            border-radius: 4px;
-            border: 1px solid #EEE;
-            background: #F5F5F5;
-            border-radius: 4px;
-            border: 1px solid #EEE;
-            background: #F5F5F5;
-            min-width: unset;
-
-            &.p-highlight {
-                color: white;
-                border: 1px solid var(--svo-dark-color, #006785);
-                background: var(--svo-dark-color, #006785);
-            }
-
-            svg {
-                width: 9px;
-                height: 14px;
-
-                path {
-                    fill: #404B52;
-                }
-            }
-        }
-
-        .p-dropdown {
-            height: 27px;
-            align-items: center;
-        }
-    }
+    
 }
 
 .progress-bar-container {
