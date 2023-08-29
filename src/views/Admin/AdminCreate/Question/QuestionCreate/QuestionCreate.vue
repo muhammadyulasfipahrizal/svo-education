@@ -162,14 +162,21 @@ const tryAgainAttemptType = ref();
                 <!-- ADD more quiz -->
                 <div class="grid">
                     <div class="col">
-                        <Button label="Add new assesment question" class="btn-orange w-full" icon="pi pi-plus" size="small"
+                        <Button class="btn-orange w-full" size="small"
                             @click="assesments.push({
                                 question: 'New Assesment',
                                 points: '0/1',
                                 answerType: 'text',
                                 answerText: '',
                                 answerRadio: [],
-                            })" />
+                            })">
+                        <template #default>
+                            <div class="flex flex-row align-items-center gap-3">
+                                <i class="pi pi-plus align-self-center justify-content-center font-bold"></i>
+                                <p class="font-bold">Add new assesment question</p>
+                            </div>
+                        </template>
+                        </Button>
                     </div>
                 </div>
             </div>
@@ -179,4 +186,15 @@ const tryAgainAttemptType = ref();
     </section>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+::v-deep(.p-dropdown) {
+    .p-dropdown-label {
+        width: 55px;
+    }
+    .p-dropdown-trigger	{
+        width: 30px;
+        margin-left: 0px;
+        padding-left: 0px;
+    }
+}
+</style>
