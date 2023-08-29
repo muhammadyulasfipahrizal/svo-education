@@ -9,7 +9,7 @@
       </div>
       <ul class="menu-root">
         <li>
-          <router-link to="/dashboard" class="grid gap-2 menuitem-link">
+          <router-link to="/dashboard" class="grid gap-2 menuitem-link" :class="{ active: isActive('/dashboard') }">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="18" viewBox="0 0 20 18">
               <path
                 d="M2.71983 17.4155C2.71983 17.4155 2.70206 17.8626 3.13878 17.8626C3.68208 17.8626 8.18023 17.8567 8.18023 17.8567L8.18763 13.7257C8.18763 13.7257 8.11657 13.0447 8.77756 13.0447H10.8693C11.651 13.0447 11.6029 13.7257 11.6029 13.7257L11.594 17.8434C11.594 17.8434 15.859 17.8434 16.5289 17.8434C17.0833 17.8434 17.0581 17.2867 17.0581 17.2867V9.6709L10.1032 3.48438L2.71983 9.6709V17.4155Z" />
