@@ -317,7 +317,7 @@ const getBackgroundColor = (progress: number) => {
         <template v-for="col of columns">
           <Column field="status">
             <template #header>
-              <div class="w-5rem flex justify-content-center align-items-center">
+              <div class="w-5rem flex justify-content-center align-items-center font-medium">
                 {{ col.header }}
               </div>
             </template>

@@ -193,7 +193,7 @@ const branchList = ref([
         </template>
       </div>
       <div class="flex">
-        <p class="text-900 text-xs">Maximum upload file size: 8 MB</p>
+        <p class="text-900 text-base">Maximum upload file size: 8 MB</p>
       </div>
       <div class="grid">
         <h1 class="title col-12 p-0 pl-2">Ongoing Event Details</h1>
@@ -223,7 +223,7 @@ const branchList = ref([
             <Calendar v-model="calendar" id="calendar" placeholder="Calendars" @date-select="onDateSelectCalendarRef"
               class="calendarRef" ref="calendarRef" />
           </span>
-          <span class="p-input-icon-left col-12 md:col-4 lg:col-4 xl:col-4">
+          <span class="p-input-icon-left -ml-2 col-12 md:col-4 lg:col-4 xl:col-4">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path
                 d="M8 0C6.41775 0 4.87103 0.469192 3.55544 1.34824C2.23985 2.22729 1.21447 3.47672 0.608967 4.93853C0.00346627 6.40034 -0.15496 8.00887 0.153721 9.56072C0.462403 11.1126 1.22433 12.538 2.34315 13.6569C3.46197 14.7757 4.88743 15.5376 6.43928 15.8463C7.99113 16.155 9.59966 15.9965 11.0615 15.391C12.5233 14.7855 13.7727 13.7602 14.6518 12.4446C15.5308 11.129 16 9.58225 16 8C16 6.94942 15.7931 5.90914 15.391 4.93853C14.989 3.96793 14.3997 3.08601 13.6569 2.34315C12.914 1.60028 12.0321 1.011 11.0615 0.608964C10.0909 0.206926 9.05058 0 8 0ZM8 14.4C6.7342 14.4 5.49683 14.0246 4.44435 13.3214C3.39188 12.6182 2.57157 11.6186 2.08717 10.4492C1.60277 9.27973 1.47603 7.9929 1.72298 6.75142C1.96992 5.50994 2.57946 4.36957 3.47452 3.47452C4.36958 2.57946 5.50995 1.96992 6.75142 1.72297C7.9929 1.47603 9.27973 1.60277 10.4492 2.08717C11.6186 2.57157 12.6182 3.39188 13.3214 4.44435C14.0246 5.49682 14.4 6.7342 14.4 8C14.4 9.69738 13.7257 11.3252 12.5255 12.5255C11.3253 13.7257 9.69739 14.4 8 14.4ZM8 3.2C7.78783 3.2 7.58435 3.28429 7.43432 3.43431C7.28429 3.58434 7.2 3.78783 7.2 4V7.536L5.52 8.504C5.36589 8.59133 5.24512 8.72734 5.17663 8.8907C5.10814 9.05406 5.0958 9.23554 5.14156 9.40666C5.18731 9.57779 5.28857 9.72889 5.42945 9.83627C5.57033 9.94365 5.74287 10.0012 5.92 10C6.06014 10.001 6.19808 9.9651 6.32 9.896L8.4 8.696L8.472 8.624L8.6 8.52C8.63128 8.4804 8.65811 8.43747 8.68 8.392C8.70607 8.34905 8.72753 8.30346 8.744 8.256C8.76576 8.20513 8.77926 8.15112 8.784 8.096L8.8 8V4C8.8 3.78783 8.71572 3.58434 8.56569 3.43431C8.41566 3.28429 8.21218 3.2 8 3.2Z"
@@ -233,7 +233,7 @@ const branchList = ref([
             <Calendar id="time-picker" placeholder="Time" @date-select="onTimeSelect" timeOnly class="timeRef"
               ref="timeRef" />
           </span>
-          <span class="p-input-icon-left col-12 md:col-4 lg:col-4 xl:col-4">
+          <span class="p-input-icon-left -ml-2 col-12 md:col-4 lg:col-4 xl:col-4">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
               <g clip-path="url(#clip0_2023_355774)">
                 <path
@@ -249,31 +249,7 @@ const branchList = ref([
             <InputText class="p-inputtext-sm" type="number" v-model="ticketPrice" placeholder="Ticket price" />
           </span>
         </div>
-
-        <h1 class="col-12 p-0 pl-2 title py-2">Profile Information</h1>
-        <div class="flex gap-2 align-items-center col-12 pt-0">
-          <InputText class="p-inputtext-sm" v-model="profileName" placeholder="Name" />
-          <Dropdown optionLabel="name" v-model="selectedBranch" placeholder="Branch" :options="branchList"
-            class=" p-inputtext-sm  w-10rem mr-2 flex justify-content-center align-items-center mx-0"
-            style="height: 30px">
-            <template #value="slotProps">
-              <div v-if="slotProps.value" class="flex align-items-center">
-                <div class="text-900 font-bold text-lg">{{ slotProps.value.name }}</div>
-              </div>
-              <span v-else>
-                {{ slotProps.placeholder }}
-              </span>
-            </template>
-            <template #option="slotProps">
-              <div class="flex align-items-center">
-                <div class="text-900 font-bold text-lg">{{ slotProps.option.name }}</div>
-              </div>
-            </template>
-          </Dropdown>
-          <InputText class="p-inputtext-sm" v-model="enrollStudents" placeholder="Enrolled students" />
-        </div>
-
-
+        
         <div class="grid px-3 w-full py-3">
           <Button label="SAVE" class="w-full btn-save" @click="visible = false"></Button>
         </div>

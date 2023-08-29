@@ -202,10 +202,12 @@ const onSelectProfile = (v: Instructor) => {
                             </div>
                         </template>
                         <template #body="value">
-                            <Button link size="small"
+                            <div class="flex flex-column align-items-center">
+                                <Button link size="small"
                                 @click="$router.push('/admin/grade/instructor/' + value.data.id + '/message')">
                                 <img src="/assets/icon/reply.png" class="w-2rem" />
-                            </Button>
+                                </Button>
+                            </div>
                         </template>
                     </Column>
                 </DataTable>
@@ -259,8 +261,8 @@ const onSelectProfile = (v: Instructor) => {
 <style lang="scss" scoped>
 .filter-button {
     background-color: #fff;
-    color: #8B83BA;
-    border: 0.5px solid #8B83BA;
+    color: #808081;
+    border: 0.5px solid #808081;
 }
 
 .search-bar {

@@ -65,28 +65,38 @@ const checkIfEventExist = (date: string) => {
                 </div>
                 <DataTable :value="courseList" :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]" dataKey="id"
                     :showGridlines="false" class="shadow-2" tableStyle="min-width: 40rem">
-                    <Column field="course" header="Course">
+                    <Column field="course">
+                        <template #header>
+                            <div class="flex justify-content-start w-full text-white title-header">
+                                Course
+                            </div>
+                        </template>
                         <template #body="value">
-                            <div class="flex gap-2 align-items-center justify-content-center">
+                            <div class="flex gap-2 align-items-center justify-content-start">
                                 <p class="text-lg font-medium text-content-table">{{ value.data.name }}</p>
                             </div>
                         </template>
                     </Column>
                     <Column field="instructor">
                         <template #header>
-                            <div class="flex justify-content-center w-full text-white title-header">
+                            <div class="flex justify-content-start w-full text-white title-header">
                                 Instructor
                             </div>
                         </template>
                         <template #body="value">
-                            <div class="flex gap-2 align-items-center justify-content-center">
+                            <div class="flex gap-2 align-items-center justify-content-start">
                                 <p class="text-lg font-medium text-content-table">{{ value.data.instructor }}</p>
                             </div>
                         </template>
                     </Column>
-                    <Column field="attandance" header="Attendance">
+                    <Column field="attandance">
+                        <template #header>
+                            <div class="flex justify-content-start w-full text-white title-header">
+                                Attendance
+                            </div>
+                        </template>
                         <template #body="value">
-                            <div class="flex flex-column gap-0 align-items-center justify-content-center">
+                            <div class="flex flex-column gap-0 align-items-start justify-content-start">
                                 <p class="text-lg font-medium text-content-table">{{ value.data.attandance }}/100</p>
                                 <p class="text-xs font-medium text-600">Students</p>
                             </div>
