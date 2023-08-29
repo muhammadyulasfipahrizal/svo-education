@@ -12,12 +12,12 @@
           currentPageReportTemplate="Showing data {first} to {last} of {totalRecords} entries">
           <Column field="dealerName">
             <template #header>
-              <div class="flex justify-content-center w-full">
+              <div class="flex justify-content-start w-full">
                 <p class="header-text">Dealer Name</p>
               </div>
             </template>
             <template #body="{ data }">
-              <div class="grid align-items-center w-full col-offset-3">
+              <div class="grid align-items-start justify-content-start w-full">
                 <img :src="data.image" class="data-image border-circle col-6 text-right" />
                 <p class="col-6 data-text">{{ data.code }} ({{ data.name }})</p>
               </div>
@@ -25,12 +25,12 @@
           </Column>
           <Column field="recruited">
             <template #header>
-              <div class="flex justify-content-center w-full">
+              <div class="flex justify-content-start w-full">
                 <p class="header-text">Guest Recruited</p>
               </div>
             </template>
             <template #body="{ data }">
-              <div class="flex justify-content-center w-full">
+              <div class="flex justify-content-start w-full">
                 <p class="data-text">{{ data.recruited }}</p>
               </div>
             </template>
