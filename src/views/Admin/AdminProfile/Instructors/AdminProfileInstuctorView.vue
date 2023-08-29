@@ -36,7 +36,7 @@
                 <p class="flex gap-1 text-xl font-bold text-600">
                   3.0
                   <Rating :modelValue="3" :cancel="false" readonly :pt="{
-                      onIcon: { class: 'text-800' }
+                      onIcon: { class: 'text-red-400' }
                   }"/>
                 </p>
               </div>
