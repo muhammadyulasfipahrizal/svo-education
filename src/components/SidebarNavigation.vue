@@ -48,8 +48,8 @@
 
         <!-- PROGRESS -->
         <li>
-          <router-link to="" @click="openProgress('progress')" class="grid gap-2 menuitem-link"
-            :class="{ active: isActive('/admin/progress') }">
+          <router-link to="" @click="openSub('progress')" class="grid gap-2 menuitem-link"
+            :class="{ active: subMenuState.progress}">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
               <g clip-path="url(#clip0_1865_133513)">
                 <path
@@ -89,7 +89,7 @@
         <!-- GRADES -->
         <li>
           <router-link to="" @click="openSub('grades')" class="grid gap-2 menuitem-link"
-            :class="{ active: isActive('/admin/grade') }">
+          :class="{ active: subMenuState.grades }">
             <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
               <g id="Group">
                 <path id="Vector"
@@ -181,7 +181,7 @@
         </li>
         <li>
           <router-link to="" @click="openSub('profiles')" class="grid gap-2 menuitem-link"
-            :class="{ active: isActive('/admin/profiles') }">
+          :class="{ active: subMenuState.profiles }">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g id="Clip path group">
                 <mask id="mask0_1990_52896" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="20"
@@ -248,13 +248,6 @@ const subMenuState = ref({
   'profiles': false,
 })
 const openSub = (menu: 'grades' | 'progress' | 'profiles') => {
-  subMenuState.value = {
-    ...subMenuState.value,
-    [menu]: !subMenuState.value[menu]
-  }
-}
-
-const openProgress = (menu: 'progress') => {
   subMenuState.value = {
     ...subMenuState.value,
     [menu]: !subMenuState.value[menu]
