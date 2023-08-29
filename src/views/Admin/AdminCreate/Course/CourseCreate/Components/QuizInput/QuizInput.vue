@@ -66,10 +66,11 @@ watchEffect(() => {
     <div class="flex flex-column gap-2 w-full">
         <div class="grid">
             <InputText label="Title" v-model="title" class="col-11 square-input" />
-            <p class="text-900 text-sm font-bold col-1">
-                <InputText size="small" class="instructor-total-input py-0 m-0 w-2rem p-inputtext-sm h-2rem surface-200" inputId="withoutgrouping"
-                    :useGrouping="false" v-model="points" /> Points
-            </p>
+                <div class="flex flex-row text-900 text-sm font-bold col-1 align-items-center gap-1">
+                    <InputText size="small" class="instructor-total-input py-0 m-0 w-3rem p-inputtext-sm h-2rem surface-200" inputId="withoutgrouping"
+                    :useGrouping="false" v-model="points" /> 
+                    <p class="font-bold text-sm">points</p>
+                </div>
         </div>
         <div class="grid">
             <div class="col-4 px-0">
