@@ -1,7 +1,7 @@
 <template>
   <section class="px-2">
     <section class="grid overflow-hidden flex-column md:flex-row px-2 md:px-0 lg:px-0 xl:px-0 py-2">
-      <h1 class="text-900 font-bold text-3xl col-12">My Attendance</h1>
+      <h1 class="text-900 font-bold text-3xl col-12">Student Attendance</h1>
       <div class="pl-2 col-12 flex flex-column gap-2 my-2">
         <!-- FILTER -->
         <div class="flex justify-content-start md:justify-content-between align-items-center w-full">
@@ -71,9 +71,8 @@
           </template>
         </Dropdown>
       </div>
-      <div class="col-12 grid p-0 m-0">
-        <div class="item-flex col-6 sm:col-4 md:col-4 lg:col-4 xl:col-4 py-0 px-0 m-0 px-1"
-          style="margin-left: -10px; max-width: 220px;" v-for="(card, index) in cardData">
+      <div class="col-12 grid-5 p-0 m-0">
+        <div class="item-flex py-0 px-0 m-0 px-1 w-full" v-for="(card, index) in cardData">
           <AttendanceCalendar :key="index" :card="card" />
         </div>
       </div>
@@ -208,16 +207,24 @@ onMounted(() => {
 }
 
 :deep(.p-paginator) {
-  justify-content: space-around;
   width: 100%;
-  padding: 0;
   margin: 0;
-  gap: 0;
   padding: 0;
+  height: 50px !important;
+  gap: 0 !important;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  button {
+    margin: 0 7.5px !important;
+  }
 
 
   .p-paginator-pages {
-    gap: 15px;
+    display: flex;
+    flex-direction: row;
+    gap: 0 !important;
     display: flex;
 
     .p-paginator-page {
@@ -230,10 +237,14 @@ onMounted(() => {
     }
   }
 
+  .p-paginator-first {
+    margin-left: auto !important;
+  }
+
   .p-link {
     width: 27px;
     height: 27px;
-    color: #404B52;
+    color: #404B52 !important;
     font-family: Poppins;
     font-size: 14px;
     font-style: normal;
@@ -241,17 +252,17 @@ onMounted(() => {
     line-height: 100%;
     letter-spacing: -0.14px;
     border-radius: 4px;
-    border: 1px solid #EEE;
-    background: #F5F5F5;
+    border: 1px solid #EEE !important;
+    background: #F5F5F5 !important;
     border-radius: 4px;
     border: 1px solid #EEE;
     background: #F5F5F5;
     min-width: unset;
 
     &.p-highlight {
-      color: white;
-      border: 1px solid var(--svo-dark-color, #006785);
-      background: var(--svo-dark-color, #006785);
+      color: white !important;
+      border: 1px solid var(--svo-dark-color, #006785) !important;
+      background: var(--svo-dark-color, #006785) !important;
     }
 
     svg {
@@ -267,16 +278,54 @@ onMounted(() => {
   .p-dropdown {
     height: 27px;
     align-items: center;
+    background: transparent;
   }
 
   .p-paginator-current {
     text-align: left;
-    width: 80%;
-    padding: 0;
-    margin: 0;
+    margin-right: auto;
     display: flex;
     justify-content: flex-start;
     cursor: default;
+
+    background: white;
+    height: 21px !important;
+    font-size: 14px !important;
+    color: #B5B7C0 !important;
+  }
+  .p-paginator-prev {
+    margin-left: auto;
+  }
+
+  @media screen and (max-width: 767px) {
+    height: 100px !important;
+    gap: 2px !important;
+
+
+    .p-paginator-pages {
+      gap: 2px !important;
+    }
+  }
+}
+
+.grid-5 {
+  grid-template-columns: repeat(5, 220px);
+  display: grid;
+
+  @media screen and (min-width: 1025px) and (max-width: 1280px) {
+    grid-template-columns: repeat(4, 25%);
+  }
+
+  @media screen and (min-width: 769px) and (max-width: 1024px) {
+    grid-template-columns: repeat(3, 33%);
+  }
+
+  @media screen and (min-width: 466px) and (max-width: 768px) {
+    grid-template-columns: repeat(3, 33%);
+  }
+
+  @media screen and (max-width: 465px) {
+    grid-template-columns: repeat(2, 50%);
   }
 }
 </style>

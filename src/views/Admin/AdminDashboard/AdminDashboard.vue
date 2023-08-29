@@ -418,9 +418,11 @@ const checkIfEventExist = (date: string) => {
 }
 
 ::v-deep(.calendar) {
+    max-height: 500px;
+    border-radius: 20px;
     border: 1px solid #D9D5EC;
     background: #FFF;
-    max-height: 500px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 
     .p-datepicker-calendar table td {
         padding: 0.25rem !important;
@@ -430,62 +432,50 @@ const checkIfEventExist = (date: string) => {
         overflow: hidden;
     }
 
-    .p-datepicker-header {
-        padding: 0.5rem;
-    }
-
     table tr td {
         width: 50px;
         height: 50px;
         padding: 5px;
         margin: 5px;
-        background: rgba(250, 250, 250, 0.50);
-    }
-
-    table td>span {
-        border-radius: 5px;
-        width: 50px;
-        height: 50px;
-        font-size: 15px;
-    }
-
-    table td>span:focus {
-        box-shadow: none;
-        background: #E96853;
-        color: white;
-    }
-
-    table td>span.p-highlight {
-        background: #E96853;
-        color: white;
-    }
-
-    table td>span:not(.p-highlight) .badge {
-        background: #E96853;
-        color: white;
-        border-radius: 50%;
-    }
-
-    table td>span.p-highlight .badge {
         background: white;
-        color: #E96853;
-        border-radius: 16px;
+
+        >span {
+            border-radius: 5px;
+            width: 50px;
+            height: 55px;
+            font-size: 15px;
+            background: rgba(250, 250, 250, 0.50);
+        }
+
+        >span:focus {
+            box-shadow: none;
+            background: #E96853;
+            color: white;
+        }
+
+        >span.p-highlight {
+            background: #E96853;
+            color: white;
+        }
+
+        >span:not(.p-highlight) .badge {
+            background: #E96853;
+            color: white;
+            border-radius: 50%;
+            &:hover {
+                background: #E96853;
+            }
+        }
+
+        >span.p-highlight .badge {
+            background: white;
+            color: #E96853;
+            border-radius: 16px;
+        }
     }
 
-    &:not(.p-disabled) table td span:not(.p-highlight):not(.p-disabled) span:hover {
+    &:not(.p-disabled)table td span:not(.p-highlight):not(.p-disabled)table td span:hover {
         background: #E96853 !important;
-    }
-}
-
-::v-deep(.calendar) {
-    border-radius: 20px;
-    border: 1px solid #D9D5EC;
-    background: #FFF;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    max-height: 400px;
-
-    .p-datepicker-calendar table td {
-        // padding: 0.25rem !important;
     }
 
     .p-datepicker {
@@ -495,46 +485,6 @@ const checkIfEventExist = (date: string) => {
 
     .p-datepicker-header {
         padding: 0 0.5rem;
-    }
-
-    table tr td {
-        width: 50px;
-        height: 50px;
-        padding: 0px;
-        margin: 5px;
-        background: rgba(250, 250, 250, 0.50);
-    }
-
-    table td>span {
-        border-radius: 5px;
-        width: 36px;
-        height: 50px;
-        font-size: 15px;
-    }
-
-    table td>span:focus {
-        box-shadow: none;
-    }
-
-    table td>span.p-highlight {
-        background: #E96853;
-        color: white;
-    }
-
-    table td>span:not(.p-highlight) .badge {
-        background: #E96853;
-        color: white;
-        border-radius: 50%;
-    }
-
-    table td>span.p-highlight .badge {
-        background: white;
-        color: #E96853;
-        border-radius: 16px;
-    }
-
-    &:not(.p-disabled) table td span:not(.p-highlight):not(.p-disabled) span:hover {
-        background: #E96853 !important;
     }
 }
 
