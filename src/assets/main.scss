@@ -100,7 +100,7 @@ textarea {
   }
 }
 
-.p-datatable {
+.p-datatable, div {
   .p-paginator-bottom {
     .p-paginator {
       width: 100%;
@@ -111,9 +111,7 @@ textarea {
       gap: 0 !important;
       display: flex;
       flex-direction: row;
-      /* Make the buttons layout horizontally */
       align-items: center;
-      /* Vertically center-align the buttons */
 
       button {
         margin: 0 7.5px !important;
