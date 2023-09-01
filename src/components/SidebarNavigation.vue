@@ -74,13 +74,13 @@
             <li>
               <router-link to="/admin/progress/student" class="grid gap-2 menuitem-link"
                 :class="{ active: isActive('/admin/progress/student') }">
-                <span class="menuitem-text">Student</span>
+                <span class="menuitem-text"><span class="dot"></span> Student</span>
               </router-link>
             </li>
             <li>
               <router-link to="/admin/progress/guest" class="grid gap-2 menuitem-link"
                 :class="{ active: isActive('/admin/progress/guest') }">
-                <span class="menuitem-text">Guest</span>
+                <span class="menuitem-text"><span class="dot"></span> Guest</span>
               </router-link>
             </li>
           </ul>
@@ -123,13 +123,13 @@
             <li>
               <router-link to="/admin/grade/instructor" class="grid gap-2 menuitem-link"
                 :class="{ active: isActive('/admin/grade/instructor') }">
-                <span class="menuitem-text">Instructors</span>
+                <span class="menuitem-text"><span class="dot"></span> Instructors</span>
               </router-link>
             </li>
             <li>
               <router-link to="/admin/grade/course" class="grid gap-2 menuitem-link"
                 :class="{ active: isActive('/admin/grade/course') }">
-                <span class="menuitem-text">Students</span>
+                <span class="menuitem-text"><span class="dot"></span> Students</span>
               </router-link>
             </li>
           </ul>
@@ -149,7 +149,7 @@
                 </clipPath>
               </defs>
             </svg>
-            <span class="menuitem-text">Attendance</span>
+            <span class="menuitem-text">Student attendance</span>
           </router-link>
         </li>
         <li>
@@ -229,7 +229,7 @@
               </router-link>
             </li>
           </ul>
-          
+
         </li>
 
       </ul>
@@ -287,6 +287,10 @@ const openSub = (menu: 'grades' | 'progress' | 'profiles') => {
     svg path {
       fill: white;
     }
+
+    .dot {
+      background: var(--white, #FFF);
+    }
   }
 
   &:hover {
@@ -295,6 +299,10 @@ const openSub = (menu: 'grades' | 'progress' | 'profiles') => {
 
     svg path {
       fill: white;
+    }
+
+    .dot {
+      background: var(--white, #FFF);
     }
   }
 
@@ -306,5 +314,15 @@ const openSub = (menu: 'grades' | 'progress' | 'profiles') => {
 .menuitem-text {
   font-size: 16px;
   font-weight: 500;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+
+  .dot {
+    background: #00C0DD;
+    border-radius: 4px;
+    width: 4px;
+    height: 4px;
+  }
 }
 </style>

@@ -172,8 +172,8 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                                         :value="role.name" />
                                     <label :for="role.key" class="ml-2">{{ role.name }}</label>
                                 </div>
-                                <svg v-if="role.key !== 'all'" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
-                                    fill="none">
+                                <svg v-if="role.key !== 'all'" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                    viewBox="0 0 20 20" fill="none">
                                     <path fill-rule="evenodd" clip-rule="evenodd"
                                         d="M13.7746 11.6932C13.5305 11.9373 13.1348 11.9373 12.8907 11.6932L9.99935 8.80185L7.10796 11.6932C6.86388 11.9373 6.46815 11.9373 6.22407 11.6932C5.98 11.4492 5.98 11.0534 6.22407 10.8094L9.55741 7.47603C9.80149 7.23195 10.1972 7.23195 10.4413 7.47603L13.7746 10.8094C14.0187 11.0534 14.0187 11.4492 13.7746 11.6932Z"
                                         fill="black" stroke="black" stroke-width="1.5" stroke-linecap="round"
@@ -223,16 +223,19 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                                 class="p-inputtext-lg w-full text-6xl mt-6 h-4rem" required placeholder="Title" />
 
                             <div class="grid gap-2 align-items-start md:align-items-center w-full">
-                                <div class="col-12 grid gap-2 align-items-center">
-                                    <h1 class="col-5 md:col-2 lg:col-2 instructor text-2xl text-900 font-bold min-w-max">
-                                        Instructor By
-                                    </h1>
-                                    <Dropdown v-model="selectedInstructor" v-bind:class="{ selected: selectedInstructor }"
-                                        :options="instructorList" optionLabel="name" placeholder="Select Instructor"
-                                        class="md:w-full md:w-18rem 
-                                         col-6 md:col-5 h-2rem flex align-items-center"
-                                        size="small" @change="(value: any) => onChangeInstructor(value.value)" />
-                                    <div class="col-12 md:col-3 flex gap-1">
+                                <div class="col-12 grid gap-2 align-items-center justify-content-between">
+                                    <div class="flex align-items-center">
+                                        <h1
+                                            class="col-5 md:col-2 lg:col-2 instructor text-2xl text-900 font-bold min-w-max">
+                                            Instructor By
+                                        </h1>
+                                        <Dropdown v-model="selectedInstructor"
+                                            v-bind:class="{ selected: selectedInstructor }" :options="instructorList"
+                                            optionLabel="name" placeholder="Select Instructor" class="md:w-full md:w-18rem 
+                                         col-6 md:col-5 h-2rem flex align-items-center" size="small"
+                                            @change="(value: any) => onChangeInstructor(value.value)" />
+                                    </div>
+                                    <div class="col-12 md:col-3 flex gap-1 justify-content-end">
                                         <i class="pi-thumbs-up pi mt-1"></i>
                                         <p class="text-900 font-normal">0%</p>
                                         <p>|</p>
@@ -245,8 +248,8 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                             <div class="grid w-full gap-3 p-2">
                                 <div class="col-12 md:col-4 lg:col-3 card shadow-1 flex flex-column">
                                     <div
-                                        class="flex flex-row md:flex-column gap-2 md:gap-0 align-items-center md:align-items-start">
-                                        <div class="flex gap-1 align-items-center">
+                                        class="flex flex-row md:flex-column gap-2 md:gap-0 align-items-center md:align-items-start mb-1">
+                                        <div class="flex gap-1 align-items-center mb-2">
                                             <i class="pi-star-fill pi"></i>
                                             <h3 class="text-sm text-900">Ratings</h3>
                                         </div>
@@ -259,21 +262,25 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                                     </p>
                                 </div>
                                 <div class="col-12 md:col-4 lg:col-4 card shadow-1 gap-1">
-                                    <div class="flex gap-1 align-items-center">
+                                    <div class="flex gap-1 align-items-center mb-2">
                                         <img src="/assets/icon/stopwatch.png" class="w-1rem" />
                                         <h3 class="text-sm text-900">Total Hours</h3>
                                     </div>
                                     <div class="flex justify-content-start align-items-center gap-2">
-                                        <InputNumber v-model="totalHour" inputId="withoutgrouping" @input="e => resizeInput(e, '.instructor-total-input.hour')" :useGrouping="false"
-                                            class="instructor-total-input hour" id="instructor-total-input-hour" />
+                                        <InputNumber v-model="totalHour" inputId="withoutgrouping"
+                                            @input="e => resizeInput(e, '.instructor-total-input.hour')"
+                                            :useGrouping="false" class="instructor-total-input hour"
+                                            id="instructor-total-input-hour" />
                                         <p class="text-bold textxs">hour</p>
-                                        <InputNumber v-model="totalMinute" @input="e => resizeInput(e, '.instructor-total-input.min')" class="instructor-total-input min"
-                                            inputId="withoutgrouping" :useGrouping="false" />
+                                        <InputNumber v-model="totalMinute"
+                                            @input="e => resizeInput(e, '.instructor-total-input.min')"
+                                            class="instructor-total-input min" inputId="withoutgrouping"
+                                            :useGrouping="false" />
                                         <p class="text-bold textxs">min</p>
                                     </div>
                                 </div>
                                 <div class="col-12 md:col-2 lg:col-4 card shadow-1 flex flex-column gap-1">
-                                    <div class="flex gap-1 align-items-center">
+                                    <div class="flex gap-1 align-items-center mb-2">
                                         <img src="/assets/icon/chat.png" class="w-1rem" />
                                         <h3 class="text-sm text-900">Language</h3>
                                     </div>
@@ -339,10 +346,8 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                             <template v-for="(item, key) in gradeSystem">
                                 <tr>
                                     <td>
-                                        <p contenteditable
-                                            @input="(e: any) => onChangeGradeSystemTitle(e.target.innerText, key)"
-                                            v-html="item.title">
-                                        </p>
+                                        <InputText v-model="item.title"
+                                            class="p-0 m-0 bg-transparent border-none input-grade" />
                                     </td>
                                     <td><span class="divider"></span></td>
                                     <td>
@@ -459,7 +464,7 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                             <div class="grid gap-2 header w-full p-0 m-0 py-2 align-items-center" style="background: #EEE;">
                                 <Button :icon="syllabus ? 'pi pi-angle-up' : 'pi pi-angle-down'" size="small" link
                                     class="col-1" @click="syllabusAccordion[key] = !syllabusAccordion[key]" />
-                                <InputText label="Title" class="p-inputtext-sm col-9 text-xl syllabus-title"
+                                <InputText label="Title" class="p-inputtext-sm col-8 text-xl syllabus-title"
                                     placeholder="Title" />
                                 <div class="col-2 flex justify-content-start align-items-center gap-2 p-0 ml-6">
                                     <InputNumber v-model="syllabusLectures" inputId="withoutgrouping" :useGrouping="false"
@@ -517,7 +522,7 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                                             <Dropdown optionLabel="name" style="height: 36px" v-model="addData.selectedType"
                                                 v-bind:class="{ selected: addData.selectedType !== 'none' }"
                                                 :options="types" placeholder="Select"
-                                                class="mr-3 w-min md:w-9rem p-0 flex align-items-center col-2">
+                                                class="mr-3 w-min p-0 flex align-items-center col-2">
                                                 <template #value="slotProps">
                                                     <div v-if="slotProps.value" class="flex align-items-center gap-2">
                                                         <div class="flex gap-2 align-items-center"
@@ -582,7 +587,7 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                                                 v-model="addData.title" />
                                         </div>
                                         <div class="flex gap-3 p-0 m-0">
-                                            <div class="flex gap-1">
+                                            <div class="flex gap-1 align-items-center">
                                                 <InputText type="number" v-model="addData.duration" style="height: 36px"
                                                     class="w-4rem" />
                                                 <span class="text-900 text-lg font-md">min</span>
@@ -792,6 +797,16 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                 border-bottom: 1px solid #D9D5EC;
                 color: black;
                 padding: 10px;
+
+                .input-grade {
+                    color: #000;
+                    text-align: left;
+                    font-family: Inter;
+                    font-size: 20px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 160%;
+                }
             }
 
             &:last-child {
@@ -836,13 +851,35 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
     }
 }
 
-::v-deep(.p-accordion-header) {
-    color: var(--font-1, #001125);
-    font-family: Inter;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 32px;
+::v-deep(.p-accordion) {
+    border: 1px solid #D9D5EC;
+    background: #FFF;
+
+    .p-accordion-tab {
+        margin: 0;
+
+        .p-accordion-header {
+            background: transparent;
+            color: var(--font-1, #001125);
+            font-family: Inter;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 160%;
+
+            a {
+                display: flex;
+                justify-content: space-between;
+                padding: 5px 10px;
+                border-radius: 0;
+                background: transparent;
+
+                svg {
+                    order: 2
+                }
+            }
+        }
+    }
 }
 
 ::v-deep(.p-checkbox) {
@@ -852,5 +889,4 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
         border: none !important;
         background: none !important;
     }
-}
-</style>
+}</style>

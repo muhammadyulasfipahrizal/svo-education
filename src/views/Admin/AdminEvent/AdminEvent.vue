@@ -3,6 +3,7 @@ import EventItem from './EventItem/EventItem.vue';
 import EventAdd from './EventAdd/EventAdd.vue';
 import { format } from 'date-fns'
 import { ref } from "vue";
+import {useEventsStore, type IEventItem} from '@/stores/events'
 const date = ref();
 const visible = ref(false);
 
@@ -67,29 +68,8 @@ const onUpload = (e: any) => {
   fileUploadPreview.value = URL.createObjectURL(fileUpload.value);
 }
 
-export type EventItem = {
-  name: string;
-  location: string;
-  date: Date;
-  ticket_prize: number;
-}
-const eventList = ref<EventItem[]>([
-  {
-    name: 'Network Technology Seminar',
-    location: 'Bukit Bintang',
-    date: new Date(),
-    ticket_prize: 9.99,
-  }
-])
-
-const profileName = ref<string>('');
-const enrollStudents = ref<string>('');
-const selectedBranch = ref('')
-const branchList = ref([
-  { name: 'Branch 1', code: 1 },
-  { name: 'Branch 2', code: 2 },
-  { name: 'Branch 3', code: 3 }
-])
+const eventStore = useEventsStore();
+const eventList = ref<IEventItem[]>(eventStore.allEvent);
 </script>
 
 <template>

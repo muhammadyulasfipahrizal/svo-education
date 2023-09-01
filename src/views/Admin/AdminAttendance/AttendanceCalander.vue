@@ -183,6 +183,12 @@ const attributes = ref([
 
     .vc-day-content {
       font-size: 10px;
+      &:hover {
+        background: unset;
+      }
+      &.vc-red {
+        color: #BE2F00;
+      }
     }
 
     @media screen and (max-width: 768px) {
@@ -219,10 +225,10 @@ const attributes = ref([
 
   .vc-week,
   .vc-weekdays {
-    max-width: 204px;
+    // max-width: 204px;
 
     @media screen and (max-width: 768px) {
-      max-width: 183px;
+      // max-width: 183px;
     }
   }
 
@@ -230,15 +236,16 @@ const attributes = ref([
     min-width: 0;
     width: 100%;
 
-    max-width: 214px;
+    // max-width: 214px;
 
     @media screen and (max-width: 768px) {
-      max-height: 183px;
+      // max-height: 183px;
     }
   }
 
   .vc-weeks {
     padding: 0px;
+    min-width: unset;
 
     .vc-weekday {
       font-size: 10px;
@@ -249,6 +256,14 @@ const attributes = ref([
       @media screen and (max-width: 768px) {
         font-size: 8.9px;
         width: 26px;
+      }
+    }
+    .vc-week:last-child {
+      .vc-day:first-child {
+        border-bottom-left-radius: 10px;
+      }
+      .vc-day:last-child {
+        border-bottom-right-radius: 10px;
       }
     }
   }
