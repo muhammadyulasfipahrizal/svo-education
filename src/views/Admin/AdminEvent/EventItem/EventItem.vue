@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { type EventItem } from "../AdminEvent.vue";
 import format from 'date-fns/format'
 import router from "@/router";
-const props = defineProps<{ item: EventItem }>();
+import type { IEventItem } from '@/stores/events';
+const props = defineProps<{ item: IEventItem }>();
 
 const goToDetail = () => {
-    router.push('/admin/event/1')
+    router.push('/admin/event/' + props.item.id)
 }
 </script>
 
@@ -93,4 +93,5 @@ const goToDetail = () => {
     .container {
         max-width: 225px;
     }
-}</style>
+}
+</style>
