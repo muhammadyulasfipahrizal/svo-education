@@ -3,19 +3,14 @@ import { format } from 'date-fns';
 import { ref, onMounted, watchEffect } from "vue";
 import { eventDummyData } from './EventDummyData';
 import type { Event } from './Event.type'
+import { useEventsStore, type IEventItem } from '@/stores/events';
+import router from '@/router';
+import { useRoute } from 'vue-router';
 
 const eventList = ref<Event[]>(eventDummyData)
 
 const date = ref();
 const visible = ref(false);
-
-const fileUpload = ref();
-const fileUploadPreview = ref();
-
-
-const title = ref();
-const description = ref();
-const location = ref();
 const calendar = ref();
 const calendarRef = ref(null);
 const time = ref();
@@ -52,18 +47,32 @@ const onDateSelectCalendarRef = (value: Date) => {
 const onTimeSelect = (value: Date) => {
     time.value = format(value, 'HH:mm')
 }
-
+const eventStore = useEventsStore();
+const route = useRoute();
+const selectedEvent = ref<IEventItem>();
+const location = ref();
+const name = ref();
+const description = ref();
+const indexEvent = ref<number | null>(null)
 onMounted(() => {
-    date.value = new Date();
-    location.value = 'Bukit bintang';
-    ticketPrice.value = 9.99;
-    title.value = "Network Technology Seminar";
-    description.value = 'The world of network technology is constantly evolving, with new advancements and innovations being introduced every year. To stay up-to-date with the latest trends, it is essential to attend a seminar that covers the most recent developments in this field. Our network technology seminar is designed to do just that!|';
-    time.value = format(new Date(), "'Starts at ' hh:mm b");
+    const selectedId = (route.params['id'] as string) as unknown as number;
+    if (selectedId) {
+        const findEventIndex = eventStore.allEvent.findIndex((v) => v.id == selectedId)
+        if (findEventIndex > -1) {
+            const findEvent = eventStore.allEvent[findEventIndex];
+            indexEvent.value = findEventIndex
+            selectedEvent.value = findEvent;
+            name.value = selectedEvent.value.name;
+            description.value = selectedEvent.value.description;
+            location.value = selectedEvent.value.location;
+            date.value = new Date();
+            time.value = format(new Date(selectedEvent.value.date), "'Starts at ' hh:mm b");
 
-    ticketType.value = 'Gold - Early Bird';
-    ticketPricePerItem.value = 9.99;
-    ticketCount.value = 1;
+            ticketType.value = 'Gold - Early Bird';
+            ticketPricePerItem.value = findEvent.ticket_prize;
+            ticketCount.value = 1;
+        }
+    }
 })
 
 
@@ -93,6 +102,13 @@ watchEffect(() => {
     };
 });
 const decrementTicketCount = () => ticketCount.value - 1 < 1 ? ticketCount.value : ticketCount.value--;
+
+const onSave = () => {
+    if (indexEvent.value !== null) {
+        eventStore.updateEvent(indexEvent.value, { ...eventStore.allEvent[indexEvent.value], location: location.value, name: name.value, description: description.value })
+        router.push('/admin/event');
+    }
+}
 </script>
 
 <template>
@@ -110,11 +126,11 @@ const decrementTicketCount = () => ticketCount.value - 1 < 1 ? ticketCount.value
                         </div>
                     </template>
                 </Carousel>
-                <InputText v-model="title" class="title text-2xl font-bold mx-3" />
+                <InputText v-model="name" class="title text-2xl font-bold mx-3" />
                 <Textarea v-model="description" rows="10" class="mx-3" />
             </div>
             <div class="col-12 px-3">
-                <Button label="SAVE" @click="$router.push('/admin/event')" class="w-full  btn-save"></Button>
+                <Button label="SAVE" @click="onSave" class="w-full  btn-save"></Button>
             </div>
         </div>
 
@@ -155,28 +171,26 @@ const decrementTicketCount = () => ticketCount.value - 1 < 1 ? ticketCount.value
                 <div class="grid py-2">
                     <span class="p-input-icon-left col-12 md:col-6 lg:col-6 xl:col-6 py-1">
                         <i class="pi pi-map-marker ml-1"></i>
-                        <InputText class="p-inputtext-sm w-full" type="text" v-model="location" placeholder="Location"
-                             />
+                        <InputText class="p-inputtext-sm w-full" type="text" v-model="location" placeholder="Location" />
                     </span>
                     <span class="p-input-icon-left col-12 md:col-6 lg:col-6 xl:col-6 py-1">
                         <i class="pi pi-calendar ml-1"></i>
                         <InputText class="p-inputtext-sm w-full" v-model="calendar" placeholder="Calendar"
-                            @click="showCalendar"  />
+                            @click="showCalendar" />
                         <Calendar v-model="calendar" id="calendar" placeholder="Calendars"
-                            @date-select="onDateSelectCalendarRef" class="calendarRef" ref="calendarRef"
-                             />
+                            @date-select="onDateSelectCalendarRef" class="calendarRef" ref="calendarRef" />
                     </span>
                     <span class="p-input-icon-left col-12 md:col-6 lg:col-6 xl:col-6 py-1">
                         <i class="pi pi-clock ml-1"></i>
-                        <InputText class="p-inputtext-sm w-full" v-model="time" placeholder="Time" @click="showTimepicker"
-                             />
+                        <InputText class="p-inputtext-sm w-full" v-model="time" placeholder="Time"
+                            @click="showTimepicker" />
                         <Calendar id="time-picker" placeholder="Time" @date-select="onTimeSelect" timeOnly class="timeRef"
                             ref="timeRef" />
                     </span>
                     <span class="p-input-icon-left col-12 md:col-6 lg:col-6 xl:col-6 py-1">
                         <i class="pi pi-ticket ml-1"></i>
                         <InputText class="p-inputtext-sm w-full" type="text" v-model="ticketPrice"
-                            placeholder="Ticket price"  />
+                            placeholder="Ticket price" />
                     </span>
                 </div>
 
