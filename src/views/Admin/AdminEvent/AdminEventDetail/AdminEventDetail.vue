@@ -129,9 +129,6 @@ const onSave = () => {
                 <InputText v-model="name" class="title text-2xl font-bold mx-3" />
                 <Textarea v-model="description" rows="10" class="mx-3" />
             </div>
-            <div class="col-12 px-3">
-                <Button label="SAVE" @click="onSave" class="w-full  btn-save"></Button>
-            </div>
         </div>
 
         <div class="col-12 md:col-4 lg:col-4">
@@ -198,6 +195,9 @@ const onSave = () => {
                 }}</Button>
             </div>
         </div>
+        <div class="col-12">
+            <Button label="Save" @click="onSave" class="w-full  btn-save"></Button>
+        </div>
     </section>
 </template>
 <style>
@@ -229,6 +229,7 @@ const onSave = () => {
 .btn-save {
     background-color: #00C0DD;
     border: none;
+    border-radius: 0px;
 }
 
 .btn-back {
