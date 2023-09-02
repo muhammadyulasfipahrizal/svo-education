@@ -33,12 +33,28 @@
               </div>
               <div class="flex flex-column">
                 <p class="text-xl font-bold">Overall reviews</p>
-                <p class="flex gap-1 text-xl font-bold text-600">
-                  3.0
-                  <Rating :modelValue="3" :cancel="false" readonly :pt="{
-                      onIcon: { class: 'text-red-400' }
-                  }"/>
-                </p>
+                <div class="flex flex-row gap-2 align-items-center">
+                  <p class="flex text-xl font-bold text-600">
+                    3.0
+                  </p>
+                  <Rating :modelValue="3" :cancel="false" readonly class="pt-1">
+                    <template #onicon>
+                      <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="20" viewBox="0 0 16 14" fill="none">
+                          <path d="M8 0L9.68386 5.18237H15.1329L10.7245 8.38525L12.4084 13.5676L8 10.3647L3.59161 13.5676L5.27547 8.38525L0.867076 5.18237H6.31614L8 0Z" fill="#F1644C"/>
+                        </svg>
+                      </div>
+                    </template>
+                    <template #officon>
+                      <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="20" viewBox="0 0 16 14" fill="none">
+                          <path d="M8 0L9.68386 5.18237H15.1329L10.7245 8.38525L12.4084 13.5676L8 10.3647L3.59161 13.5676L5.27547 8.38525L0.867076 5.18237H6.31614L8 0Z" fill="#D9D9D9"/>
+                        </svg>  
+                      </div>
+                    </template>
+                  </Rating>
+                </div>
+                
               </div>
             </div>
 
@@ -128,5 +144,11 @@ const instructor = computed(() => instructorsDummy.filter(instructor => instruct
 
 .p-6px {
   padding: 6px;
+}
+
+::v-deep(.p-rating) {
+  .p-rating-item {
+    color: #F1644C;
+  }
 }
 </style>

@@ -210,7 +210,7 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
             </AccordionTab>
         </Accordion>
 
-        <h2 class="text-900 font-bold">
+        <h2 class="text-900 font-bold mx-3 my-2">
             Add Courses
         </h2>
 
@@ -222,8 +222,7 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                             <InputText type="text" label="Title" v-model="title"
                                 class="p-inputtext-lg w-full text-6xl mt-6 h-4rem" required placeholder="Title" />
 
-                            <div class="grid gap-2 align-items-start md:align-items-center w-full">
-                                <div class="col-12 grid gap-2 align-items-center justify-content-between">
+                            <div class="grid gap-2 align-items-start md:align-items-center w-full justify-content-between">
                                     <div class="flex align-items-center">
                                         <h1
                                             class="col-5 md:col-2 lg:col-2 instructor text-2xl text-900 font-bold min-w-max">
@@ -235,18 +234,17 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                                          col-6 md:col-5 h-2rem flex align-items-center" size="small"
                                             @change="(value: any) => onChangeInstructor(value.value)" />
                                     </div>
-                                    <div class="col-12 md:col-3 flex gap-1 justify-content-end">
+                                    <div class="col-12 md:col-2 flex gap-1">
                                         <i class="pi-thumbs-up pi mt-1"></i>
                                         <p class="text-900 font-normal">0%</p>
                                         <p>|</p>
                                         <i class="pi-thumbs-down pi mt-1"></i>
                                         <p class="text-900 font-normal">0%</p>
                                     </div>
-                                </div>
                             </div>
 
-                            <div class="grid w-full gap-3 p-2">
-                                <div class="col-12 md:col-4 lg:col-3 card shadow-1 flex flex-column">
+                            <div class="grid w-full ml-2 gap-3">
+                                <div class="col-12 md:col-4 lg:col-4 card shadow-1 flex flex-column md:w-13rem">
                                     <div
                                         class="flex flex-row md:flex-column gap-2 md:gap-0 align-items-center md:align-items-start mb-1">
                                         <div class="flex gap-1 align-items-center mb-2">
@@ -261,7 +259,7 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                                         0 already enroll
                                     </p>
                                 </div>
-                                <div class="col-12 md:col-4 lg:col-4 card shadow-1 gap-1">
+                                <div class="col-12 md:col-4 lg:col-4 card shadow-1 gap-1 md:w-13rem">
                                     <div class="flex gap-1 align-items-center mb-2">
                                         <img src="/assets/icon/stopwatch.png" class="w-1rem" />
                                         <h3 class="text-sm text-900">Total Hours</h3>
@@ -279,7 +277,7 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                                         <p class="text-bold textxs">min</p>
                                     </div>
                                 </div>
-                                <div class="col-12 md:col-2 lg:col-4 card shadow-1 flex flex-column gap-1">
+                                <div class="col-12 md:col-4 lg:col-4 card shadow-1 flex flex-column gap-1 md:w-14rem">
                                     <div class="flex gap-1 align-items-center mb-2">
                                         <img src="/assets/icon/chat.png" class="w-1rem" />
                                         <h3 class="text-sm text-900">Language</h3>
@@ -463,10 +461,10 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                             <!-- title -->
                             <div class="grid gap-2 header w-full p-0 m-0 py-2 align-items-center" style="background: #EEE;">
                                 <Button :icon="syllabus ? 'pi pi-angle-up' : 'pi pi-angle-down'" size="small" link
-                                    class="col-1" @click="syllabusAccordion[key] = !syllabusAccordion[key]" />
-                                <InputText label="Title" class="p-inputtext-sm col-8 text-xl syllabus-title"
+                                    class="col-2" @click="syllabusAccordion[key] = !syllabusAccordion[key]" />
+                                <InputText label="Title" class="p-inputtext-sm col-9 text-xl syllabus-title"
                                     placeholder="Title" />
-                                <div class="col-2 flex justify-content-start align-items-center gap-2 p-0 ml-6">
+                                <div class="col-2 flex justify-content-start align-items-center gap-2 p-0 ml-3">
                                     <InputNumber v-model="syllabusLectures" inputId="withoutgrouping" :useGrouping="false"
                                         class="instructor-total-input" />
                                     <p class="font-bold text-2xl text-900">lectures</p>
@@ -481,13 +479,20 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                                                 stroke="#001125" stroke-width="1.5" stroke-linecap="round"
                                                 stroke-linejoin="round" />
                                         </svg>
-
                                     </Button>
                                 </div>
                             </div>
 
                             <!-- content -->
                             <div class="flex-column gap-2 w-full p-2" :class="{ 'flex': syllabus, 'hidden': !syllabus }">
+                                <p contenteditable class="syllabus-input-text p-3">
+                                    Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero 
+                                    et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad 
+                                    litora torquent per conubia nostra, per inceptos himenaeos. 
+                                    Curabitur tempus urna at turpis condimentum lobortis. Ut commodo 
+                                    efficitur neque. Ut diam quam, semper iaculis condimentum ac, 
+                                    vestibulum eu nisl.
+                                </p>
                                 <template v-for="(syllabusData, key) in syllabusAccordionData">
                                     <div class="flex justify-content-between align-items-center">
                                         <div class="grid align-items-center gap-2 w-full">
@@ -606,26 +611,35 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                                     </div>
                                 </template>
                                 <div class="flex justify-content-center">
-                                    <Button class="w-12rem px-0 m-0 flex align-items-center justify-content-center" @click="syllabusAddList.push({
+                                    <Button class="w-14rem px-0 m-0 flex align-items-center justify-content-center btn-default px-3 py-2" style="border-radius: 10px" @click="syllabusAddList.push({
                                         title: '',
                                         duration: '0',
                                         selectedType: ''
                                     })">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22"
+                                        <div class="flex flex-row align-items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22"
                                             fill="none">
                                             <path d="M11 15.375V6.625" stroke="white" stroke-width="1.5"
                                                 stroke-linecap="round" />
                                             <path d="M6.625 11L15.375 11" stroke="white" stroke-width="1.5"
                                                 stroke-linecap="round" />
-                                        </svg>
-                                        Add new content
+                                            </svg>
+                                            <p class="font-medium ml-1 lowercase"><span class="capitalize font-medium">Add</span> new content</p>
+                                        </div>
                                     </Button>
                                 </div>
                             </div>
                         </div>
                     </template>
-                    <Button label="Add more syllabus" icon="pi pi-plus" size="small" class="btn-orange w-full"
-                        @click="syllabusAccordion.push(false)" />
+                    <Button icon="pi pi-plus" size="small" class="btn-orange w-full"
+                        @click="syllabusAccordion.push(false)" >
+                        <template #default>
+                            <div class="flex flex-row align-items-center gap-3">
+                                <i class="pi pi-plus text-xs"></i>
+                                <p class="font-semibold">Add more syllabus</p>
+                            </div>
+                        </template>
+                    </Button>
                 </div>
             </template>
 
@@ -671,7 +685,7 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                 </div>
             </template>
         </div>
-        <Button size="small" label="SAVE" class="w-full my-4 btn-default" />
+        <Button size="small" label="Save" class="w-full my-4 border-none border-noround" style="background: #00C0DD" />
     </section>
 </template>
 
@@ -860,13 +874,6 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
 
         .p-accordion-header {
             background: transparent;
-            color: var(--font-1, #001125);
-            font-family: Inter;
-            font-size: 20px;
-            font-style: normal;
-            font-weight: 700;
-            line-height: 160%;
-
             a {
                 display: flex;
                 justify-content: space-between;
@@ -879,6 +886,14 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                 }
             }
         }
+        .p-accordion-header-text {
+            color: var(--font-1, #001125);
+            font-family: Inter;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 160%;
+        }
     }
 }
 
@@ -889,4 +904,23 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
         border: none !important;
         background: none !important;
     }
-}</style>
+}
+
+.syllabus-input-text {
+    border-radius: 5px;
+    border: 1px solid var(--Suggested-dark-grey, #808081);
+    background: var(--Suggested-grey, #D9D9D9);
+    display: flex;
+    padding: 9px 8px 9px 16px;
+    align-items: center;
+    gap: 8px;
+    align-self: stretch;
+}
+
+.btn-content {
+    .p-button{
+        border-radius: 10px;
+        background: var(--SVO-Dark-Color, #006785);
+    }
+}
+</style>

@@ -263,10 +263,13 @@ const eventList = ref<IEventItem[]>(eventStore.allEvent);
   }
 
   table tr td {
-    padding: 0 5px !important;
+    padding: 10px 5px !important;
     width: 50px;
     height: 50px;
     margin: 5px;
+  }
+
+  table tr th {
     background: rgba(250, 250, 250, 0.50);
   }
 
@@ -277,6 +280,7 @@ const eventList = ref<IEventItem[]>(eventStore.allEvent);
     font-size: 15px;
     width: 100%;
     min-width: 50px;
+    background: rgba(250, 250, 250, 0.50);
   }
 
   table td>span:focus {

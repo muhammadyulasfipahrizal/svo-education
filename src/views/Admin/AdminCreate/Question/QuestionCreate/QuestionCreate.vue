@@ -81,26 +81,26 @@ const tryAgainAttemptType = ref();
                 </div>
             </div>
             <div class="grid">
-                <div class="col-3">
+                <div class="col-4">
                     <p class="text-lg">Calendar</p>
-                    <div class="flex bg-transparent gap-1 p-1 align-items-center border-300 border-1">
+                    <div class="flex bg-transparent gap-1 p-1 align-items-center border-300 border-1 w-20rem xl:w-full">
                         <Dropdown v-model="calendar.month" v-bind:class="{ selected: calendar.month }" :options="monthList"
                             optionLabel="name" placeholder="MM"
-                            class="h-2rem border-none border-noround flex align-items-center" size="small" />
+                            class="h-2rem border-none border-noround w-7rem xl:w-10rem flex align-items-center" size="small" />
                         <svg xmlns="http://www.w3.org/2000/svg" width="2" height="18" viewBox="0 0 2 18" fill="none">
                             <path opacity="0.1" d="M1.33398 1V17" stroke="#001125" stroke-linecap="round"
                                 stroke-linejoin="round" />
                         </svg>
                         <Dropdown v-model="calendar.day" v-bind:class="{ selected: calendar.day }" :options="dayList"
-                            optionLabel="name" placeholder="DD" class="h-2rem border-none border-noround flex align-items-center"
-                            size="small" />
+                            optionLabel="name" placeholder="DD" class="h-2rem border-none border-noround flex align-items-center
+                            w-7rem xl:w-10rem" size="small" />
                         <svg xmlns="http://www.w3.org/2000/svg" width="2" height="18" viewBox="0 0 2 18" fill="none">
                             <path opacity="0.1" d="M1.33398 1V17" stroke="#001125" stroke-linecap="round"
                                 stroke-linejoin="round" />
                         </svg>
                         <Dropdown v-model="calendar.year" v-bind:class="{ selected: calendar.year }" :options="yearList"
-                            optionLabel="name" placeholder="YY" class="h-2rem border-none border-noround flex align-items-center"
-                            size="small" />
+                            optionLabel="name" placeholder="YY" class="h-2rem border-none border-noround flex align-items-center
+                            w-7rem xl:w-10rem" size="small" />
                     </div>
                 </div>
                 <div class="col-3">
@@ -116,7 +116,7 @@ const tryAgainAttemptType = ref();
                             size="small" />
                     </div>
                 </div>
-                <div class="col-3">
+                <div class="col-2">
                     <p class="text-lg">Attempt</p>
                     <div class="flex bg-transparent gap-1 p-1 align-items-center border-300 border-1">
                         <InputText size="small" class="p-0 m-0 border-noround p-inputtext-sm border-none text-center h-2rem w-3rem" v-model="attempts" />
@@ -162,7 +162,7 @@ const tryAgainAttemptType = ref();
                 <!-- ADD more quiz -->
                 <div class="grid">
                     <div class="col">
-                        <Button class="btn-orange w-full" size="small"
+                        <Button class="btn-orange w-full border-noround" size="small"
                             @click="assesments.push({
                                 question: 'New Assesment',
                                 points: '0/1',
@@ -170,23 +170,29 @@ const tryAgainAttemptType = ref();
                                 answerText: '',
                                 answerRadio: [],
                             })">
-                        <template #default>
-                            <div class="flex flex-row align-items-center gap-3">
-                                <i class="pi pi-plus align-self-center justify-content-center font-bold"></i>
-                                <p class="font-bold">Add new assesment question</p>
-                            </div>
-                        </template>
+                            <template #default>
+                                <div class="flex flex-row align-items-center gap-3">
+                                    <i class="pi pi-plus align-self-center justify-content-center font-bold text-sm"></i>
+                                    <p class="font-medium text text-sm lowercase"><span class="capitalize">Add</span> new assesment question</p>
+                                </div>
+                            </template>
                         </Button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <Button size="small" label="SAVE" class="w-full my-4 btn-default" />
+        <Button size="small" label="Save" class="w-full my-4 border-none border-noround" style="background: #00C0DD" />
     </section>
 </template>
 
 <style scoped lang="scss">
+.text {
+    font-family: Inter;
+    font-style: normal;
+    line-height: 160%;
+}
+
 ::v-deep(.p-dropdown) {
     .p-dropdown-label {
         width: 55px;

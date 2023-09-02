@@ -4,15 +4,15 @@
       <img :src="card.image" class="border-circle w-4rem h-4rem object-cover" style="object-fit: cover" />
       <span v-html="card.iconMarkup" :class="getIconClass(card.iconMarkup)" class="absolute"></span>
     </div>
-    <p class="font-bold text-base col-12 text-center p-0">{{ card.name }}</p>
+    <p class="font-semibold text-base col-12 text-center p-0 inter text-color">{{ card.name }}</p>
     <div class="flex justify-content-center align-items-center col-12 text-center py-2">
-      <p class="font-semibold text-xs">Current Day:</p>
-      <p class="current-day text-xs">DAY {{ card.currentDay }}</p>
+      <p class="font-semibold text-xs inter text-color">Current Day:</p>
+      <p class="current-day text-xs inter">DAY {{ card.currentDay }}</p>
     </div>
     <ProgressBar class="w-full mx-2 progressbar" :value="card.attendance / 30 * 100"></ProgressBar>
     <div class="flex justify-content-between align-items-center text-xs col-12 py-0">
-      <p class="">Attendance: {{ card.attendance }}/30 days</p>
-      <p class="">{{ Math.round(card.attendance / 30 * 100) }}%</p>
+      <p class="poppins text-color-2">Attendance: {{ card.attendance }}/30 days</p>
+      <p class="poppins text-color-2">{{ Math.round(card.attendance / 30 * 100) }}%</p>
     </div>
     <div class="col-12 p-0 ">
       <Calendar borderless :locale="calendarLocale" :attributes="attributes" class="w-full" />
@@ -86,6 +86,21 @@ const attributes = ref([
 
 
 <style scoped lang="scss">
+.inter {
+  font-family: Inter;
+}
+
+.poppins {
+  font-family: Poppins;
+}
+
+.text-color {
+  color: #001125;
+}
+
+.text-color-2 {
+  color: #292D32;
+}
 .container {
   border-radius: 15px;
   max-width: 187px;
@@ -213,6 +228,17 @@ const attributes = ref([
       font-size: 10px;
     }
 
+    button>span {
+      color: var(--Black, #000);
+      text-align: center;
+      font-family: Poppins;
+      font-size: 10px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 100%; /* 10px */
+      letter-spacing: -0.1px;
+    }
+
     .vc-arrow svg {
       width: 10px;
       height: 10px;
@@ -248,7 +274,13 @@ const attributes = ref([
     min-width: unset;
 
     .vc-weekday {
+      color: var(--Black, #000);
+      font-family: Poppins;
       font-size: 10px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 100%; /* 10px */
+      letter-spacing: -0.1px;
       width: 30px;
       height: 20px;
       padding: 0px;
