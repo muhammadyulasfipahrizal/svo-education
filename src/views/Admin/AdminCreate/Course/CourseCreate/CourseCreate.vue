@@ -685,7 +685,7 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                 </div>
             </template>
         </div>
-        <Button size="small" label="SAVE" class="w-full my-4 btn-default" />
+        <Button size="small" label="Save" class="w-full my-4 border-none border-noround" style="background: #00C0DD" />
     </section>
 </template>
 

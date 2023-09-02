@@ -97,7 +97,7 @@ const changeSubtitle = (mainTaskIndex: number, taskIndex: number, subtitleIndex:
             <Button size="small" label="Add new columns" class="w-full mt-4 btn-orange" @click="addColumn" />
         </div>
 
-        <Button size="small" label="SAVE" class="w-full my-4 btn-default" />
+        <Button size="small" label="Save" class="w-full my-4 border-none border-noround" style="background: #00C0DD" />
     </section>
 </template>
 

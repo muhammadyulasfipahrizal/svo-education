@@ -170,23 +170,29 @@ const tryAgainAttemptType = ref();
                                 answerText: '',
                                 answerRadio: [],
                             })">
-                        <template #default>
-                            <div class="flex flex-row align-items-center gap-3">
-                                <i class="pi pi-plus align-self-center justify-content-center font-bold"></i>
-                                <p class="font-bold">Add new assesment question</p>
-                            </div>
-                        </template>
+                            <template #default>
+                                <div class="flex flex-row align-items-center gap-3">
+                                    <i class="pi pi-plus align-self-center justify-content-center font-bold text-sm"></i>
+                                    <p class="font-medium text text-sm">Add new assesment question</p>
+                                </div>
+                            </template>
                         </Button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <Button size="small" label="SAVE" class="w-full my-4 btn-default" />
+        <Button size="small" label="Save" class="w-full my-4 border-none border-noround" style="background: #00C0DD" />
     </section>
 </template>
 
 <style scoped lang="scss">
+.text {
+    font-family: Inter;
+    font-style: normal;
+    line-height: 160%;
+}
+
 ::v-deep(.p-dropdown) {
     .p-dropdown-label {
         width: 55px;
