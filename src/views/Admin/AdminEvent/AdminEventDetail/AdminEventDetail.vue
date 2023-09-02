@@ -6,6 +6,17 @@ import type { Event } from './Event.type'
 import { useEventsStore, type IEventItem } from '@/stores/events';
 import router from '@/router';
 import { useRoute } from 'vue-router';
+import flatPickr from 'vue-flatpickr-component';
+import 'flatpickr/dist/flatpickr.css';
+
+const config = ref({
+    inline: true,
+    mode: "range",
+    locale: {
+        firstDayOfWeek: 2
+    }
+});
+
 
 const eventList = ref<Event[]>(eventDummyData)
 
@@ -132,12 +143,10 @@ const onSave = () => {
         </div>
 
         <div class="col-12 md:col-4 lg:col-4">
+            
             <div class="calendar">
                 <h1 class="font-bold">Calendar</h1>
-                <div class="flex">
-                    <VDatePicker v-model.range="attributes" disabled mode="date" class="datepicker w-full"
-                        :attributes="attributes" />
-                </div>
+                <flat-pickr v-model="date" :config="config" class="flex w-full border-round"/>
             </div>
 
             <!-- Information -->
@@ -279,6 +288,93 @@ const onSave = () => {
     &:focus {
         outline: none;
     }
+}
+
+::v-deep(.flatpickr-input[readonly]) {
+    display: none !important;
+}
+
+::v-deep(.flatpickr-prev-month) {
+    margin-left: 25px;
+}
+
+::v-deep(.flatpickr-next-month) {
+    margin-right: 25px;
+}
+
+::v-deep(.flatpickr-day.selected){
+    border-radius: 5px;
+    background: var(--Suggested-orange, #E96853);
+}
+
+::v-deep(.flatpickr-day:hover){
+    border-radius: 5px;
+    background: var(--Suggested-orange, #E96853);
+}
+
+::v-deep(.flatpickr-day.selected.startRange){
+    border-radius: 5px;
+    background: var(--Suggested-orange, #E96853);
+}
+
+::v-deep(.flatpickr-day.selected.endRange){
+    border-radius: 5px;
+    background: var(--Suggested-orange, #E96853);
+}
+
+::v-deep(.flatpickr-monthDropdown-months) {
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid #D9D5EC;
+    background: #FFF;
+    color: #000;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0.6px;
+    margin-right: 10px;
+}
+
+::v-deep(.flatpickr-current-month input.cur-year) {
+    border-radius: 5px;
+    border: 1px solid #D9D5EC;
+    background: #FFF;
+    color: #000;
+    font-weight: 500;
+}
+
+::v-deep(.flatpickr-rContainer){
+    width: 385px;
+    border-radius: 0px 0px 20px 20px;
+    border-bottom: 1px solid #D9D5EC;
+    border-left: 1px solid #D9D5EC;
+    border-right: 1px solid #D9D5EC;
+}
+
+::v-deep(.flatpickr-weekdays) {
+    width: 385px;
+    margin: 15px 0px;
+}
+
+::v-deep(.flatpickr-month) {
+    max-width: 385px;
+    height: 38px;
+    border-radius: 20px 20px 0 0;
+    border-top: 1px solid #D9D5EC;
+    border-left: 1px solid #D9D5EC;
+    border-right: 1px solid #D9D5EC;
+}
+
+::v-deep(.flatpickr-days) {
+    width: 380px;
+}
+
+::v-deep(.dayContainer) {
+    width: 380px;
+    max-height: 350px;
+    height: 250px;
+    max-width: 380px;
 }
 </style>
 
