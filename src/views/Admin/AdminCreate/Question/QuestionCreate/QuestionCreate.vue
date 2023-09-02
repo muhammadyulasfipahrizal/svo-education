@@ -81,26 +81,26 @@ const tryAgainAttemptType = ref();
                 </div>
             </div>
             <div class="grid">
-                <div class="col-3">
+                <div class="col-4">
                     <p class="text-lg">Calendar</p>
-                    <div class="flex bg-transparent gap-1 p-1 align-items-center border-300 border-1">
+                    <div class="flex bg-transparent gap-1 p-1 align-items-center border-300 border-1 w-20rem xl:w-full">
                         <Dropdown v-model="calendar.month" v-bind:class="{ selected: calendar.month }" :options="monthList"
                             optionLabel="name" placeholder="MM"
-                            class="h-2rem border-none border-noround flex align-items-center" size="small" />
+                            class="h-2rem border-none border-noround w-7rem xl:w-10rem flex align-items-center" size="small" />
                         <svg xmlns="http://www.w3.org/2000/svg" width="2" height="18" viewBox="0 0 2 18" fill="none">
                             <path opacity="0.1" d="M1.33398 1V17" stroke="#001125" stroke-linecap="round"
                                 stroke-linejoin="round" />
                         </svg>
                         <Dropdown v-model="calendar.day" v-bind:class="{ selected: calendar.day }" :options="dayList"
-                            optionLabel="name" placeholder="DD" class="h-2rem border-none border-noround flex align-items-center"
-                            size="small" />
+                            optionLabel="name" placeholder="DD" class="h-2rem border-none border-noround flex align-items-center
+                            w-7rem xl:w-10rem" size="small" />
                         <svg xmlns="http://www.w3.org/2000/svg" width="2" height="18" viewBox="0 0 2 18" fill="none">
                             <path opacity="0.1" d="M1.33398 1V17" stroke="#001125" stroke-linecap="round"
                                 stroke-linejoin="round" />
                         </svg>
                         <Dropdown v-model="calendar.year" v-bind:class="{ selected: calendar.year }" :options="yearList"
-                            optionLabel="name" placeholder="YY" class="h-2rem border-none border-noround flex align-items-center"
-                            size="small" />
+                            optionLabel="name" placeholder="YY" class="h-2rem border-none border-noround flex align-items-center
+                            w-7rem xl:w-10rem" size="small" />
                     </div>
                 </div>
                 <div class="col-3">
@@ -116,7 +116,7 @@ const tryAgainAttemptType = ref();
                             size="small" />
                     </div>
                 </div>
-                <div class="col-3">
+                <div class="col-2">
                     <p class="text-lg">Attempt</p>
                     <div class="flex bg-transparent gap-1 p-1 align-items-center border-300 border-1">
                         <InputText size="small" class="p-0 m-0 border-noround p-inputtext-sm border-none text-center h-2rem w-3rem" v-model="attempts" />
