@@ -9,12 +9,9 @@ import { useRoute } from 'vue-router';
 import flatPickr from 'vue-flatpickr-component';
 import 'flatpickr/dist/flatpickr.css';
 
-const config = ref({
+const config: Partial<any> = ref({
     inline: true,
     mode: "range",
-    locale: {
-        firstDayOfWeek: 2
-    }
 });
 
 
