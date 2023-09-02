@@ -52,13 +52,14 @@ const changeSubtitle = (mainTaskIndex: number, taskIndex: number, subtitleIndex:
         <div class="grid w-full mt-3 wrapper gap-2">
             <div v-for="(mainTask, mainTaskIndex) in tasks" :key="mainTaskIndex" class="col-12 grid gap-2">
                 <div class="flex gap-1 w-full">
-                    <InputText v-model="mainTask.title" class="w-full" />
+                    <InputText v-model="mainTask.title" class="w-full font-bold text-xl" />
                     <Button link size="small" class="p-0 m-0" @click="removeColumn(mainTaskIndex)">
                         <i class="pi pi-times text-900 pl-2 text-sm"></i>
                     </Button>
                 </div>
-                <div v-for="(task, taskIndex) in mainTask.subtasks"
-                    class="p-2 border-round-lg surface-border border-1 w-full">
+                <div class="p-2 border-round-lg surface-border border-1 w-full">
+                    <div v-for="(task, taskIndex) in mainTask.subtasks"
+                    class="p-2 w-full">
                     <div
                         class="flex justify-content-between py-0 px-1 m-0 gap-2 w-full align-items-center surface-200 border-round-lg border-600 border-1">
                         <div class="flex flex-column col-9 grid">
@@ -92,12 +93,22 @@ const changeSubtitle = (mainTaskIndex: number, taskIndex: number, subtitleIndex:
                             </Button>
                         </div>
                     </div>
+                    <hr class="mt-3" v-if="taskIndex !== mainTask.subtasks.length - 1" style="background: #D9D5EC; height: 1px;">
                 </div>
+                </div>
+                
             </div>
-            <Button size="small" label="Add new columns" class="w-full mt-4 btn-orange" @click="addColumn" />
+            <Button size="small" label="Add new columns" class="w-full mt-4 btn-orange" @click="addColumn">
+                <template #default>
+                    <div class="flex flex-row m-auto gap-3">
+                        <i class="pi pi-plus align-self-center justify-content-center font-bold text-sm"></i>
+                        <p class="font-medium text text-white text-sm lowercase"><span class="capitalize">Add</span> new sections</p>
+                    </div>
+                </template>
+            </Button>
         </div>
 
-        <Button size="small" label="SAVE" class="w-full my-4 btn-default" />
+        <Button size="small" label="Save" class="w-full my-4 border-none border-noround" style="background: #00C0DD" />
     </section>
 </template>
 

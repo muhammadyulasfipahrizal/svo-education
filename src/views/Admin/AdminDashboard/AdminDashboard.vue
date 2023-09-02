@@ -432,6 +432,10 @@ const checkIfEventExist = (date: string) => {
         overflow: hidden;
     }
 
+    table tr th {
+        background: rgba(250, 250, 250, 0.50);
+    }
+
     table tr td {
         width: 50px;
         height: 50px;
