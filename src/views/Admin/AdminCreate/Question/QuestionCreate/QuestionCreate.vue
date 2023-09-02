@@ -162,7 +162,7 @@ const tryAgainAttemptType = ref();
                 <!-- ADD more quiz -->
                 <div class="grid">
                     <div class="col">
-                        <Button class="btn-orange w-full" size="small"
+                        <Button class="btn-orange w-full border-noround" size="small"
                             @click="assesments.push({
                                 question: 'New Assesment',
                                 points: '0/1',
@@ -173,7 +173,7 @@ const tryAgainAttemptType = ref();
                             <template #default>
                                 <div class="flex flex-row align-items-center gap-3">
                                     <i class="pi pi-plus align-self-center justify-content-center font-bold text-sm"></i>
-                                    <p class="font-medium text text-sm">Add new assesment question</p>
+                                    <p class="font-medium text text-sm lowercase"><span class="capitalize">Add</span> new assesment question</p>
                                 </div>
                             </template>
                         </Button>
