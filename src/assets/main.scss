@@ -100,7 +100,8 @@ textarea {
   }
 }
 
-.p-datatable, div {
+.p-datatable,
+div {
   .p-paginator-bottom {
     .p-paginator {
       width: 100%;
@@ -180,7 +181,7 @@ textarea {
 
       .p-paginator-current {
         text-align: left;
-        width: 60%;
+        // width: 60%;
         padding: 0 !important;
         margin: 0 !important;
         display: flex;
@@ -198,7 +199,8 @@ textarea {
         gap: 2px !important;
 
         .p-paginator-current {
-          width: 100%;
+          width: 91px;
+          height: 14px !important;
         }
 
         .p-paginator-pages {
