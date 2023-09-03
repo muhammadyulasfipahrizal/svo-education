@@ -102,7 +102,7 @@
       </div>
       <Paginator :rows="10" :totalRecords="mockAttendance.length" :template="{
         '992px': 'CurrentPageReport PrevPageLink  NextPageLink',
-        default: 'CurrentPageReport PrevPageLink PageLinks NextPageLink',
+        default: 'CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown',
       }" currentPageReportTemplate='Showing data {first} to {last} of {totalRecords} entries' class="col-12"
         @page="pageChanged" />
     </section>
@@ -376,19 +376,19 @@ onMounted(() => {
 }
 
 .grid-5 {
-  grid-template-columns: repeat(6, 17%);
+  grid-template-columns: repeat(5, 216px);
   display: grid;
 
   @media screen and (min-width: 1281px) and (max-width: 1560px) {
-    grid-template-columns: repeat(5, 20%);
+    grid-template-columns: repeat(5, 216px);
   }
 
   @media screen and (min-width: 1025px) and (max-width: 1280px) {
-    grid-template-columns: repeat(4, 25%);
+    grid-template-columns: repeat(4, 216px);
   }
 
   @media screen and (min-width: 769px) and (max-width: 1024px) {
-    grid-template-columns: repeat(3, 33%);
+    grid-template-columns: repeat(3, 216px);
   }
 
   @media screen and (min-width: 466px) and (max-width: 768px) {

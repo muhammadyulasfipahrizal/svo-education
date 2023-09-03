@@ -118,7 +118,13 @@ const getBackgroundColor = (progress: number) => {
           <DataTable :value="studentData" removableSort paginator :rows="10" :rowsPerPageOptions="[5, 10, 20, 50]"
             tableStyle="min-width: 50rem" sortMode="multiple" dataKey="id" v-model:selection="checkedStudent"
             class="shadow-2 detail-table"
-            paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
+            :paginatorTemplate="{
+                '600px': 'CurrentPageReport PrevPageLink PageLinks NextPageLink',
+                '1062px': 'CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink',
+                default: 'CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown'
+            }"
+            :pageLinkSize="3"
+            apaginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
             currentPageReportTemplate="Showing data {first} to {last} of {totalRecords} entries">
             <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
             <Column field="name" class="text-white" headerStyle="width: 4rem">
