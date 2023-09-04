@@ -114,9 +114,11 @@ onMounted(() => {
 
                 <DataTable :value="studentList" removableSort paginator :rows="10" :rowsPerPageOptions="[5, 10, 20, 50]"
                     sortMode="multiple" tableStyle="min-width: 50rem" dataKey="id" v-model:selection="checkedInstructor"
-                    class="shadow-2"
-                    paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
-                    currentPageReportTemplate="Showing data {first} to {last} of {totalRecords} entries">
+                    class="shadow-2" :paginatorTemplate="{
+                        '600px': 'CurrentPageReport PrevPageLink PageLinks NextPageLink',
+                        '1062px': 'CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink',
+                        default: 'CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown'
+                    }" :pageLinkSize="3" currentPageReportTemplate="Showing data {first} to {last} of {totalRecords} entries">
                     <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
                     <Column field="name" header="Name">
                         <template #body="value">
@@ -435,7 +437,7 @@ onMounted(() => {
         font-weight: 500;
     }
 
-    
+
 }
 
 .btn-orange {
