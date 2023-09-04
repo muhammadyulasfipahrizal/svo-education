@@ -32,9 +32,11 @@ const getBackgroundColor = (progress: number) => {
             <h1 class="title-head pl-2">Student Grades</h1>
             <div class="col-12">
                 <DataTable :value="courseList" removableSort paginator :rows="10" :rowsPerPageOptions="[5, 10, 20, 50]"
-                    sortMode="multiple" tableStyle="min-width: 50rem" dataKey="id" class="shadow-2"
-                    paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
-                    currentPageReportTemplate="Showing data {first} to {last} of {totalRecords} entries">
+                    sortMode="multiple" tableStyle="min-width: 50rem" dataKey="id" class="shadow-2" :paginatorTemplate="{
+                        '600px': 'CurrentPageReport PrevPageLink PageLinks NextPageLink',
+                        '1062px': 'CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink',
+                        default: 'CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown'
+                    }" :pageLinkSize="3" currentPageReportTemplate="Showing data {first} to {last} of {totalRecords} entries">
                     <Column field="name">
                         <template #header>
                             <div class="flex justify-content-center align-items-center w-full">
@@ -258,7 +260,7 @@ const getBackgroundColor = (progress: number) => {
         font-weight: 500;
     }
 
-    
+
 }
 
 .progress-bar-container {

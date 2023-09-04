@@ -50,9 +50,11 @@ const onSelectProfile = (v: Instructor) => {
             <div class="col-12">
                 <DataTable :value="instructorList" removableSort paginator :rows="10" :rowsPerPageOptions="[5, 10, 20, 50]"
                     sortMode="multiple" v-model:selection="checkedInstructor" class="shadow-2 p-datatable-sm"
-                    tableStyle="min-width: 80rem"
-                    paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
-                    currentPageReportTemplate="Showing data {first} to {last} of {totalRecords} entries">
+                    tableStyle="min-width: 80rem" :paginatorTemplate="{
+                        '600px': 'CurrentPageReport PrevPageLink PageLinks NextPageLink',
+                        '1062px': 'CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink',
+                        default: 'CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown'
+                    }" :pageLinkSize="3" currentPageReportTemplate="Showing data {first} to {last} of {totalRecords} entries">
                     <Column selectionMode="multiple" headerStyle="width: 0.5rem"></Column>
                     <Column field="name" class="w-1">
                         <template #header>
@@ -204,8 +206,8 @@ const onSelectProfile = (v: Instructor) => {
                         <template #body="value">
                             <div class="flex flex-column align-items-center">
                                 <Button link size="small"
-                                @click="$router.push('/admin/grade/instructor/' + value.data.id + '/message')">
-                                <img src="/assets/icon/reply.png" class="w-2rem" />
+                                    @click="$router.push('/admin/grade/instructor/' + value.data.id + '/message')">
+                                    <img src="/assets/icon/reply.png" class="w-2rem" />
                                 </Button>
                             </div>
                         </template>
