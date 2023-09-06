@@ -100,7 +100,68 @@ textarea {
   }
 }
 
-.p-datatable, div {
+.p-datatable {
+  &.p-datatable-sm {
+    .p-datatable-thead {
+      height: 45px;
+    }
+  }
+
+  border-radius: 10px;
+
+  .p-datatable-wrapper {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+    .p-datatable-thead {
+      .p-checkbox {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .p-checkbox-box {
+          border-radius: 3px;
+          border: 1px solid #FFF;
+          width: 12px;
+          height: 12px;
+          background: transparent;
+        }
+      }
+    }
+
+    .p-datatable-tbody {
+      tr>td {
+        padding: 5px 10px !important;
+
+        .p-checkbox {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          .p-checkbox-box {
+            border-radius: 3px;
+            border: 1px solid #000;
+            width: 12px;
+            height: 12px;
+            background: transparent;
+          }
+        }
+      }
+    }
+  }
+
+  .p-paginator-bottom {
+    .p-paginator {
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+  }
+}
+
+.p-datatable,
+div {
   .p-paginator-bottom {
     .p-paginator {
       width: 100%;
@@ -180,7 +241,7 @@ textarea {
 
       .p-paginator-current {
         text-align: left;
-        width: 60%;
+        // width: 60%;
         padding: 0 !important;
         margin: 0 !important;
         display: flex;
@@ -191,6 +252,11 @@ textarea {
         height: 21px !important;
         font-size: 14px !important;
         color: #B5B7C0 !important;
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        letter-spacing: -0.14px;
       }
 
       @media screen and (max-width: 767px) {
@@ -198,7 +264,8 @@ textarea {
         gap: 2px !important;
 
         .p-paginator-current {
-          width: 100%;
+          width: 91px;
+          height: 14px !important;
         }
 
         .p-paginator-pages {
@@ -221,6 +288,69 @@ textarea {
         display: flex;
         justify-content: center !important;
       }
+    }
+  }
+}
+
+.text-name {
+  color: #25213B;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.text-header {
+  color: #FFF;
+  text-align: center;
+  font-family: Inter;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.text-content {
+  color: #25213B;
+  text-align: center;
+  font-family: Inter;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.filter-button {
+  display: flex;
+  padding: 9px 10px;
+  align-items: flex-end;
+  gap: 10px;
+  border-radius: 6px;
+  border: 1px solid #808081;
+  background: #FFF;
+
+  p {
+    color: #808081;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  &:hover,
+  &:active {
+    background: #e26954;
+    border-color: #e26954;
+
+    p {
+      color: white;
+    }
+
+    svg path {
+      fill: white;
     }
   }
 }

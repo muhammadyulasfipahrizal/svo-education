@@ -7,9 +7,11 @@
       </div>
       <div class="col-12">
         <DataTable :value="guestProgressList" class="shadow-2" removableSort paginator :rows="10" selectionMode="single"
-          :selection="selectedCourse" @rowSelect="handleRowSelect"
-          paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
-          currentPageReportTemplate="Showing data {first} to {last} of {totalRecords} entries">
+          :selection="selectedCourse" @rowSelect="handleRowSelect" :paginatorTemplate="{
+            '600px': 'CurrentPageReport PrevPageLink PageLinks NextPageLink',
+            '1062px': 'CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink',
+            default: 'CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown'
+          }" :pageLinkSize="3" currentPageReportTemplate="Showing data {first} to {last} of {totalRecords} entries">
           <Column field="dealerName">
             <template #header>
               <div class="flex justify-content-start w-full">

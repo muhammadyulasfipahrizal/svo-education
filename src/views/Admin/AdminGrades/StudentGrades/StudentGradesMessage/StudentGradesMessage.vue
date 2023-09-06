@@ -31,22 +31,25 @@ onMounted(() => {
                 <h1 class="title-head">Student Grades</h1>
             </div>
             <div class="flex flex-column gap-3 col-12">
-                <div class="flex flex-column md:flex-row gap-3 align-items-center justify-content-center w-full">
-                    <h1 class="text-900 font-bold text-xl">
+                <div
+                    class="flex flex-column md:flex-row gap-3 align-items-center justify-content-center w-full title-container">
+                    <h1 class="">
                         Leave a message for instructor
                     </h1>
-                    <h1 class="text-900 font-bold text-3xl text-orange-400">
+                    <h2>
                         {{ selectedProfile?.name }}
-                    </h1>
+                    </h2>
                 </div>
                 <div class="flex justify-content-center w-full">
-                    <img :src="selectedProfile?.image" alt="" class="w-12rem" style="border-radius: 50%; object-fit: cover;"/>
+                    <img :src="selectedProfile?.image" alt="" class="w-12rem"
+                        style="border-radius: 50%; object-fit: cover;" />
                 </div>
                 <div class="flex flex-column gap-3 w-full px-3">
                     <h1 class="text-900 font-bold text-3rem">
                         Message
                     </h1>
-                    <Textarea class="message" disabled v-model="message" autoResize rows="5"></Textarea>
+                    <Textarea class="message p-inputtext-sm" placeholder="Write a message" v-model="message" autoResize
+                        rows="5"></Textarea>
                     <Button size="small" class="btn-send">
                         <template #default>
                             <div class="flex gap-2 justify-content-center align-items-center w-full">
@@ -69,10 +72,30 @@ onMounted(() => {
 
 .message {
     border-radius: 10px;
-    border: 1px solid var(--suggested-dark-grey, #808081);
-    background: var(--suggested-grey, #D9D9D9);
+    border: 1px solid #808081;
     color: #000;
     font-size: 14px;
     line-height: 160%;
+}
+
+.title-container {
+    h1 {
+        color: #001125;
+        text-align: center;
+        font-family: Inter;
+        font-size: 35px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 160%;
+    }
+
+    h2 {
+        color: #E96853;
+        font-family: Inter;
+        font-size: 35px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 160%;
+    }
 }
 </style>

@@ -77,12 +77,12 @@ onMounted(() => {
                 <!-- FILTER -->
                 <div class="card flex justify-content-start">
                     <Dropdown v-model="selectedCourse" :options="courseList" optionLabel="name"
-                        placeholder="Select a course" class="w-full md:w-17rem hidden md:flex">
+                        placeholder="Select a course" class="w-full md:w-17rem hidden md:flex selected dropdown">
                         <template #value="slotProps">
                             <div v-if="slotProps.value" class="flex align-items-center">
                                 <img :alt="slotProps.value.name" :src="slotProps.value.image" class="mr-2"
                                     style="width: 53px" />
-                                <div class="text-900 font-bold text-lg">{{ slotProps.value.name }}</div>
+                                <div class="text-dropdown">{{ slotProps.value.name }}</div>
                             </div>
                             <span v-else>
                                 {{ slotProps.placeholder }}
@@ -92,19 +92,36 @@ onMounted(() => {
                             <div class="flex align-items-center">
                                 <img :alt="slotProps.option.name" :src="slotProps.option.image" class="mr-2"
                                     style="width: 53px" />
-                                <div class="text-900 font-bold text-lg">{{ slotProps.option.name }}</div>
+                                <div class="text-dropdown">{{ slotProps.option.name }}</div>
                             </div>
                         </template>
                     </Dropdown>
                 </div>
                 <div class="grid w-full px-2 md:px-3 align-items-center justify-content-between">
-                    <div
-                        class="col-10 md:col-11 lg:col-10 xl:col-10 grid align-items-center filter-search align-items-center py-0 my-2 px-0">
-                        <Button label="Filter" icon="pi pi-filter-fill" size="small" class="filter-button col-2 md:col-1" />
-                        <span class="p-input-icon-left col-10 md:col-6 xl:col-6 py-0">
-                            <i class="pi pi-search search-icon ml-2" />
+                    <div class="col-10 md:col-11 lg:col-10 xl:col-10 grid align-items-center filter-search align-items-center py-0 mt-2 px-0"
+                        style="height: 40px;">
+                        <button class="filter-button col-2 md:col-1 ml-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <g clip-path="url(#clip0_2655_7875)">
+                                    <path d="M12 12L20 4V0H0V4L8 12V20L12 16V12Z" fill="#808081" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_2655_7875">
+                                        <rect width="20" height="20" fill="white" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                            <p class="p-0 m-0">Filter</p>
+                        </button>
+                        <div class="p-input-icon-left h-full col-10 md:col-6 xl:col-6 py-0">
+                            <svg class="ml-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+                                fill="none">
+                                <path
+                                    d="M13.4097 14.8822C11.7399 16.1799 9.63851 16.7922 7.53338 16.5942C5.42824 16.3963 3.47766 15.403 2.07881 13.8166C0.679961 12.2303 -0.0619809 10.1701 0.00405863 8.05565C0.0700982 5.94118 0.939153 3.9314 2.43427 2.43552C3.92939 0.939633 5.93814 0.0701341 8.05152 0.00406071C10.1649 -0.0620127 12.224 0.680308 13.8096 2.07987C15.3951 3.47944 16.3879 5.43102 16.5857 7.53723C16.7836 9.64345 16.1717 11.7459 14.8745 13.4166L19.6936 18.2201C20.1016 18.6267 20.1022 19.2872 19.695 19.6946C19.2878 20.1021 18.6273 20.1017 18.2204 19.6939L13.4201 14.8822H13.4097ZM8.31916 14.5495C9.13773 14.5495 9.94829 14.3882 10.7045 14.0748C11.4608 13.7614 12.148 13.302 12.7268 12.7229C13.3056 12.1438 13.7647 11.4563 14.078 10.6996C14.3913 9.94298 14.5525 9.13201 14.5525 8.31302C14.5525 7.49403 14.3913 6.68306 14.078 5.92641C13.7647 5.16976 13.3056 4.48225 12.7268 3.90314C12.148 3.32402 11.4608 2.86465 10.7045 2.55123C9.94829 2.23782 9.13773 2.07651 8.31916 2.07651C6.66598 2.07651 5.08051 2.73356 3.91153 3.90314C2.74256 5.07271 2.08583 6.659 2.08583 8.31302C2.08583 9.96705 2.74256 11.5533 3.91153 12.7229C5.08051 13.8925 6.66598 14.5495 8.31916 14.5495Z"
+                                    fill="#808081" />
+                            </svg>
                             <InputText placeholder="Search by name" class="search-bar w-full p-inputtext-sm" />
-                        </span>
+                        </div>
                     </div>
                     <div class="col-2 align-items-end flex justify-content-end">
                         <Button label="DOWNLOAD " size="small" icon="pi pi-download"
@@ -114,25 +131,33 @@ onMounted(() => {
 
                 <DataTable :value="studentList" removableSort paginator :rows="10" :rowsPerPageOptions="[5, 10, 20, 50]"
                     sortMode="multiple" tableStyle="min-width: 50rem" dataKey="id" v-model:selection="checkedInstructor"
-                    class="shadow-2"
-                    paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
+                    class="shadow-2 p-datatable-sm" :paginatorTemplate="{
+                        '600px': 'CurrentPageReport PrevPageLink PageLinks NextPageLink',
+                        '1062px': 'CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink',
+                        default: 'CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown'
+                    }" :pageLinkSize="3"
                     currentPageReportTemplate="Showing data {first} to {last} of {totalRecords} entries">
                     <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
-                    <Column field="name" header="Name">
+                    <Column field="name">
+                        <template #header>
+                            <div class="flex justify-content-center align-items-center">
+                                <p class="text-header">Name</p>
+                            </div>
+                        </template>
                         <template #body="value">
                             <div class="flex gap-2 align-items-center">
                                 <img :src="value.data.student.image" alt="" style="width: 39px; height: 39px;"
                                     class="border-circle" />
-                                <div class="flex gap-1 flex-column align-items-start">
-                                    <h4 class="text-900 font-semibold">{{ value.data.student.name }}</h4>
-                                    <p class="text-500 font-normal">
+                                <div class="flex gap-1 flex-column align-items-start student-name">
+                                    <h4>{{ value.data.student.name }}</h4>
+                                    <p>
                                         {{ value.data.student.email }}
                                     </p>
                                 </div>
                             </div>
                         </template>
                     </Column>
-                    <Column field="course" header="Course" sortable class="center">
+                    <Column field="course" sortable class="center">
                         <template #sorticon="{ sorted, sortOrder }">
                             <div class="flex justify-content-center align-items-center">
                                 <template v-if="!sorted">
@@ -155,13 +180,18 @@ onMounted(() => {
                                 </template>
                             </div>
                         </template>
+                        <template #header>
+                            <div class="flex justify-content-center align-items-center">
+                                <p class="text-header">Course</p>
+                            </div>
+                        </template>
                         <template #body="value">
                             <div class="flex gap-1 flex-column align-items-start">
-                                <h4 class="text-900 font-semibold">{{ value.data.courses[0].course.name }}</h4>
+                                <h4 class="text-content">{{ value.data.courses[0].course.name }}</h4>
                             </div>
                         </template>
                     </Column>
-                    <Column field="upline" header="Upline" sortable class="center">
+                    <Column field="upline" sortable class="center">
                         <template #sorticon="{ sorted, sortOrder }">
                             <div class="flex justify-content-center align-items-center">
                                 <template v-if="!sorted">
@@ -184,13 +214,18 @@ onMounted(() => {
                                 </template>
                             </div>
                         </template>
+                        <template #header>
+                            <div class="flex justify-content-center align-items-center">
+                                <p class="text-header">Upline</p>
+                            </div>
+                        </template>
                         <template #body="value">
                             <div class="flex gap-1 flex-column align-items-start">
-                                <h4 class="text-900 font-semibold">{{ value.data.student.upline }}</h4>
+                                <h4 class="text-content">{{ value.data.student.upline }}</h4>
                             </div>
                         </template>
                     </Column>
-                    <Column field="branch" header="Branch" sortable class="center">
+                    <Column field="branch" sortable class="center">
                         <template #sorticon="{ sorted, sortOrder }">
                             <div class="flex justify-content-center align-items-center">
                                 <template v-if="!sorted">
@@ -213,20 +248,35 @@ onMounted(() => {
                                 </template>
                             </div>
                         </template>
+                        <template #header>
+                            <div class="flex justify-content-center align-items-center">
+                                <p class="text-header">Branch</p>
+                            </div>
+                        </template>
                         <template #body="value">
                             <div class="flex gap-1 flex-column align-items-start">
-                                <h4 class="text-900 font-semibold">{{ value.data.student.city_branch }}</h4>
+                                <h4 class="text-content">{{ value.data.student.city_branch }}</h4>
                             </div>
                         </template>
                     </Column>
-                    <Column field="profile" header="Profile">
+                    <Column field="profile">
+                        <template #header>
+                            <div class="flex justify-content-center align-items-center">
+                                <p class="text-header">Profile</p>
+                            </div>
+                        </template>
                         <template #body="value">
                             <Button class="btn-orange" @click="onSelectProfile(value.data)" size="small">
                                 <span class="text-md font-bold">Profile</span>
                             </Button>
                         </template>
                     </Column>
-                    <Column field="message" header="Message">
+                    <Column field="message">
+                        <template #header>
+                            <div class="flex justify-content-center align-items-center">
+                                <p class="text-header">Message</p>
+                            </div>
+                        </template>
                         <template #body="value">
                             <Button link size="small"
                                 @click="$router.push('/admin/grade/student/' + value.data.id + '/message')">
@@ -364,24 +414,26 @@ onMounted(() => {
 </template>
 
 <style lang="scss" scoped>
-.filter-button {
-    background-color: #fff;
-    color: #8B83BA;
-    border: 0.5px solid #8B83BA;
-}
 
 .search-bar {
-    background-color: rgba(139, 131, 186, 0.1);
-    color: #8B83BA;
-    width: 240px;
-}
+    border-radius: 6px;
+    background: #EEE !important;
+    color: #808081;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 
-.search-bar::placeholder {
-    color: #8B83BA;
-}
+    svg {
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+    }
 
-.search-icon {
-    color: #8B83BA;
+    ::placeholder {
+        color: #8B83BA;
+    }
 }
 
 .download-button {
@@ -435,7 +487,7 @@ onMounted(() => {
         font-weight: 500;
     }
 
-    
+
 }
 
 .btn-orange {
@@ -486,5 +538,44 @@ onMounted(() => {
 .line {
     background-color: #D9D5EC;
     padding: 1px;
+}
+
+.text-dropdown {
+    color: #25213B;
+    text-align: center;
+    font-family: Inter;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+:deep(.dropdown) {
+    min-width: 290px;
+
+    .p-dropdown-label {
+        padding: 5px 10px;
+    }
+}
+
+.student-name {
+    h4 {
+        color: #25213B;
+        font-family: Inter;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+    }
+
+    p {
+        color: #6E6893;
+        font-family: Inter;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        letter-spacing: 0.7px;
+    }
 }
 </style>

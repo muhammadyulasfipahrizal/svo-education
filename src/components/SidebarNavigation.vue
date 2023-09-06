@@ -48,8 +48,7 @@
 
         <!-- PROGRESS -->
         <li>
-          <router-link to="" @click="openSub('progress')" class="grid gap-2 menuitem-link"
-            :class="{ active: subMenuState.progress}">
+          <router-link to="" @click="openSub('progress')" class="grid gap-2 menuitem-link">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
               <g clip-path="url(#clip0_1865_133513)">
                 <path
@@ -88,8 +87,7 @@
 
         <!-- GRADES -->
         <li>
-          <router-link to="" @click="openSub('grades')" class="grid gap-2 menuitem-link"
-          :class="{ active: subMenuState.grades }">
+          <router-link to="" @click="openSub('grades')" class="grid gap-2 menuitem-link">
             <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
               <g id="Group">
                 <path id="Vector"
