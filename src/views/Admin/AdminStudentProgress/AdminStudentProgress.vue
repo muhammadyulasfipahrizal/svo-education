@@ -11,32 +11,32 @@
           <Column field="courseName">
             <template #header>
               <div class="flex justify-content-center w-full">
-                <p class="header-text">Course Name</p>
+                <p class="inter-normal white-1" style="font-size: 15px; font-weight: 700;">Course Name</p>
               </div>
             </template>
             <template #body="{ data }">
               <div class="flex flex-row align-items-center w-full">
                 <img :src="data.image" class="data-image mr-2" style="width: 58px; height: 39px;" />
-                <p class="data-text">{{ data.name }}</p>
+                <p class="poppins-normal black-3" style="font-size: 18px; font-weight: 500;">{{ data.name }}</p>
               </div>
             </template>
           </Column>
           <Column field="enrollment">
             <template #header>
               <div class="flex justify-content-center w-full">
-                <p class="header-text">Enrollment</p>
+                <p class="inter-normal white-1" style="font-size: 15px; font-weight: 700;">Enrollment</p>
               </div>
             </template>
             <template #body="{ data }">
               <div class="flex justify-content-center w-full">
-                <p class="data-text">{{ Number(data.enrollment).toLocaleString() }}</p>
+                <p class="poppins-normal black-3" style="font-size: 18px; font-weight: 500;">{{ Number(data.enrollment).toLocaleString() }}</p>
               </div>
             </template>
           </Column>
           <Column field="progress">
             <template #header>
               <div class="flex justify-content-center w-full">
-                <p class="header-text">Progress</p>
+                <p class="inter-normal white-1" style="font-size: 15px; font-weight: 700;">Progress</p>
               </div>
             </template>
             <template #body="{ data }">
@@ -45,44 +45,44 @@
                   <div class="progress-bar"
                     :style="{ width: data.progress + '%', backgroundColor: getBackgroundColor(data.progress) }"></div>
                 </div>
-                <p class="progress-text">{{ data.progress }} % completed</p>
+                <p class="inter-normal black-2" style="font-size: 14px; font-weight: 700; letter-spacing: 0.7px;">{{ data.progress }} % completed</p>
               </div>
             </template>
           </Column>
           <Column field="startDate">
             <template #header>
               <div class="flex justify-content-center w-full">
-                <p class="header-text">Start Date</p>
+                <p class="inter-normal white-1" style="font-size: 15px; font-weight: 700;">Start Date</p>
               </div>
             </template>
             <template #body="{ data }">
               <div class="flex justify-content-center w-full">
-                <p class="data-text">{{ data.startDate }}</p>
+                <p class="poppins-normal black-3" style="font-size: 18px; font-weight: 500;">{{ data.startDate }}</p>
               </div>
             </template>
           </Column>
           <Column field="endDate">
             <template #header>
               <div class="flex justify-content-center w-full">
-                <p class="header-text">End Date</p>
+                <p class="inter-normal white-1" style="font-size: 15px; font-weight: 700;">End Date</p>
               </div>
             </template>
             <template #body="{ data }">
               <div class="flex justify-content-center w-full">
-                <p class="data-text">{{ data.endDate }}</p>
+                <p class="poppins-normal black-3" style="font-size: 18px; font-weight: 500;">{{ data.endDate }}</p>
               </div>
             </template>
           </Column>
           <Column field="duration">
             <template #header>
               <div class="flex justify-content-center w-full">
-                <p class="header-text">Duration</p>
+                <p class="inter-normal white-1" style="font-size: 15px; font-weight: 700;">Duration</p>
               </div>
             </template>
             <template #body="{ data }">
               <div class="flex justify-content-center align-items-center w-full">
                 <i class="pi pi-clock mr-2"></i>
-                <p class="data-text">{{ data.duration }}</p>
+                <p class="poppins-normal black-3" style="font-size: 18px; font-weight: 500;">{{ data.duration }}</p>
               </div>
             </template>
           </Column>
@@ -126,24 +126,6 @@ const getBackgroundColor = (progress: number) => {
   line-height: 160%;
 }
 
-.header-text {
-  color: white;
-  text-align: center;
-  font-size: 20px;
-  font-family: Inter;
-  font-weight: 700;
-}
-
-.data-text {
-  color: var(--fonts-primary, #25213B);
-  text-align: center;
-  font-family: Poppins;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-}
-
 .progress-bar-container {
   width: 200px;
   height: 10px;
@@ -165,6 +147,7 @@ const getBackgroundColor = (progress: number) => {
 </style>
 
 <style lang="scss" scoped>
+@import "/src/assets/global.scss";
 ::v-deep(.p-datatable) {
 
   .p-datatable-thead>tr>th {

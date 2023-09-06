@@ -376,45 +376,7 @@ const checkIfEventExist = (date: string) => {
 </template>
 
 <style lang="scss" scoped>
-.inter-normal {
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 160%;
-}
-
-.dm-sans-normal {
-    font-family: DM Sans;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: 0.12px;
-}
-
-.poppins-normal {
-    font-family: Poppins;
-    font-style: normal;
-    line-height: 160%;
-}
-
-.black-1 {
-    color: var(--font-1, #001125);
-}
-
-.black-2 {
-    color: #000;
-}
-
-.white-1 {
-    color: var(--White, #FFF);
-}
-
-.grey-1 {
-    color: #9F9F9F;
-}
-
-.suggested-orange {
-    color: var(--Suggested-orange, #E96853);
-}
+@import "/src/assets/global.scss";
 
 ::v-deep(.p-datatable) {
     .p-datatable-thead>tr>th {
