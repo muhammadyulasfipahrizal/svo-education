@@ -609,34 +609,4 @@ const checkIfEventExist = (date: string) => {
         }
     }
 }
-
-.title-header {
-    color: var(--white, #FFF);
-    font-family: DM Sans;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    letter-spacing: 0.12px;
-}
-
-.title-name {
-    color: var(--black, #000);
-    text-align: center;
-    font-family: Poppins;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 160%;
-}
-
-.subtitle-name {
-    color: #9F9F9F;
-    text-align: center;
-    font-family: Poppins;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 160%;
-}
 </style>

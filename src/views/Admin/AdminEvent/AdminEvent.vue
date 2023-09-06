@@ -78,13 +78,13 @@ const eventList = ref<IEventItem[]>(eventStore.allEvent);
       class="grid overflow-hidden flex-column md:flex-row pl-4 pr-4 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2 px-2 min-h-full">
       <div class="col-12 md:col-8 lg:col-8 xl:col-8 px-2 bg-white">
         <div class="flex justify-content-between align-items-center">
-          <h1 class="font-bold mb-2 title-head">Ongoing Event</h1>
+          <h1 class="inter-normal black-1 mb-2" style="font-size: 35px; font-weight: 700;">Ongoing Event</h1>
           <button @click="onAddEvent" class="btn-orange w-5rem p-0 cursor-pointer">
             <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
               <path d="M10.5 14.1693V5.83594" stroke="white" stroke-width="1.5" stroke-linecap="round" />
               <path d="M6.33268 10L14.666 10" stroke="white" stroke-width="1.5" stroke-linecap="round" />
             </svg>
-            <span class="text-base font-semibold">ADD</span>
+            <span class="inter-normal white-1" style="font-size: 16px; font-weight: 600;">ADD</span>
           </button>
         </div>
         <div class="grid justify-center flex-wrap gap-2 flex-column md:flex-row px-2">
@@ -94,7 +94,7 @@ const eventList = ref<IEventItem[]>(eventStore.allEvent);
         </div>
       </div>
       <div class="col-12 md:col-4 lg:col-4 xl:col-4">
-        <h1 class="font-bold mb-2 title-text">Calendar</h1>
+        <h1 class="inter-normal black-2" style="font-size: 25px; font-weight: 700;">Calendar</h1>
         <div class="flex justify-content-start">
           <Calendar v-model="date" inline class="calendar">
             <!-- for badge calendar -->
@@ -151,7 +151,7 @@ const eventList = ref<IEventItem[]>(eventStore.allEvent);
   <!-- MODAL Upload -->
   <Dialog v-model:visible="visible" modal :style="{ width: '50vw' }" :breakpoints="{ '960px': '75vw', '641px': '90vw' }">
     <template #header>
-      <h1 class="text-4xl font-bold">Upload new Media</h1>
+      <h1 class="inter-normal black-1" style="font-size: 35px; font-weight: 700;">Upload new Media</h1>
     </template>
     <div class="flex flex-column gap-2 pb-2">
       <!-- FILE Upload -->
@@ -165,18 +165,24 @@ const eventList = ref<IEventItem[]>(eventStore.allEvent);
         <img v-if="fileUploadPreview" :src="fileUploadPreview" class="w-full h-20rem" />
         <template v-if="!fileUploadPreview">
           <input type="file" ref="fileUpload" class="hidden" accept="image/*" @change="onUpload" />
-          <h2 class="text-700 font-semibold text-base">Drop files here</h2>
-          <p class="text-500">or</p>
+          <h2 class="inter-normal grey-3" style="font-size: 20px; font-weight: 400;">Drop files here</h2>
+          <p class="inter-normal grey-3" style="font-size: 15px; font-weight: 400;">or</p>
           <div class="flex">
-            <Button label="Select File" size="small" plain outlined @click="fileUpload.click()"></Button>
+            <Button size="small" plain outlined @click="fileUpload.click()">
+              <template #default>
+                <div class="mx-auto">
+                  <p class="inter-normal grey-3" style="font-size: 12px; font-weight: 600;">Select File</p>
+                </div>
+              </template>
+            </Button>
           </div>
         </template>
       </div>
       <div class="flex">
-        <p class="text-900 text-base">Maximum upload file size: 8 MB</p>
+        <p class="inter-normal black-2" style="font-size: 15px; font-weight: 400;">Maximum upload file size: 8 MB</p>
       </div>
       <div class="grid">
-        <h1 class="title col-12 p-0 pl-2">Ongoing Event Details</h1>
+        <h1 class="inter-normal black-1 col-12 p-0 pl-2" style="font-size: 30px; font-weight: 700;">Ongoing Event Details</h1>
         <div class="flex gap-0 align-items-center col-12 pt-0">
           <InputText class="p-inputtext-sm" v-model="title" placeholder="Title" />
           <p class="text-500 pl-2">at</p>
@@ -231,13 +237,67 @@ const eventList = ref<IEventItem[]>(eventStore.allEvent);
         </div>
         
         <div class="grid px-3 w-full py-3">
-          <Button label="SAVE" class="w-full btn-save" @click="visible = false"></Button>
+          <Button class="w-full btn-save" @click="visible = false">
+            <template #default>
+              <div class="mx-auto">
+                <p class="inter-normal white-1" style="font-size: 13px; font-weight: 700;">Save</p>
+              </div>
+            </template>
+          </Button>
         </div>
       </div>
     </div>
   </Dialog>
 </template>
 <style scoped lang="scss">
+.inter-normal {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 160%;
+}
+
+.dm-sans-normal {
+  font-family: DM Sans;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.12px;
+}
+
+.poppins-normal {
+  font-family: Poppins;
+  font-style: normal;
+  line-height: 160%;
+}
+
+.black-1 {
+  color: var(--font-1, #001125);
+}
+
+.black-2 {
+  color: #000;
+}
+
+.white-1 {
+  color: var(--White, #FFF);
+}
+
+.grey-1 {
+  color: #9F9F9F;
+}
+
+.grey-2 {
+  color: #6E6893;
+}
+
+.grey-3 {
+  color: var(--Suggested-dark-grey, #808081);
+}
+
+.suggested-orange {
+  color: var(--Suggested-orange, #E96853);
+}
+
 .card-row {
   width: 750px;
 }
