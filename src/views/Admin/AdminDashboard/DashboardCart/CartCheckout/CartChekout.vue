@@ -3,8 +3,8 @@
         <h1 class="font-medium font-bold text-4xl mb-1 col-12">Checkout</h1>
         <p class="font-medium font-bold text-xl mb-1 pt-3 col-12">Billing Address</p>
         <div class="flex flex-row col-12 align-items-center gap-2">
-            <InputText type="text" class="col-10 md:col-11 h-4rem md:h-3rem"/>
-            <Button size="small" label="CHANGE" outlined class="orange btn-add-intructor col-2 md:col-1"/>
+            <InputText type="text" class="col-9 md:col-11 lg:col-10 xl:col-11 h-4rem md:h-3rem"/>
+            <Button size="small" label="CHANGE" outlined class="orange btn-add-intructor col-3 px-0 md:col-1 lg:col-2 xl:col-1 h-3rem md:h-3rem"/>
         </div>
         <Divider class="mx-1 sm:mx-3 my-1"/> 
         <CartItem/>
@@ -57,9 +57,9 @@
             </Dialog>
             
             </div>
-        <div class="grid col-12 align-items-center">
-            <p class="text-4xl col-8 md:col-10 font-bold">Total:</p>
-            <p class="text-4xl col-4 md:col-2 font-bold">RM 49.99</p>
+        <div class="grid col-12 align-items-center" style="white-space: nowrap;">
+            <p class="inter-normal text-4xl black-1 col-7 md:col-9 lg:col-10 font-bold">Total:</p>
+            <p class="inter-normal text-4xl black-1 col-3 md:col-3 lg:col-2 font-bold">RM 49.99</p>
         </div>
         <Button size="small" label="COMPLETE CHECKOUT" class="col-12 btn-save" @click="checkoutVisible = true"></Button>
         <Dialog v-model:visible="checkoutVisible" modal :style="{ width: '30vw' } " :breakpoints="{ '960px': '90vw' }">

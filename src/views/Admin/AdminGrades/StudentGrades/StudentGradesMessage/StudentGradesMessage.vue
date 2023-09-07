@@ -31,14 +31,15 @@ onMounted(() => {
                 <h1 class="title-head">Student Grades</h1>
             </div>
             <div class="flex flex-column gap-3 col-12">
-                <div
-                    class="flex flex-column md:flex-row gap-3 align-items-center justify-content-center w-full title-container">
-                    <h1 class="">
-                        Leave a message for instructor
+                <div class="flex flex-column md:flex-row gap-2 align-items-center justify-content-center w-full">
+                    <h1 class="md:hidden inter-normal black-1 text-center" style="font-size: 25px; font-weight: 700;">
+                        Leave a message for student 
+                        <span class="inter-normal suggested-orange text-center" style="font-size: 25px; font-weight: 700;">{{ selectedProfile?.name }}</span>
                     </h1>
-                    <h2>
-                        {{ selectedProfile?.name }}
-                    </h2>
+                    <h1 class="hidden md:block inter-normal black-1 text-center" style="font-size: 35px; font-weight: 700;">
+                        Leave a message for student 
+                        <span class="inter-normal suggested-orange text-center" style="font-size: 35px; font-weight: 700;">{{ selectedProfile?.name }}</span>
+                    </h1>
                 </div>
                 <div class="flex justify-content-center w-full">
                     <img :src="selectedProfile?.image" alt="" class="w-12rem"
@@ -65,6 +66,7 @@ onMounted(() => {
 </template>
 
 <style scoped lang="scss">
+@import "/src/assets/global.scss";
 .btn-send {
     background: #E26954;
     border: none;

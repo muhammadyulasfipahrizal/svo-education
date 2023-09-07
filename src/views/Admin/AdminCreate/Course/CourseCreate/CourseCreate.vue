@@ -255,12 +255,8 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                                             0/5 (0 ratings)
                                         </p>
                                     </div>
-                                    <p class="inter-normal black-2" style="font-size: 10px; font-weight: 400;">
-                                        0 already enroll
-                                    </p>
                                 </div>
                                 <div class="w-full p-2 card shadow-1 gap-1">
-                                    <div class="flex gap-1 align-items-center mb-2">
                                         <img src="/assets/icon/stopwatch.png" class="w-1rem" />
                                         <h3 class="inter-normal black-2" style="font-size: 18px; font-weight: 400;">Total
                                             Hours</h3>
@@ -308,8 +304,7 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                         </div>
                         <div class="flex justify-content-center align-items-center gap-2 my-2 col-12">
                             <div class="card-price flex justify-content-center align-items-center flex-column p-2">
-                                <h4 class="inter-normal black-2" style="font-size: 15px; font-weight: 700;">Original Price
-                                </h4>
+                                <h4 class="inter-normal black-2" style="font-size: 15px; font-weight: 700;">Original Price</h4>
                                 <InputNumber v-model="originalPrice" inputId="integeronly" placeholder="0.00" />
                             </div>
                             <div class="card-price flex justify-content-center align-items-center flex-column p-2">
@@ -318,21 +313,12 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                                 <InputNumber v-model="discountPrice" inputId="integeronly" placeholder="0.00" />
                             </div>
                         </div>
-                        <div class="flex justify-content-center align-items-center gap-2 my-2 btn-buy-container col-12">
-                            <Button label="ADD TO CART" size="small" class="inter-normal"
-                                style="font-size: 15px; font-weight: 500;" />
-                            <Button label="BUY NOW" size="small" class="inter-normal"
-                                style="font-size: 15px; font-weight: 500;" />
-                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
         <!-- STEP SECTION -->
         <div class="flex justify-content-start align-items-center gap-2 my-3">
-            <Button label="ABOUT" :class="{ 'btn-default': steps === 'about' }" outlined class="" @click="steps = 'about'">
-            </Button>
             <Button label="INSTRUCTOR" :class="{ 'btn-default': steps === 'instructor' }" outlined
                 @click="steps = 'instructor'" />
             <Button label="SYLLABUS" :class="{ 'btn-default': steps === 'syllabus' }" outlined
@@ -370,10 +356,10 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                                                 ) {
                                                     console.log(event)
                                                 } else {
-                                                    event.preventDefault()
+                                                    event.preventDefault();
                                                 }
                                             }" @input="(e: any) => onChangeGradeSystemWeight(e.target.innerText, key)"
-                                                v-html="item.weight">
+                                                v-text="item.weight">
                                             </p><span>%</span>
                                             <Button size="small" class="p-0 m-0" link @click="deleteGradeSystem(key)">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="31" height="30"
@@ -711,7 +697,6 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
 
 <style scoped lang="scss">
 @import "/src/assets/global.scss";
-
 .upload-image {
     height: 350px;
 }

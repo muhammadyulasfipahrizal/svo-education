@@ -73,20 +73,26 @@
         <img v-if="fileUploadPreview" :src="fileUploadPreview" class="h-full" style="object-fit: cover;" />
         <template v-if="!fileUploadPreview">
           <input type="file" ref="fileUpload" class="hidden" accept="image/*" @change="onUpload" />
-          <h2 class="text-700 font-semibold text-base">Drop files here</h2>
-          <p class="text-500">or</p>
+          <h2 class="inter-normal grey-3" style="font-size: 20px; font-weight: 400;">Drop files here</h2>
+          <p class="inter-normal grey-3" style="font-size: 15px; font-weight: 400;">or</p>
           <div class="flex">
-            <Button label="Select File" size="small" plain outlined @click="fileUpload.click()"></Button>
+            <Button size="small" plain outlined @click="fileUpload.click()" class="py-1 px-2">
+              <template #default>
+                <div>
+                  <p class="inter-normal grey-3" style="font-size: 12px; font-weight: 600;">Select File</p>
+                </div>
+              </template>
+            </Button>
           </div>
         </template>
       </div>
       <div class="flex">
-        <p class="text-900 text-xs">Maximum upload file size: 8 MB</p>
+        <p class="inter-normal black-2" style="font-size: 15px; font-weight: 400;">Maximum upload file size: 8 MB</p>
       </div>
     </div>
 
     <div class="flex flex-column gap-2 pb-3">
-      <p class="text-xl font-bold">Profile Information</p>
+      <p class="inter-normal black-1" style="font-size: 30px; font-weight: 700;">Profile Information</p>
 
       <div class="flex flex-column md:flex-row gap-2">
         <InputText class="p-inputtext-sm" type="text" v-model="form.name" placeholder="Instructor Name" />
@@ -177,6 +183,7 @@ const handleDelete = (index: number) => {
 }
 </script>
 <style scoped lang="scss">
+@import "/src/assets/global.scss";
 .card-instructor {
   border-radius: 10px;
   border: 1px solid var(--suggested-grey, #D9D9D9);
