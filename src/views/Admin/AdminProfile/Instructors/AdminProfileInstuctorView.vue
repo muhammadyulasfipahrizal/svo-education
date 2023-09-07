@@ -6,7 +6,7 @@
           <RouterLink to="/admin/profile/instructors" style="color: black;" class="text-black flex align-items-center">
             <i class="pi pi-angle-left" style="font-size: 1.4rem;" />
           </RouterLink>
-          <h1>Instructor Profile</h1>
+          <h1 class="inter-normal black-1" style="font-size: 35px; font-weight: 700;">Instructor Profile</h1>
         </div>
 
         <div class="instructor mt-3 flex flex-column md:flex-row-reverse md:justify-content-between gap-2 xl:gap-4">
@@ -125,6 +125,7 @@ const instructor = computed(() => instructorsDummy.filter(instructor => instruct
 </script>
 
 <style scoped lang="scss">
+@import "/src/assets/global.scss";
 .instructor-container {
   color: var(--font-1, #001125);
   font-family: Inter;
