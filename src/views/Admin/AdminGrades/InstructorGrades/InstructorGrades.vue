@@ -37,11 +37,13 @@ const onSelectProfile = (v: Instructor) => {
             <h1 class="title-head lg:hidden">Instructor</h1>
             <div class="pl- col-12 flex flex-column gap-2">
                 <!-- FILTER -->
-                <div class="grid w-full px-2 md:px-3 align-items-center justify-content-between">
-                    <div class="col-10 md:col-10 lg:col-10 xl:col-10 grid align-items-center filter-search align-items-center py-0 mt-2 px-0"
+                <div class="grid w-full pl-2 md:pl-3 align-items-center justify-content-between">
+                    
+                    <div class="col-12 grid align-items-center filter-search align-items-center py-0 mt-2 px-0"
                         style="height: 40px;">
-                        <button class="filter-button flex flex-row justify-content-center lg:min-w-max col-4 md:col-4 xl:col-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+
+                        <button class="filter-button flex flex-row justify-content-center min-w-min col-2 md:col-2 xl:col-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 20 20" fill="none">
                                 <g clip-path="url(#clip0_2655_7875)">
                                     <path d="M12 12L20 4V0H0V4L8 12V20L12 16V12Z" fill="#808081" />
                                 </g>
@@ -51,9 +53,10 @@ const onSelectProfile = (v: Instructor) => {
                                     </clipPath>
                                 </defs>
                             </svg>
-                            <p class="p-0 m-0">Filter</p>
+                            <p class="p-0 m-0 text-sm">Filter</p>
                         </button>
-                        <div class="p-input-icon-left h-full min-w-min col-8 md:col-8 xl:col-4 py-0">
+
+                        <div class="p-input-icon-left h-full col-8 md:col-6 xl:col-4 py-0">
                             <svg class="ml-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
                                 fill="none">
                                 <path
@@ -62,10 +65,16 @@ const onSelectProfile = (v: Instructor) => {
                             </svg>
                             <InputText placeholder="Search by Name" class="search-bar w-full p-inputtext-sm" />
                         </div>
-                    </div>
-                    <div class="col-2 md:col-2 lg:align-items-end flex lg:justify-content-end">
-                        <Button label="DOWNLOAD " size="small" icon="pi pi-download"
-                            class="download-button flex text-right justify-content-center align-items-center "></Button>
+
+                        <Button size="small" class="download-button flex text-right justify-content-center 
+                         align-items-center col-1 md:min-w-min ml-auto">
+                                <template #default>
+                                    <div class="flex flex-row gap-2 align-items-center">
+                                        <i class="pi pi-download"></i>
+                                        <p class="hidden md:block inter-normal" style="font-weight: 600; font-size: 16px;">Download</p>
+                                    </div>
+                                </template>
+                        </Button>
                     </div>
                 </div>
             </div>
