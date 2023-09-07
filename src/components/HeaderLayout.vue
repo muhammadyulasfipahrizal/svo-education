@@ -198,13 +198,13 @@
             <OverlayPanel ref="toggleNotificationMobile" style="width: 95vw" showCloseIcon> 
               <Panel header="Header">
                 <div class="grid px-5">
-                  <p class="col-12 text-2xl font-bold text">Notification</p>
+                  <p class="col-12 text-2xl inter-normal black-1" style="font-weight: 700;">Notification</p>
                   <div v-for="(item, index) in notificationData" :key="index" class="grid col-12">
-                    <p class="col-12 text-xl dark-grey text">{{ item.date }}</p>
+                    <p class="col-12 text-xl inter-normal grey-2" style="font-weight: 400;">{{ item.date }}</p>
                     <div v-for="(massage, notificationIndex) in item.massage" :key="notificationIndex" class="flex flex-column align-items-start col-12 px-4 py-1 text-xl">
                       <div class="flex flex-row align-items-center gap-2">
                         <i class="pi pi-circle-fill blue text-xs"></i>
-                        <p class="text">{{ massage.subject }} <span class="font-bold">{{massage.verb}}</span> {{ massage.object }}</p>
+                        <p class="inter-normal black-1" style="font-weight: 400;">{{ massage.subject }} <span class="font-bold">{{massage.verb}}</span> {{ massage.object }}</p>
                       </div>
                       <p class="dark-grey text">{{ massage.time }}</p>
                     </div>
