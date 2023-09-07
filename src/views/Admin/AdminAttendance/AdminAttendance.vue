@@ -79,7 +79,7 @@
           </Dropdown>
         </div>
         <Dropdown optionLabel="courseName" :options="courseList" v-model="selectedCourse" placeholder="Course Name"
-          class="w-full md:w-16rem md:flex" style="height: 52px">
+          class="w-full md:w-18rem md:flex" style="height: 52px">
           <template #value="slotProps">
             <div v-if="slotProps.value" class="flex align-items-center">
               <img :alt="slotProps.value.courseName" :src="slotProps.value.image" class="mr-2"
@@ -380,7 +380,7 @@ onMounted(() => {
 }
 
 .grid-5 {
-  grid-template-columns: repeat(5, 216px);
+  grid-template-columns: repeat(10, 216px);
   display: grid;
 
   @media screen and (min-width: 1281px) and (max-width: 1560px) {

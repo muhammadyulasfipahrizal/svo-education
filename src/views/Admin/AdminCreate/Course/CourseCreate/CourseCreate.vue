@@ -210,7 +210,7 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
             </AccordionTab>
         </Accordion>
 
-        <h2 class="inter-normal black-1 mx-3 my-2" style="font-size: 25px; font-weight: 700;">
+        <h2 class="inter-normal black-1 my-2" style="font-size: 25px; font-weight: 700;">
             Add Courses
         </h2>
 
@@ -223,33 +223,33 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                                 class="p-inputtext-lg w-full text-6xl mt-6 h-4rem" required placeholder="Title" />
 
                             <div class="grid gap-2 align-items-start md:align-items-center w-full justify-content-between">
-                                    <div class="flex align-items-center">
-                                        <h1
-                                            class="col-5 md:col-2 lg:col-2 inter-normal black-1 min-w-max" style="font-size: 25px; font-weight: 700;">
-                                            Instructor By
-                                        </h1>
-                                        <Dropdown v-model="selectedInstructor"
-                                            v-bind:class="{ selected: selectedInstructor }" :options="instructorList"
-                                            optionLabel="name" placeholder="Select Instructor" class="md:w-full md:w-18rem 
+                                <div class="flex align-items-center">
+                                    <h1 class="col-5 md:col-2 lg:col-2 inter-normal black-1 min-w-max"
+                                        style="font-size: 25px; font-weight: 700;">
+                                        Instructor By
+                                    </h1>
+                                    <Dropdown v-model="selectedInstructor" v-bind:class="{ selected: selectedInstructor }"
+                                        :options="instructorList" optionLabel="name" placeholder="Select Instructor" class="md:w-full md:w-18rem 
                                          col-6 md:col-5 h-2rem flex align-items-center" size="small"
-                                            @change="(value: any) => onChangeInstructor(value.value)" />
-                                    </div>
-                                    <div class="col-12 md:col-2 flex gap-1">
-                                        <i class="pi-thumbs-up pi mt-1"></i>
-                                        <p class="text-900 font-normal">0%</p>
-                                        <p>|</p>
-                                        <i class="pi-thumbs-down pi mt-1"></i>
-                                        <p class="text-900 font-normal">0%</p>
-                                    </div>
+                                        @change="(value: any) => onChangeInstructor(value.value)" />
+                                </div>
+                                <div class="col-12 md:col-2 flex gap-1">
+                                    <i class="pi-thumbs-up pi mt-1"></i>
+                                    <p class="text-900 font-normal">0%</p>
+                                    <p>|</p>
+                                    <i class="pi-thumbs-down pi mt-1"></i>
+                                    <p class="text-900 font-normal">0%</p>
+                                </div>
                             </div>
 
-                            <div class="grid w-full ml-2 gap-3">
-                                <div class="col-12 md:col-4 lg:col-4 card shadow-1 flex flex-column md:w-13rem">
+                            <div class="w-full mx-2 ratings-container">
+                                <div class="w-full p-2 card shadow-1 flex flex-column">
                                     <div
                                         class="flex flex-row md:flex-column gap-2 md:gap-0 align-items-center md:align-items-start mb-1">
                                         <div class="flex gap-1 align-items-center mb-2">
                                             <i class="pi-star-fill pi"></i>
-                                            <h3 class="inter-normal black-2" style="font-size: 18px; font-weight: 400;">Ratings</h3>
+                                            <h3 class="inter-normal black-2" style="font-size: 18px; font-weight: 400;">
+                                                Ratings</h3>
                                         </div>
                                         <p class="inter-normal black-2" style="font-size: 15px; font-weight: 400;">
                                             0/5 (0 ratings)
@@ -259,10 +259,11 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                                         0 already enroll
                                     </p>
                                 </div>
-                                <div class="col-12 md:col-4 lg:col-4 card shadow-1 gap-1 md:w-13rem">
+                                <div class="w-full p-2 card shadow-1 gap-1">
                                     <div class="flex gap-1 align-items-center mb-2">
                                         <img src="/assets/icon/stopwatch.png" class="w-1rem" />
-                                        <h3 class="inter-normal black-2" style="font-size: 18px; font-weight: 400;">Total Hours</h3>
+                                        <h3 class="inter-normal black-2" style="font-size: 18px; font-weight: 400;">Total
+                                            Hours</h3>
                                     </div>
                                     <div class="flex justify-content-start align-items-center gap-2">
                                         <InputNumber v-model="totalHour" inputId="withoutgrouping"
@@ -277,10 +278,11 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                                         <p class="inter-normal black-2" style="font-size: 15px; font-weight: 400;">min</p>
                                     </div>
                                 </div>
-                                <div class="col-12 md:col-4 lg:col-4 card shadow-1 flex flex-column gap-1 md:w-14rem">
+                                <div class="w-full p-2 card shadow-1 flex flex-column gap-1">
                                     <div class="flex gap-1 align-items-center mb-2">
                                         <img src="/assets/icon/chat.png" class="w-1rem" />
-                                        <h3 class="inter-normal black-2" style="font-size: 18px; font-weight: 400;">Language</h3>
+                                        <h3 class="inter-normal black-2" style="font-size: 18px; font-weight: 400;">Language
+                                        </h3>
                                     </div>
                                     <div class="flex align-items-center">
                                         <Dropdown v-model="selectedLanguage" :options="languageList" optionLabel="name"
@@ -306,25 +308,30 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                         </div>
                         <div class="flex justify-content-center align-items-center gap-2 my-2 col-12">
                             <div class="card-price flex justify-content-center align-items-center flex-column p-2">
-                                <h4 class="inter-normal black-2" style="font-size: 15px; font-weight: 700;">Original Price</h4>
+                                <h4 class="inter-normal black-2" style="font-size: 15px; font-weight: 700;">Original Price
+                                </h4>
                                 <InputNumber v-model="originalPrice" inputId="integeronly" placeholder="0.00" />
                             </div>
                             <div class="card-price flex justify-content-center align-items-center flex-column p-2">
-                                <h4 class="inter-normal black-2" style="font-size: 15px; font-weight: 700;">Discount Price</h4>
+                                <h4 class="inter-normal black-2" style="font-size: 15px; font-weight: 700;">Discount Price
+                                </h4>
                                 <InputNumber v-model="discountPrice" inputId="integeronly" placeholder="0.00" />
                             </div>
                         </div>
                         <div class="flex justify-content-center align-items-center gap-2 my-2 btn-buy-container col-12">
+<<<<<<< HEAD
                             <Button label="ADD TO CART" size="small" class="inter-normal" style="font-size: 15px; font-weight: 500;"/>
                             <Button label="BUY NOW" size="small" class="inter-normal" style="font-size: 15px; font-weight: 500;"/>
-                        </div>
-                    </div>
-                </div>
+=======
+                            <Button label="ADD TO CART" size="small" class="inter-normal"
+                                style="font-size: 15px; font-weight: 500;" />
+                            <Button label="BUY NOW" size="small" class="inter-normal"
+                                style="font-size: 15px; font-weight: 500;" />
             </div>
         </div>
 
         <!-- STEP SECTION -->
-        <div class="flex justify-content-start align-items-center gap-2 my-3">
+<<<<<<< HEAD
             <Button :class="{ 'btn-default': steps === 'about' }" outlined class=""
                 @click="steps = 'about'">
                 <template #default>
@@ -332,11 +339,14 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                         About
                     </div>
                 </template>
+=======
+            <Button label="ABOUT" :class="{ 'btn-default': steps === 'about' }" outlined class="" @click="steps = 'about'">
+>>>>>>> 67962325428ad235d35864a68fef874f0eeb37c5
             </Button>
             <Button label="INSTRUCTOR" :class="{ 'btn-default': steps === 'instructor' }" outlined
                 @click="steps = 'instructor'" />
             <Button label="SYLLABUS" :class="{ 'btn-default': steps === 'syllabus' }" outlined
-                @click="steps = 'syllabus'" />
+                @click="steps = 'syllabus'; syllabusAccordion[0] = true" />
             <Button label="REVIEWS" :class="{ 'btn-default': steps === 'reviews' }" outlined @click="steps = 'reviews'" />
         </div>
 
@@ -392,12 +402,21 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                             </template>
                             <tr>
                                 <td colspan="3">
+<<<<<<< HEAD
                                     <Button size="small"
                                         class="btn-orange w-full"  @click="addMoreGrading()">
                                         <template #default>
                                             <div class="flex flex-row align-items-center gap-3">
                                                 <i class="pi pi-plus"></i>
                                                 <p class="inter-normal" style="font-size: 13px; font-weight: 600;">Add More Grading</p>
+=======
+                                    <Button size="small" class="btn-orange w-full" @click="addMoreGrading()">
+                                        <template #default>
+                                            <div class="flex flex-row align-items-center gap-3">
+                                                <i class="pi pi-plus"></i>
+                                                <p class="inter-normal" style="font-size: 13px; font-weight: 600;">Add More
+                                                    Grading</p>
+>>>>>>> 67962325428ad235d35864a68fef874f0eeb37c5
                                             </div>
                                         </template>
                                     </Button>
@@ -418,7 +437,12 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                     </div>
                 </div>
                 <div class="flex flex-column gap-2">
+<<<<<<< HEAD
                     <label for="about-description" class="inter-normal black-1" style="font-size: 25px; font-weight: 700;">About</label>
+=======
+                    <label for="about-description" class="inter-normal black-1"
+                        style="font-size: 25px; font-weight: 700;">About</label>
+>>>>>>> 67962325428ad235d35864a68fef874f0eeb37c5
                     <Textarea id="about-description" size="small" v-model="aboutDescription"
                         aria-describedby="about-description-help" placeholder="Course Detail..." class="p-inputtext-sm" />
                 </div>
@@ -483,7 +507,7 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                                     class="col-2" @click="syllabusAccordion[key] = !syllabusAccordion[key]" />
                                 <InputText label="Title" class="p-inputtext-sm col-9 text-xl syllabus-title"
                                     placeholder="Title" />
-                                <div class="col-2 flex justify-content-start align-items-center gap-2 p-0 ml-3">
+                                <div class="col-2 flex justify-content-start align-items-center gap-2 p-0 ml-1">
                                     <InputNumber v-model="syllabusLectures" inputId="withoutgrouping" :useGrouping="false"
                                         class="instructor-total-input" />
                                     <p class="font-bold text-2xl text-900">lectures</p>
@@ -504,14 +528,14 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
 
                             <!-- content -->
                             <div class="flex-column gap-2 w-full p-2" :class="{ 'flex': syllabus, 'hidden': !syllabus }">
-                                <p contenteditable class="syllabus-input-text p-3">
-                                    Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero 
-                                    et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad 
-                                    litora torquent per conubia nostra, per inceptos himenaeos. 
-                                    Curabitur tempus urna at turpis condimentum lobortis. Ut commodo 
-                                    efficitur neque. Ut diam quam, semper iaculis condimentum ac, 
-                                    vestibulum eu nisl.
-                                </p>
+                                <Textarea class="p-inputtext-lg" placeholder="Enter a description">
+                                                                                    Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero 
+                                                                                    et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad 
+                                                                                    litora torquent per conubia nostra, per inceptos himenaeos. 
+                                                                                    Curabitur tempus urna at turpis condimentum lobortis. Ut commodo 
+                                                                                    efficitur neque. Ut diam quam, semper iaculis condimentum ac, 
+                                                                                    vestibulum eu nisl.
+                                                                                </Textarea>
                                 <template v-for="(syllabusData, key) in syllabusAccordionData">
                                     <div class="flex justify-content-between align-items-center">
                                         <div class="grid align-items-center gap-2 w-full">
@@ -630,34 +654,34 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                                     </div>
                                 </template>
                                 <div class="flex justify-content-center">
-                                    <Button class="w-14rem px-0 m-0 flex align-items-center justify-content-center btn-default px-3 py-2" style="border-radius: 10px" @click="syllabusAddList.push({
-                                        title: '',
-                                        duration: '0',
-                                        selectedType: ''
-                                    })">
+                                    <Button
+                                        class="w-14rem border-rounded-sm px-0 m-0 flex align-items-center justify-content-center btn-default px-3 py-2"
+                                        style="border-radius: 10px" @click="syllabusAddList.push({
+                                            title: '',
+                                            duration: '0',
+                                            selectedType: ''
+                                        })">
                                         <div class="flex flex-row align-items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22"
-                                            fill="none">
-                                            <path d="M11 15.375V6.625" stroke="white" stroke-width="1.5"
-                                                stroke-linecap="round" />
-                                            <path d="M6.625 11L15.375 11" stroke="white" stroke-width="1.5"
-                                                stroke-linecap="round" />
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+                                                viewBox="0 0 22 22" fill="none">
+                                                <path d="M11 15.375V6.625" stroke="white" stroke-width="1.5"
+                                                    stroke-linecap="round" />
+                                                <path d="M6.625 11L15.375 11" stroke="white" stroke-width="1.5"
+                                                    stroke-linecap="round" />
                                             </svg>
-                                            <p class="font-medium ml-1 lowercase"><span class="capitalize font-medium">Add</span> new content</p>
+                                            <p class="font-medium ml-1 lowercase"><span
+                                                    class="capitalize font-medium">Add</span> new content</p>
                                         </div>
                                     </Button>
                                 </div>
                             </div>
                         </div>
                     </template>
-                    <Button icon="pi pi-plus" size="small" class="btn-orange w-full"
-                        @click="syllabusAccordion.push(false)" >
-                        <template #default>
-                            <div class="flex flex-row align-items-center gap-3">
-                                <i class="pi pi-plus text-xs"></i>
-                                <p class="font-semibold">Add more syllabus</p>
-                            </div>
-                        </template>
+                    <Button size="small" class="btn-new-section btn-orange w-full" @click="syllabusAccordion.push(false)">
+                        <div class="flex flex-row align-items-center gap-3">
+                            <i class="pi pi-plus text-xs"></i>
+                            <span>Add new section</span>
+                        </div>
                     </Button>
                 </div>
             </template>
@@ -710,6 +734,10 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
 
 <style scoped lang="scss">
 @import "/src/assets/global.scss";
+<<<<<<< HEAD
+=======
+
+>>>>>>> 67962325428ad235d35864a68fef874f0eeb37c5
 .upload-image {
     height: 350px;
 }
@@ -870,15 +898,12 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
         height: 60px;
 
         .syllabus-title {
-            color: var(--suggested-dark-grey, #808081);
             font-family: Inter;
             font-size: 20px;
             font-style: normal;
             font-weight: 400;
             line-height: 160%;
             border-radius: 5px;
-            border: 1px solid var(--suggested-dark-grey, #808081);
-            background: var(--suggested-grey, #D9D9D9);
             padding: 9px 16px;
             height: 40px;
         }
@@ -894,6 +919,7 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
 
         .p-accordion-header {
             background: transparent;
+
             a {
                 display: flex;
                 justify-content: space-between;
@@ -906,6 +932,7 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                 }
             }
         }
+
         .p-accordion-header-text {
             color: var(--font-1, #001125);
             font-family: Inter;
@@ -926,21 +953,28 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
     }
 }
 
-.syllabus-input-text {
-    border-radius: 5px;
-    border: 1px solid var(--Suggested-dark-grey, #808081);
-    background: var(--Suggested-grey, #D9D9D9);
-    display: flex;
-    padding: 9px 8px 9px 16px;
-    align-items: center;
-    gap: 8px;
-    align-self: stretch;
-}
-
 .btn-content {
-    .p-button{
+    .p-button {
         border-radius: 10px;
         background: var(--SVO-Dark-Color, #006785);
+    }
+}
+
+.ratings-container {
+    gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 33%);
+}
+
+.btn-new-section {
+    span {
+        color: var(--bg-1, #FFF);
+        font-family: Inter;
+        font-size: 13px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 160%;
+        text-transform: initial;
     }
 }
 </style>
