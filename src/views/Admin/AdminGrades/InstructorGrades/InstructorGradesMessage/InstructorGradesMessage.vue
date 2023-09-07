@@ -27,17 +27,18 @@ onMounted(() => {
             class="grid overflow-hidden flex-column md:flex-row pl-3 pr-3 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2 py-2">
             <div class="flex align-items-center col-12">
                 <Button icon="pi pi-angle-left" size="small" link @click="$router.push('/admin/grade/instructor')"></Button>
-                <h1 class="title-head">Instructor Grades</h1>
+                <h1 class="inter-normal black-1" style="font-size: 35px; font-weight: 700; ">Instructor Grades</h1>
             </div>
             <div class="flex flex-column gap-3 col-12">
-                <div
-                    class="flex flex-column md:flex-row gap-3 align-items-center justify-content-center w-full title-container">
-                    <h1>
-                        Leave a message for instructor
+                <div class="flex flex-column md:flex-row gap-2 align-items-center justify-content-center w-full">
+                    <h1 class="md:hidden inter-normal black-1 text-center" style="font-size: 25px; font-weight: 700;">
+                        Leave a message for instructor 
+                        <span class="inter-normal suggested-orange text-center" style="font-size: 25px; font-weight: 700;">{{ selectedProfile?.name }}</span>
                     </h1>
-                    <h2>
-                        {{ selectedProfile?.name }}
-                    </h2>
+                    <h1 class="hidden md:block inter-normal black-1 text-center" style="font-size: 35px; font-weight: 700;">
+                        Leave a message for instructor 
+                        <span class="inter-normal suggested-orange text-center" style="font-size: 35px; font-weight: 700;">{{ selectedProfile?.name }}</span>
+                    </h1>
                 </div>
                 <div class="flex justify-content-center w-full">
                     <img :src="selectedProfile?.image" alt="" class="w-5rem " />
@@ -74,26 +75,5 @@ onMounted(() => {
     color: #000;
     font-size: 14px;
     line-height: 160%;
-}
-
-.title-container {
-    h1 {
-        color: #001125;
-        text-align: center;
-        font-family: Inter;
-        font-size: 35px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: 160%;
-    }
-
-    h2 {
-        color: #E96853;
-        font-family: Inter;
-        font-size: 35px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: 160%;
-    }
 }
 </style>

@@ -163,7 +163,7 @@ const instructorNew = ref();
         </div>
       </div>
       <div class="grid ">
-        <div v-for="(video, index) in videoUrls" :key="index" class="col-12 md:col-4 lg:col-4 xl:col-4 min-w-max">
+        <div v-for="(video, index) in videoUrls" :key="index" class="col-12 md:col-4 lg:col-4 xl:col-4 min-w-min md:min-w-max">
           <div class="border-1 border-round-xl border-300">
             <div class="flex flex-column gap-2">
               <div class="flex justify-content-center align-items-center my-2">
@@ -218,7 +218,7 @@ const instructorNew = ref();
       <Dialog v-model:visible="showModal" modal header="" class="modal min-w-min" :style="{ width: '50vw' }"
         :breakpoints="{ '764px': '70vw' }">
         <template #header>
-          <div class="inter-normal black-1" style="font-size: 35px; font-weight: 700;">
+          <div class="inter-normal black-1" style="font-size: 35px; font-weight: 700; white-space: nowrap;">
             Upload new media
           </div>
         </template>
@@ -239,16 +239,16 @@ const instructorNew = ref();
           <p class="max-file-size inter-normal black-2" style="font-size: 15px; font-weight: 400;">Maximum upload file size: 8 MB</p>
         </div>
         <h3 class="live-video-details inter-normal black-2" style="font-size: 30px; font-weight: 4700;">Live Video Details</h3>
-        <div class="profile-section flex flex-row align-items-center gap-4">
+        <div class="profile-section flex flex-column md:flex-row align-items-center gap-4">
           <input type="file" ref="fileInput" accept="image/*" style="display: none" @change="handleImageChange" />
           <img :src="profileImage" alt="Profile" class="modal-profile" @click="changeProfileImage" />
-          <div class="grid align-items-center">
+          <div class="grid align-items-center px-2">
             <InputText v-model="currentCard.details.title" size="small" placeholder="Title"
-              class="col-6 p-inputtext-sm h-3rem" />
-            <div class="flex gap-2 col-6 align-items-center h-3rem">
+              class="col-12 md:col-4 lg:col-6 p-inputtext-sm h-2rem" />
+            <div class="flex flex-column md:flex-row gap-2 col-12 md:col-4 lg:col-6 align-items-center h-2rem">
               <p class="text-700 text-normal">by</p>
               <Dropdown v-model="instructorNew" :options="instructors" optionLabel="name" placeholder="Instructor name"
-                class="w-full md:w-14rem h-3rem flex align-items-center" :class="{ selected: instructorNew }"></Dropdown>
+                class="w-full md:w-14rem h-2rem flex align-items-center" :class="{ selected: instructorNew }" style="background: #D9D9D9"></Dropdown>
             </div>
           </div>
         </div>

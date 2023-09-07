@@ -61,15 +61,15 @@
           <OverlayPanel ref="toggleNotificationDekstop" style="width: 700px" showCloseIcon > 
             <Panel header="Header">
               <div class="grid">
-                <p class="col-12 text-lg font-bold text">Notification</p>
+                <p class="col-12 inter-normal black-1" style="font-size: 18px; font-weight: 700; ">Notification</p>
                 <div v-for="(item, index) in notificationData" :key="index" class="grid col-12">
-                  <p class="col-12 dark-grey text">{{ item.date }}</p>
+                  <p class="col-12 inter-normal grey-2" style="font-size: 15px; font-weight: 400; ">{{ item.date }}</p>
                   <div v-for="(massage, notificationIndex) in item.massage" :key="notificationIndex" class="flex flex-row align-items-center justify-content-between col-12 px-4 py-1">
                     <div class="flex flex-row align-items-center gap-2">
                       <i class="pi pi-circle-fill blue text-xs"></i>
-                      <p class="text">{{ massage.subject }} <span class="font-bold">{{massage.verb}}</span> {{ massage.object }}</p>
+                      <p class="inter-normal black-1" style="font-size: 14px; font-weight: 400; ">{{ massage.subject }} <span class="font-bold">{{massage.verb}}</span> {{ massage.object }}</p>
                     </div>
-                    <p class="align-self-end dark-grey text">{{ massage.time }}</p>
+                    <p class="align-self-end inter-normal black-1" style="font-size: 13px; font-weight: 400;">{{ massage.time }}</p>
                   </div>
                 </div>
               </div>
@@ -87,28 +87,34 @@
               <span class="block md:hidden font-medium">Cart</span><span class="p-ink" role="presentation"></span></a>
           </li>
 
-          <OverlayPanel ref="toggleCartDekstop" style="width:425px" showCloseIcon > 
+          <OverlayPanel ref="toggleCartDekstop" style="width:550px" showCloseIcon > 
             <Panel header="Header">
               <div class="grid">
-                <p class="col-12 text-lg font-bold">Cart</p>
+                <p class="col-12 inter-normal black-1" style="font-size: 18px; font-weight: 700;">Cart</p>
                 <div class="grid w-full align-items-center">
                   <img src="/public/assets/img/course/ui-ux-design.png" alt="ui ux design course" 
                      class="col-6" style="width: 200px; height: 128px;">
                   <div class="col-6">
-                    <p class="text-xl font-bold">UI UX Designing</p>
-                    <p class="grey font-bold">by David Burn</p>
+                    <p class="inter-normal black-1" style="font-size: 35px; font-weight: 700; white-space: nowrap;">UI UX Designing</p>
+                    <p class="inter-normal grey-1" style="font-size: 20px; font-weight: 700;">by David Burn</p>
                   </div>
                 </div>
                 <Divider class="p-0 m-0"/>
                 <div class="flex flex-row align-items-center gap-2 pt-2">
-                  <p class="text-2xl font-bold">Total: <span class="font-bold orange">
+                  <p class="inter-normal black-1" style="font-size: 35px; font-weight: 700; white-space: nowrap;">Total: <span class="font-bold orange">
                     RM 49.99 </span><span class="line-through light-grey">
                       RM 69.99</span></p>
                   <p class="font-bold cart-coupon">50% off</p>
                 </div>
               </div>
               <a href="/dashboard/cart">
-                <Button size="small" label="GO TO CART" class="w-full mt-2 btn-default" style="height: 40px;"/>
+                <Button size="small" class="w-full mt-2 btn-default" style="height: 40px;">
+                  <template #default>
+                    <div>
+                      <p class="inter-normal" style="font-size: 15px; font-weight: 500;">GO TO CART</p>
+                    </div>
+                  </template>
+                </Button>
               </a>
             </Panel>
           </OverlayPanel>
@@ -171,12 +177,12 @@
               <Panel>
                 <div class="flex flex-column md:flex-row gap-4">
                   <div v-for="category in filterData" :key="category.label" class="flex flex-column align-items-start">
-                    <p class="text-xl font-bold">{{ category.label }}</p>
+                    <p class="inter-normal black-2" style="font-size: 20px; font-weight: 700; letter-spacing: 0.2px;">{{ category.label }}</p>
                     <div v-for="item in category.items" :key="item.value" class="flex flex-row gap-2">
                       <input :id="item.value" :value="item.value" type="checkbox" :name="category.label">
-                      <label :for="item.value">{{ item.value }}</label>
+                      <label :for="item.value" class="dm-sans-normal black-2" style="font-size: 15px; font-weight: 400; letter-spacing: 0.15px;">{{ item.value }}</label>
                     </div>
-                    <p class="pt-1 font-bold cursor-pointer">Show more...</p>
+                    <p class="pt-1 cursor-pointer dm-sans-normal black-2" style="font-size: 15px; font-weight: 700; letter-spacing: 0.15px;">Show more...</p>
                   </div>
                 </div>
               </Panel>
@@ -197,16 +203,16 @@
 
             <OverlayPanel ref="toggleNotificationMobile" style="width: 95vw" showCloseIcon> 
               <Panel header="Header">
-                <div class="grid px-5">
-                  <p class="col-12 text-2xl font-bold text">Notification</p>
+                <div class="grid px-2">
+                  <p class="col-12 inter-normal black-1 md:text-3xl" style="font-weight: 700; font-size: 18px">Notification</p>
                   <div v-for="(item, index) in notificationData" :key="index" class="grid col-12">
-                    <p class="col-12 text-xl dark-grey text">{{ item.date }}</p>
-                    <div v-for="(massage, notificationIndex) in item.massage" :key="notificationIndex" class="flex flex-column align-items-start col-12 px-4 py-1 text-xl">
-                      <div class="flex flex-row align-items-center gap-2">
-                        <i class="pi pi-circle-fill blue text-xs"></i>
-                        <p class="text">{{ massage.subject }} <span class="font-bold">{{massage.verb}}</span> {{ massage.object }}</p>
+                    <p class="col-12 inter-normal grey-2 md:text-2xl" style="font-weight: 400; font-size: 15px">{{ item.date }}</p>
+                    <div v-for="(massage, notificationIndex) in item.massage" :key="notificationIndex" class="ml-3 flex flex-column align-items-start col-12 px-1 py-1">
+                      <div class="flex flex-row">
+                        <i class="pi pi-circle-fill blue text-xs mr-2" style="padding-top: 12px"></i>
+                        <p class="inter-normal black-1 md:text-2xl" style="font-weight: 400; font-size: 14px">{{ massage.subject }} <span class="font-bold">{{massage.verb}}</span> {{ massage.object }}</p>
                       </div>
-                      <p class="dark-grey text">{{ massage.time }}</p>
+                      <p class="dark-grey text mt-2 md:text-xl" style="font-size: 13px">{{ massage.time }}</p>
                     </div>
                   </div>
                 </div>
@@ -221,22 +227,22 @@
             <OverlayPanel ref="toggleCartMobile" style="width: 95vw" showCloseIcon > 
               <Panel header="Header">
                 <div class="grid">
-                  <p class="col-12 text-lg font-bold">Cart</p>
+                  <p class="col-12 inter-normal black-1" style="font-size: 18px; font-weight: 700;">Cart</p>
                   <div class="grid w-full align-items-center justify-content-center">
                     <img src="/public/assets/img/course/ui-ux-design.png" alt="ui ux design course" 
                        class="col-12">
                     <div class="col-12 flex flex-column w-full align-items-center">
-                      <p class="text-4xl font-bold">UI UX Designing</p>
-                      <p class="text-2xl grey font-bold">by David Burn</p>
+                      <p class="inter-normal black-1" style="font-size: 35px; font-weight: 700;">UI UX Designing</p>
+                      <p class="inter-normal grey-1" style="font-size: 20px; font-weight: 700;">by David Burn</p>
                     </div>
                   </div>
                   <Divider class="p-0 m-0"/>
                   <div class="flex flex-column w-full text-4xl justify-content-center align-items-center gap-1 pt-2">
-                    <p class="font-bold">Total:</p>
-                    <p class="font-bold orange">RM 49.99</p>
-                    <p class="line-through light-grey">RM 69.99</p>
+                    <p class="inter-normal black-1" style="font-size: 30px; font-weight: 700;">Total:</p>
+                    <p class="inter-normal svo-orange-color" style="font-size: 30px; font-weight: 700;">RM 49.99</p>
+                    <p class="line-through light-grey inter-normal" style="font-size: 30px; font-weight: 700;">RM 69.99</p>
                     <div class="flex cart-coupon w-full justify-content-center ">
-                      <p class="text-2xl">50% off</p>
+                      <p class="inter-normal white-1" style="font-size: 20px; font-weight: 500;">50% off</p>
                     </div>
                     
                   </div>
@@ -365,6 +371,7 @@ const toggleDropdown = (event: any) => {
 </script>
 
 <style scoped lang="scss">
+@import "/src/assets/global.scss";
 .header-left {
   display: flex;
   align-items: center;
