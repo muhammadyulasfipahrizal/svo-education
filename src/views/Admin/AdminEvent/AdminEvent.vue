@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import EventItem from './EventItem/EventItem.vue';
-import EventAdd from './EventAdd/EventAdd.vue';
+import CustomCalendar from '@/views/Admin/CustomCalendar/CustomCalendar.vue';
 import { format } from 'date-fns'
 import { ref } from "vue";
-import {useEventsStore, type IEventItem} from '@/stores/events'
+import { useEventsStore, type IEventItem } from '@/stores/events'
+import { activitiesDummyData } from '../AdminDashboard/DashboardDummyData';
 const date = ref();
 const visible = ref(false);
 
@@ -70,21 +71,40 @@ const onUpload = (e: any) => {
 
 const eventStore = useEventsStore();
 const eventList = ref<IEventItem[]>(eventStore.allEvent);
+
+const dummyData = [...activitiesDummyData];
+const dataEvent = [{
+  date: '2023-09-20',
+  data: dummyData.splice(0, Math.random() * 10)
+}, {
+  date: '2023-09-21',
+  data: dummyData.splice(0, Math.random() * 10)
+}, {
+  date: '2023-09-10',
+  data: dummyData.splice(0, Math.random() * 10)
+}, {
+  date: '2023-09-13',
+  data: dummyData.splice(0, Math.random() * 10)
+},
+{
+  date: '2023-09-14',
+  data: dummyData.splice(0, Math.random() * 10)
+},]
 </script>
 
 <template>
   <section class="px-2">
     <section
-      class="grid overflow-hidden flex-column md:flex-row pl-4 pr-4 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2 px-2 min-h-full">
-      <div class="col-12 md:col-8 lg:col-8 xl:col-8 px-2 bg-white">
+      class="grid overflow-hidden flex-column md:flex-row pl-4 pr-4 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2 px-2 pt-0 min-h-full">
+      <div class="col-12 xl:col-8 px-2 bg-white min-h-screen">
         <div class="flex justify-content-between align-items-center">
-          <h1 class="inter-normal black-1 mb-2" style="font-size: 35px; font-weight: 700;">Ongoing Event</h1>
-          <button @click="onAddEvent" class="btn-orange w-5rem p-0 cursor-pointer">
+          <h1 class="title mb-2">Ongoing Event</h1>
+          <button @click="onAddEvent" class="btn-add">
             <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
               <path d="M10.5 14.1693V5.83594" stroke="white" stroke-width="1.5" stroke-linecap="round" />
               <path d="M6.33268 10L14.666 10" stroke="white" stroke-width="1.5" stroke-linecap="round" />
             </svg>
-            <span class="inter-normal white-1" style="font-size: 16px; font-weight: 600;">ADD</span>
+            <span>ADD</span>
           </button>
         </div>
         <div class="grid justify-center flex-wrap gap-2 flex-column md:flex-row px-2">
@@ -93,20 +113,12 @@ const eventList = ref<IEventItem[]>(eventStore.allEvent);
           </template>
         </div>
       </div>
-      <div class="col-12 md:col-4 lg:col-4 xl:col-4">
+      <div class="col-12 xl:col-4">
         <h1 class="inter-normal black-2" style="font-size: 25px; font-weight: 700;">Calendar</h1>
         <div class="flex justify-content-start">
-          <Calendar v-model="date" inline class="calendar">
-            <!-- for badge calendar -->
-            <template #date="slotProps">
-              <strong v-if="slotProps.date.day > 10 && slotProps.date.day < 15"
-                class="flex flex-column justify-content-center align-items-center gap-0">
-                <p>{{ slotProps.date.day }}</p>
-                <Badge value="2" class="badge flex justify-content-center align-items-center"></Badge>
-              </strong>
-              <template v-else>{{ slotProps.date.day }}</template>
-            </template>
-          </Calendar>
+          <div class="flex justify-content-center">
+            <CustomCalendar :markers="dataEvent" />
+          </div>
         </div>
       </div>
 
@@ -182,7 +194,8 @@ const eventList = ref<IEventItem[]>(eventStore.allEvent);
         <p class="inter-normal black-2" style="font-size: 15px; font-weight: 400;">Maximum upload file size: 8 MB</p>
       </div>
       <div class="grid">
-        <h1 class="inter-normal black-1 col-12 p-0 pl-2" style="font-size: 30px; font-weight: 700;">Ongoing Event Details</h1>
+        <h1 class="inter-normal black-1 col-12 p-0 pl-2" style="font-size: 30px; font-weight: 700;">Ongoing Event Details
+        </h1>
         <div class="flex gap-0 align-items-center col-12 pt-0">
           <InputText class="p-inputtext-sm" v-model="title" placeholder="Title" />
           <p class="text-500 pl-2">at</p>
@@ -235,7 +248,7 @@ const eventList = ref<IEventItem[]>(eventStore.allEvent);
             <InputText class="p-inputtext-sm" type="number" v-model="ticketPrice" placeholder="Ticket price" />
           </span>
         </div>
-        
+
         <div class="grid px-3 w-full py-3">
           <Button class="w-full btn-save" @click="visible = false">
             <template #default>
@@ -362,6 +375,38 @@ const eventList = ref<IEventItem[]>(eventStore.allEvent);
   color: #000;
   font-family: Inter;
   font-size: 25px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 160%;
+}
+
+.btn-add {
+  display: flex;
+  padding: 10px;
+  align-items: center;
+  gap: 10px;
+  width: 85px;
+  height: 40px;
+  border-radius: 6px;
+  background: var(--Suggested-Pass-Color, #E26954);
+  border: none;
+
+  span {
+    padding: 0;
+    color: var(--backgrounds-primary, #FFF);
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-transform: uppercase;
+  }
+}
+
+.title {
+  color: var(--font-1, #001125);
+  font-family: Inter;
+  font-size: 35px;
   font-style: normal;
   font-weight: 700;
   line-height: 160%;

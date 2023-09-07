@@ -21,6 +21,12 @@ import HeaderLayout from './components/HeaderLayout.vue'
 #root {
   /* background: #f9fafc; */
   background: white;
+  overflow: scroll;
+  height: 100%;
+}
+
+.main-content {
+  background: var(--Background-color, #F9FAFE);
 }
 
 @media only screen and (max-width: 768px) {
@@ -32,7 +38,7 @@ import HeaderLayout from './components/HeaderLayout.vue'
 
 @media only screen and (min-width: 991px) {
   .main-content {
-    width: calc(100% - 300px);
+    width: calc(100% - 276px);
   }
 }
 </style>

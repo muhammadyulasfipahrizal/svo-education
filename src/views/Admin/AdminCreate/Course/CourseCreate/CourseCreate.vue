@@ -347,20 +347,9 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                                     </td>
                                     <td><span class="divider"></span></td>
                                     <td>
-                                        <div class="flex">
-                                            <p style="width: 80%" contenteditable @keydown="(event) => {
-                                                if (
-                                                    event.code.includes('Digit') ||
-                                                    event.code === 'Backspace' ||
-                                                    event.code === 'Period'
-                                                ) {
-                                                    console.log(event)
-                                                } else {
-                                                    event.preventDefault();
-                                                }
-                                            }" @input="(e: any) => onChangeGradeSystemWeight(e.target.innerText, key)"
-                                                v-text="item.weight">
-                                            </p><span>%</span>
+                                        <div class="flex grade-weight">
+                                            <InputNumber class="weight" v-model="item.weight" />
+                                            <span>%</span>
                                             <Button size="small" class="p-0 m-0" link @click="deleteGradeSystem(key)">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="31" height="30"
                                                     viewBox="0 0 31 30" fill="none">
@@ -382,7 +371,7 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                                         <template #default>
                                             <div class="flex flex-row align-items-center gap-3">
                                                 <i class="pi pi-plus"></i>
-                                                <p class="inter-normal" style="font-size: 13px; font-weight: 600;">Add More
+                                                <p class="inter-normal" style="font-size: 13px; font-weight: 600; text-transform: initial;">Add More
                                                     Grading</p>
                                             </div>
                                         </template>
@@ -492,13 +481,13 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                             <!-- content -->
                             <div class="flex-column gap-2 w-full p-2" :class="{ 'flex': syllabus, 'hidden': !syllabus }">
                                 <Textarea class="p-inputtext-lg" placeholder="Enter a description">
-                                                                                    Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero 
-                                                                                    et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad 
-                                                                                    litora torquent per conubia nostra, per inceptos himenaeos. 
-                                                                                    Curabitur tempus urna at turpis condimentum lobortis. Ut commodo 
-                                                                                    efficitur neque. Ut diam quam, semper iaculis condimentum ac, 
-                                                                                    vestibulum eu nisl.
-                                                                                </Textarea>
+                                                                                                            Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero 
+                                                                                                            et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad 
+                                                                                                            litora torquent per conubia nostra, per inceptos himenaeos. 
+                                                                                                            Curabitur tempus urna at turpis condimentum lobortis. Ut commodo 
+                                                                                                            efficitur neque. Ut diam quam, semper iaculis condimentum ac, 
+                                                                                                            vestibulum eu nisl.
+                                                                                                        </Textarea>
                                 <template v-for="(syllabusData, key) in syllabusAccordionData">
                                     <div class="flex justify-content-between align-items-center">
                                         <div class="grid align-items-center gap-2 w-full">
@@ -934,6 +923,35 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
         font-weight: 600;
         line-height: 160%;
         text-transform: initial;
+    }
+}
+
+.grade-weight {
+    .weight {
+        width: 29px;
+        color: #000;
+        text-align: center;
+        font-family: Inter;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 160%;
+        background: none;
+        border: none;
+        padding: 0;
+        margin: 0;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        ::v-deep(.p-inputtext) {
+            background: transparent;
+            border: none;
+            padding: 0;
+            margin: 0;
+            width: inherit;
+        }
     }
 }
 </style>
