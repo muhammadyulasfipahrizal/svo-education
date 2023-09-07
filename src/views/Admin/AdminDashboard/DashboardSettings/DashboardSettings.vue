@@ -57,11 +57,11 @@
                             </div>
                         </div>
                         <p class="inter-normal black-2" style="font-size: 20px; font-weight: 700;">Social profile</p>
-                        <div class="flex flex-row gap-2">
-                            <Button class="btn-add" icon="pi pi-plus" label="ADD" outlined/>
-                            <Dropdown v-model="selectedSocial" :options="social" optionLabel="name" placeholder="Facebook username" class="w-full w-min" >
+                        <div class="grid gap-2">
+                            <Button class="btn-add min-w-min col-3 md:col-1" icon="pi pi-plus" size="small" label="ADD" outlined style="height: 60px"/>
+                            <Dropdown v-model="selectedSocial" :options="social" optionLabel="name" placeholder="Facebook username" class="col-7 md:col-6" style="height: 60px">
                                 <template #value="slotProps">
-                                    <div v-if="slotProps.value" class="flex align-items-center gap-2">
+                                    <div v-if="slotProps.value" class="flex align-items-center gap-2 mb-2">
                                       <i class="pi pi-facebook icon-blue"></i>
                                       <div class="dropdown-text">{{ slotProps.value.name }}</div>
                                     </div>
