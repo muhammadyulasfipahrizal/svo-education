@@ -25,7 +25,7 @@
 
         <div class="col-12 md:col-5 flex flex-column md:gap-2 p-4 md:p-2">
 
-            <div class="flex flex-column md:flex-row md:align-items-center md:justify-content-between">
+            <div class="flex flex-column lg:flex-row md:align-items-center md:justify-content-between">
                 <p class="poppins-normal black-2" style="font-size: 30px; font-weight: 700; letter-spacing: 0.9px;">Tuesday</p>
                 <p class="text-lg md:text-sm inter-normal font-bold">15th December, 2022</p>
             </div>
@@ -66,7 +66,7 @@ import type { Activities } from '../Dashboard.type'
 const activitiesList = ref<Activities[]>(activitiesDummyData)
 
 </script>
-
+    
 <style lang="scss" scoped>
 @import "/src/assets/global.scss";
 ::v-deep(.calendar) {

@@ -13,7 +13,7 @@
                 <p>is applied</p>
             </div>
             <div class="flex flex-row col-12 align-items-center gap-2">
-                <InputText type="text" class="col-10 md:col-11" v-model="userInput" />
+                <InputText type="text" class="col-10 md:col-11" v-model="userInput" style="background: #EEEEEE"/>
                 <Button size="small" label="APPLY" outlined class="w-max orange btn-add-intructor" @click="addPromoData" />
             </div>
         </div>
