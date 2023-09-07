@@ -33,13 +33,14 @@ const onSelectProfile = (v: Instructor) => {
     <section class="px-2">
         <section
             class="grid overflow-hidden flex-column md:flex-row pl-3 pr-3 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2 py-2">
-            <h1 class="title-head">Instructor Grades</h1>
-            <div class="pl-2 col-12 flex flex-column gap-2">
+            <h1 class="hidden lg:block title-head">Instructor Grades</h1>
+            <h1 class="title-head lg:hidden">Instructor</h1>
+            <div class="pl- col-12 flex flex-column gap-2">
                 <!-- FILTER -->
                 <div class="grid w-full px-2 md:px-3 align-items-center justify-content-between">
-                    <div class="col-10 md:col-11 lg:col-10 xl:col-10 grid align-items-center filter-search align-items-center py-0 mt-2 px-0"
+                    <div class="col-10 md:col-10 lg:col-10 xl:col-10 grid align-items-center filter-search align-items-center py-0 mt-2 px-0"
                         style="height: 40px;">
-                        <button class="filter-button col-2 md:col-1 ml-2">
+                        <button class="filter-button flex flex-row justify-content-center lg:min-w-max col-4 md:col-4 xl:col-1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                                 <g clip-path="url(#clip0_2655_7875)">
                                     <path d="M12 12L20 4V0H0V4L8 12V20L12 16V12Z" fill="#808081" />
@@ -52,17 +53,17 @@ const onSelectProfile = (v: Instructor) => {
                             </svg>
                             <p class="p-0 m-0">Filter</p>
                         </button>
-                        <div class="p-input-icon-left h-full col-10 md:col-6 xl:col-6 py-0">
+                        <div class="p-input-icon-left h-full min-w-min col-8 md:col-8 xl:col-4 py-0">
                             <svg class="ml-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
                                 fill="none">
                                 <path
                                     d="M13.4097 14.8822C11.7399 16.1799 9.63851 16.7922 7.53338 16.5942C5.42824 16.3963 3.47766 15.403 2.07881 13.8166C0.679961 12.2303 -0.0619809 10.1701 0.00405863 8.05565C0.0700982 5.94118 0.939153 3.9314 2.43427 2.43552C3.92939 0.939633 5.93814 0.0701341 8.05152 0.00406071C10.1649 -0.0620127 12.224 0.680308 13.8096 2.07987C15.3951 3.47944 16.3879 5.43102 16.5857 7.53723C16.7836 9.64345 16.1717 11.7459 14.8745 13.4166L19.6936 18.2201C20.1016 18.6267 20.1022 19.2872 19.695 19.6946C19.2878 20.1021 18.6273 20.1017 18.2204 19.6939L13.4201 14.8822H13.4097ZM8.31916 14.5495C9.13773 14.5495 9.94829 14.3882 10.7045 14.0748C11.4608 13.7614 12.148 13.302 12.7268 12.7229C13.3056 12.1438 13.7647 11.4563 14.078 10.6996C14.3913 9.94298 14.5525 9.13201 14.5525 8.31302C14.5525 7.49403 14.3913 6.68306 14.078 5.92641C13.7647 5.16976 13.3056 4.48225 12.7268 3.90314C12.148 3.32402 11.4608 2.86465 10.7045 2.55123C9.94829 2.23782 9.13773 2.07651 8.31916 2.07651C6.66598 2.07651 5.08051 2.73356 3.91153 3.90314C2.74256 5.07271 2.08583 6.659 2.08583 8.31302C2.08583 9.96705 2.74256 11.5533 3.91153 12.7229C5.08051 13.8925 6.66598 14.5495 8.31916 14.5495Z"
                                     fill="#808081" />
                             </svg>
-                            <InputText placeholder="Search by name" class="search-bar w-full p-inputtext-sm" />
+                            <InputText placeholder="Search by Name" class="search-bar w-full p-inputtext-sm" />
                         </div>
                     </div>
-                    <div class="col-2 align-items-end flex justify-content-end">
+                    <div class="col-2 md:col-2 lg:align-items-end flex lg:justify-content-end">
                         <Button label="DOWNLOAD " size="small" icon="pi pi-download"
                             class="download-button flex text-right justify-content-center align-items-center "></Button>
                     </div>

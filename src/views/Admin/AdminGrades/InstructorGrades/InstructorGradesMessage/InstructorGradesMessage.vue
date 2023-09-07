@@ -31,7 +31,7 @@ onMounted(() => {
             </div>
             <div class="flex flex-column gap-3 col-12">
                 <div
-                    class="flex flex-column md:flex-row gap-3 align-items-center justify-content-center w-full title-container">
+                    class="flex flex-column md:flex-row gap-2 align-items-center justify-content-center w-full title-container">
                     <h1>
                         Leave a message for instructor
                     </h1>
