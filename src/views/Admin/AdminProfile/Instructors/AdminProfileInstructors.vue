@@ -8,13 +8,13 @@
       </div>
 
       <div class="instructors px-2 mt-3">
-        <div v-for="instructor in instructorsDummy" :key="instructor.id" class="card-instructor border-round-md">
+        <div v-for="(instructor, index) in instructorsDummy" :key="instructor.id" class="card-instructor border-round-md">
           <img :src="instructor.image" class="w-12 border-round-top-md img" />
           <div class="p-2 flex flex-column justify-content-between gap-1">
             <div class="flex justify-content-between gap-2">
               <h1>{{ instructor.name }}</h1>
               <div class="flex gap-3 align-items-center">
-                <svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg @click="handleEdit(instructor)" width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="evenodd" clip-rule="evenodd"
                     d="M12.0267 0.225946C11.8903 0.0812753 11.7053 0 11.5125 0C11.3196 0 11.1346 0.0812753 10.9982 0.225946L2.08437 9.68097C1.993 9.77789 1.92762 9.89888 1.89496 10.0315L0.925267 13.9693C0.860016 14.2343 0.932102 14.5161 1.11467 14.7097C1.29724 14.9034 1.56292 14.9799 1.81273 14.9107L5.52514 13.8821C5.65017 13.8474 5.76423 13.7781 5.8556 13.6812L14.7694 4.22615C15.0535 3.92489 15.0535 3.43645 14.7694 3.13519L12.0267 0.225946ZM3.25242 10.6239L11.5125 1.86239L13.2267 3.68067L4.96662 12.4422L2.64636 13.0851L3.25242 10.6239Z"
                     fill="black" />
@@ -23,7 +23,7 @@
                     fill="black" />
                 </svg>
 
-                <svg width="15" height="18" viewBox="0 0 15 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg @click="handleDelete(index)" width="15" height="18" viewBox="0 0 15 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M5.56452 0C5.16366 0 4.83871 0.298571 4.83871 0.666877V1.33375H0.725806C0.324955 1.33375 0 1.63232 0 2.00063C0 2.36894 0.324955 2.66751 0.725806 2.66751H14.2742C14.675 2.66751 15 2.36894 15 2.00063C15 1.63232 14.675 1.33375 14.2742 1.33375H10.1613V0.666877C10.1613 0.298571 9.83634 0 9.43548 0H5.56452Z"
                     fill="black" />
@@ -58,7 +58,7 @@
   <!-- MODAL Add Profile -->
   <Dialog v-model:visible="visible" modal :style="{ width: '50vw' }" :breakpoints="{ '960px': '75vw', '641px': '90vw' }">
     <template #header>
-      <h1 class="text-4xl font-bold">Add Profile</h1>
+      <h1 class="text-4xl font-bold">{{ isEdit ? 'Edit' : 'Add' }} Profile</h1>
     </template>
 
     <!-- FILE Upload -->
@@ -104,22 +104,27 @@ import { ref } from 'vue';
 import { instructorsDummy } from './instructorsDummy'
 import { useRouter } from 'vue-router';
 import type { PageState } from 'primevue/paginator';
+import type { Instructor } from './instructors.type';
 
 const router = useRouter()
 
 const visible = ref(false)
+const isEdit = ref(false)
 
 const fileUpload = ref();
 const fileUploadPreview = ref();
 const branchList = ref([
-  { name: 'Penang', code: 1 },
-  { name: 'Pahang', code: 2 },
-  { name: 'Singapore', code: 3 }
+  { name: 'Penang', code: '1' },
+  { name: 'Pahang', code: '2' },
+  { name: 'Singapore', code: '3' }
 ])
 
 const form = ref({
   name: '',
-  branch: '',
+  branch: {
+    name: '',
+    code: ''
+  },
   enrolled: '',
   file: ''
 })
@@ -154,6 +159,21 @@ const pageChanged = (page: PageState) => {
   const data = [...instructorsDummy];
   const filteredData = data.slice(startIndex, endIndex);
   cardData.value = filteredData;
+}
+
+const handleEdit = (data: Instructor) => {
+  console.log({ data })
+  isEdit.value = true
+  visible.value = true
+
+  form.value.name = data.name
+  form.value.branch = branchList.value.filter(item => item.name === data.branch)[0]
+  form.value.enrolled = data.enrolled
+  fileUploadPreview.value = data.image
+}
+
+const handleDelete = (index: number) => {
+  instructorsDummy.splice(1, index)
 }
 </script>
 <style scoped lang="scss">

@@ -101,7 +101,9 @@
                     RM 99.99
                   </h1>
                   <h1 class="price-discount">
-                    RM 200.00
+                    <strike>
+                      RM 200.00
+                    </strike>
                   </h1>
                 </div>
               </div>
@@ -350,7 +352,6 @@ const instructor = computed(() => instructorsDummy.filter(instructor => instruct
         font-style: normal;
         font-weight: 400;
         line-height: 160%;
-        text-decoration-line: strikethrough;
       }
     }
 
