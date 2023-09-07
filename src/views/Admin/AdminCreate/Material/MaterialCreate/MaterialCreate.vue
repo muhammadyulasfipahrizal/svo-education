@@ -97,16 +97,17 @@ watchEffect(() => {
 
 <template>
     <section class="my-3">
-        <p class="title">Material Sources</p>
+        <p class="inter-normal black-1" style="font-size: 25px; font-weight: 700;">Material Sources</p>
         <div v-for="(material, index) in materialData" :key="index">
             <div class="flex flex-row align-items-center mt-3 gap-2 px-3">
-                <InputText class="text font-bold text-xl sm:text-2xl md:text-2xl md:h-3rem w-full"
-                    v-model="material.heading" />
+                <InputText class="inter-normal black-2 font-bold text-xl sm:text-2xl md:text-2xl md:h-3rem w-full"
+                    v-model="material.heading" style="font-size: 20px; font-weight: 600;"/>
                 <i class="pi pi-times text-900 pl-2 text-sm" @click="removeMaterial(index)"></i>
             </div>
             <div class="flex flex-column">
                 <ol>
-                    <li class="text text-lg my-3" v-for="(item, itemIndex) in material.items" :key="itemIndex">
+                    <li class="inter-normal black-2 text-lg my-3" v-for="(item, itemIndex) in material.items" :key="itemIndex"
+                     style="font-size: 20px; font-weight: 400;">
                         <div class="flex flex-column md:flex-row md:align-items-center mx-2 gap-2 md:gap-0">
                             <Dropdown optionLabel="name" v-model="item.selectedType" v-bind:class="{ selected: item.type !== 'none' }" 
                                 :options="types" placeholder="Select" class="mr-3 w-min md:w-14rem flex align-items-center" 
@@ -116,19 +117,19 @@ watchEffect(() => {
                                         <div class="flex gap-2 align-items-center"
                                             v-if="slotProps.value.code === 'website'">
                                             <img class="w-1rem" src="/assets/img/world.png" />
-                                            <p>{{ slotProps.value.name }}</p>
+                                            <p class="inter-normal black-2" style="font-size: 20px; font-weight: 500; letter-spacing: 0.6px;">{{ slotProps.value.name }}</p>
                                         </div>
                                         <div v-if="slotProps.value.code === 'video'" class="flex gap-2 align-items-center">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                                                 <path d="M17.5938 3.6543H2.55273C1.94531 3.6543 1.61328 3.95703 1.61328 4.59375V15.5605C1.61328 16.1973 1.94531 16.5 2.55273 16.5H17.5938C18.2305 16.5 18.5332 16.168 18.5332 15.5605V4.5957C18.5332 3.98633 18.2305 3.6543 17.5938 3.6543ZM3.80664 15.5625H3.17969C2.67383 15.5625 2.55273 15.2559 2.55273 14.9355V13.6816H3.80664V15.5625ZM3.80664 12.7422H2.55273V10.5488H3.80664V12.7422ZM3.80664 9.60937H2.55273V7.41602H3.80664V9.60937ZM3.80664 6.47461H2.55273V5.2207C2.55273 4.71484 2.85938 4.59375 3.17969 4.59375H3.80664V6.47461ZM15.4004 15.5625H4.74609V4.5957H15.4004V15.5625ZM17.5938 14.9355C17.5938 15.2559 17.4727 15.5625 16.9668 15.5625H16.3398V13.6816H17.5938V14.9355ZM17.5938 12.7422H16.3398V10.5488H17.5938V12.7422ZM17.5938 9.60937H16.3398V7.41602H17.5938V9.60937ZM17.5938 6.47461H16.3398V4.59375H16.9668C17.2871 4.59375 17.5938 4.71484 17.5938 5.2207V6.47461ZM7.74219 13.2656C7.82227 13.3301 7.92188 13.3672 8.03125 13.3691H8.03906C8.12305 13.3691 8.20703 13.3496 8.28516 13.3066L13.1895 10.5254C13.4199 10.3965 13.498 10.1074 13.3652 9.88281V9.88086C13.3262 9.79687 13.2617 9.72266 13.1738 9.67187L8.28711 6.85156C8.20898 6.80664 8.125 6.78711 8.04102 6.78906H8.03711C7.77734 6.78906 7.56641 7 7.56641 7.25977V12.8398C7.55273 12.9395 7.57227 13.043 7.62695 13.1348C7.65625 13.1855 7.69727 13.2305 7.74219 13.2656ZM8.50586 8.06445L12.0254 10.0957L8.50586 12.0937V8.06445Z" fill="#5B99EE"/>
                                             </svg>
-                                            <p>{{ slotProps.value.name }}</p>
+                                            <p class="inter-normal black-2" style="font-size: 20px; font-weight: 500; letter-spacing: 0.6px;">{{ slotProps.value.name }}</p>
                                         </div>
                                         <div class="flex gap-2 align-items-center" v-if="slotProps.value.code === 'pdf'">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                                                 <path d="M14.8343 13.0481C14.5906 13.1201 14.2328 13.1281 13.8492 13.0725C13.4375 13.0128 13.0175 12.8869 12.6048 12.7015C13.3408 12.5944 13.9118 12.6274 14.4002 12.8005C14.5159 12.8415 14.706 12.9511 14.8343 13.0481ZM10.7276 12.3729C10.6976 12.3811 10.6681 12.3888 10.6388 12.3969C10.4407 12.4508 10.248 12.5035 10.0623 12.5503L9.81195 12.6138C9.30825 12.7412 8.79325 12.8714 8.2846 13.0265C8.4779 12.5603 8.6575 12.089 8.83335 11.6282C8.96355 11.2871 9.0965 10.9387 9.234 10.5947C9.30375 10.7099 9.37655 10.8251 9.4523 10.9407C9.7974 11.4663 10.2312 11.9522 10.7276 12.3729ZM9.44635 7.1163C9.479 7.6915 9.3549 8.24485 9.17285 8.7757C8.9486 8.1193 8.8441 7.39445 9.12445 6.80925C9.19635 6.65925 9.25525 6.57905 9.29345 6.5372C9.35245 6.6283 9.43005 6.8321 9.44635 7.1163ZM6.81673 14.4027C6.69074 14.6281 6.56213 14.8391 6.43031 15.0384C6.11221 15.5177 5.59196 16.031 5.3247 16.031C5.2984 16.031 5.26658 16.0268 5.22007 15.9777C5.19014 15.9463 5.18534 15.9238 5.18679 15.8931C5.1958 15.7168 5.42933 15.403 5.76763 15.1119C6.07469 14.8479 6.42176 14.6131 6.81673 14.4027ZM15.6853 13.073C15.6444 12.4859 14.6561 12.1093 14.6464 12.1058C14.2643 11.9703 13.8493 11.9045 13.3776 11.9045C12.8726 11.9045 12.3282 11.9776 11.6291 12.141C11.007 11.7 10.4696 11.1479 10.0681 10.5366C9.8908 10.2666 9.7314 9.99705 9.59245 9.73375C9.93165 8.9227 10.2371 8.05065 10.1816 7.07395C10.1368 6.2908 9.7837 5.76475 9.30345 5.76475C8.974 5.76475 8.69035 6.00875 8.4597 6.49065C8.04825 7.34935 8.1564 8.4481 8.781 9.7592C8.55605 10.2875 8.34705 10.8353 8.14475 11.3656C7.89305 12.0249 7.6337 12.7052 7.3414 13.3523C6.52167 13.6766 5.84824 14.07 5.28701 14.5528C4.91935 14.8686 4.47611 15.3514 4.45081 15.8553C4.43846 16.0927 4.51984 16.3104 4.68522 16.4848C4.86091 16.6699 5.08165 16.7674 5.32435 16.7677C6.12594 16.7677 6.89744 15.6663 7.0438 15.4454C7.33835 15.0014 7.61405 14.5062 7.8842 13.9349C8.5646 13.689 9.2897 13.5055 9.9925 13.3281L10.2442 13.2641C10.4334 13.216 10.63 13.1628 10.8317 13.1076C11.0452 13.0499 11.2648 12.9901 11.488 12.9333C12.2096 13.3922 12.9857 13.6916 13.7425 13.8014C14.38 13.8941 14.9462 13.8403 15.3294 13.6405C15.6743 13.4609 15.6933 13.1838 15.6853 13.073ZM17.2377 18.1214C17.2377 19.1966 16.2901 19.2629 16.0989 19.2651H3.87243C2.80112 19.2651 2.73661 18.3109 2.73456 18.1214L2.73442 1.87821C2.73442 0.80195 3.68381 0.7367 3.87228 0.73454H12.1315L12.1359 0.7389V3.96198C12.1359 4.60882 12.5269 5.83345 14.0079 5.83345H17.2101L17.2376 5.8609L17.2377 18.1214ZM16.4786 5.0988H14.0084C12.9374 5.0988 12.8726 4.14985 12.8712 3.96209V1.47653L16.4786 5.0988ZM17.9723 18.1214V5.55785L12.8712 0.435511V0.411678H12.8468L12.4371 0H3.87245C3.22477 0 2 0.392668 2 1.87856V18.1217C2 18.7714 2.39148 20 3.87245 20H16.1C16.7476 19.9998 17.9723 19.6072 17.9723 18.1214Z" fill="#EB5757"/>
                                             </svg>
-                                            <p>{{ slotProps.value.name }}</p>
+                                            <p class="inter-normal black-2" style="font-size: 20px; font-weight: 500; letter-spacing: 0.6px;">{{ slotProps.value.name }}</p>
                                         </div>
                                     </div>
                                     <span v-else>
@@ -138,27 +139,30 @@ watchEffect(() => {
                                 <template #option="slotProps">
                                     <div class="flex gap-2 align-items-center" v-if="slotProps.option.code === 'website'">
                                         <img class="w-1rem" src="/assets/img/world.png" />
-                                        <p>{{ slotProps.option.name }}</p>
+                                        <p class="inter-normal black-2" style="font-size: 20px; font-weight: 500; letter-spacing: 0.6px;">{{ slotProps.option.name }}</p>
                                     </div>
                                     <div v-if="slotProps.option.code === 'video'" class="flex gap-2 align-items-center">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                                             <path d="M17.5938 3.6543H2.55273C1.94531 3.6543 1.61328 3.95703 1.61328 4.59375V15.5605C1.61328 16.1973 1.94531 16.5 2.55273 16.5H17.5938C18.2305 16.5 18.5332 16.168 18.5332 15.5605V4.5957C18.5332 3.98633 18.2305 3.6543 17.5938 3.6543ZM3.80664 15.5625H3.17969C2.67383 15.5625 2.55273 15.2559 2.55273 14.9355V13.6816H3.80664V15.5625ZM3.80664 12.7422H2.55273V10.5488H3.80664V12.7422ZM3.80664 9.60937H2.55273V7.41602H3.80664V9.60937ZM3.80664 6.47461H2.55273V5.2207C2.55273 4.71484 2.85938 4.59375 3.17969 4.59375H3.80664V6.47461ZM15.4004 15.5625H4.74609V4.5957H15.4004V15.5625ZM17.5938 14.9355C17.5938 15.2559 17.4727 15.5625 16.9668 15.5625H16.3398V13.6816H17.5938V14.9355ZM17.5938 12.7422H16.3398V10.5488H17.5938V12.7422ZM17.5938 9.60937H16.3398V7.41602H17.5938V9.60937ZM17.5938 6.47461H16.3398V4.59375H16.9668C17.2871 4.59375 17.5938 4.71484 17.5938 5.2207V6.47461ZM7.74219 13.2656C7.82227 13.3301 7.92188 13.3672 8.03125 13.3691H8.03906C8.12305 13.3691 8.20703 13.3496 8.28516 13.3066L13.1895 10.5254C13.4199 10.3965 13.498 10.1074 13.3652 9.88281V9.88086C13.3262 9.79687 13.2617 9.72266 13.1738 9.67187L8.28711 6.85156C8.20898 6.80664 8.125 6.78711 8.04102 6.78906H8.03711C7.77734 6.78906 7.56641 7 7.56641 7.25977V12.8398C7.55273 12.9395 7.57227 13.043 7.62695 13.1348C7.65625 13.1855 7.69727 13.2305 7.74219 13.2656ZM8.50586 8.06445L12.0254 10.0957L8.50586 12.0937V8.06445Z" fill="#5B99EE"/>
                                         </svg>
-                                        <p>{{ slotProps.option.name }}</p>
+                                        <p class="inter-normal black-2" style="font-size: 20px; font-weight: 500; letter-spacing: 0.6px;">{{ slotProps.option.name }}</p>
                                     </div>
                                     <div class="flex gap-2 align-items-center" v-if="slotProps.option.code === 'pdf'">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                                             <path d="M14.8343 13.0481C14.5906 13.1201 14.2328 13.1281 13.8492 13.0725C13.4375 13.0128 13.0175 12.8869 12.6048 12.7015C13.3408 12.5944 13.9118 12.6274 14.4002 12.8005C14.5159 12.8415 14.706 12.9511 14.8343 13.0481ZM10.7276 12.3729C10.6976 12.3811 10.6681 12.3888 10.6388 12.3969C10.4407 12.4508 10.248 12.5035 10.0623 12.5503L9.81195 12.6138C9.30825 12.7412 8.79325 12.8714 8.2846 13.0265C8.4779 12.5603 8.6575 12.089 8.83335 11.6282C8.96355 11.2871 9.0965 10.9387 9.234 10.5947C9.30375 10.7099 9.37655 10.8251 9.4523 10.9407C9.7974 11.4663 10.2312 11.9522 10.7276 12.3729ZM9.44635 7.1163C9.479 7.6915 9.3549 8.24485 9.17285 8.7757C8.9486 8.1193 8.8441 7.39445 9.12445 6.80925C9.19635 6.65925 9.25525 6.57905 9.29345 6.5372C9.35245 6.6283 9.43005 6.8321 9.44635 7.1163ZM6.81673 14.4027C6.69074 14.6281 6.56213 14.8391 6.43031 15.0384C6.11221 15.5177 5.59196 16.031 5.3247 16.031C5.2984 16.031 5.26658 16.0268 5.22007 15.9777C5.19014 15.9463 5.18534 15.9238 5.18679 15.8931C5.1958 15.7168 5.42933 15.403 5.76763 15.1119C6.07469 14.8479 6.42176 14.6131 6.81673 14.4027ZM15.6853 13.073C15.6444 12.4859 14.6561 12.1093 14.6464 12.1058C14.2643 11.9703 13.8493 11.9045 13.3776 11.9045C12.8726 11.9045 12.3282 11.9776 11.6291 12.141C11.007 11.7 10.4696 11.1479 10.0681 10.5366C9.8908 10.2666 9.7314 9.99705 9.59245 9.73375C9.93165 8.9227 10.2371 8.05065 10.1816 7.07395C10.1368 6.2908 9.7837 5.76475 9.30345 5.76475C8.974 5.76475 8.69035 6.00875 8.4597 6.49065C8.04825 7.34935 8.1564 8.4481 8.781 9.7592C8.55605 10.2875 8.34705 10.8353 8.14475 11.3656C7.89305 12.0249 7.6337 12.7052 7.3414 13.3523C6.52167 13.6766 5.84824 14.07 5.28701 14.5528C4.91935 14.8686 4.47611 15.3514 4.45081 15.8553C4.43846 16.0927 4.51984 16.3104 4.68522 16.4848C4.86091 16.6699 5.08165 16.7674 5.32435 16.7677C6.12594 16.7677 6.89744 15.6663 7.0438 15.4454C7.33835 15.0014 7.61405 14.5062 7.8842 13.9349C8.5646 13.689 9.2897 13.5055 9.9925 13.3281L10.2442 13.2641C10.4334 13.216 10.63 13.1628 10.8317 13.1076C11.0452 13.0499 11.2648 12.9901 11.488 12.9333C12.2096 13.3922 12.9857 13.6916 13.7425 13.8014C14.38 13.8941 14.9462 13.8403 15.3294 13.6405C15.6743 13.4609 15.6933 13.1838 15.6853 13.073ZM17.2377 18.1214C17.2377 19.1966 16.2901 19.2629 16.0989 19.2651H3.87243C2.80112 19.2651 2.73661 18.3109 2.73456 18.1214L2.73442 1.87821C2.73442 0.80195 3.68381 0.7367 3.87228 0.73454H12.1315L12.1359 0.7389V3.96198C12.1359 4.60882 12.5269 5.83345 14.0079 5.83345H17.2101L17.2376 5.8609L17.2377 18.1214ZM16.4786 5.0988H14.0084C12.9374 5.0988 12.8726 4.14985 12.8712 3.96209V1.47653L16.4786 5.0988ZM17.9723 18.1214V5.55785L12.8712 0.435511V0.411678H12.8468L12.4371 0H3.87245C3.22477 0 2 0.392668 2 1.87856V18.1217C2 18.7714 2.39148 20 3.87245 20H16.1C16.7476 19.9998 17.9723 19.6072 17.9723 18.1214Z" fill="#EB5757"/>
                                         </svg>
-                                        <p>{{ slotProps.option.name }}</p>
+                                        <p class="inter-normal black-2" style="font-size: 20px; font-weight: 500; letter-spacing: 0.6px;">{{ slotProps.option.name }}</p>
                                     </div>
                                 </template>
                             </Dropdown>
                             <div class="flex justify-content-between py-0 px-1 m-0 gap-2 w-full align-items-center border-round-lg border-600 border-1">
                                 <div class="flex flex-column grid">
-                                    <InputText contenteditable class="w-full text-lg text mb-2 p-0 m-0 ml-2 mt-1 bg-transparent border-transparent col-12 pt-2" v-model="item.selectedItemURL" v-if="item.type === 'website'" style="height: 45px"/>
-                                    <InputText contenteditable class="w-full text-lg text mb-2 p-0 m-0 ml-2 mt-1 bg-transparent border-transparent col-12 pt-2" v-model="item.selectedItemURL" v-if="item.type === 'video'" style="height: 45px"/>
-                                    <InputText contenteditable class="w-full text-lg text mb-2 p-0 m-0 ml-2 mt-1 bg-transparent border-transparent col-12 pt-2" v-model="item.selectedItemURL" v-if="item.type === 'pdf'" style="height: 45px"/>
+                                    <InputText contenteditable class="w-full mb-2 p-0 m-0 ml-2 mt-1 bg-transparent 
+                                     inter-normal black-2 border-transparent col-12 pt-2" style="font-size: 20px; font-weight: 400; height: 45px" v-model="item.selectedItemURL" v-if="item.type === 'website'"/>
+                                    <InputText contenteditable class="w-full mb-2 p-0 m-0 ml-2 mt-1 bg-transparent 
+                                     inter-normal black-2 border-transparent col-12 pt-2" style="font-size: 20px; font-weight: 400; height: 45px" v-model="item.selectedItemURL" v-if="item.type === 'video'"/>
+                                    <InputText contenteditable class="w-full mb-2 p-0 m-0 ml-2 mt-1 bg-transparent 
+                                     inter-normal black-2 border-transparent col-12 pt-2" style="font-size: 20px; font-weight: 400; height: 45px" v-model="item.selectedItemURL" v-if="item.type === 'pdf'"/>
                                 </div>
                                 <div class="flex gap-1">
                                     <svg @click="addMaterial(index)" v-if="itemIndex === material.items.length - 1" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none" class="ml-2">
@@ -192,14 +196,7 @@ watchEffect(() => {
 </template>
 
 <style scoped lang="scss">
-.title {
-    color: var(--font-1, #001125);
-    font-size: 25px;
-    font-family: Inter;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 160%;
-}
+@import "/src/assets/global.scss";
 
 .btn-add {
     font-size: 16px;
@@ -227,13 +224,6 @@ watchEffect(() => {
             color: white;
         }
     }
-}
-
-.text {
-    color: #000;
-    font-family: Inter;
-    font-style: normal;
-    line-height: 160%;
 }
 
 .btn-add-material {
