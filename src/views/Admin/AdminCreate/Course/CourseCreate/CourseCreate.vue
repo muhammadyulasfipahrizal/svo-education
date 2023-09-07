@@ -262,12 +262,10 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                                 <div class="w-full p-2 card shadow-1 gap-1">
                                     <div class="flex gap-1 align-items-center mb-2">
                                         <img src="/assets/icon/stopwatch.png" class="w-1rem" />
+                                        <h3 class="inter-normal black-2" style="font-size: 18px; font-weight: 400;">Total Hours</h3>
                                         <h3 class="inter-normal black-2" style="font-size: 18px; font-weight: 400;">Total
-                                            Hours</h3>
-                                    </div>
                                     <div class="flex justify-content-start align-items-center gap-2">
                                         <InputNumber v-model="totalHour" inputId="withoutgrouping"
-                                            @input="e => resizeInput(e, '.instructor-total-input.hour')"
                                             :useGrouping="false" class="instructor-total-input hour"
                                             id="instructor-total-input-hour" />
                                         <p class="inter-normal black-2" style="font-size: 15px; font-weight: 400;">hour</p>
@@ -319,10 +317,8 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                             </div>
                         </div>
                         <div class="flex justify-content-center align-items-center gap-2 my-2 btn-buy-container col-12">
-<<<<<<< HEAD
                             <Button label="ADD TO CART" size="small" class="inter-normal" style="font-size: 15px; font-weight: 500;"/>
                             <Button label="BUY NOW" size="small" class="inter-normal" style="font-size: 15px; font-weight: 500;"/>
-=======
                             <Button label="ADD TO CART" size="small" class="inter-normal"
                                 style="font-size: 15px; font-weight: 500;" />
                             <Button label="BUY NOW" size="small" class="inter-normal"
@@ -331,17 +327,7 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
         </div>
 
         <!-- STEP SECTION -->
-<<<<<<< HEAD
-            <Button :class="{ 'btn-default': steps === 'about' }" outlined class=""
-                @click="steps = 'about'">
-                <template #default>
-                    <div class="inter-normal" style="font-size: 20px; font-weight: 500;">
-                        About
-                    </div>
-                </template>
-=======
             <Button label="ABOUT" :class="{ 'btn-default': steps === 'about' }" outlined class="" @click="steps = 'about'">
->>>>>>> 67962325428ad235d35864a68fef874f0eeb37c5
             </Button>
             <Button label="INSTRUCTOR" :class="{ 'btn-default': steps === 'instructor' }" outlined
                 @click="steps = 'instructor'" />
@@ -402,21 +388,12 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                             </template>
                             <tr>
                                 <td colspan="3">
-<<<<<<< HEAD
-                                    <Button size="small"
-                                        class="btn-orange w-full"  @click="addMoreGrading()">
-                                        <template #default>
-                                            <div class="flex flex-row align-items-center gap-3">
-                                                <i class="pi pi-plus"></i>
-                                                <p class="inter-normal" style="font-size: 13px; font-weight: 600;">Add More Grading</p>
-=======
                                     <Button size="small" class="btn-orange w-full" @click="addMoreGrading()">
                                         <template #default>
                                             <div class="flex flex-row align-items-center gap-3">
                                                 <i class="pi pi-plus"></i>
                                                 <p class="inter-normal" style="font-size: 13px; font-weight: 600;">Add More
                                                     Grading</p>
->>>>>>> 67962325428ad235d35864a68fef874f0eeb37c5
                                             </div>
                                         </template>
                                     </Button>
@@ -437,12 +414,8 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                     </div>
                 </div>
                 <div class="flex flex-column gap-2">
-<<<<<<< HEAD
-                    <label for="about-description" class="inter-normal black-1" style="font-size: 25px; font-weight: 700;">About</label>
-=======
                     <label for="about-description" class="inter-normal black-1"
                         style="font-size: 25px; font-weight: 700;">About</label>
->>>>>>> 67962325428ad235d35864a68fef874f0eeb37c5
                     <Textarea id="about-description" size="small" v-model="aboutDescription"
                         aria-describedby="about-description-help" placeholder="Course Detail..." class="p-inputtext-sm" />
                 </div>
