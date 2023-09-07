@@ -37,7 +37,7 @@ watchEffect(() => {
 
 <style scoped>
 #app-sidebar {
-  min-width: 300px;
+  min-width: 276px;
   background-color: #fff;
   padding: 1rem;
   top: 0;

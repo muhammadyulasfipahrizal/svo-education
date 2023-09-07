@@ -52,7 +52,7 @@ const getBackgroundColor = (progress: number) => {
 <template>
   <section class="px-2">
     <section
-      class="grid overflow-hidden flex-column md:flex-row pl-4 pr-4 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2">
+      class="grid overflow-hidden flex-column md:flex-row pl-1 pr-1 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2">
       <div class="col-12 flex flex-row align-items-center my-2">
         <i class="pi pi-chevron-left mr-3 back-arrow cursor-pointer" @click="$router.push('/admin/progress/guest')"></i>
         <h1 class="title-head">Guest Progress</h1>
@@ -60,11 +60,11 @@ const getBackgroundColor = (progress: number) => {
       <div class="grid col-12">
         <div class="col-12">
           <Dropdown optionLabel="courseName" :options="courses" v-model="selectedCourse" placeholder="Course Name"
-            class="w-full md:w-15rem md:flex" :class="{ 'selected': selectedCourse }">
+            class="w-full md:flex dropdown-course" :class="{ 'selected': selectedCourse }">
             <template #value="slotProps">
               <div v-if="slotProps.value" class="flex align-items-center">
                 <img :alt="slotProps.value.courseName" :src="slotProps.value.image" class="mr-2" style="width: 53px" />
-                <div class="text-900 font-bold text-lg">{{ slotProps.value.courseName }}</div>
+                <h1>{{ slotProps.value.courseName }}</h1>
               </div>
               <span v-else>
                 {{ slotProps.placeholder }}
@@ -78,24 +78,57 @@ const getBackgroundColor = (progress: number) => {
             </template>
           </Dropdown>
         </div>
-        <div class="col-12 flex flex-row align-items-center justify-content-between filter-search px-3">
-          <div class="col-10 md:col-10 lg:col-10 lg:col-10 grid gap-2 align-items-center">
-            <div class="grid mt-1 mr-1 align-items-center gap-2" v-if="selectedGuest">
+        <div
+          class="col-12 flex flex-row align-items-center justify-content-between filter-search px-0 sm:px-3 py-0 ml-2 sm:ml-0">
+          <div class="col-12 md:col-10 lg:col-10 lg:col-10 grid grid-nogutter gap-2 align-items-center filter-container ">
+            <div class="instructor flex mt-1 mr-1 align-items-center gap-2 col-12 justify-content-center sm:col-1"
+              v-if="selectedGuest">
               <img :src="selectedGuest.image" class="w-2rem h-2rem border-circle" />
-              <p class="font-semibold text-lg">{{ selectedGuest.code }}</p>
+              <p>{{ selectedGuest.code }}</p>
             </div>
-            <Button label="Filter" icon="pi pi-filter-fill" size="small" class="filter-button col-1 h-3rem" />
-            <span class="p-input-icon-left w-7 col-5 mt-1 sm:mt-0 p-0 h-3rem">
+            <Button size="small" class="filter-button sm:col-1 md:col-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <g clip-path="url(#clip0_2726_4798)">
+                  <path d="M12 12L20 4V0H0V4L8 12V20L12 16V12Z" fill="#808081" />
+                </g>
+                <defs>
+                  <clipPath id="clip0_2726_4798">
+                    <rect width="20" height="20" fill="white" />
+                  </clipPath>
+                </defs>
+              </svg>
+              <p>Filter</p>
+            </Button>
+            <div class="p-input-icon-left sm:w-7 w-6 col-5 mt-1 sm:mt-0 p-0 search-input">
               <i class="pi pi-search search-icon ml-2" />
               <InputText placeholder="Search by Name" class="search-bar p-inputtext-sm w-full h-full" />
-            </span>
+            </div>
+            <Button size="small" class="col-2 download ml-auto">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18" viewBox="0 0 16 18" fill="none">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M6.73798 0.25C5.96436 0.25 5.31904 0.841231 5.25148 1.61189C5.11024 3.22317 5.0745 4.84164 5.14436 6.45693C5.06003 6.46258 4.97571 6.46847 4.8914 6.47462L3.4019 6.5832C2.44985 6.6526 1.91764 7.71416 2.43163 8.51854C3.5278 10.2341 4.94026 11.7254 6.59369 12.9132L7.19043 13.3418C7.67425 13.6894 8.32591 13.6894 8.80972 13.3418L9.40646 12.9132C11.0599 11.7254 12.4724 10.2341 13.5685 8.51855C14.0825 7.71416 13.5503 6.6526 12.5983 6.5832L11.1088 6.47462C11.0245 6.46847 10.9401 6.46258 10.8558 6.45693C10.9257 4.84164 10.8899 3.22317 10.7487 1.61188C10.6811 0.841229 10.0358 0.25 9.26219 0.25H6.73798ZM6.68157 7.11473C6.56786 5.3275 6.58909 3.53417 6.74513 1.75H9.25503C9.41106 3.53417 9.4323 5.3275 9.31859 7.11473C9.30584 7.31509 9.37396 7.51221 9.5077 7.66195C9.64144 7.8117 9.82964 7.90156 10.0302 7.91144C10.3535 7.92737 10.6767 7.94711 10.9997 7.97065L12.0815 8.04951C11.1219 9.46281 9.92044 10.6971 8.53133 11.6949L8.00008 12.0765L7.46882 11.6949C6.07972 10.6971 4.87824 9.4628 3.9187 8.04951L5.00046 7.97065C5.32345 7.94711 5.64664 7.92737 5.96999 7.91144C6.17052 7.90156 6.35871 7.81169 6.49246 7.66195C6.6262 7.51221 6.69432 7.31509 6.68157 7.11473Z"
+                  fill="white" />
+                <path
+                  d="M1.75 14C1.75 13.5858 1.41421 13.25 1 13.25C0.585786 13.25 0.25 13.5858 0.25 14V16C0.25 16.9665 1.0335 17.75 2 17.75H14C14.9665 17.75 15.75 16.9665 15.75 16V14C15.75 13.5858 15.4142 13.25 15 13.25C14.5858 13.25 14.25 13.5858 14.25 14V16C14.25 16.1381 14.1381 16.25 14 16.25H2C1.86193 16.25 1.75 16.1381 1.75 16V14Z"
+                  fill="white" />
+              </svg>
+              <p>DOWNLOAD</p>
+            </Button>
+            <Button size="small" class="col-2 download block md:hidden">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18" viewBox="0 0 16 18" fill="none">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M6.73798 0.25C5.96436 0.25 5.31904 0.841231 5.25148 1.61189C5.11024 3.22317 5.0745 4.84164 5.14436 6.45693C5.06003 6.46258 4.97571 6.46847 4.8914 6.47462L3.4019 6.5832C2.44985 6.6526 1.91764 7.71416 2.43163 8.51854C3.5278 10.2341 4.94026 11.7254 6.59369 12.9132L7.19043 13.3418C7.67425 13.6894 8.32591 13.6894 8.80972 13.3418L9.40646 12.9132C11.0599 11.7254 12.4724 10.2341 13.5685 8.51855C14.0825 7.71416 13.5503 6.6526 12.5983 6.5832L11.1088 6.47462C11.0245 6.46847 10.9401 6.46258 10.8558 6.45693C10.9257 4.84164 10.8899 3.22317 10.7487 1.61188C10.6811 0.841229 10.0358 0.25 9.26219 0.25H6.73798ZM6.68157 7.11473C6.56786 5.3275 6.58909 3.53417 6.74513 1.75H9.25503C9.41106 3.53417 9.4323 5.3275 9.31859 7.11473C9.30584 7.31509 9.37396 7.51221 9.5077 7.66195C9.64144 7.8117 9.82964 7.90156 10.0302 7.91144C10.3535 7.92737 10.6767 7.94711 10.9997 7.97065L12.0815 8.04951C11.1219 9.46281 9.92044 10.6971 8.53133 11.6949L8.00008 12.0765L7.46882 11.6949C6.07972 10.6971 4.87824 9.4628 3.9187 8.04951L5.00046 7.97065C5.32345 7.94711 5.64664 7.92737 5.96999 7.91144C6.17052 7.90156 6.35871 7.81169 6.49246 7.66195C6.6262 7.51221 6.69432 7.31509 6.68157 7.11473Z"
+                  fill="white" />
+                <path
+                  d="M1.75 14C1.75 13.5858 1.41421 13.25 1 13.25C0.585786 13.25 0.25 13.5858 0.25 14V16C0.25 16.9665 1.0335 17.75 2 17.75H14C14.9665 17.75 15.75 16.9665 15.75 16V14C15.75 13.5858 15.4142 13.25 15 13.25C14.5858 13.25 14.25 13.5858 14.25 14V16C14.25 16.1381 14.1381 16.25 14 16.25H2C1.86193 16.25 1.75 16.1381 1.75 16V14Z"
+                  fill="white" />
+              </svg>
+            </Button>
           </div>
-          <Button label="DOWNLOAD" icon="pi pi-download" size="small" class="col-2 btn-orange hidden md:block" />
-          <Button icon="pi pi-download" size="small" class="btn-orange col-2 block md:hidden" />
         </div>
 
         <!-- table -->
-        <div class="col-12 pr-3">
+        <div class="col-12 pr-3 py-0">
           <DataTable :value="guestListData" removableSort paginator :rows="10" :rowsPerPageOptions="[5, 10, 20, 50]"
             sortMode="multiple" tableStyle="min-width: 50rem" dataKey="id" v-model:selection="checkedStudent"
             class="shadow-2 detail-table" :paginatorTemplate="{
@@ -103,8 +136,8 @@ const getBackgroundColor = (progress: number) => {
               '1062px': 'CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink',
               default: 'CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown'
             }" :pageLinkSize="3" currentPageReportTemplate="Showing data {first} to {last} of {totalRecords} entries">
-            <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
-            <Column field="name" class="text-white" headerStyle="width: 4rem">
+            <Column selectionMode="multiple" headerStyle="width: 0rem"></Column>
+            <Column field="name" class="text-white" headerStyle="width: 20%">
               <template #header>
                 <div class="w-full text-center">
                   <p class="header-text">Name</p>
@@ -150,7 +183,7 @@ const getBackgroundColor = (progress: number) => {
               </template>
               <template #body="{ data }">
                 <div class="flex flex-column">
-                  <div class="progress-bar-container my-2 flex flex-column justify-content-center w-full">
+                  <div class="progress-bar-container flex flex-column justify-content-center w-full">
                     <div class="progress-bar"
                       :style="{ width: data.progress + '%', backgroundColor: getBackgroundColor(data.progress) }"></div>
                   </div>
@@ -248,7 +281,7 @@ const getBackgroundColor = (progress: number) => {
                 </div>
               </template>
             </Column>
-            <Column>
+            <Column headerStyle="width: 15%">
               <template #header>
                 <div class="w-full text-center">
                   <p class="header-text">Student Profile</p>
@@ -358,14 +391,14 @@ const getBackgroundColor = (progress: number) => {
         </div>
       </div>
       <div class="flex flex-row align-items-center my-4">
-        <div class="flex flex-row align-items-center">
+        <div class="flex flex-row align-items-center gap-2">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
             <rect width="24" height="24" rx="12" fill="#659872" />
             <path
               d="M18.7104 7.20986C18.6175 7.11613 18.5069 7.04174 18.385 6.99097C18.2632 6.9402 18.1324 6.91406 18.0004 6.91406C17.8684 6.91406 17.7377 6.9402 17.6159 6.99097C17.494 7.04174 17.3834 7.11613 17.2904 7.20986L9.84044 14.6699L6.71044 11.5299C6.61392 11.4366 6.49998 11.3633 6.37512 11.3141C6.25026 11.2649 6.11694 11.2408 5.98276 11.2431C5.84858 11.2454 5.71617 11.2741 5.59309 11.3276C5.47001 11.3811 5.35868 11.4583 5.26544 11.5549C5.1722 11.6514 5.09889 11.7653 5.04968 11.8902C5.00048 12.015 4.97635 12.1484 4.97867 12.2825C4.98099 12.4167 5.00972 12.5491 5.06321 12.6722C5.1167 12.7953 5.19392 12.9066 5.29044 12.9999L9.13044 16.8399C9.2234 16.9336 9.334 17.008 9.45586 17.0588C9.57772 17.1095 9.70843 17.1357 9.84044 17.1357C9.97245 17.1357 10.1032 17.1095 10.225 17.0588C10.3469 17.008 10.4575 16.9336 10.5504 16.8399L18.7104 8.67986C18.8119 8.58622 18.893 8.47257 18.9484 8.34607C19.0038 8.21957 19.0324 8.08296 19.0324 7.94486C19.0324 7.80676 19.0038 7.67015 18.9484 7.54365C18.893 7.41715 18.8119 7.3035 18.7104 7.20986Z"
               fill="white" />
           </svg>
-          <p class="modal-text">Final exam</p>
+          <p class="modal-text">Final Exam</p>
         </div>
         <div class="flex flex-row ml-auto">
           <p class="modal-text mr-1">Grade:</p>
@@ -402,13 +435,6 @@ const getBackgroundColor = (progress: number) => {
   font-family: Inter;
   font-weight: 600;
   background-color: white;
-}
-
-.filter-button {
-  border-radius: 6px;
-  color: #808081;
-  border: 1px solid var(--suggested-dark-grey, #808081);
-  background: var(--backgrounds-primary, #fff);
 }
 
 .search-bar {

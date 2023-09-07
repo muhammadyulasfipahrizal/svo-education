@@ -2,10 +2,11 @@
   <div id="app-header">
 
     <div v-show="!isMobile">
-      <div class="flex justify-content-between mt-2 align-items-center surface-0 surface-border relative md:static px-2">
+      <div class="flex justify-content-between mt-2 align-items-center surface-border relative md:static px-2">
         <div class="flex">
           <div class="card flex justify-content-center">
-            <div @click="toggleDropdown" class="cursor-pointer	flex flex-row align-items-center justify-content-between px-2 ml-2 filter-toggle w-9rem">
+            <div @click="toggleDropdown"
+              class="cursor-pointer	flex flex-row align-items-center justify-content-between px-2 ml-2 filter-toggle w-9rem">
               <p class="font-semibold text-filter">Filter</p>
               <i class="text-lg pi pi-angle-down"></i>
             </div>
@@ -13,7 +14,7 @@
           </div>
         </div>
         <ul
-          class="list-none p-0 m-0 md:flex md:align-items-center select-none md:flex-row surface-section border-1 md:border-none surface-border right-0 top-100 shadow-2 md:shadow-none md:static">
+          class="list-none p-0 m-0 md:flex md:align-items-center select-none md:flex-row border-1 md:border-none surface-border right-0 top-100 shadow-2 md:shadow-none md:static">
           <li>
             <div class="card flex flex-wrap justify-content-center gap-0 align-items-center">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -58,16 +59,18 @@
                 role="presentation"></span></a>
           </li>
 
-          <OverlayPanel ref="toggleNotificationDekstop" style="width: 700px" showCloseIcon > 
+          <OverlayPanel ref="toggleNotificationDekstop" style="width: 700px" showCloseIcon>
             <Panel header="Header">
               <div class="grid">
                 <p class="col-12 inter-normal black-1" style="font-size: 18px; font-weight: 700; ">Notification</p>
                 <div v-for="(item, index) in notificationData" :key="index" class="grid col-12">
-                  <p class="col-12 inter-normal grey-2" style="font-size: 15px; font-weight: 400; ">{{ item.date }}</p>
-                  <div v-for="(massage, notificationIndex) in item.massage" :key="notificationIndex" class="flex flex-row align-items-center justify-content-between col-12 px-4 py-1">
+                  <p class="col-12 dark-grey text">{{ item.date }}</p>
+                  <div v-for="(massage, notificationIndex) in item.massage" :key="notificationIndex"
+                    class="flex flex-row align-items-center justify-content-between col-12 px-4 py-1">
                     <div class="flex flex-row align-items-center gap-2">
                       <i class="pi pi-circle-fill blue text-xs"></i>
-                      <p class="inter-normal black-1" style="font-size: 14px; font-weight: 400; ">{{ massage.subject }} <span class="font-bold">{{massage.verb}}</span> {{ massage.object }}</p>
+                      <p class="text">{{ massage.subject }} <span class="font-bold">{{ massage.verb }}</span> {{
+                        massage.object }}</p>
                     </div>
                     <p class="align-self-end inter-normal black-1" style="font-size: 13px; font-weight: 400;">{{ massage.time }}</p>
                   </div>
@@ -87,34 +90,28 @@
               <span class="block md:hidden font-medium">Cart</span><span class="p-ink" role="presentation"></span></a>
           </li>
 
-          <OverlayPanel ref="toggleCartDekstop" style="width:550px" showCloseIcon > 
+          <OverlayPanel ref="toggleCartDekstop" style="width:425px" showCloseIcon>
             <Panel header="Header">
               <div class="grid">
                 <p class="col-12 inter-normal black-1" style="font-size: 18px; font-weight: 700;">Cart</p>
                 <div class="grid w-full align-items-center">
-                  <img src="/public/assets/img/course/ui-ux-design.png" alt="ui ux design course" 
-                     class="col-6" style="width: 200px; height: 128px;">
+                  <img src="/public/assets/img/course/ui-ux-design.png" alt="ui ux design course" class="col-6"
+                    style="width: 200px; height: 128px;">
                   <div class="col-6">
                     <p class="inter-normal black-1" style="font-size: 35px; font-weight: 700; white-space: nowrap;">UI UX Designing</p>
                     <p class="inter-normal grey-1" style="font-size: 20px; font-weight: 700;">by David Burn</p>
                   </div>
                 </div>
-                <Divider class="p-0 m-0"/>
+                <Divider class="p-0 m-0" />
                 <div class="flex flex-row align-items-center gap-2 pt-2">
-                  <p class="inter-normal black-1" style="font-size: 35px; font-weight: 700; white-space: nowrap;">Total: <span class="font-bold orange">
-                    RM 49.99 </span><span class="line-through light-grey">
+                  <p class="text-2xl font-bold">Total: <span class="font-bold orange">
+                      RM 49.99 </span><span class="line-through light-grey">
                       RM 69.99</span></p>
                   <p class="font-bold cart-coupon">50% off</p>
                 </div>
               </div>
               <a href="/dashboard/cart">
-                <Button size="small" class="w-full mt-2 btn-default" style="height: 40px;">
-                  <template #default>
-                    <div>
-                      <p class="inter-normal" style="font-size: 15px; font-weight: 500;">GO TO CART</p>
-                    </div>
-                  </template>
-                </Button>
+                <Button size="small" label="GO TO CART" class="w-full mt-2 btn-default" style="height: 40px;" />
               </a>
             </Panel>
           </OverlayPanel>
@@ -168,7 +165,8 @@
 
         <div class="flex flex-row align-items-center justify-content-between mt-2 px-2">
           <div class="card flex justify-content-center">
-            <div @click="toggleDropdown" class="cursor-pointer	flex flex-row align-items-center justify-content-between px-2 ml-2 filter-toggle w-9rem">
+            <div @click="toggleDropdown"
+              class="cursor-pointer	flex flex-row align-items-center justify-content-between px-2 ml-2 filter-toggle w-9rem">
               <p class="font-semibold text-filter">Filter</p>
               <i class="text-lg pi pi-angle-down"></i>
             </div>
@@ -189,7 +187,7 @@
             </OverlayPanel>
           </div>
           <ul
-            class="list-right list-none p-0 m-0 hidden flex align-items-center select-none surface-section border-none surface-border right-0 top-100 shadow-none ">
+            class="list-right list-none p-0 m-0 hidden flex align-items-center select-none border-none surface-border right-0 top-100 shadow-none ">
             <li><a href="/dashboard/calander"
                 class="flex px-3 py-2 align-items-center text-600 hover:text-900 hover:surface-100 font-medium border-round cursor-pointer transition-duration-150 transition-colors p-ripple"><i
                   class="pi pi-calendar text-2xl mr-2 mr-0"></i>
@@ -201,16 +199,18 @@
               </a>
             </li>
 
-            <OverlayPanel ref="toggleNotificationMobile" style="width: 95vw" showCloseIcon> 
+            <OverlayPanel ref="toggleNotificationMobile" style="width: 95vw" showCloseIcon>
               <Panel header="Header">
                 <div class="grid px-2">
                   <p class="col-12 inter-normal black-1 md:text-3xl" style="font-weight: 700; font-size: 18px">Notification</p>
                   <div v-for="(item, index) in notificationData" :key="index" class="grid col-12">
-                    <p class="col-12 inter-normal grey-2 md:text-2xl" style="font-weight: 400; font-size: 15px">{{ item.date }}</p>
-                    <div v-for="(massage, notificationIndex) in item.massage" :key="notificationIndex" class="ml-3 flex flex-column align-items-start col-12 px-1 py-1">
-                      <div class="flex flex-row">
-                        <i class="pi pi-circle-fill blue text-xs mr-2" style="padding-top: 12px"></i>
-                        <p class="inter-normal black-1 md:text-2xl" style="font-weight: 400; font-size: 14px">{{ massage.subject }} <span class="font-bold">{{massage.verb}}</span> {{ massage.object }}</p>
+                    <p class="col-12 text-xl dark-grey text">{{ item.date }}</p>
+                    <div v-for="(massage, notificationIndex) in item.massage" :key="notificationIndex"
+                      class="flex flex-column align-items-start col-12 px-4 py-1 text-xl">
+                      <div class="flex flex-row align-items-center gap-2">
+                        <i class="pi pi-circle-fill blue text-xs"></i>
+                        <p class="text">{{ massage.subject }} <span class="font-bold">{{ massage.verb }}</span> {{
+                          massage.object }}</p>
                       </div>
                       <p class="dark-grey text mt-2 md:text-xl" style="font-size: 13px">{{ massage.time }}</p>
                     </div>
@@ -224,19 +224,18 @@
                   class="pi pi-shopping-cart text-2xl mr-2 mr-0 p-overlay-badge"></i>
               </a>
             </li>
-            <OverlayPanel ref="toggleCartMobile" style="width: 95vw" showCloseIcon > 
+            <OverlayPanel ref="toggleCartMobile" style="width: 95vw" showCloseIcon>
               <Panel header="Header">
                 <div class="grid">
                   <p class="col-12 inter-normal black-1" style="font-size: 18px; font-weight: 700;">Cart</p>
                   <div class="grid w-full align-items-center justify-content-center">
-                    <img src="/public/assets/img/course/ui-ux-design.png" alt="ui ux design course" 
-                       class="col-12">
+                    <img src="/public/assets/img/course/ui-ux-design.png" alt="ui ux design course" class="col-12">
                     <div class="col-12 flex flex-column w-full align-items-center">
                       <p class="inter-normal black-1" style="font-size: 35px; font-weight: 700;">UI UX Designing</p>
                       <p class="inter-normal grey-1" style="font-size: 20px; font-weight: 700;">by David Burn</p>
                     </div>
                   </div>
-                  <Divider class="p-0 m-0"/>
+                  <Divider class="p-0 m-0" />
                   <div class="flex flex-column w-full text-4xl justify-content-center align-items-center gap-1 pt-2">
                     <p class="inter-normal black-1" style="font-size: 30px; font-weight: 700;">Total:</p>
                     <p class="inter-normal svo-orange-color" style="font-size: 30px; font-weight: 700;">RM 49.99</p>
@@ -244,11 +243,11 @@
                     <div class="flex cart-coupon w-full justify-content-center ">
                       <p class="inter-normal white-1" style="font-size: 20px; font-weight: 500;">50% off</p>
                     </div>
-                    
+
                   </div>
                 </div>
                 <a href="/dashboard/cart">
-                  <Button size="small" label="GO TO CART" class="w-full mt-2 btn-default" style="height: 50px;"/>
+                  <Button size="small" label="GO TO CART" class="w-full mt-2 btn-default" style="height: 50px;" />
                 </a>
               </Panel>
             </OverlayPanel>
@@ -269,15 +268,15 @@ import { ref, onMounted, watchEffect } from "vue";
 import { notificationDummyData } from '../views/Admin/AdminDashboard/DashboardNotification/DashboardNotificatioDummyData';
 
 interface Massage {
-    subject: string;
-    time: string;
-    verb: string;
-    object: string;
+  subject: string;
+  time: string;
+  verb: string;
+  object: string;
 }
 
 interface Inotif {
-    date: string;
-    massage: Massage[];
+  date: string;
+  massage: Massage[];
 }
 
 const notificationData = ref<Inotif[]>(notificationDummyData)
@@ -482,7 +481,7 @@ const toggleDropdown = (event: any) => {
   font-style: normal;
   font-weight: 400;
   line-height: 160%;
-  /* 20.8px */
+  background: transparent;
 
   @media screen and (max-width: 768px) {
     margin: 10px 0;
@@ -575,10 +574,10 @@ const toggleDropdown = (event: any) => {
     right: 1rem;
     background: white;
     color: black;
-  } 
+  }
 }
 
-.text-filter{
+.text-filter {
   color: var(--backgrounds-primary, #FFF);
   font-family: Inter;
   font-size: 16px;

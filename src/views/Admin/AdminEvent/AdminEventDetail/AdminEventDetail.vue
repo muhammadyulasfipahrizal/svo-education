@@ -8,6 +8,7 @@ import router from '@/router';
 import { useRoute } from 'vue-router';
 import flatPickr from 'vue-flatpickr-component';
 import 'flatpickr/dist/flatpickr.css';
+import { activitiesDummyData } from '../../AdminDashboard/DashboardDummyData';
 
 const config: Partial<any> = ref({
     inline: true,
@@ -26,7 +27,7 @@ const ticketPrice = ref();
 const addImage = ref();
 const ticketType = ref();
 const ticketPricePerItem = ref();
-const ticketCount = ref();
+const ticketCount = ref<number>(0);
 
 
 const showCalendar = () => {
@@ -78,7 +79,7 @@ onMounted(() => {
 
             ticketType.value = 'Gold - Early Bird';
             ticketPricePerItem.value = findEvent.ticket_prize;
-            ticketCount.value = 1;
+            // ticketCount.value = 1;
         }
     }
 })
@@ -117,11 +118,31 @@ const onSave = () => {
         router.push('/admin/event');
     }
 }
+import CustomCalendar from '@/views/Admin/CustomCalendar/CustomCalendar.vue';
+
+const dummyData = [...activitiesDummyData];
+const dataEvent = [{
+    date: '2023-09-20',
+    data: dummyData.splice(0, Math.random() * 10)
+}, {
+    date: '2023-09-21',
+    data: dummyData.splice(0, Math.random() * 10)
+}, {
+    date: '2023-09-10',
+    data: dummyData.splice(0, Math.random() * 10)
+}, {
+    date: '2023-09-13',
+    data: dummyData.splice(0, Math.random() * 10)
+},
+{
+    date: '2023-09-14',
+    data: dummyData.splice(0, Math.random() * 10)
+},]
 </script>
 
 <template>
     <section class="grid flex-column md:flex-row pr-2 pl-2 md:pl-2 lg:pl-0 xl:pl-0">
-        <div class="event-list col-12 md:col-8 lg:col-8">
+        <div class="event-list col-12 xl:col-8 min-h-screen bg-white">
             <div class="flex gap-1 align-items-center px-3">
                 <Button @click="$router.push('/admin/event')" link class="btn-back" size="small" icon="pi pi-angle-left" />
                 <h1 class="inter-normal black-2" style="font-size: 35px; font-weight: 700;">Ongoing Event</h1>
@@ -135,15 +156,16 @@ const onSave = () => {
                     </template>
                 </Carousel>
                 <InputText v-model="name" class="inter-normal black-2 mx-3" style="font-size: 25px; font-weight: 700;" />
-                <Textarea v-model="description" rows="8" class="inter-normal black-2 mx-3" style="font-size: 14px; font-weight: 400;"/>
+                <Textarea v-model="description" rows="8" class="inter-normal black-2 mx-3"
+                    style="font-size: 14px; font-weight: 400;" />
             </div>
         </div>
 
-        <div class="col-12 md:col-4 lg:col-4">
-            
+        <div class="col-12 xl:col-4">
+
             <div class="calendar">
                 <h1 class="inter-normal black-2" style="font-size: 25px; font-weight: 700;">Calendar</h1>
-                <flat-pickr v-model="date" :config="config" class="flex w-full border-round"/>
+                <CustomCalendar :range="true" />
             </div>
 
             <!-- Information -->
@@ -151,20 +173,22 @@ const onSave = () => {
             <div>
                 <div class="w-full flex flex-column align-items-center ">
                     <img src="/assets/img/ticket.png" alt="ticket" class="mb-3" style="width: 185px" />
-                    <div class="grid">
-                        <div class="col-7">
+                    <div class="grid w-full">
+                        <div class="col-6 pl-0">
                             <InputText v-model="ticketType" class="border-noround w-full font-bold" />
                         </div>
-                        <div class="col-5">
-                            <div class="flex border-red-500 border-1 align-items-center p-1 border-round gap-1">
-                                <button class="bg-white text-red-500 border-none cursor-pointer"
+                        <div class="col-6 pr-0">
+                            <div class="flex border-red-500 border-1 align-items-center p-1 border-round gap-1 w-max">
+                                <button class="bg-transparent text-red-500 border-none cursor-pointer"
                                     @click="decrementTicketCount">
                                     <img src="/assets/icon/minus.svg" alt="minus" />
                                 </button>
                                 <span class="border-1 border-solid border-300 w-1px" style="height: 30px;"></span>
-                                <InputText v-model="ticketCount" class="border-none ticket-count" type="number" min="1" />
+                                <InputNumber v-model="ticketCount" class="border-none ticket-count" type="number"
+                                    :min="1" />
                                 <span class="border-1 border-solid border-300 w-1px" style="height: 30px;"></span>
-                                <button class="bg-white text-red-500 border-none cursor-pointer" @click="ticketCount++">
+                                <button class="bg-transparent text-red-500 border-none cursor-pointer"
+                                    @click="ticketCount = ticketCount + 1">
                                     <img src="/assets/icon/plus.svg" alt="plus" />
                                 </button>
                             </div>
@@ -197,12 +221,13 @@ const onSave = () => {
                     </span>
                 </div>
 
-                <Button class="btn-add my-2 inter-normal justify-content-center" style="font-size: 10px; font-weight: 600;">Add to cart for RM {{ ticketPrice
+                <Button class="btn-add my-2 inter-normal justify-content-center">Add to cart for RM {{ ticketPrice
                 }}</Button>
             </div>
         </div>
         <div class="col-12">
-            <Button label="Save" @click="onSave" class="w-full inter-normal btn-save" style="font-size: 13px; font-weight: 700;"></Button>
+            <Button label="Save" @click="onSave" class="w-full inter-normal btn-save"
+                style="font-size: 13px; font-weight: 700;"></Button>
         </div>
     </section>
 </template>
@@ -231,50 +256,51 @@ const onSave = () => {
 </style>
 
 
-<style scoped>
+<style scoped lang="scss">
 .inter-normal {
     font-family: Inter;
     font-style: normal;
     font-weight: 700;
     line-height: 160%;
-  }
-  
-  .dm-sans-normal {
+}
+
+.dm-sans-normal {
     font-family: DM Sans;
     font-style: normal;
     line-height: normal;
     letter-spacing: 0.12px;
-  }
-  
-  .poppins-normal {
+}
+
+.poppins-normal {
     font-family: Poppins;
     font-style: normal;
     line-height: 160%;
-  }
-  
-  .black-1 {
+}
+
+.black-1 {
     color: var(--font-1, #001125);
-  }
-  
-  .black-2 {
+}
+
+.black-2 {
     color: #000;
-  }
-  
-  .white-1 {
+}
+
+.white-1 {
     color: var(--White, #FFF);
-  }
-  
-  .grey-1 {
+}
+
+.grey-1 {
     color: #9F9F9F;
-  }
-  
-  .grey-2 {
+}
+
+.grey-2 {
     color: #6E6893;
-  }
-  
-  .grey-3 {
+}
+
+.grey-3 {
     color: var(--Suggested-dark-grey, #808081);
-  }
+}
+
 .btn-save {
     background-color: #00C0DD;
     border: none;
@@ -287,6 +313,12 @@ const onSave = () => {
 }
 
 .btn-add {
+    color: var(--bg-1, #FFF);
+    font-family: Inter;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 160%;
     border-radius: 0;
     width: 100%;
     background-color: #E26954;
@@ -320,6 +352,9 @@ const onSave = () => {
     appearance: none;
     text-align: center;
 
+    display: flex;
+    justify-content: center;
+
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {
         -webkit-appearance: none;
@@ -328,28 +363,34 @@ const onSave = () => {
     &:focus {
         outline: none;
     }
+
+    :deep(.p-inputtext) {
+        width: inherit !important;
+        border: none;
+        background: transparent;
+    }
 }
 
 ::v-deep(.flatpickr-input[readonly]) {
     display: none !important;
 }
 
-::v-deep(.flatpickr-day.selected){
+::v-deep(.flatpickr-day.selected) {
     border-radius: 5px;
     background: var(--Suggested-orange, #E96853);
 }
 
-::v-deep(.flatpickr-day:hover){
+::v-deep(.flatpickr-day:hover) {
     border-radius: 5px;
     background: var(--Suggested-orange, #E96853);
 }
 
-::v-deep(.flatpickr-day.selected.startRange){
+::v-deep(.flatpickr-day.selected.startRange) {
     border-radius: 5px;
     background: var(--Suggested-orange, #E96853);
 }
 
-::v-deep(.flatpickr-day.selected.endRange){
+::v-deep(.flatpickr-day.selected.endRange) {
     border-radius: 5px;
     background: var(--Suggested-orange, #E96853);
 }
@@ -384,7 +425,7 @@ const onSave = () => {
     margin-right: 5%;
 }
 
-::v-deep(.flatpickr-rContainer){
+::v-deep(.flatpickr-rContainer) {
     width: 100%;
     border-radius: 0px 0px 20px 20px;
     border-bottom: 1px solid #D9D5EC;

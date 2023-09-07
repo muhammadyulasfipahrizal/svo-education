@@ -153,8 +153,8 @@
         <li>
           <router-link to="/admin/create" class="grid gap-2 menuitem-link" :class="{ active: isActive('/admin/create') }">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
-              <path d="M10 14.1654V5.83203" stroke="black" stroke-width="1.5" stroke-linecap="round" />
-              <path d="M5.83366 10L14.167 10" stroke="black" stroke-width="1.5" stroke-linecap="round" />
+              <path d="M10 14.1654V5.83203" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+              <path d="M5.83366 10L14.167 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
             </svg>
             <span class="menuitem-text">Create</span>
           </router-link>
@@ -217,13 +217,13 @@
             <li>
               <router-link to="/admin/profile/instructors" class="grid gap-2 menuitem-link"
                 :class="{ active: isActive('/admin/profile/instructors') }">
-                <span class="menuitem-text">Instructors</span>
+                <span class="menuitem-text"><span class="dot"></span> Instructors</span>
               </router-link>
             </li>
             <li>
               <router-link to="/admin/profile/students" class="grid gap-2 menuitem-link"
                 :class="{ active: isActive('/admin/profile/students') }">
-                <span class="menuitem-text">Students</span>
+                <span class="menuitem-text"><span class="dot"></span> Students</span>
               </router-link>
             </li>
           </ul>
