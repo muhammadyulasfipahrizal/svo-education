@@ -115,7 +115,7 @@ const getBackgroundColor = (progress: number) => {
 
         <!-- table -->
         <div class="col-12 pr-3">
-          <DataTable :value="studentData" removableSort paginator :rows="10" :rowsPerPageOptions="[5, 10, 20, 50]"
+          <DataTable :value="studentData" removableSort paginator :rows="10"
             tableStyle="min-width: 50rem" sortMode="multiple" dataKey="id" v-model:selection="checkedStudent"
             class="shadow-2 detail-table"
             :paginatorTemplate="{
@@ -304,23 +304,23 @@ const getBackgroundColor = (progress: number) => {
         <p class="modal-student-name">{{ currentStudent?.name }}</p>
       </div>
     </template>
-    <div class="flex flex-row py-4 pr-4 mr-2">
+    <div class="flex flex-row py-4">
       <!-- PREV BUTTON -->
-      <button class="prev-button cursor-pointer" v-bind:class="{ 'hidden': !showButton.prev }" @click="showPrevDays">
+      <button class="prev-button cursor-pointer" v-bind:class="{ 'opacity-0': !showButton.prev }" @click="showPrevDays">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" viewBox="0 0 16 15" fill="none">
           <path fill-rule="evenodd" clip-rule="evenodd"
             d="M9.26896 4.66854C9.45201 4.8516 9.45201 5.1484 9.26896 5.33146L7.10041 7.5L9.26896 9.66854C9.45201 9.8516 9.45201 10.1484 9.26896 10.3315C9.0859 10.5145 8.7891 10.5145 8.60604 10.3315L6.10604 7.83146C5.92299 7.6484 5.92299 7.3516 6.10604 7.16854L8.60604 4.66854C8.7891 4.48549 9.0859 4.48549 9.26896 4.66854Z"
             fill="black" />
         </svg></button>
-      <DataTable class="w-full modal-table" :value="[{}]">
+      <DataTable class="modal-table table-tobe-fixed" :value="[{}]">
         <template #header>
-          <div class="flex justify-content-center margin-auto">
+          <div class="flex h-3rem justify-content-center align-items-center margin-auto">
             <p class="p-0 m-0 poppins-normal black-2" style="font-size: 15px; font-weight: 500; letter-spacing: 0.45px;">Attendance {{ currentStudent?.attendance }}/{{
               currentStudent?.days.length }} ({{
     ((currentStudent?.attendance || 0) / 10) * 100 }}%)</p>
           </div>
         </template>
-        <template v-for="col of columns">
+        <template v-for="col of columns" :key="col.header">
           <Column field="status">
             <template #header>
               <div class="w-5rem flex justify-content-center align-items-center font-medium poppins-normal black-2"
@@ -329,7 +329,7 @@ const getBackgroundColor = (progress: number) => {
               </div>
             </template>
             <template #body>
-              <div class="w-5rem flex justify-content-center align-items-center">
+              <div class="w-5rem h-3rem flex justify-content-center align-items-center">
                 <svg v-if="col.value === 'passed'" xmlns="http://www.w3.org/2000/svg" width="15" height="15"
                   viewBox="0 0 15 15" fill="none">
                   <rect width="15" height="15" rx="7.5" fill="#659872" />
@@ -349,7 +349,7 @@ const getBackgroundColor = (progress: number) => {
         </template>
       </DataTable>
       <!-- NEXT BUTTON -->
-      <button class="next-button cursor-pointer" v-bind:class="{ 'hidden': !showButton.next }" @click="showNextDays">
+      <button class="next-button cursor-pointer" v-bind:class="{ 'opacity-0': !showButton.next }" @click="showNextDays">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" viewBox="0 0 16 15" fill="none">
           <path fill-rule="evenodd" clip-rule="evenodd"
             d="M6.73104 4.66854C6.9141 4.48549 7.2109 4.48549 7.39396 4.66854L9.89396 7.16854C10.077 7.3516 10.077 7.6484 9.89396 7.83146L7.39396 10.3315C7.2109 10.5145 6.9141 10.5145 6.73104 10.3315C6.54799 10.1484 6.54799 9.8516 6.73104 9.66854L8.89959 7.5L6.73104 5.33146C6.54799 5.1484 6.54799 4.8516 6.73104 4.66854Z"
@@ -569,7 +569,7 @@ const getBackgroundColor = (progress: number) => {
   color: #659872;
 }
 
-.attendance-text {
+.wnce-text {
   color: var(--fonts-primary, #25213B);
   text-align: center;
   font-family: Inter;
@@ -716,6 +716,13 @@ const getBackgroundColor = (progress: number) => {
   .p-datatable-wrapper {
     overflow: hidden;
     scroll-behavior: smooth;
+  }
+}
+
+.table-tobe-fixed {
+  max-width: 85%; 
+  @media screen and (min-width: 1024px) {
+    max-width: 90%;
   }
 }
 </style>
