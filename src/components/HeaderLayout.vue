@@ -87,28 +87,34 @@
               <span class="block md:hidden font-medium">Cart</span><span class="p-ink" role="presentation"></span></a>
           </li>
 
-          <OverlayPanel ref="toggleCartDekstop" style="width:425px" showCloseIcon > 
+          <OverlayPanel ref="toggleCartDekstop" style="width:550px" showCloseIcon > 
             <Panel header="Header">
               <div class="grid">
-                <p class="col-12 text-lg font-bold">Cart</p>
+                <p class="col-12 inter-normal black-1" style="font-size: 18px; font-weight: 700;">Cart</p>
                 <div class="grid w-full align-items-center">
                   <img src="/public/assets/img/course/ui-ux-design.png" alt="ui ux design course" 
                      class="col-6" style="width: 200px; height: 128px;">
                   <div class="col-6">
-                    <p class="text-xl font-bold">UI UX Designing</p>
-                    <p class="grey font-bold">by David Burn</p>
+                    <p class="inter-normal black-1" style="font-size: 35px; font-weight: 700; white-space: nowrap;">UI UX Designing</p>
+                    <p class="inter-normal grey-1" style="font-size: 20px; font-weight: 700;">by David Burn</p>
                   </div>
                 </div>
                 <Divider class="p-0 m-0"/>
                 <div class="flex flex-row align-items-center gap-2 pt-2">
-                  <p class="text-2xl font-bold">Total: <span class="font-bold orange">
+                  <p class="inter-normal black-1" style="font-size: 35px; font-weight: 700; white-space: nowrap;">Total: <span class="font-bold orange">
                     RM 49.99 </span><span class="line-through light-grey">
                       RM 69.99</span></p>
                   <p class="font-bold cart-coupon">50% off</p>
                 </div>
               </div>
               <a href="/dashboard/cart">
-                <Button size="small" label="GO TO CART" class="w-full mt-2 btn-default" style="height: 40px;"/>
+                <Button size="small" class="w-full mt-2 btn-default" style="height: 40px;">
+                  <template #default>
+                    <div>
+                      <p class="inter-normal" style="font-size: 15px; font-weight: 500;">GO TO CART</p>
+                    </div>
+                  </template>
+                </Button>
               </a>
             </Panel>
           </OverlayPanel>
@@ -221,22 +227,22 @@
             <OverlayPanel ref="toggleCartMobile" style="width: 95vw" showCloseIcon > 
               <Panel header="Header">
                 <div class="grid">
-                  <p class="col-12 text-lg font-bold">Cart</p>
+                  <p class="col-12 inter-normal black-1" style="font-size: 18px; font-weight: 700;">Cart</p>
                   <div class="grid w-full align-items-center justify-content-center">
                     <img src="/public/assets/img/course/ui-ux-design.png" alt="ui ux design course" 
                        class="col-12">
                     <div class="col-12 flex flex-column w-full align-items-center">
-                      <p class="text-4xl font-bold">UI UX Designing</p>
-                      <p class="text-2xl grey font-bold">by David Burn</p>
+                      <p class="inter-normal black-1" style="font-size: 35px; font-weight: 700;">UI UX Designing</p>
+                      <p class="inter-normal grey-1" style="font-size: 20px; font-weight: 700;">by David Burn</p>
                     </div>
                   </div>
                   <Divider class="p-0 m-0"/>
                   <div class="flex flex-column w-full text-4xl justify-content-center align-items-center gap-1 pt-2">
-                    <p class="font-bold">Total:</p>
-                    <p class="font-bold orange">RM 49.99</p>
-                    <p class="line-through light-grey">RM 69.99</p>
+                    <p class="inter-normal black-1" style="font-size: 30px; font-weight: 700;">Total:</p>
+                    <p class="inter-normal svo-orange-color" style="font-size: 30px; font-weight: 700;">RM 49.99</p>
+                    <p class="line-through light-grey inter-normal" style="font-size: 30px; font-weight: 700;">RM 69.99</p>
                     <div class="flex cart-coupon w-full justify-content-center ">
-                      <p class="text-2xl">50% off</p>
+                      <p class="inter-normal white-1" style="font-size: 20px; font-weight: 500;">50% off</p>
                     </div>
                     
                   </div>
