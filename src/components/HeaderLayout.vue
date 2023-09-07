@@ -171,12 +171,12 @@
               <Panel>
                 <div class="flex flex-column md:flex-row gap-4">
                   <div v-for="category in filterData" :key="category.label" class="flex flex-column align-items-start">
-                    <p class="text-xl font-bold">{{ category.label }}</p>
+                    <p class="inter-normal black-2" style="font-size: 20px; font-weight: 700; letter-spacing: 0.2px;">{{ category.label }}</p>
                     <div v-for="item in category.items" :key="item.value" class="flex flex-row gap-2">
                       <input :id="item.value" :value="item.value" type="checkbox" :name="category.label">
-                      <label :for="item.value">{{ item.value }}</label>
+                      <label :for="item.value" class="dm-sans-normal black-2" style="font-size: 15px; font-weight: 400; letter-spacing: 0.15px;">{{ item.value }}</label>
                     </div>
-                    <p class="pt-1 font-bold cursor-pointer">Show more...</p>
+                    <p class="pt-1 cursor-pointer dm-sans-normal black-2" style="font-size: 15px; font-weight: 700; letter-spacing: 0.15px;">Show more...</p>
                   </div>
                 </div>
               </Panel>
@@ -365,6 +365,7 @@ const toggleDropdown = (event: any) => {
 </script>
 
 <style scoped lang="scss">
+@import "/src/assets/global.scss";
 .header-left {
   display: flex;
   align-items: center;
