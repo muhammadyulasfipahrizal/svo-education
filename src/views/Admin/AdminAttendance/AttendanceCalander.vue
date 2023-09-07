@@ -1,5 +1,5 @@
 <template>
-  <div class="border-2 surface-border grid align-items-center justify-content-center w-full p-0 m-0 mb-3 border-round-xl">
+  <div class="border-2 surface-border grid align-items-center justify-content-center w-full p-0 m-0 mb-3 border-round-xl content">
     <div class="flex align-items-center justify-content-center avatar-container col-12 px-0">
       <img :src="card.image" class="border-circle w-4rem h-4rem object-cover" style="object-fit: cover" />
       <span v-html="card.iconMarkup" :class="getIconClass(card.iconMarkup)" class="absolute"></span>
@@ -193,9 +193,9 @@ const attributes = ref([
     }
 
     @media screen and (max-width: 768px) {
-      width: 26px;
-      height: 26px;
-      min-height: 26px;
+      width: 100%;
+      height: 100%;
+      min-height: 100%;
 
       .vc-day-content {
         font-size: 8.9px;
@@ -338,5 +338,9 @@ const attributes = ref([
       }
     }
   }
+}
+
+.content {
+  font-family: Inter;
 }
 </style>
