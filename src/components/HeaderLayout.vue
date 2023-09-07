@@ -61,15 +61,15 @@
           <OverlayPanel ref="toggleNotificationDekstop" style="width: 700px" showCloseIcon > 
             <Panel header="Header">
               <div class="grid">
-                <p class="col-12 text-lg font-bold text">Notification</p>
+                <p class="col-12 inter-normal black-1" style="font-size: 18px; font-weight: 700;">Notification</p>
                 <div v-for="(item, index) in notificationData" :key="index" class="grid col-12">
-                  <p class="col-12 dark-grey text">{{ item.date }}</p>
+                  <p class="col-12 inter-normal grey-2" style="font-size: 15px; font-weight: 400;">{{ item.date }}</p>
                   <div v-for="(massage, notificationIndex) in item.massage" :key="notificationIndex" class="flex flex-row align-items-center justify-content-between col-12 px-4 py-1">
                     <div class="flex flex-row align-items-center gap-2">
                       <i class="pi pi-circle-fill blue text-xs"></i>
-                      <p class="text">{{ massage.subject }} <span class="font-bold">{{massage.verb}}</span> {{ massage.object }}</p>
+                      <p class="inter-normal black-1" style="font-size: 14px; font-weight: 400;">{{ massage.subject }} <span class="font-bold">{{massage.verb}}</span> {{ massage.object }}</p>
                     </div>
-                    <p class="align-self-end dark-grey text">{{ massage.time }}</p>
+                    <p class="align-self-end inter-normal black-1" style="font-size: 13px; font-weight: 400;">{{ massage.time }}</p>
                   </div>
                 </div>
               </div>
