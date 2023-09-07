@@ -139,7 +139,7 @@ const instructorNew = ref();
 <template>
   <section class="px-2">
     <section class="grid pl-4 pr-4 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2 py-2 w-full py-3">
-      <h1 class="title-head py-2">Live video for you</h1>
+      <h1 class="inter-normal black-1 py-2" style="font-size: 35px; font-weight: 700;">Live video for you</h1>
       <div class="border-1 surface-border surface-0 mb-3 w-full" @click="openModal(null)">
         <div v-if="!videoUrls[0]" class="p-5 flex justify-content-center align-items-center h-30rem cursor-pointer">
           <i class="pi pi-fw pi-plus-circle upload-icon"></i>
@@ -167,7 +167,7 @@ const instructorNew = ref();
           <div class="border-1 border-round-xl border-300">
             <div class="flex flex-column gap-2">
               <div class="flex justify-content-center align-items-center my-2">
-                <p class="text-sm font-bold mr-2">Event 1</p>
+                <p class="inter-normal black-1 mr-2" style="font-size: 15px; font-weight: 700;">Event 1</p>
                 <i class="pi pi-pencil mr-2" size="small" @click="openModal(index)" link></i>
                 <i class="pi pi-trash" size="small" @click="deleteCard(index)" link></i>
               </div>
@@ -194,8 +194,8 @@ const instructorNew = ref();
                   <img src="/assets/img/instructor.png" alt="Profile" class="card-profile"
                     style="width: 50px; height:50px" />
                   <div class="flex flex-column gap-0">
-                    <p class="p-0 m-0 card-title">{{ video.details?.title }}</p>
-                    <p class="p-0 m-0 text-sm">by <span>{{ video.details?.instructor }}</span></p>
+                    <p class="p-0 m-0 inter-normal black-1" style="font-size: 20px; font-weight: 700;">{{ video.details?.title }}</p>
+                    <p class="p-0 m-0 inter-normal black-3" style="font-size: 15px; font-weight: 400;">by <span>{{ video.details?.instructor }}</span></p>
                   </div>
                 </div>
               </div>
@@ -218,21 +218,27 @@ const instructorNew = ref();
       <Dialog v-model:visible="showModal" modal header="" class="modal min-w-min" :style="{ width: '50vw' }"
         :breakpoints="{ '764px': '70vw' }">
         <template #header>
-          <div class="text-2xl font-bold">
+          <div class="inter-normal black-1" style="font-size: 35px; font-weight: 700;">
             Upload new media
           </div>
         </template>
         <div class="upload-section px-1">
           <label class="upload-label" v-if="!selectedVideo">
             <input ref="fileInput" type="file" accept="video/*" style="display: none" @change="handleFileChange" />
-            <span class="modal-upload-text">Drop Files Here</span>
-            <p>Or</p>
-            <p class="modal-select-file">Select File</p>
+            <span class="inter-normal grey-3" style="font-size: 20px; font-weight: 400;">Drop Files Here</span>
+            <p class="inter-normal grey-3" style="font-size: 15px; font-weight: 400;">Or</p>
+            <Button size="small" plain outlined class="py-1 px-3">
+              <template #default>
+                <div class="mx-auto">
+                  <p class="inter-normal grey-3" style="font-size: 12px; font-weight: 600;">Select File</p>
+                </div>
+              </template>
+            </Button>
           </label>
           <video v-else :src="selectedVideo" class="min-w-full"></video>
-          <p class="max-file-size">Maximum file size: 8 MB</p>
+          <p class="max-file-size inter-normal black-2" style="font-size: 15px; font-weight: 400;">Maximum upload file size: 8 MB</p>
         </div>
-        <h3 class="live-video-details">Live Video Details</h3>
+        <h3 class="live-video-details inter-normal black-2" style="font-size: 30px; font-weight: 4700;">Live Video Details</h3>
         <div class="profile-section flex flex-row align-items-center gap-4">
           <input type="file" ref="fileInput" accept="image/*" style="display: none" @change="handleImageChange" />
           <img :src="profileImage" alt="Profile" class="modal-profile" @click="changeProfileImage" />
@@ -249,7 +255,7 @@ const instructorNew = ref();
 
         <template #footer>
           <div class="flex justify-content-center align-items-center py-2">
-            <Button size="small" class="w-full save-button" @click="saveVideo">Save</Button>
+            <Button size="small" class="w-full save-button inter-normal" style="font-size: 13px; font-weight: 700;" @click="saveVideo">Save</Button>
           </div>
         </template>
       </Dialog>
@@ -258,6 +264,7 @@ const instructorNew = ref();
 </template>
 
 <style scoped lang="scss">
+@import "/src/assets/global.scss";
 .card-row {
   display: flex;
   justify-content: flex-start;
@@ -370,12 +377,6 @@ const instructorNew = ref();
   display: flex;
   flex-direction: column;
 }
-
-.card-title {
-  font-size: 20px;
-  font-weight: bold;
-}
-
 .card-info p {
   margin: 0;
 }

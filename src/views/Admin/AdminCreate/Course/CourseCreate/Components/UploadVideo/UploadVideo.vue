@@ -39,13 +39,14 @@ const onUpload = (e: any) => {
         <template v-if="!fileUploadPreview">
             <input type="file" ref="fileUpload" class="hidden" accept="video/*" @change="onUpload" />
             <i class="w-2rem pi-cloud-upload pi" />
-            <h2 class="text-700 font-medium text-sm text-center">Drag and drop the video file/paste the link you
+            <h2 class="inter-normal grey-3 text-center" style="font-size: 12px; font-weight: 400;">Drag and drop the video file/paste the link you
                 want to upload</h2>
         </template>
     </div>
 </template>
 
 <style lang="scss">
+@import "/src/assets/global.scss";
 .card-upload {
     border-radius: 10px;
     border: 1px solid #E5E5E5;

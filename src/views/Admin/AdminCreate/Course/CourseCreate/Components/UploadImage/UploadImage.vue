@@ -39,12 +39,13 @@ const onUpload = (e: any) => {
         <template v-if="!fileUploadPreview">
             <input type="file" ref="fileUpload" class="hidden" accept="image/*" @change="onUpload" />
             <img src="/assets/icon/add-image.png" class="w-2rem" />
-            <h2 class="text-700 font-medium text-sm">Drag and drop the image you want to upload</h2>
+            <h2 class="inter-normal grey-3 text-center" style="font-size: 12px; font-weight: 400;">Drag and drop the image you want <br>to upload</h2>
         </template>
     </div>
 </template>
 
 <style lang="scss">
+@import "/src/assets/global.scss";
 .card-upload {
     border-radius: 10px;
     border: 1px solid #E5E5E5;

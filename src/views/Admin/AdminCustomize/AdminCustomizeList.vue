@@ -5,7 +5,7 @@
       
       <div class="my-5 shadow-5 col-12 border-round-md">
         <div class="grid col-12 align-items-center justify-content-center">
-          <h1 class="title text-black text-2xl sm:text-3xl col-6 sm:col-7 md:col-8 lg:col-10">Badge</h1>
+          <h1 class="inter-normal black-2 sm:text-3xl col-6 sm:col-7 md:col-8 lg:col-10" style="font-size: 30px; font-weight: 700;">Badge</h1>
           <Button label="NEW" @click="router.push({ path: '/admin/customize/editor' })" class="btn-new col-6 sm:col-5 md:col-4 lg:col-2"></Button>
         </div>
       </div>
@@ -15,7 +15,7 @@
           <div class="flex flex-column align-items-center gap-2">
             <div class="flex w-full">
               <div class="mx-auto relative">
-                <span class="font-bold text-2xl">Achieved</span>
+                <span class="inter-normal black-1" style="font-size: 20px; font-weight: 700;">Achieved</span>
 
                 <!-- Edit Icon -->
                 <div role="button" class="edit-icon">
@@ -66,7 +66,7 @@ watchEffect(() => {
 </script>
 
 <style scoped lang="scss">
-
+@import "/src/assets/global.scss";
 .title {
   font-family: Inter;
   font-size: 35px;

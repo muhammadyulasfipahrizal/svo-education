@@ -124,7 +124,7 @@ const onSave = () => {
         <div class="event-list col-12 md:col-8 lg:col-8">
             <div class="flex gap-1 align-items-center px-3">
                 <Button @click="$router.push('/admin/event')" link class="btn-back" size="small" icon="pi pi-angle-left" />
-                <h1 class="title-head">Ongoing Event</h1>
+                <h1 class="inter-normal black-2" style="font-size: 35px; font-weight: 700;">Ongoing Event</h1>
             </div>
             <div class="flex gap-2 flex-column md:w-full ">
                 <Carousel :value="eventList" :numVisible="1" :numScroll="1">
@@ -134,20 +134,20 @@ const onSave = () => {
                         </div>
                     </template>
                 </Carousel>
-                <InputText v-model="name" class="title text-2xl font-bold mx-3" />
-                <Textarea v-model="description" rows="10" class="mx-3" />
+                <InputText v-model="name" class="inter-normal black-2 mx-3" style="font-size: 25px; font-weight: 700;" />
+                <Textarea v-model="description" rows="8" class="inter-normal black-2 mx-3" style="font-size: 14px; font-weight: 400;"/>
             </div>
         </div>
 
         <div class="col-12 md:col-4 lg:col-4">
             
             <div class="calendar">
-                <h1 class="font-bold">Calendar</h1>
+                <h1 class="inter-normal black-2" style="font-size: 25px; font-weight: 700;">Calendar</h1>
                 <flat-pickr v-model="date" :config="config" class="flex w-full border-round"/>
             </div>
 
             <!-- Information -->
-            <h1 class="font-bold mb-2 mt-3">Event Information</h1>
+            <h1 class="inter-normal black-2 mb-2 mt-3" style="font-size: 20px; font-weight: 700;">Event Information</h1>
             <div>
                 <div class="w-full flex flex-column align-items-center ">
                     <img src="/assets/img/ticket.png" alt="ticket" class="mb-3" style="width: 185px" />
@@ -197,12 +197,12 @@ const onSave = () => {
                     </span>
                 </div>
 
-                <Button class="btn-add my-2 text-center justify-content-center">Add to cart for RM {{ ticketPrice
+                <Button class="btn-add my-2 inter-normal justify-content-center" style="font-size: 10px; font-weight: 600;">Add to cart for RM {{ ticketPrice
                 }}</Button>
             </div>
         </div>
         <div class="col-12">
-            <Button label="Save" @click="onSave" class="w-full  btn-save"></Button>
+            <Button label="Save" @click="onSave" class="w-full inter-normal btn-save" style="font-size: 13px; font-weight: 700;"></Button>
         </div>
     </section>
 </template>
@@ -232,6 +232,49 @@ const onSave = () => {
 
 
 <style scoped>
+.inter-normal {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 160%;
+  }
+  
+  .dm-sans-normal {
+    font-family: DM Sans;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: 0.12px;
+  }
+  
+  .poppins-normal {
+    font-family: Poppins;
+    font-style: normal;
+    line-height: 160%;
+  }
+  
+  .black-1 {
+    color: var(--font-1, #001125);
+  }
+  
+  .black-2 {
+    color: #000;
+  }
+  
+  .white-1 {
+    color: var(--White, #FFF);
+  }
+  
+  .grey-1 {
+    color: #9F9F9F;
+  }
+  
+  .grey-2 {
+    color: #6E6893;
+  }
+  
+  .grey-3 {
+    color: var(--Suggested-dark-grey, #808081);
+  }
 .btn-save {
     background-color: #00C0DD;
     border: none;

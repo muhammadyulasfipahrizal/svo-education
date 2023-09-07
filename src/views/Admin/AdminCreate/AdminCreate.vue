@@ -81,7 +81,7 @@ router.afterEach((to, from) => {
           <Button size="small" class="btn-header min-w-max" @click="goToLocation(data.location)"
             :class="{ active: activeMenu.startsWith(data.location) }">
             <i class="pi pi-plus" @click="addDialog"></i>
-            <p class="text-900 font-bold ml-2 text-white">{{ data.title }}</p>
+            <p class="inter-normal ml-2 text-white" style="font-size: 16px; font-weight: 600;">{{ data.title }}</p>
           </Button>
         </div>
         <Button size="small" class="btn-header min-w-min" @click="showModal">
@@ -157,6 +157,7 @@ router.afterEach((to, from) => {
   </main>
 </template>
 <style scoped lang="scss">
+@import "/src/assets/global.scss";
 .width {
   max-width: 95vw;
 }

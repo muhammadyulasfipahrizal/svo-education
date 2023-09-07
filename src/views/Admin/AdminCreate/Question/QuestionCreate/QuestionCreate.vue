@@ -60,29 +60,29 @@ const tryAgainAttemptType = ref();
     <section class="my-3">
         <!-- Content -->
         <div class="flex flex-column gap-3">
-            <h1 class="text-900 text-2xl font-bold">Prepare Questions</h1>
+            <h1 class="inter-normal black-1" style="font-size: 25px; font-weight: 700;">Prepare Questions</h1>
             <div class="flex gap-2 align-items-center">
-                <h4 class="font-bold text-xl text-900 mr-3">
+                <h4 class="inter-normal black-1 mr-3" style="font-size: 20px; font-weight: 700;">
                     Give instructor access to
                 </h4>
                 <div class="flex flex-wrap gap-4">
                     <div class="flex align-items-center">
                         <RadioButton v-model="access" inputId="access1" name="access" :value="1" />
-                        <label for="access1" class="ml-2 text-xl font-bold">View</label>
+                        <label for="access1" class="ml-2 inter-normal black-4" style="font-size: 20px; font-weight: 700; letter-spacing: 0.2px;">View</label>
                     </div>
                     <div class="flex align-items-center">
                         <RadioButton v-model="access" inputId="access2" name="access" :value="2" />
-                        <label for="access2" class="ml-2 text-xl font-bold">Marking</label>
+                        <label for="access2" class="ml-2 inter-normal black-4" style="font-size: 20px; font-weight: 700; letter-spacing: 0.2px;">Marking</label>
                     </div>
                     <div class="flex align-items-center">
                         <RadioButton v-model="access" inputId="access3" name="access" :value="3" />
-                        <label for="access3" class="ml-2 text-xl font-bold">View & Marking</label>
+                        <label for="access3" class="ml-2 inter-normal black-4" style="font-size: 20px; font-weight: 700; letter-spacing: 0.2px;">View & Marking</label>
                     </div>
                 </div>
             </div>
             <div class="grid">
                 <div class="col-4">
-                    <p class="text-lg">Calendar</p>
+                    <p class="inter-normal black-1" style="font-size: 12px; font-weight: 400;">Calendar</p>
                     <div class="flex bg-transparent gap-1 p-1 align-items-center border-300 border-1 w-20rem xl:w-full">
                         <Dropdown v-model="calendar.month" v-bind:class="{ selected: calendar.month }" :options="monthList"
                             optionLabel="name" placeholder="MM"
@@ -104,7 +104,7 @@ const tryAgainAttemptType = ref();
                     </div>
                 </div>
                 <div class="col-3">
-                    <p class="text-lg">Time Limit</p>
+                    <p class="inter-normal black-1" style="font-size: 12px; font-weight: 400;">Time Limit</p>
                     <div class="flex bg-transparent gap-1 p-1 align-items-center border-300 border-1">
                         <InputText size="small" class="p-0 m-0 border-noround p-inputtext-sm border-none text-center h-2rem w-3rem" v-model="timeLimit.time" />
                         <svg xmlns="http://www.w3.org/2000/svg" width="2" height="18" viewBox="0 0 2 18" fill="none">
@@ -117,7 +117,7 @@ const tryAgainAttemptType = ref();
                     </div>
                 </div>
                 <div class="col-2">
-                    <p class="text-lg">Attempt</p>
+                    <p class="inter-normal black-1" style="font-size: 12px; font-weight: 400;">Attempt</p>
                     <div class="flex bg-transparent gap-1 p-1 align-items-center border-300 border-1">
                         <InputText size="small" class="p-0 m-0 border-noround p-inputtext-sm border-none text-center h-2rem w-3rem" v-model="attempts" />
                         <svg xmlns="http://www.w3.org/2000/svg" width="2" height="18" viewBox="0 0 2 18" fill="none">
@@ -128,7 +128,7 @@ const tryAgainAttemptType = ref();
                     </div>
                 </div>
                 <div class="col-3">
-                    <p class="text-lg">Try Again After Attempts</p>
+                    <p class="inter-normal black-1" style="font-size: 12px; font-weight: 400;">Try Again After Attempts</p>
                     <div class="flex bg-transparent gap-1 p-1 align-items-center border-300 border-1">
                         <InputText size="small" class="p-0 m-0 border-noround p-inputtext-sm border-none text-center h-2rem w-3rem" v-model="tryAgainAttempt" />
                         <svg xmlns="http://www.w3.org/2000/svg" width="2" height="18" viewBox="0 0 2 18" fill="none">
@@ -142,7 +142,7 @@ const tryAgainAttemptType = ref();
                 </div>
             </div>
             <div class="flex flex-column gap-2">
-                <h4 class="font-bold text-xl">Assesment</h4>
+                <h4 class="inter-normal black-2" style="font-size: 20px; font-weight: 600;">Assesment</h4>
                 <div class="grid align-items-center w-full">
                     <h4 class="font-bold text-lg col-12 md:col-9 lg:col-9 xl:col-9">Assesment (2 questions)</h4>
                     <div class="col-12 md:col-3 lg:col-3 xl:col-3 flex gap-2 col-2 align-items-center justify-content-end">
@@ -187,11 +187,7 @@ const tryAgainAttemptType = ref();
 </template>
 
 <style scoped lang="scss">
-.text {
-    font-family: Inter;
-    font-style: normal;
-    line-height: 160%;
-}
+@import "/src/assets/global.scss";
 
 ::v-deep(.p-dropdown) {
     .p-dropdown-label {

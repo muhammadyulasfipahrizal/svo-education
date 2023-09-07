@@ -75,7 +75,7 @@ const getBackgroundColor = (progress: number) => {
       class="grid overflow-hidden flex-column md:flex-row pl-0 pr-0 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2">
       <div class="col-12 flex flex-row align-items-center my-2">
         <i class="pi pi-chevron-left mr-3 back-arrow cursor-pointer" @click="$router.push('/admin/progress/student')"></i>
-        <h1 class="title-head">Student Progress</h1>
+        <h1 class="inter-normal black-2" style="font-size: 35px; font-weight: 700;">Student Progress</h1>
       </div>
       <div class="grid col-12 p-0 m-0">
         <div class="col-12">
@@ -84,7 +84,7 @@ const getBackgroundColor = (progress: number) => {
             <template #value="slotProps">
               <div v-if="slotProps.value" class="flex align-items-center">
                 <img :alt="slotProps.value.courseName" :src="slotProps.value.image" class="mr-2" style="width: 60px;" />
-                <div class="text-900 font-medium text-2xl mx-4">{{ slotProps.value.courseName }}</div>
+                <div class="inter-normal black-3 mx-4" style="font-size: 25px; font-weight: 500;">{{ slotProps.value.courseName }}</div>
               </div>
               <span v-else>
                 {{ slotProps.placeholder }}
@@ -93,7 +93,7 @@ const getBackgroundColor = (progress: number) => {
             <template #option="slotProps">
               <div class="flex align-items-center">
                 <img :alt="slotProps.option.courseName" :src="slotProps.option.image" class="mr-2" style="width: 53px" />
-                <div class="text-900 font-bold text-lg">{{ slotProps.option.courseName }}</div>
+                <div class="inter-normal black-3 mx-4" style="font-size: 25px; font-weight: 500;">{{ slotProps.option.courseName }}</div>
               </div>
             </template>
           </Dropdown>
@@ -108,8 +108,8 @@ const getBackgroundColor = (progress: number) => {
                 style="width: 450px;" />
             </span>
           </div>
-          <Button label="DOWNLOAD" icon="pi pi-download" size="small" class="btn-orange hidden md:block"
-            style="width: 150px; height:50px" />
+          <Button label="DOWNLOAD" icon="pi pi-download" size="small" class="btn-orange inter-normal hidden md:block"
+            style="width: 150px; height:50px font-weight: 600; font-size: 15px;" />
           <Button icon="pi pi-download" size="small" class="btn-orange col-2 block md:hidden" />
         </div>
 
@@ -283,7 +283,8 @@ const getBackgroundColor = (progress: number) => {
               </template>
               <template #body="{ data }">
                 <div class="flex justify-content-center w-full align-items-center">
-                  <Button label="Info" class="btn-orange" @click="showModal(data)" style="width: 120px; heigth: 39px" />
+                  <Button label="Info" class="btn-orange inter-normal" @click="showModal(data)" 
+                   style="width: 120px; heigth: 39px font-size: 16px; font-weight: 600;" />
                 </div>
               </template>
             </Column>
@@ -314,7 +315,7 @@ const getBackgroundColor = (progress: number) => {
       <DataTable class="w-full modal-table" :value="[{}]">
         <template #header>
           <div class="flex justify-content-center margin-auto">
-            <p class="p-0 m-0 text-md font-bold">Attendance {{ currentStudent?.attendance }}/{{
+            <p class="p-0 m-0 poppins-normal black-2" style="font-size: 15px; font-weight: 500; letter-spacing: 0.45px;">Attendance {{ currentStudent?.attendance }}/{{
               currentStudent?.days.length }} ({{
     ((currentStudent?.attendance || 0) / 10) * 100 }}%)</p>
           </div>
@@ -322,7 +323,8 @@ const getBackgroundColor = (progress: number) => {
         <template v-for="col of columns">
           <Column field="status">
             <template #header>
-              <div class="w-5rem flex justify-content-center align-items-center font-medium">
+              <div class="w-5rem flex justify-content-center align-items-center font-medium poppins-normal black-2"
+              style="font-size: 15px; font-weight: 500; letter-spacing: 0.45px;">
                 {{ col.header }}
               </div>
             </template>
@@ -473,6 +475,8 @@ const getBackgroundColor = (progress: number) => {
 
 
 <style lang="scss" scoped>
+@import "/src/assets/global.scss";
+
 :deep(.p-paginator) {
   height: 70px;
 }
@@ -515,6 +519,7 @@ const getBackgroundColor = (progress: number) => {
   font-size: 20px;
   font-family: Inter;
   font-weight: 700;
+  line-height: normal;
 }
 
 .progress-bar-container {
