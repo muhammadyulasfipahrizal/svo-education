@@ -69,7 +69,7 @@ watchEffect(() => {
                 <div class="flex flex-row text-900 text-sm font-bold col-1 align-items-center gap-1">
                     <InputText size="small" class="instructor-total-input py-0 m-0 w-3rem p-inputtext-sm h-2rem surface-200" inputId="withoutgrouping"
                     :useGrouping="false" v-model="points" /> 
-                    <p class="font-bold text-sm">points</p>
+                    <p class="inter-normal black-2" style="font-size: 14px; font-weight: 400;">points</p>
                 </div>
         </div>
         <div class="grid">
