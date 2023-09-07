@@ -210,7 +210,7 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
             </AccordionTab>
         </Accordion>
 
-        <h2 class="text-900 font-bold mx-3 my-2">
+        <h2 class="inter-normal black-1 mx-3 my-2" style="font-size: 25px; font-weight: 700;">
             Add Courses
         </h2>
 
@@ -225,7 +225,7 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                             <div class="grid gap-2 align-items-start md:align-items-center w-full justify-content-between">
                                     <div class="flex align-items-center">
                                         <h1
-                                            class="col-5 md:col-2 lg:col-2 instructor text-2xl text-900 font-bold min-w-max">
+                                            class="col-5 md:col-2 lg:col-2 inter-normal black-1 min-w-max" style="font-size: 25px; font-weight: 700;">
                                             Instructor By
                                         </h1>
                                         <Dropdown v-model="selectedInstructor"
@@ -249,38 +249,38 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                                         class="flex flex-row md:flex-column gap-2 md:gap-0 align-items-center md:align-items-start mb-1">
                                         <div class="flex gap-1 align-items-center mb-2">
                                             <i class="pi-star-fill pi"></i>
-                                            <h3 class="text-sm text-900">Ratings</h3>
+                                            <h3 class="inter-normal black-2" style="font-size: 18px; font-weight: 400;">Ratings</h3>
                                         </div>
-                                        <p class="text-900 text-xs">
+                                        <p class="inter-normal black-2" style="font-size: 15px; font-weight: 400;">
                                             0/5 (0 ratings)
                                         </p>
                                     </div>
-                                    <p class="text-900 text-xs">
+                                    <p class="inter-normal black-2" style="font-size: 10px; font-weight: 400;">
                                         0 already enroll
                                     </p>
                                 </div>
                                 <div class="col-12 md:col-4 lg:col-4 card shadow-1 gap-1 md:w-13rem">
                                     <div class="flex gap-1 align-items-center mb-2">
                                         <img src="/assets/icon/stopwatch.png" class="w-1rem" />
-                                        <h3 class="text-sm text-900">Total Hours</h3>
+                                        <h3 class="inter-normal black-2" style="font-size: 18px; font-weight: 400;">Total Hours</h3>
                                     </div>
                                     <div class="flex justify-content-start align-items-center gap-2">
                                         <InputNumber v-model="totalHour" inputId="withoutgrouping"
                                             @input="e => resizeInput(e, '.instructor-total-input.hour')"
                                             :useGrouping="false" class="instructor-total-input hour"
                                             id="instructor-total-input-hour" />
-                                        <p class="text-bold textxs">hour</p>
+                                        <p class="inter-normal black-2" style="font-size: 15px; font-weight: 400;">hour</p>
                                         <InputNumber v-model="totalMinute"
                                             @input="e => resizeInput(e, '.instructor-total-input.min')"
                                             class="instructor-total-input min" inputId="withoutgrouping"
                                             :useGrouping="false" />
-                                        <p class="text-bold textxs">min</p>
+                                        <p class="inter-normal black-2" style="font-size: 15px; font-weight: 400;">min</p>
                                     </div>
                                 </div>
                                 <div class="col-12 md:col-4 lg:col-4 card shadow-1 flex flex-column gap-1 md:w-14rem">
                                     <div class="flex gap-1 align-items-center mb-2">
                                         <img src="/assets/icon/chat.png" class="w-1rem" />
-                                        <h3 class="text-sm text-900">Language</h3>
+                                        <h3 class="inter-normal black-2" style="font-size: 18px; font-weight: 400;">Language</h3>
                                     </div>
                                     <div class="flex align-items-center">
                                         <Dropdown v-model="selectedLanguage" :options="languageList" optionLabel="name"
@@ -291,7 +291,13 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                                 </div>
                             </div>
 
-                            <Button label="ENROLL" class="btn-default md:w-max mb-3 md:mb-0" />
+                            <Button class="btn-default md:w-max mb-3 md:mb-0">
+                                <template #default>
+                                    <div class="inter-normal px-2" style="font-size: 20px; font-weight: 500;">
+                                        Enroll
+                                    </div>
+                                </template>
+                            </Button>
                         </div>
                     </div>
                     <div class="col-12 lg:col-5">
@@ -300,17 +306,17 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                         </div>
                         <div class="flex justify-content-center align-items-center gap-2 my-2 col-12">
                             <div class="card-price flex justify-content-center align-items-center flex-column p-2">
-                                <h4 class="text-900 font-bold text-md">Original Price</h4>
+                                <h4 class="inter-normal black-2" style="font-size: 15px; font-weight: 700;">Original Price</h4>
                                 <InputNumber v-model="originalPrice" inputId="integeronly" placeholder="0.00" />
                             </div>
                             <div class="card-price flex justify-content-center align-items-center flex-column p-2">
-                                <h4 class="text-900 font-bold text-md">Discount Price</h4>
+                                <h4 class="inter-normal black-2" style="font-size: 15px; font-weight: 700;">Discount Price</h4>
                                 <InputNumber v-model="discountPrice" inputId="integeronly" placeholder="0.00" />
                             </div>
                         </div>
                         <div class="flex justify-content-center align-items-center gap-2 my-2 btn-buy-container col-12">
-                            <Button label="ADD TO CART" size="small" />
-                            <Button label="BUY NOW" size="small" />
+                            <Button label="ADD TO CART" size="small" class="inter-normal" style="font-size: 15px; font-weight: 500;"/>
+                            <Button label="BUY NOW" size="small" class="inter-normal" style="font-size: 15px; font-weight: 500;"/>
                         </div>
                     </div>
                 </div>
@@ -319,8 +325,14 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
 
         <!-- STEP SECTION -->
         <div class="flex justify-content-start align-items-center gap-2 my-3">
-            <Button label="ABOUT" :class="{ 'btn-default': steps === 'about' }" outlined class=""
-                @click="steps = 'about'" />
+            <Button :class="{ 'btn-default': steps === 'about' }" outlined class=""
+                @click="steps = 'about'">
+                <template #default>
+                    <div class="inter-normal" style="font-size: 20px; font-weight: 500;">
+                        About
+                    </div>
+                </template>
+            </Button>
             <Button label="INSTRUCTOR" :class="{ 'btn-default': steps === 'instructor' }" outlined
                 @click="steps = 'instructor'" />
             <Button label="SYLLABUS" :class="{ 'btn-default': steps === 'syllabus' }" outlined
@@ -335,9 +347,9 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                     <table class="table-grade-system">
                         <thead>
                             <tr>
-                                <th>Grade System</th>
+                                <th class="inter-normal" style="font-size: 20px; font-weight: 700;">Grade System</th>
                                 <th><span class="divider"></span></th>
-                                <th>Weight</th>
+                                <th class="inter-normal" style="font-size: 20px; font-weight: 700;">Weight</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -380,8 +392,15 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                             </template>
                             <tr>
                                 <td colspan="3">
-                                    <Button size="small" icon="pi pi-plus" label="Add More Grading"
-                                        class="btn-orange w-full" @click="addMoreGrading()" />
+                                    <Button size="small"
+                                        class="btn-orange w-full"  @click="addMoreGrading()">
+                                        <template #default>
+                                            <div class="flex flex-row align-items-center gap-3">
+                                                <i class="pi pi-plus"></i>
+                                                <p class="inter-normal" style="font-size: 13px; font-weight: 600;">Add More Grading</p>
+                                            </div>
+                                        </template>
+                                    </Button>
                                 </td>
                             </tr>
                         </tbody>
@@ -392,14 +411,14 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                     <div class="row">
                         <div class="col-12 md:col-8 lg:col-6 xl:col-4">
                             <UploadVideo class="upload-video w-full" />
-                            <h4 class="text-900 text-xl font-bold my-3 text-center">
+                            <h4 class="inter-normal black-1 my-3 text-center" style="font-size: 25px; font-weight: 700;">
                                 Course Preview
                             </h4>
                         </div>
                     </div>
                 </div>
                 <div class="flex flex-column gap-2">
-                    <label for="about-description" class="text-900 text-lg font-bold">About</label>
+                    <label for="about-description" class="inter-normal black-1" style="font-size: 25px; font-weight: 700;">About</label>
                     <Textarea id="about-description" size="small" v-model="aboutDescription"
                         aria-describedby="about-description-help" placeholder="Course Detail..." class="p-inputtext-sm" />
                 </div>
@@ -690,6 +709,7 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
 </template>
 
 <style scoped lang="scss">
+@import "/src/assets/global.scss";
 .upload-image {
     height: 350px;
 }

@@ -43,14 +43,14 @@ onMounted(() => {
                     <img :src="selectedProfile?.image" alt="" class="w-5rem " />
                 </div>
                 <div class="flex flex-column gap-3 w-full px-3">
-                    <h1 class="text-900 font-bold text-3rem">
+                    <h1 class="inter-normal black-1" style="font-size: 25px; font-weight: 700;">
                         Message
                     </h1>
                     <Textarea class="message p-inputtext-sm" placeholder="Write a message" v-model="message" autoResize rows="5"></Textarea>
                     <Button size="small" class="btn-send">
                         <template #default>
                             <div class="flex gap-2 justify-content-center align-items-center w-full">
-                                <h1 class="text-900 font-bold text-lg text-white">SEND MESSAGE</h1>
+                                <h1 class="inter-normal white-1" style="font-size: 16px; font-weight: 600;">SEND MESSAGE</h1>
                                 <i class="pi pi-send"></i>
                             </div>
                         </template>
@@ -62,6 +62,7 @@ onMounted(() => {
 </template>
 
 <style scoped lang="scss">
+@import "/src/assets/global.scss";
 .btn-send {
     background: #E26954;
     border: none;

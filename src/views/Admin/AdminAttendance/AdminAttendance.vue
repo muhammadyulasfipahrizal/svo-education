@@ -1,7 +1,7 @@
 <template>
   <section class="px-2">
     <section class="grid overflow-hidden flex-column md:flex-row px-2 md:px-0 lg:px-0 xl:px-0 py-2">
-      <h1 class="text-900 font-bold text-4xl col-12 inter">Student Attendance</h1>
+      <h1 class="col-12 inter-normal black-1" style="font-size: 35px; font-weight: 700;">Student Attendance</h1>
       <div class="pl-2 col-12 flex flex-column gap-2 my-2">
         <!-- FILTER -->
         <div class="flex justify-content-start md:justify-content-between align-items-center w-full">
@@ -49,7 +49,7 @@
             class="w-10rem mr-2" style="height: 52px">
             <template #value="slotProps">
               <div v-if="slotProps.value" class="flex align-items-center">
-                <div class="text-900 font-bold text-lg">{{ slotProps.value.name }}</div>
+                <div class="inter-normal black-2" style="font-size: 20px; font-weight: 500; letter-spacing: 0.6px;">{{ slotProps.value.name }}</div>
               </div>
               <span v-else>
                 {{ slotProps.placeholder }}
@@ -57,7 +57,7 @@
             </template>
             <template #option="slotProps">
               <div class="flex align-items-center">
-                <div class="text-900 font-bold text-lg">{{ slotProps.option.name }}</div>
+                <div class="inter-normal black-2" style="font-size: 20px; font-weight: 500; letter-spacing: 0.6px;">{{ slotProps.option.name }}</div>
               </div>
             </template>
           </Dropdown>
@@ -65,7 +65,7 @@
             style="height: 52px">
             <template #value="slotProps">
               <div v-if="slotProps.value" class="flex align-items-center">
-                <div class="text-900 font-bold text-lg">{{ slotProps.value.name }}</div>
+                <div class="inter-normal black-2" style="font-size: 20px; font-weight: 500; letter-spacing: 0.6px;">{{ slotProps.value.name }}</div>
               </div>
               <span v-else>
                 {{ slotProps.placeholder }}
@@ -73,18 +73,18 @@
             </template>
             <template #option="slotProps">
               <div class="flex align-items-center">
-                <div class="text-900 font-bold text-lg">{{ slotProps.option.name }}</div>
+                <div class="inter-normal black-2" style="font-size: 20px; font-weight: 500; letter-spacing: 0.6px;">{{ slotProps.option.name }}</div>
               </div>
             </template>
           </Dropdown>
         </div>
         <Dropdown optionLabel="courseName" :options="courseList" v-model="selectedCourse" placeholder="Course Name"
-          class="w-full md:w-15rem md:flex" style="height: 52px">
+          class="w-full md:w-16rem md:flex" style="height: 52px">
           <template #value="slotProps">
             <div v-if="slotProps.value" class="flex align-items-center">
               <img :alt="slotProps.value.courseName" :src="slotProps.value.image" class="mr-2"
                 style="width: 55px; height: 30px" />
-              <div class="text-900 font-bold text-lg">{{ slotProps.value.courseName }}</div>
+              <div class="inter-normal black-2" style="font-size: 20px; font-weight: 500; letter-spacing: 0.6px;">{{ slotProps.value.courseName }}</div>
             </div>
             <span v-else>
               {{ slotProps.placeholder }}
@@ -94,7 +94,7 @@
             <div class="flex align-items-center">
               <img :alt="slotProps.option.courseName" :src="slotProps.option.image" class="mr-2"
                 style="width: 55px; height: 30px" />
-              <div class="text-900 font-bold text-lg">{{ slotProps.option.courseName }}</div>
+              <div class="inter-normal black-2" style="font-size: 20px; font-weight: 500; letter-spacing: 0.6px;">{{ slotProps.option.courseName }}</div>
             </div>
           </template>
         </Dropdown>
@@ -157,10 +157,7 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.inter {
-  font-family: Inter;
-}
-
+@import "/src/assets/global.scss";
 .filter-button {
   border-radius: 6px;
   border: 1px solid var(--suggested-dark-grey, #808081);
@@ -232,7 +229,6 @@ onMounted(() => {
 <style lang="scss" scoped>
 ::v-deep(.filter-button) {
   align-items: center;
-
   .p-button-label {
     color: var(--Suggested-dark-grey, #808081);
     font-family: Inter;
@@ -245,7 +241,6 @@ onMounted(() => {
 
 ::v-deep(.btn-download) {
   align-items: center;
-
   .p-button-label {
     color: var(--backgrounds-primary, #FFF);
     font-family: Inter;
@@ -270,7 +265,6 @@ onMounted(() => {
     letter-spacing: 0.6px;
   }
 }
-
 ::v-deep(.p-button:active),
 ::v-deep(.p-button:hover) {
   background: #006785;

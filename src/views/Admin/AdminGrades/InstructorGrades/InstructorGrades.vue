@@ -96,7 +96,7 @@ const onSelectProfile = (v: Instructor) => {
                             </div>
                         </template>
                     </Column>
-                    <Column field="course" sortable class="center" headerStyle="width: 10%">
+                    <Column field="course" sortable class="center w-max" headerStyle="width: 10%">
                         <template #sorticon="{ sorted, sortOrder }">
                             <div class="flex justify-content-center align-items-center">
                                 <template v-if="!sorted">
@@ -126,8 +126,8 @@ const onSelectProfile = (v: Instructor) => {
                         </template>
                         <template #body="value">
                             <div class="flex gap-1 flex-column align-items-start">
-                                <h4 class="p-0 text-900 font-semibold text-sm">{{ value.data.work_as }}</h4>
-                                <p class="p-0 text-500 font-normal text-sm" style="color: #808081">
+                                <h4 class="p-0 inter-normal black-3" style="font-size: 14px; font-weight: 500;">{{ value.data.work_as }}</h4>
+                                <p class="p-0 inter-normal grey-3" style="font-size: 14px; font-weight: 400; letter-spacing: 0.7px;">
                                     {{ value.data.rating.rating }}/5 ({{ value.data.rating.total_rating }} ratings)
                                 </p>
                             </div>
@@ -163,7 +163,7 @@ const onSelectProfile = (v: Instructor) => {
                         </template>
                         <template #body="value">
                             <div class="flex gap-1 flex-column align-items-center justify-content-center">
-                                <p class="text-sm font-bold">
+                                <p class="inter-normal black-3" style="font-size: 15px; font-weight: 500;">
                                     {{ value.data.department }}
                                 </p>
                             </div>
@@ -199,11 +199,11 @@ const onSelectProfile = (v: Instructor) => {
                         </template>
                         <template #body="value">
                             <div class="flex gap-1 flex-column align-items-center">
-                                <h4 class="text-900 font-bold text-sm">{{ parseFloat(((value.data.rating.ratings.helpful +
+                                <h4 class="inter-normal black-3" style="font-size: 14px; font-weight: 500;">{{ parseFloat(((value.data.rating.ratings.helpful +
                                     value.data.rating.ratings.easiness + value.data.rating.ratings.clarity) /
                                     3 + 95).toString()).toFixed(2) }}%
                                 </h4>
-                                <p class="text-500 font-normal text-sm" style="color: #808081">
+                                <p class="inter-normal grey-3" style="font-size: 14px; font-weight: 400; letter-spacing: 0.7px;">
                                     {{ value.data.rating.total_vote }} <span class="text-500">voted</span>
                                 </p>
                             </div>
@@ -218,7 +218,7 @@ const onSelectProfile = (v: Instructor) => {
                         <template #body="value">
                             <div class="flex justify-content-center">
                                 <Button class="w-5rem btn-orange" @click="onSelectProfile(value.data)">
-                                    <span class="text-sm font-semibold">
+                                    <span class="inter-normal white-1" style="font-size: 16px; font-weight: 600;">
                                         Profile
                                     </span>
                                 </Button>
@@ -257,19 +257,19 @@ const onSelectProfile = (v: Instructor) => {
         <div class="flex flex-column gap-2 p-2">
             <div class="flex flex-column gap-2 align-items-center">
                 <div class="flex align-items-center justify-content-between w-full">
-                    <h3 class="text-900 font-bold text-sm">Helpfullness</h3>
+                    <h3 class="inter-normal black-1" style="font-size: 16px; font-weight: 600;">Helpfullness</h3>
                     <star-rating :show-rating="false" :round-start-rating="false" :star-size="16" inactive-color="#FFF"
                         border-color="#E96853" :border-width="1" active-color="#E96853" read-only :padding="0.99"
                         :rating="(selectedProfile?.rating.ratings.helpful || 0)"></star-rating>
                 </div>
                 <div class="flex align-items-center justify-content-between w-full">
-                    <h3 class="text-900 font-bold text-sm">Easiness</h3>
+                    <h3 class="inter-normal black-1" style="font-size: 16px; font-weight: 600;">Easiness</h3>
                     <star-rating :show-rating="false" :round-start-rating="false" :star-size="16" inactive-color="#FFF"
                         border-color="#E96853" :border-width="1" :padding="0.99" active-color="#E96853" read-only
                         :rating="(selectedProfile?.rating.ratings.easiness || 0)"></star-rating>
                 </div>
                 <div class="flex align-items-center justify-content-between w-full">
-                    <h3 class="text-900 font-bold text-sm">Clarity</h3>
+                    <h3 class="inter-normal black-1" style="font-size: 16px; font-weight: 600;">Clarity</h3>
                     <star-rating :show-rating="false" :round-start-rating="false" :star-size="16" inactive-color="#FFF"
                         border-color="#E96853" :border-width="1" :padding="0.99" active-color="#E96853" read-only
                         :rating="(selectedProfile?.rating.ratings.clarity || 0)"></star-rating>
@@ -277,7 +277,7 @@ const onSelectProfile = (v: Instructor) => {
             </div>
             <span class="border-200 surface-overlay border-1" />
             <div class="flex align-items-center justify-content-between">
-                <h3 class="text-900 font-bold text-sm">Overall rating ({{ selectedProfile?.rating.total_rating }} rated)
+                <h3 class="inter-normal black-1" style="font-size: 16px; font-weight: 600;">Overall rating ({{ selectedProfile?.rating.total_rating }} rated)
                 </h3>
                 <star-rating :show-rating="false" :round-start-rating="false" :star-size="16" inactive-color="#FFF"
                     border-color="#E96853" :border-width="1" :padding="0.99" active-color="#E96853" read-only
@@ -289,6 +289,7 @@ const onSelectProfile = (v: Instructor) => {
 </template>
 
 <style lang="scss" scoped>
+@import "/src/assets/global.scss";
 .search-bar {
     border-radius: 6px;
     background: #EEE !important;
