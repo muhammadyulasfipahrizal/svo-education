@@ -334,14 +334,6 @@ const onSave = () => {
     display: none !important;
 }
 
-::v-deep(.flatpickr-prev-month) {
-    margin-left: 25px;
-}
-
-::v-deep(.flatpickr-next-month) {
-    margin-right: 25px;
-}
-
 ::v-deep(.flatpickr-day.selected){
     border-radius: 5px;
     background: var(--Suggested-orange, #E96853);
@@ -384,8 +376,16 @@ const onSave = () => {
     font-weight: 500;
 }
 
+::v-deep(.flatpickr-prev-month) {
+    margin-left: 5%;
+}
+
+::v-deep(.flatpickr-next-month) {
+    margin-right: 5%;
+}
+
 ::v-deep(.flatpickr-rContainer){
-    width: 385px;
+    width: 100%;
     border-radius: 0px 0px 20px 20px;
     border-bottom: 1px solid #D9D5EC;
     border-left: 1px solid #D9D5EC;
@@ -393,12 +393,12 @@ const onSave = () => {
 }
 
 ::v-deep(.flatpickr-weekdays) {
-    width: 385px;
+    width: 100%;
     margin: 15px 0px;
 }
 
 ::v-deep(.flatpickr-month) {
-    max-width: 385px;
+    max-width: 100%;
     height: 38px;
     border-radius: 20px 20px 0 0;
     border-top: 1px solid #D9D5EC;
@@ -407,14 +407,49 @@ const onSave = () => {
 }
 
 ::v-deep(.flatpickr-days) {
-    width: 380px;
+    width: 100%;
 }
 
 ::v-deep(.dayContainer) {
-    width: 380px;
+    width: 100%;
     max-height: 350px;
     height: 250px;
-    max-width: 380px;
+    max-width: 100%;
+}
+
+::v-deep(.flatpickr-months) {
+    width: 100%;
+    max-width: 100%;
+}
+
+@media (min-width: 320px) and (max-width: 540px) {
+    ::v-deep(.flatpickr-day) {
+        margin: 0px 14px
+    }
+}
+
+@media (min-width: 540px) and (max-width: 768px) {
+    ::v-deep(.flatpickr-day) {
+        margin: 0px 25px
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1440px) {
+    ::v-deep(.flatpickr-day) {
+        margin: 0px 5px
+    }
+}
+
+@media (min-width: 1440px) and (max-width: 1720px) {
+    ::v-deep(.flatpickr-day) {
+        margin: 0px 10px
+    }
+}
+
+@media (min-width: 1720px) and (max-width: 2040px) {
+    ::v-deep(.flatpickr-day) {
+        margin: 0px 15px
+    }
 }
 </style>
 
