@@ -130,6 +130,10 @@ textarea {
           width: 12px;
           height: 12px;
           background: transparent;
+
+          svg {
+            color: black;
+          }
         }
       }
     }
@@ -149,6 +153,10 @@ textarea {
             width: 12px;
             height: 12px;
             background: transparent;
+
+            svg {
+              color: black;
+            }
           }
         }
       }
@@ -675,6 +683,7 @@ textarea {
     letter-spacing: 0.6px;
   }
 }
+
 .dp__overlay.dp--overlay-absolute {
   border-radius: 20px;
 }

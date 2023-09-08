@@ -73,16 +73,16 @@ onMounted(() => {
         <section
             class="grid overflow-hidden flex-column md:flex-row pl-3 pr-3 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2 py-2">
             <h1 class="inter-normal black-1 px-2 md:px-3" style="font-size: 35px; font-weight: 700;">Student Grades</h1>
-            <div class="px-2 md:px-3 col-12 flex flex-column gap-2 my-2">
-                <!-- FILTER -->
-                <div class="card flex justify-content-start">
-                    <Dropdown v-model="selectedCourse" :options="courseList" optionLabel="name"
-                        placeholder="Select a course" class="w-full md:w-17rem hidden md:flex selected dropdown">
+            <div class="col-12 grid">
+                <div class="col-12">
+                    <Dropdown optionLabel="courseName" :options="courseList" v-model="selectedCourse"
+                        placeholder="Course Name" class="w-full md:flex dropdown-course"
+                        :class="{ 'selected': selectedCourse }">
                         <template #value="slotProps">
                             <div v-if="slotProps.value" class="flex align-items-center">
                                 <img :alt="slotProps.value.name" :src="slotProps.value.image" class="mr-2"
                                     style="width: 53px" />
-                                <div class="text-dropdown">{{ slotProps.value.name }}</div>
+                                <h1>{{ slotProps.value.name }}</h1>
                             </div>
                             <span v-else>
                                 {{ slotProps.placeholder }}
@@ -92,207 +92,218 @@ onMounted(() => {
                             <div class="flex align-items-center">
                                 <img :alt="slotProps.option.name" :src="slotProps.option.image" class="mr-2"
                                     style="width: 53px" />
-                                <div class="text-dropdown">{{ slotProps.option.name }}</div>
+                                <div class="text-900 font-bold text-lg">{{ slotProps.option.name }}</div>
                             </div>
                         </template>
                     </Dropdown>
                 </div>
-                <div class="grid w-full px-2 md:px-3 align-items-center justify-content-between">
-                    <div class="col-12 grid align-items-center filter-search align-items-center py-0 mt-2 px-0"
-                        style="height: 40px;">
-
-                        <button class="filter-button flex flex-row justify-content-center min-w-min col-2 md:col-2 xl:col-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 20 20" fill="none">
-                                <g clip-path="url(#clip0_2655_7875)">
+                <div
+                    class="col-12 flex flex-row align-items-center justify-content-between filter-search px-0 sm:px-3 py-0 ml-2 sm:ml-0">
+                    <div
+                        class="col-12 md:col-10 lg:col-10 lg:col-10 grid grid-nogutter gap-2 align-items-center filter-container ">
+                        <Button size="small" class="filter-button sm:col-1 md:col-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <g clip-path="url(#clip0_2726_4798)">
                                     <path d="M12 12L20 4V0H0V4L8 12V20L12 16V12Z" fill="#808081" />
                                 </g>
                                 <defs>
-                                    <clipPath id="clip0_2655_7875">
+                                    <clipPath id="clip0_2726_4798">
                                         <rect width="20" height="20" fill="white" />
                                     </clipPath>
                                 </defs>
                             </svg>
-                            <p class="p-0 m-0 text-sm">Filter</p>
-                        </button>
-
-                        <div class="p-input-icon-left h-full col-8 md:col-6 xl:col-4 py-0">
-                            <svg class="ml-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
-                                fill="none">
-                                <path
-                                    d="M13.4097 14.8822C11.7399 16.1799 9.63851 16.7922 7.53338 16.5942C5.42824 16.3963 3.47766 15.403 2.07881 13.8166C0.679961 12.2303 -0.0619809 10.1701 0.00405863 8.05565C0.0700982 5.94118 0.939153 3.9314 2.43427 2.43552C3.92939 0.939633 5.93814 0.0701341 8.05152 0.00406071C10.1649 -0.0620127 12.224 0.680308 13.8096 2.07987C15.3951 3.47944 16.3879 5.43102 16.5857 7.53723C16.7836 9.64345 16.1717 11.7459 14.8745 13.4166L19.6936 18.2201C20.1016 18.6267 20.1022 19.2872 19.695 19.6946C19.2878 20.1021 18.6273 20.1017 18.2204 19.6939L13.4201 14.8822H13.4097ZM8.31916 14.5495C9.13773 14.5495 9.94829 14.3882 10.7045 14.0748C11.4608 13.7614 12.148 13.302 12.7268 12.7229C13.3056 12.1438 13.7647 11.4563 14.078 10.6996C14.3913 9.94298 14.5525 9.13201 14.5525 8.31302C14.5525 7.49403 14.3913 6.68306 14.078 5.92641C13.7647 5.16976 13.3056 4.48225 12.7268 3.90314C12.148 3.32402 11.4608 2.86465 10.7045 2.55123C9.94829 2.23782 9.13773 2.07651 8.31916 2.07651C6.66598 2.07651 5.08051 2.73356 3.91153 3.90314C2.74256 5.07271 2.08583 6.659 2.08583 8.31302C2.08583 9.96705 2.74256 11.5533 3.91153 12.7229C5.08051 13.8925 6.66598 14.5495 8.31916 14.5495Z"
-                                    fill="#808081" />
-                            </svg>
-                            <InputText placeholder="Search by Name" class="search-bar w-full p-inputtext-sm" />
+                            <p>Filter</p>
+                        </Button>
+                        <div class="p-input-icon-left sm:w-7 w-6 col-5 mt-1 sm:mt-0 p-0 search-input">
+                            <i class="pi pi-search search-icon ml-2" />
+                            <InputText placeholder="Search by Name" class="search-bar p-inputtext-sm w-full h-full" />
                         </div>
-
-                        <Button size="small" class="download-button flex text-right justify-content-center 
-                         align-items-center col-1 md:min-w-min ml-auto">
-                                <template #default>
-                                    <div class="flex flex-row gap-2 align-items-center">
-                                        <i class="pi pi-download"></i>
-                                        <p class="hidden md:block inter-normal" style="font-weight: 600; font-size: 16px;">Download</p>
-                                    </div>
-                                </template>
+                        <Button size="small" class="col-2 download ml-auto">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18" viewBox="0 0 16 18" fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M6.73798 0.25C5.96436 0.25 5.31904 0.841231 5.25148 1.61189C5.11024 3.22317 5.0745 4.84164 5.14436 6.45693C5.06003 6.46258 4.97571 6.46847 4.8914 6.47462L3.4019 6.5832C2.44985 6.6526 1.91764 7.71416 2.43163 8.51854C3.5278 10.2341 4.94026 11.7254 6.59369 12.9132L7.19043 13.3418C7.67425 13.6894 8.32591 13.6894 8.80972 13.3418L9.40646 12.9132C11.0599 11.7254 12.4724 10.2341 13.5685 8.51855C14.0825 7.71416 13.5503 6.6526 12.5983 6.5832L11.1088 6.47462C11.0245 6.46847 10.9401 6.46258 10.8558 6.45693C10.9257 4.84164 10.8899 3.22317 10.7487 1.61188C10.6811 0.841229 10.0358 0.25 9.26219 0.25H6.73798ZM6.68157 7.11473C6.56786 5.3275 6.58909 3.53417 6.74513 1.75H9.25503C9.41106 3.53417 9.4323 5.3275 9.31859 7.11473C9.30584 7.31509 9.37396 7.51221 9.5077 7.66195C9.64144 7.8117 9.82964 7.90156 10.0302 7.91144C10.3535 7.92737 10.6767 7.94711 10.9997 7.97065L12.0815 8.04951C11.1219 9.46281 9.92044 10.6971 8.53133 11.6949L8.00008 12.0765L7.46882 11.6949C6.07972 10.6971 4.87824 9.4628 3.9187 8.04951L5.00046 7.97065C5.32345 7.94711 5.64664 7.92737 5.96999 7.91144C6.17052 7.90156 6.35871 7.81169 6.49246 7.66195C6.6262 7.51221 6.69432 7.31509 6.68157 7.11473Z"
+                                    fill="white" />
+                                <path
+                                    d="M1.75 14C1.75 13.5858 1.41421 13.25 1 13.25C0.585786 13.25 0.25 13.5858 0.25 14V16C0.25 16.9665 1.0335 17.75 2 17.75H14C14.9665 17.75 15.75 16.9665 15.75 16V14C15.75 13.5858 15.4142 13.25 15 13.25C14.5858 13.25 14.25 13.5858 14.25 14V16C14.25 16.1381 14.1381 16.25 14 16.25H2C1.86193 16.25 1.75 16.1381 1.75 16V14Z"
+                                    fill="white" />
+                            </svg>
+                            <p>DOWNLOAD</p>
+                        </Button>
+                        <Button size="small" class="col-2 download block md:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18" viewBox="0 0 16 18" fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M6.73798 0.25C5.96436 0.25 5.31904 0.841231 5.25148 1.61189C5.11024 3.22317 5.0745 4.84164 5.14436 6.45693C5.06003 6.46258 4.97571 6.46847 4.8914 6.47462L3.4019 6.5832C2.44985 6.6526 1.91764 7.71416 2.43163 8.51854C3.5278 10.2341 4.94026 11.7254 6.59369 12.9132L7.19043 13.3418C7.67425 13.6894 8.32591 13.6894 8.80972 13.3418L9.40646 12.9132C11.0599 11.7254 12.4724 10.2341 13.5685 8.51855C14.0825 7.71416 13.5503 6.6526 12.5983 6.5832L11.1088 6.47462C11.0245 6.46847 10.9401 6.46258 10.8558 6.45693C10.9257 4.84164 10.8899 3.22317 10.7487 1.61188C10.6811 0.841229 10.0358 0.25 9.26219 0.25H6.73798ZM6.68157 7.11473C6.56786 5.3275 6.58909 3.53417 6.74513 1.75H9.25503C9.41106 3.53417 9.4323 5.3275 9.31859 7.11473C9.30584 7.31509 9.37396 7.51221 9.5077 7.66195C9.64144 7.8117 9.82964 7.90156 10.0302 7.91144C10.3535 7.92737 10.6767 7.94711 10.9997 7.97065L12.0815 8.04951C11.1219 9.46281 9.92044 10.6971 8.53133 11.6949L8.00008 12.0765L7.46882 11.6949C6.07972 10.6971 4.87824 9.4628 3.9187 8.04951L5.00046 7.97065C5.32345 7.94711 5.64664 7.92737 5.96999 7.91144C6.17052 7.90156 6.35871 7.81169 6.49246 7.66195C6.6262 7.51221 6.69432 7.31509 6.68157 7.11473Z"
+                                    fill="white" />
+                                <path
+                                    d="M1.75 14C1.75 13.5858 1.41421 13.25 1 13.25C0.585786 13.25 0.25 13.5858 0.25 14V16C0.25 16.9665 1.0335 17.75 2 17.75H14C14.9665 17.75 15.75 16.9665 15.75 16V14C15.75 13.5858 15.4142 13.25 15 13.25C14.5858 13.25 14.25 13.5858 14.25 14V16C14.25 16.1381 14.1381 16.25 14 16.25H2C1.86193 16.25 1.75 16.1381 1.75 16V14Z"
+                                    fill="white" />
+                            </svg>
                         </Button>
                     </div>
                 </div>
 
-                <DataTable :value="studentList" removableSort paginator :rows="10" :rowsPerPageOptions="[5, 10, 20, 50]"
-                    sortMode="multiple" tableStyle="min-width: 50rem" dataKey="id" v-model:selection="checkedInstructor"
-                    class="shadow-2 p-datatable-sm" :paginatorTemplate="{
-                        '600px': 'CurrentPageReport PrevPageLink PageLinks NextPageLink',
-                        '1062px': 'CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink',
-                        default: 'CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown'
-                    }" :pageLinkSize="3"
-                    currentPageReportTemplate="Showing data {first} to {last} of {totalRecords} entries">
-                    <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
-                    <Column field="name">
-                        <template #header>
-                            <div class="flex justify-content-center align-items-center">
-                                <p class="text-header">Name</p>
-                            </div>
-                        </template>
-                        <template #body="value">
-                            <div class="flex gap-2 align-items-center">
-                                <img :src="value.data.student.image" alt="" style="width: 39px; height: 39px;"
-                                    class="border-circle" />
-                                <div class="flex gap-1 flex-column align-items-start student-name">
-                                    <h4>{{ value.data.student.name }}</h4>
-                                    <p>
-                                        {{ value.data.student.email }}
-                                    </p>
+                <div class="col-12 pr-3 py-0">
+                    <DataTable :value="studentList" removableSort paginator :rows="10" :rowsPerPageOptions="[5, 10, 20, 50]"
+                        sortMode="multiple" tableStyle="min-width: 50rem" dataKey="id" v-model:selection="checkedInstructor"
+                        class="shadow-2 p-datatable-sm" :paginatorTemplate="{
+                            '600px': 'CurrentPageReport PrevPageLink PageLinks NextPageLink',
+                            '1062px': 'CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink',
+                            default: 'CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown'
+                        }" :pageLinkSize="3"
+                        currentPageReportTemplate="Showing data {first} to {last} of {totalRecords} entries">
+                        <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
+                        <Column field="name" headerStyle="width: 20%">
+                            <template #header>
+                                <div class="flex justify-content-center align-items-center">
+                                    <p class="text-header">Name</p>
                                 </div>
-                            </div>
-                        </template>
-                    </Column>
-                    <Column field="course" sortable class="center">
-                        <template #sorticon="{ sorted, sortOrder }">
-                            <div class="flex justify-content-center align-items-center">
-                                <template v-if="!sorted">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19" viewBox="0 0 18 19"
-                                        fill="none">
-                                        <path
-                                            d="M5.2202 7.84912L8.57777 3.66525C8.87645 3.27825 9.36864 3.27825 9.66789 3.66525L13.0255 7.84912C13.3241 8.23612 13.1835 8.55225 12.6739 8.55225H5.57233C5.0627 8.55225 4.92208 8.23556 5.22077 7.84912H5.2202ZM13.0249 11.1538L9.66733 15.3377C9.36864 15.7247 8.87645 15.7247 8.5772 15.3377L5.21964 11.1538C4.92095 10.7668 5.06158 10.4507 5.5712 10.4507H12.6728C13.1824 10.4507 13.323 10.7674 13.0243 11.1538H13.0249Z"
-                                            fill="white" />
-                                    </svg>
-                                </template>
-                                <template v-else>
-                                    <svg class="mx-2" v-if="(sortOrder as unknown as number) > 0"
-                                        xmlns="http://www.w3.org/2000/svg" width="10.033" height="5">
-                                        <path d="m5.016 0-2.51 2.5L0 4.999 5.016 5l5.017-.001L7.525 2.5 5.016 0z" />
-                                    </svg>
-                                    <svg class="mx-2" v-if="(sortOrder as unknown as number) < 0"
-                                        xmlns="http://www.w3.org/2000/svg" width="10.033" height="5">
-                                        <path d="M5.016 0 0 .003 2.506 2.5 5.016 5l2.509-2.5L10.033.003 5.016 0z" />
-                                    </svg>
-                                </template>
-                            </div>
-                        </template>
-                        <template #header>
-                            <div class="flex justify-content-center align-items-center">
-                                <p class="text-header">Course</p>
-                            </div>
-                        </template>
-                        <template #body="value">
-                            <div class="flex gap-1 flex-column align-items-start">
-                                <h4 class="text-content">{{ value.data.courses[0].course.name }}</h4>
-                            </div>
-                        </template>
-                    </Column>
-                    <Column field="upline" sortable class="center">
-                        <template #sorticon="{ sorted, sortOrder }">
-                            <div class="flex justify-content-center align-items-center">
-                                <template v-if="!sorted">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19" viewBox="0 0 18 19"
-                                        fill="none">
-                                        <path
-                                            d="M5.2202 7.84912L8.57777 3.66525C8.87645 3.27825 9.36864 3.27825 9.66789 3.66525L13.0255 7.84912C13.3241 8.23612 13.1835 8.55225 12.6739 8.55225H5.57233C5.0627 8.55225 4.92208 8.23556 5.22077 7.84912H5.2202ZM13.0249 11.1538L9.66733 15.3377C9.36864 15.7247 8.87645 15.7247 8.5772 15.3377L5.21964 11.1538C4.92095 10.7668 5.06158 10.4507 5.5712 10.4507H12.6728C13.1824 10.4507 13.323 10.7674 13.0243 11.1538H13.0249Z"
-                                            fill="white" />
-                                    </svg>
-                                </template>
-                                <template v-else>
-                                    <svg class="mx-2" v-if="(sortOrder as unknown as number) > 0"
-                                        xmlns="http://www.w3.org/2000/svg" width="10.033" height="5">
-                                        <path d="m5.016 0-2.51 2.5L0 4.999 5.016 5l5.017-.001L7.525 2.5 5.016 0z" />
-                                    </svg>
-                                    <svg class="mx-2" v-if="(sortOrder as unknown as number) < 0"
-                                        xmlns="http://www.w3.org/2000/svg" width="10.033" height="5">
-                                        <path d="M5.016 0 0 .003 2.506 2.5 5.016 5l2.509-2.5L10.033.003 5.016 0z" />
-                                    </svg>
-                                </template>
-                            </div>
-                        </template>
-                        <template #header>
-                            <div class="flex justify-content-center align-items-center">
-                                <p class="text-header">Upline</p>
-                            </div>
-                        </template>
-                        <template #body="value">
-                            <div class="flex gap-1 flex-column align-items-start">
-                                <h4 class="text-content">{{ value.data.student.upline }}</h4>
-                            </div>
-                        </template>
-                    </Column>
-                    <Column field="branch" sortable class="center">
-                        <template #sorticon="{ sorted, sortOrder }">
-                            <div class="flex justify-content-center align-items-center">
-                                <template v-if="!sorted">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19" viewBox="0 0 18 19"
-                                        fill="none">
-                                        <path
-                                            d="M5.2202 7.84912L8.57777 3.66525C8.87645 3.27825 9.36864 3.27825 9.66789 3.66525L13.0255 7.84912C13.3241 8.23612 13.1835 8.55225 12.6739 8.55225H5.57233C5.0627 8.55225 4.92208 8.23556 5.22077 7.84912H5.2202ZM13.0249 11.1538L9.66733 15.3377C9.36864 15.7247 8.87645 15.7247 8.5772 15.3377L5.21964 11.1538C4.92095 10.7668 5.06158 10.4507 5.5712 10.4507H12.6728C13.1824 10.4507 13.323 10.7674 13.0243 11.1538H13.0249Z"
-                                            fill="white" />
-                                    </svg>
-                                </template>
-                                <template v-else>
-                                    <svg class="mx-2" v-if="(sortOrder as unknown as number) > 0"
-                                        xmlns="http://www.w3.org/2000/svg" width="10.033" height="5">
-                                        <path d="m5.016 0-2.51 2.5L0 4.999 5.016 5l5.017-.001L7.525 2.5 5.016 0z" />
-                                    </svg>
-                                    <svg class="mx-2" v-if="(sortOrder as unknown as number) < 0"
-                                        xmlns="http://www.w3.org/2000/svg" width="10.033" height="5">
-                                        <path d="M5.016 0 0 .003 2.506 2.5 5.016 5l2.509-2.5L10.033.003 5.016 0z" />
-                                    </svg>
-                                </template>
-                            </div>
-                        </template>
-                        <template #header>
-                            <div class="flex justify-content-center align-items-center">
-                                <p class="text-header">Branch</p>
-                            </div>
-                        </template>
-                        <template #body="value">
-                            <div class="flex gap-1 flex-column align-items-start">
-                                <h4 class="text-content">{{ value.data.student.city_branch }}</h4>
-                            </div>
-                        </template>
-                    </Column>
-                    <Column field="profile">
-                        <template #header>
-                            <div class="flex justify-content-center align-items-center">
-                                <p class="text-header">Profile</p>
-                            </div>
-                        </template>
-                        <template #body="value">
-                            <Button class="btn-orange" @click="onSelectProfile(value.data)" size="small">
-                                <span class="text-md font-bold">Profile</span>
-                            </Button>
-                        </template>
-                    </Column>
-                    <Column field="message">
-                        <template #header>
-                            <div class="flex justify-content-center align-items-center">
-                                <p class="text-header">Message</p>
-                            </div>
-                        </template>
-                        <template #body="value">
-                            <Button link size="small"
-                                @click="$router.push('/admin/grade/student/' + value.data.id + '/message')">
-                                <img src="/assets/icon/reply.png" class="w-2rem" />
-                            </Button>
-                        </template>
-                    </Column>
-                </DataTable>
+                            </template>
+                            <template #body="value">
+                                <div class="flex gap-2 align-items-center">
+                                    <img :src="value.data.student.image" alt="" style="width: 39px; height: 39px;"
+                                        class="border-circle" />
+                                    <div class="flex gap-1 flex-column align-items-start student-name">
+                                        <h4>{{ value.data.student.name }}</h4>
+                                        <p>
+                                            {{ value.data.student.email }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </template>
+                        </Column>
+                        <Column field="course" sortable class="center" headerStyle="width: 20%">
+                            <template #sorticon="{ sorted, sortOrder }">
+                                <div class="flex justify-content-center align-items-center">
+                                    <template v-if="!sorted">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19" viewBox="0 0 18 19"
+                                            fill="none">
+                                            <path
+                                                d="M5.2202 7.84912L8.57777 3.66525C8.87645 3.27825 9.36864 3.27825 9.66789 3.66525L13.0255 7.84912C13.3241 8.23612 13.1835 8.55225 12.6739 8.55225H5.57233C5.0627 8.55225 4.92208 8.23556 5.22077 7.84912H5.2202ZM13.0249 11.1538L9.66733 15.3377C9.36864 15.7247 8.87645 15.7247 8.5772 15.3377L5.21964 11.1538C4.92095 10.7668 5.06158 10.4507 5.5712 10.4507H12.6728C13.1824 10.4507 13.323 10.7674 13.0243 11.1538H13.0249Z"
+                                                fill="white" />
+                                        </svg>
+                                    </template>
+                                    <template v-else>
+                                        <svg class="mx-2" v-if="(sortOrder as unknown as number) > 0"
+                                            xmlns="http://www.w3.org/2000/svg" width="10.033" height="5">
+                                            <path d="m5.016 0-2.51 2.5L0 4.999 5.016 5l5.017-.001L7.525 2.5 5.016 0z" />
+                                        </svg>
+                                        <svg class="mx-2" v-if="(sortOrder as unknown as number) < 0"
+                                            xmlns="http://www.w3.org/2000/svg" width="10.033" height="5">
+                                            <path d="M5.016 0 0 .003 2.506 2.5 5.016 5l2.509-2.5L10.033.003 5.016 0z" />
+                                        </svg>
+                                    </template>
+                                </div>
+                            </template>
+                            <template #header>
+                                <div class="flex justify-content-center align-items-center">
+                                    <p class="text-header">Course</p>
+                                </div>
+                            </template>
+                            <template #body="value">
+                                <div class="flex gap-1 flex-column align-items-center">
+                                    <h4 class="text-content">{{ value.data.courses[0].course.name }}</h4>
+                                </div>
+                            </template>
+                        </Column>
+                        <Column field="upline" sortable class="center">
+                            <template #sorticon="{ sorted, sortOrder }">
+                                <div class="flex justify-content-center align-items-center">
+                                    <template v-if="!sorted">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19" viewBox="0 0 18 19"
+                                            fill="none">
+                                            <path
+                                                d="M5.2202 7.84912L8.57777 3.66525C8.87645 3.27825 9.36864 3.27825 9.66789 3.66525L13.0255 7.84912C13.3241 8.23612 13.1835 8.55225 12.6739 8.55225H5.57233C5.0627 8.55225 4.92208 8.23556 5.22077 7.84912H5.2202ZM13.0249 11.1538L9.66733 15.3377C9.36864 15.7247 8.87645 15.7247 8.5772 15.3377L5.21964 11.1538C4.92095 10.7668 5.06158 10.4507 5.5712 10.4507H12.6728C13.1824 10.4507 13.323 10.7674 13.0243 11.1538H13.0249Z"
+                                                fill="white" />
+                                        </svg>
+                                    </template>
+                                    <template v-else>
+                                        <svg class="mx-2" v-if="(sortOrder as unknown as number) > 0"
+                                            xmlns="http://www.w3.org/2000/svg" width="10.033" height="5">
+                                            <path d="m5.016 0-2.51 2.5L0 4.999 5.016 5l5.017-.001L7.525 2.5 5.016 0z" />
+                                        </svg>
+                                        <svg class="mx-2" v-if="(sortOrder as unknown as number) < 0"
+                                            xmlns="http://www.w3.org/2000/svg" width="10.033" height="5">
+                                            <path d="M5.016 0 0 .003 2.506 2.5 5.016 5l2.509-2.5L10.033.003 5.016 0z" />
+                                        </svg>
+                                    </template>
+                                </div>
+                            </template>
+                            <template #header>
+                                <div class="flex justify-content-center align-items-center">
+                                    <p class="text-header">Upline</p>
+                                </div>
+                            </template>
+                            <template #body="value">
+                                <div class="flex gap-1 flex-column align-items-center">
+                                    <h4 class="text-content">{{ value.data.student.upline }}</h4>
+                                </div>
+                            </template>
+                        </Column>
+                        <Column field="branch" sortable class="center">
+                            <template #sorticon="{ sorted, sortOrder }">
+                                <div class="flex justify-content-center align-items-center">
+                                    <template v-if="!sorted">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="19" viewBox="0 0 18 19"
+                                            fill="none">
+                                            <path
+                                                d="M5.2202 7.84912L8.57777 3.66525C8.87645 3.27825 9.36864 3.27825 9.66789 3.66525L13.0255 7.84912C13.3241 8.23612 13.1835 8.55225 12.6739 8.55225H5.57233C5.0627 8.55225 4.92208 8.23556 5.22077 7.84912H5.2202ZM13.0249 11.1538L9.66733 15.3377C9.36864 15.7247 8.87645 15.7247 8.5772 15.3377L5.21964 11.1538C4.92095 10.7668 5.06158 10.4507 5.5712 10.4507H12.6728C13.1824 10.4507 13.323 10.7674 13.0243 11.1538H13.0249Z"
+                                                fill="white" />
+                                        </svg>
+                                    </template>
+                                    <template v-else>
+                                        <svg class="mx-2" v-if="(sortOrder as unknown as number) > 0"
+                                            xmlns="http://www.w3.org/2000/svg" width="10.033" height="5">
+                                            <path d="m5.016 0-2.51 2.5L0 4.999 5.016 5l5.017-.001L7.525 2.5 5.016 0z" />
+                                        </svg>
+                                        <svg class="mx-2" v-if="(sortOrder as unknown as number) < 0"
+                                            xmlns="http://www.w3.org/2000/svg" width="10.033" height="5">
+                                            <path d="M5.016 0 0 .003 2.506 2.5 5.016 5l2.509-2.5L10.033.003 5.016 0z" />
+                                        </svg>
+                                    </template>
+                                </div>
+                            </template>
+                            <template #header>
+                                <div class="flex justify-content-center align-items-center">
+                                    <p class="text-header">Branch</p>
+                                </div>
+                            </template>
+                            <template #body="value">
+                                <div class="flex gap-1 flex-column align-items-center">
+                                    <h4 class="text-content">{{ value.data.student.city_branch }}</h4>
+                                </div>
+                            </template>
+                        </Column>
+                        <Column field="profile">
+                            <template #header>
+                                <div class="flex justify-content-center align-items-center w-full">
+                                    <p class="text-header">Profile</p>
+                                </div>
+                            </template>
+                            <template #body="value">
+                                <div class="flex gap-1 flex-column align-items-center">
+                                    <Button class="btn-orange" @click="onSelectProfile(value.data)" size="small">
+                                        <span class="text-md font-bold">Profile</span>
+                                    </Button>
+                                </div>
+                            </template>
+                        </Column>
+                        <Column field="message">
+                            <template #header>
+                                <div class="flex justify-content-center align-items-center w-full">
+                                    <p class="text-header">Message</p>
+                                </div>
+                            </template>
+                            <template #body="value">
+                                <div class="flex gap-1 flex-column align-items-center">
+                                    <Button link size="small"
+                                        @click="$router.push('/admin/grade/student/' + value.data.id + '/message')">
+                                        <img src="/assets/icon/reply.png" class="w-2rem" />
+                                    </Button>
+                                </div>
+                            </template>
+                        </Column>
+                    </DataTable>
+                </div>
             </div>
         </section>
     </section>
@@ -322,8 +333,9 @@ onMounted(() => {
                         d="M16 14H8C7.73478 14 7.48043 14.1054 7.29289 14.2929C7.10536 14.4804 7 14.7348 7 15C7 15.2652 7.10536 15.5196 7.29289 15.7071C7.48043 15.8946 7.73478 16 8 16H16C16.2652 16 16.5196 15.8946 16.7071 15.7071C16.8946 15.5196 17 15.2652 17 15C17 14.7348 16.8946 14.4804 16.7071 14.2929C16.5196 14.1054 16.2652 14 16 14ZM16 10H10C9.73478 10 9.48043 10.1054 9.29289 10.2929C9.10536 10.4804 9 10.7348 9 11C9 11.2652 9.10536 11.5196 9.29289 11.7071C9.48043 11.8946 9.73478 12 10 12H16C16.2652 12 16.5196 11.8946 16.7071 11.7071C16.8946 11.5196 17 11.2652 17 11C17 10.7348 16.8946 10.4804 16.7071 10.2929C16.5196 10.1054 16.2652 10 16 10ZM20 4H17V3C17 2.73478 16.8946 2.48043 16.7071 2.29289C16.5196 2.10536 16.2652 2 16 2C15.7348 2 15.4804 2.10536 15.2929 2.29289C15.1054 2.48043 15 2.73478 15 3V4H13V3C13 2.73478 12.8946 2.48043 12.7071 2.29289C12.5196 2.10536 12.2652 2 12 2C11.7348 2 11.4804 2.10536 11.2929 2.29289C11.1054 2.48043 11 2.73478 11 3V4H9V3C9 2.73478 8.89464 2.48043 8.70711 2.29289C8.51957 2.10536 8.26522 2 8 2C7.73478 2 7.48043 2.10536 7.29289 2.29289C7.10536 2.48043 7 2.73478 7 3V4H4C3.73478 4 3.48043 4.10536 3.29289 4.29289C3.10536 4.48043 3 4.73478 3 5V19C3 19.7956 3.31607 20.5587 3.87868 21.1213C4.44129 21.6839 5.20435 22 6 22H18C18.7956 22 19.5587 21.6839 20.1213 21.1213C20.6839 20.5587 21 19.7956 21 19V5C21 4.73478 20.8946 4.48043 20.7071 4.29289C20.5196 4.10536 20.2652 4 20 4ZM19 19C19 19.2652 18.8946 19.5196 18.7071 19.7071C18.5196 19.8946 18.2652 20 18 20H6C5.73478 20 5.48043 19.8946 5.29289 19.7071C5.10536 19.5196 5 19.2652 5 19V6H7V7C7 7.26522 7.10536 7.51957 7.29289 7.70711C7.48043 7.89464 7.73478 8 8 8C8.26522 8 8.51957 7.89464 8.70711 7.70711C8.89464 7.51957 9 7.26522 9 7V6H11V7C11 7.26522 11.1054 7.51957 11.2929 7.70711C11.4804 7.89464 11.7348 8 12 8C12.2652 8 12.5196 7.89464 12.7071 7.70711C12.8946 7.51957 13 7.26522 13 7V6H15V7C15 7.26522 15.1054 7.51957 15.2929 7.70711C15.4804 7.89464 15.7348 8 16 8C16.2652 8 16.5196 7.89464 16.7071 7.70711C16.8946 7.51957 17 7.26522 17 7V6H19V19Z"
                         fill="black" />
                 </svg>
-                <div class="modal-text mr-1">You passed the course! Your overall grade <span class="modal text correct-color font-bold">100%</span></div>
-                
+                <div class="modal-text mr-1">You passed the course! Your overall grade <span
+                        class="modal text correct-color font-bold">100%</span></div>
+
             </div>
             <div class="flex flex-row align-items-center my-4">
                 <div class="flex flex-row align-items-center gap-2">
@@ -557,14 +569,6 @@ onMounted(() => {
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-}
-
-:deep(.dropdown) {
-    min-width: 290px;
-
-    .p-dropdown-label {
-        padding: 5px 10px;
-    }
 }
 
 .student-name {
