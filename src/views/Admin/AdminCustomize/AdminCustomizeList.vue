@@ -6,7 +6,7 @@
       <div class="my-5 shadow-5 col-12 border-round-md">
         <div class="grid col-12 align-items-center justify-content-center">
           <h1 class="inter-normal black-2 sm:text-3xl col-6 sm:col-7 md:col-8 lg:col-10" style="font-size: 30px; font-weight: 700;">Badge</h1>
-          <Button label="NEW" @click="router.push({ path: '/admin/customize/editor' })" class="btn-new col-6 sm:col-5 md:col-4 lg:col-2"></Button>
+          <Button label="NEW" @click="router.push({ path: '/admin/customize/editor' })" class="btn-new col-6 "></Button>
         </div>
       </div>
       
