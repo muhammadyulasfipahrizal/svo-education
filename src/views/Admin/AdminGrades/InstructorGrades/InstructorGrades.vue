@@ -33,52 +33,54 @@ const onSelectProfile = (v: Instructor) => {
     <section class="px-2">
         <section
             class="grid overflow-hidden flex-column md:flex-row pl-3 pr-3 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2 py-2">
-            <h1 class="hidden lg:block title-head">Instructor Grades</h1>
+            <h1 class="hidden lg:block title-head ml-4">Instructor Grades</h1>
             <h1 class="title-head lg:hidden">Instructor</h1>
-            <div class="pl- col-12 flex flex-column gap-2">
-                <!-- FILTER -->
-                <div class="grid w-full pl-2 md:pl-3 align-items-center justify-content-between">
-                    
-                    <div class="col-12 grid align-items-center filter-search align-items-center py-0 mt-2 px-0"
-                        style="height: 40px;">
-
-                        <button class="filter-button flex flex-row justify-content-center min-w-min col-2 md:col-2 xl:col-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 20 20" fill="none">
-                                <g clip-path="url(#clip0_2655_7875)">
+            <div class="col-12">
+                <div
+                    class="col-12 flex flex-row align-items-center justify-content-between filter-search px-0 sm:px-3 py-0 ml-2 sm:ml-0">
+                    <div
+                        class="col-12 md:col-10 lg:col-10 lg:col-10 grid grid-nogutter gap-2 align-items-center filter-container ">
+                        <Button size="small" class="filter-button sm:col-1 md:col-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <g clip-path="url(#clip0_2726_4798)">
                                     <path d="M12 12L20 4V0H0V4L8 12V20L12 16V12Z" fill="#808081" />
                                 </g>
                                 <defs>
-                                    <clipPath id="clip0_2655_7875">
+                                    <clipPath id="clip0_2726_4798">
                                         <rect width="20" height="20" fill="white" />
                                     </clipPath>
                                 </defs>
                             </svg>
-                            <p class="p-0 m-0 text-sm">Filter</p>
-                        </button>
-
-                        <div class="p-input-icon-left h-full col-8 md:col-6 xl:col-4 py-0">
-                            <svg class="ml-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
-                                fill="none">
-                                <path
-                                    d="M13.4097 14.8822C11.7399 16.1799 9.63851 16.7922 7.53338 16.5942C5.42824 16.3963 3.47766 15.403 2.07881 13.8166C0.679961 12.2303 -0.0619809 10.1701 0.00405863 8.05565C0.0700982 5.94118 0.939153 3.9314 2.43427 2.43552C3.92939 0.939633 5.93814 0.0701341 8.05152 0.00406071C10.1649 -0.0620127 12.224 0.680308 13.8096 2.07987C15.3951 3.47944 16.3879 5.43102 16.5857 7.53723C16.7836 9.64345 16.1717 11.7459 14.8745 13.4166L19.6936 18.2201C20.1016 18.6267 20.1022 19.2872 19.695 19.6946C19.2878 20.1021 18.6273 20.1017 18.2204 19.6939L13.4201 14.8822H13.4097ZM8.31916 14.5495C9.13773 14.5495 9.94829 14.3882 10.7045 14.0748C11.4608 13.7614 12.148 13.302 12.7268 12.7229C13.3056 12.1438 13.7647 11.4563 14.078 10.6996C14.3913 9.94298 14.5525 9.13201 14.5525 8.31302C14.5525 7.49403 14.3913 6.68306 14.078 5.92641C13.7647 5.16976 13.3056 4.48225 12.7268 3.90314C12.148 3.32402 11.4608 2.86465 10.7045 2.55123C9.94829 2.23782 9.13773 2.07651 8.31916 2.07651C6.66598 2.07651 5.08051 2.73356 3.91153 3.90314C2.74256 5.07271 2.08583 6.659 2.08583 8.31302C2.08583 9.96705 2.74256 11.5533 3.91153 12.7229C5.08051 13.8925 6.66598 14.5495 8.31916 14.5495Z"
-                                    fill="#808081" />
-                            </svg>
-                            <InputText placeholder="Search by Name" class="search-bar w-full p-inputtext-sm" />
+                            <p>Filter</p>
+                        </Button>
+                        <div class="p-input-icon-left sm:w-7 w-6 col-5 sm:mt-0 p-0 search-input">
+                            <i class="pi pi-search search-icon ml-2" />
+                            <InputText placeholder="Search by Name" class="search-bar p-inputtext-sm w-full h-full" />
                         </div>
-
-                        <Button size="small" class="download-button flex text-right justify-content-center 
-                         align-items-center col-1 md:min-w-min ml-auto">
-                                <template #default>
-                                    <div class="flex flex-row gap-2 align-items-center">
-                                        <i class="pi pi-download"></i>
-                                        <p class="hidden md:block inter-normal" style="font-weight: 600; font-size: 16px;">Download</p>
-                                    </div>
-                                </template>
+                        <Button size="small" class="col-2 download ml-auto">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18" viewBox="0 0 16 18" fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M6.73798 0.25C5.96436 0.25 5.31904 0.841231 5.25148 1.61189C5.11024 3.22317 5.0745 4.84164 5.14436 6.45693C5.06003 6.46258 4.97571 6.46847 4.8914 6.47462L3.4019 6.5832C2.44985 6.6526 1.91764 7.71416 2.43163 8.51854C3.5278 10.2341 4.94026 11.7254 6.59369 12.9132L7.19043 13.3418C7.67425 13.6894 8.32591 13.6894 8.80972 13.3418L9.40646 12.9132C11.0599 11.7254 12.4724 10.2341 13.5685 8.51855C14.0825 7.71416 13.5503 6.6526 12.5983 6.5832L11.1088 6.47462C11.0245 6.46847 10.9401 6.46258 10.8558 6.45693C10.9257 4.84164 10.8899 3.22317 10.7487 1.61188C10.6811 0.841229 10.0358 0.25 9.26219 0.25H6.73798ZM6.68157 7.11473C6.56786 5.3275 6.58909 3.53417 6.74513 1.75H9.25503C9.41106 3.53417 9.4323 5.3275 9.31859 7.11473C9.30584 7.31509 9.37396 7.51221 9.5077 7.66195C9.64144 7.8117 9.82964 7.90156 10.0302 7.91144C10.3535 7.92737 10.6767 7.94711 10.9997 7.97065L12.0815 8.04951C11.1219 9.46281 9.92044 10.6971 8.53133 11.6949L8.00008 12.0765L7.46882 11.6949C6.07972 10.6971 4.87824 9.4628 3.9187 8.04951L5.00046 7.97065C5.32345 7.94711 5.64664 7.92737 5.96999 7.91144C6.17052 7.90156 6.35871 7.81169 6.49246 7.66195C6.6262 7.51221 6.69432 7.31509 6.68157 7.11473Z"
+                                    fill="white" />
+                                <path
+                                    d="M1.75 14C1.75 13.5858 1.41421 13.25 1 13.25C0.585786 13.25 0.25 13.5858 0.25 14V16C0.25 16.9665 1.0335 17.75 2 17.75H14C14.9665 17.75 15.75 16.9665 15.75 16V14C15.75 13.5858 15.4142 13.25 15 13.25C14.5858 13.25 14.25 13.5858 14.25 14V16C14.25 16.1381 14.1381 16.25 14 16.25H2C1.86193 16.25 1.75 16.1381 1.75 16V14Z"
+                                    fill="white" />
+                            </svg>
+                            <p>DOWNLOAD</p>
+                        </Button>
+                        <Button size="small" class="col-2 download block md:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18" viewBox="0 0 16 18" fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M6.73798 0.25C5.96436 0.25 5.31904 0.841231 5.25148 1.61189C5.11024 3.22317 5.0745 4.84164 5.14436 6.45693C5.06003 6.46258 4.97571 6.46847 4.8914 6.47462L3.4019 6.5832C2.44985 6.6526 1.91764 7.71416 2.43163 8.51854C3.5278 10.2341 4.94026 11.7254 6.59369 12.9132L7.19043 13.3418C7.67425 13.6894 8.32591 13.6894 8.80972 13.3418L9.40646 12.9132C11.0599 11.7254 12.4724 10.2341 13.5685 8.51855C14.0825 7.71416 13.5503 6.6526 12.5983 6.5832L11.1088 6.47462C11.0245 6.46847 10.9401 6.46258 10.8558 6.45693C10.9257 4.84164 10.8899 3.22317 10.7487 1.61188C10.6811 0.841229 10.0358 0.25 9.26219 0.25H6.73798ZM6.68157 7.11473C6.56786 5.3275 6.58909 3.53417 6.74513 1.75H9.25503C9.41106 3.53417 9.4323 5.3275 9.31859 7.11473C9.30584 7.31509 9.37396 7.51221 9.5077 7.66195C9.64144 7.8117 9.82964 7.90156 10.0302 7.91144C10.3535 7.92737 10.6767 7.94711 10.9997 7.97065L12.0815 8.04951C11.1219 9.46281 9.92044 10.6971 8.53133 11.6949L8.00008 12.0765L7.46882 11.6949C6.07972 10.6971 4.87824 9.4628 3.9187 8.04951L5.00046 7.97065C5.32345 7.94711 5.64664 7.92737 5.96999 7.91144C6.17052 7.90156 6.35871 7.81169 6.49246 7.66195C6.6262 7.51221 6.69432 7.31509 6.68157 7.11473Z"
+                                    fill="white" />
+                                <path
+                                    d="M1.75 14C1.75 13.5858 1.41421 13.25 1 13.25C0.585786 13.25 0.25 13.5858 0.25 14V16C0.25 16.9665 1.0335 17.75 2 17.75H14C14.9665 17.75 15.75 16.9665 15.75 16V14C15.75 13.5858 15.4142 13.25 15 13.25C14.5858 13.25 14.25 13.5858 14.25 14V16C14.25 16.1381 14.1381 16.25 14 16.25H2C1.86193 16.25 1.75 16.1381 1.75 16V14Z"
+                                    fill="white" />
+                            </svg>
                         </Button>
                     </div>
                 </div>
-            </div>
-            <div class="col-12">
+
                 <DataTable :value="instructorList" removableSort paginator :rows="10" :rowsPerPageOptions="[5, 10, 20, 50]"
                     sortMode="multiple" v-model:selection="checkedInstructor" class="shadow-2 p-datatable-sm"
                     tableStyle="min-width: 80rem" :paginatorTemplate="{
@@ -88,7 +90,7 @@ const onSelectProfile = (v: Instructor) => {
                     }" :pageLinkSize="3"
                     currentPageReportTemplate="Showing data {first} to {last} of {totalRecords} entries">
                     <Column selectionMode="multiple" headerStyle="width: 0%"></Column>
-                    <Column field="name" headerStyle="width: 25%">
+                    <Column field="name" headerStyle="width: 20%">
                         <template #header>
                             <div class="flex justify-content-center align-items-center">
                                 <p class="text-header">Name</p>
@@ -135,15 +137,17 @@ const onSelectProfile = (v: Instructor) => {
                             </div>
                         </template>
                         <template #body="value">
-                            <div class="flex gap-1 flex-column align-items-start">
-                                <h4 class="p-0 inter-normal black-3" style="font-size: 14px; font-weight: 500;">{{ value.data.work_as }}</h4>
-                                <p class="p-0 inter-normal grey-3" style="font-size: 14px; font-weight: 400; letter-spacing: 0.7px;">
+                            <div class="flex flex-column align-items-start" style="gap: 5px;">
+                                <h4 class="p-0 inter-normal black-3" style="font-size: 14px; font-weight: 500;">{{
+                                    value.data.work_as }}</h4>
+                                <p class="p-0 inter-normal grey-3"
+                                    style="font-size: 14px; font-weight: 400; letter-spacing: 0.7px;">
                                     {{ value.data.rating.rating }}/5 ({{ value.data.rating.total_rating }} ratings)
                                 </p>
                             </div>
                         </template>
                     </Column>
-                    <Column field="department" sortable class="center" headerStyle="width: 20%">
+                    <Column field="department" sortable class="center" headerStyle="width: 15%">
                         <template #sorticon="{ sorted, sortOrder }">
                             <div class="flex justify-content-center align-items-center">
                                 <template v-if="!sorted">
@@ -179,7 +183,7 @@ const onSelectProfile = (v: Instructor) => {
                             </div>
                         </template>
                     </Column>
-                    <Column field="quantity" sortable class="center" headerStyle="width: 20%">
+                    <Column field="quantity" sortable class="center" headerStyle="width: 15%">
                         <template #sorticon="{ sorted, sortOrder }">
                             <div class="flex justify-content-center align-items-center">
                                 <template v-if="!sorted">
@@ -209,11 +213,13 @@ const onSelectProfile = (v: Instructor) => {
                         </template>
                         <template #body="value">
                             <div class="flex gap-1 flex-column align-items-center">
-                                <h4 class="inter-normal black-3" style="font-size: 14px; font-weight: 500;">{{ parseFloat(((value.data.rating.ratings.helpful +
-                                    value.data.rating.ratings.easiness + value.data.rating.ratings.clarity) /
-                                    3 + 95).toString()).toFixed(2) }}%
+                                <h4 class="inter-normal black-3" style="font-size: 14px; font-weight: 500;">{{
+                                    parseFloat(((value.data.rating.ratings.helpful +
+                                        value.data.rating.ratings.easiness + value.data.rating.ratings.clarity) /
+                                        3 + 95).toString()).toFixed(2) }}%
                                 </h4>
-                                <p class="inter-normal grey-3" style="font-size: 14px; font-weight: 400; letter-spacing: 0.7px;">
+                                <p class="inter-normal grey-3"
+                                    style="font-size: 14px; font-weight: 400; letter-spacing: 0.7px;">
                                     {{ value.data.rating.total_vote }} <span class="text-500">voted</span>
                                 </p>
                             </div>
@@ -287,7 +293,8 @@ const onSelectProfile = (v: Instructor) => {
             </div>
             <span class="border-200 surface-overlay border-1" />
             <div class="flex align-items-center justify-content-between">
-                <h3 class="inter-normal black-1" style="font-size: 16px; font-weight: 600;">Overall rating ({{ selectedProfile?.rating.total_rating }} rated)
+                <h3 class="inter-normal black-1" style="font-size: 16px; font-weight: 600;">Overall rating ({{
+                    selectedProfile?.rating.total_rating }} rated)
                 </h3>
                 <star-rating :show-rating="false" :round-start-rating="false" :star-size="16" inactive-color="#FFF"
                     border-color="#E96853" :border-width="1" :padding="0.99" active-color="#E96853" read-only
@@ -300,6 +307,7 @@ const onSelectProfile = (v: Instructor) => {
 
 <style lang="scss" scoped>
 @import "/src/assets/global.scss";
+
 .search-bar {
     border-radius: 6px;
     background: #EEE !important;

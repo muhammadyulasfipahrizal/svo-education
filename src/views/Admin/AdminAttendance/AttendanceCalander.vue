@@ -1,5 +1,6 @@
 <template>
-  <div class="border-2 surface-border grid align-items-center justify-content-center w-full p-0 m-0 mb-3 border-round-xl content">
+  <div
+    class="border-2 surface-border grid align-items-center justify-content-center w-full p-0 m-0 mb-3 border-round-xl content">
     <div class="flex align-items-center justify-content-center avatar-container col-12 px-0">
       <img :src="card.image" class="border-circle w-4rem h-4rem object-cover" style="object-fit: cover" />
       <span v-html="card.iconMarkup" :class="getIconClass(card.iconMarkup)" class="absolute"></span>
@@ -11,8 +12,10 @@
     </div>
     <ProgressBar class="w-full mx-2 progressbar" :value="card.attendance / 30 * 100"></ProgressBar>
     <div class="flex justify-content-between align-items-center text-xs col-12 py-0">
-      <p class="poppins-normal black-4" style="font-size: 10px; font-weight: 500;">Attendance: {{ card.attendance }}/30 days</p>
-      <p class="poppins-normal black-4" style="font-size: 10px; font-weight: 500; letter-spacing: -0.1px;">{{ Math.round(card.attendance / 30 * 100) }}%</p>
+      <p class="poppins-normal black-4" style="font-size: 10px; font-weight: 500;">Attendance: {{ card.attendance }}/30
+        days</p>
+      <p class="poppins-normal black-4" style="font-size: 10px; font-weight: 500; letter-spacing: -0.1px;">{{
+        Math.round(card.attendance / 30 * 100) }}%</p>
     </div>
     <div class="col-12 p-0 ">
       <Calendar borderless :locale="calendarLocale" :attributes="attributes" class="w-full" />
@@ -87,6 +90,7 @@ const attributes = ref([
 
 <style scoped lang="scss">
 @import "/src/assets/global.scss";
+
 .container {
   border-radius: 15px;
   max-width: 187px;
@@ -182,11 +186,31 @@ const attributes = ref([
     width: 30px;
     height: 30px;
 
+    @media screen and (min-width: 1447px) {
+      width: auto;
+    }
+
+    @media screen and (min-width: 601px) and (max-width: 767px) {
+      width: auto;
+    }
+
+    @media screen and (max-width: 600px) {
+      width: 27px !important;
+      height: 27px !important;
+
+      .vc-day-content {
+        font-size: 7.308px;
+      }
+    }
+
+
     .vc-day-content {
       font-size: 10px;
+
       &:hover {
         background: unset;
       }
+
       &.vc-red {
         color: #BE2F00;
       }
@@ -221,7 +245,8 @@ const attributes = ref([
       font-size: 10px;
       font-style: normal;
       font-weight: 500;
-      line-height: 100%; /* 10px */
+      line-height: 100%;
+      /* 10px */
       letter-spacing: -0.1px;
     }
 
@@ -265,7 +290,8 @@ const attributes = ref([
       font-size: 10px;
       font-style: normal;
       font-weight: 500;
-      line-height: 100%; /* 10px */
+      line-height: 100%;
+      /* 10px */
       letter-spacing: -0.1px;
       width: 30px;
       height: 20px;
@@ -276,10 +302,12 @@ const attributes = ref([
         width: 26px;
       }
     }
+
     .vc-week:last-child {
       .vc-day:first-child {
         border-bottom-left-radius: 10px;
       }
+
       .vc-day:last-child {
         border-bottom-right-radius: 10px;
       }
@@ -342,5 +370,4 @@ const attributes = ref([
 
 .content {
   font-family: Inter;
-}
-</style>
+}</style>
