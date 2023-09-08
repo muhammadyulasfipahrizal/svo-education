@@ -217,20 +217,20 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
         <div class="card card-container p-2">
             <div class="card-content">
                 <div class="grid">
-                    <div class="col-12 lg:col-7">
+                    <div class="col-12 xl:col-6">
                         <div class="flex flex-column align-items-start justify-content-start gap-3 ">
                             <InputText type="text" label="Title" v-model="title"
                                 class="p-inputtext-lg w-full text-6xl mt-6 h-4rem" required placeholder="Title" />
 
-                            <div class="grid gap-2 align-items-start md:align-items-center w-full justify-content-between">
-                                <div class="flex align-items-center">
+                            <div class="grid align-items-start md:align-items-center w-full justify-content-between">
+                                <div class="flex align-items-center col-12 sm:col-9">
                                     <h1 class="col-5 md:col-2 lg:col-2 inter-normal black-1 min-w-max"
                                         style="font-size: 25px; font-weight: 700;">
                                         Instructor By
                                     </h1>
                                     <Dropdown v-model="selectedInstructor" v-bind:class="{ selected: selectedInstructor }"
-                                        :options="instructorList" optionLabel="name" placeholder="Select Instructor" class="md:w-full md:w-18rem 
-                                         col-6 md:col-5 h-2rem flex align-items-center" size="small"
+                                        :options="instructorList" optionLabel="name" placeholder="Select Instructor" class=" 
+                                         col-6 md:col-8 h-2rem flex align-items-center" size="small"
                                         @change="(value: any) => onChangeInstructor(value.value)" />
                                 </div>
                                 <div class="col-12 md:col-2 flex gap-1">
@@ -242,7 +242,7 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                                 </div>
                             </div>
 
-                            <div class="w-full mx-2 ratings-container">
+                            <div class="w-full px-2 ratings-container">
                                 <div class="w-full p-2 card shadow-1 flex flex-column">
                                     <div
                                         class="flex flex-row md:flex-column gap-2 md:gap-0 align-items-center md:align-items-start mb-1">
@@ -256,8 +256,9 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                                         </p>
                                     </div>
                                 </div>
-                                <div class="w-full p-2 card shadow-1 gap-1">
-                                        <img src="/assets/icon/stopwatch.png" class="w-1rem" />
+                                <div class="w-full p-2 card shadow-1 flex flex-column gap-2">
+                                    <div class="w-full gap-1 flex align-items-center">
+                                        <img src="/assets/icon/stopwatch.png" style="width: 18px; height: 18px;" />
                                         <h3 class="inter-normal black-2" style="font-size: 18px; font-weight: 400;">Total
                                             Hours</h3>
                                     </div>
@@ -288,23 +289,24 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                                     </div>
                                 </div>
                             </div>
-
-                            <Button class="btn-default md:w-max mb-3 md:mb-0">
-                                <template #default>
-                                    <div class="inter-normal px-2" style="font-size: 20px; font-weight: 500;">
-                                        Enroll
-                                    </div>
-                                </template>
-                            </Button>
                         </div>
+
+                        <Button class="btn-default mt-4 md:w-max mb-3 md:mb-0">
+                            <template #default>
+                                <div class="inter-normal px-2" style="font-size: 20px; font-weight: 500;">
+                                    Enroll
+                                </div>
+                            </template>
+                        </Button>
                     </div>
-                    <div class="col-12 lg:col-5">
+                    <div class="col-12 md:col-6">
                         <div class="col-12">
                             <UploadImage class="w-full upload-image " style="height: 257px" />
                         </div>
                         <div class="flex justify-content-center align-items-center gap-2 my-2 col-12">
                             <div class="card-price flex justify-content-center align-items-center flex-column p-2">
-                                <h4 class="inter-normal black-2" style="font-size: 15px; font-weight: 700;">Original Price</h4>
+                                <h4 class="inter-normal black-2" style="font-size: 15px; font-weight: 700;">Original Price
+                                </h4>
                                 <InputNumber v-model="originalPrice" inputId="integeronly" placeholder="0.00" />
                             </div>
                             <div class="card-price flex justify-content-center align-items-center flex-column p-2">
@@ -313,12 +315,20 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                                 <InputNumber v-model="discountPrice" inputId="integeronly" placeholder="0.00" />
                             </div>
                         </div>
+                        <div class="flex justify-content-center align-items-center gap-2 col-12 -mt-3">
+                            <Button class="btn-orange w-5"
+                                style="font-size: 15px; font-style: normal; font-weight: 500;">ADD TO CART</Button>
+                            <Button class="btn-orange w-5"
+                                style="font-size: 15px; font-style: normal; font-weight: 500;">ADD BUY NOW</Button>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
 
         <!-- STEP SECTION -->
-        <div class="flex justify-content-start align-items-center gap-2 my-3">
+        <div class="flex justify-content-start align-items-center gap-2 my-3 step-container">
+            <Button label="ABOUT" :class="{ 'btn-default': steps === 'about' }" outlined @click="steps = 'about'" />
             <Button label="INSTRUCTOR" :class="{ 'btn-default': steps === 'instructor' }" outlined
                 @click="steps = 'instructor'" />
             <Button label="SYLLABUS" :class="{ 'btn-default': steps === 'syllabus' }" outlined
@@ -371,7 +381,9 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                                         <template #default>
                                             <div class="flex flex-row align-items-center gap-3">
                                                 <i class="pi pi-plus"></i>
-                                                <p class="inter-normal" style="font-size: 13px; font-weight: 600; text-transform: initial;">Add More
+                                                <p class="inter-normal"
+                                                    style="font-size: 13px; font-weight: 600; text-transform: initial;">Add
+                                                    More
                                                     Grading</p>
                                             </div>
                                         </template>
@@ -481,13 +493,13 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                             <!-- content -->
                             <div class="flex-column gap-2 w-full p-2" :class="{ 'flex': syllabus, 'hidden': !syllabus }">
                                 <Textarea class="p-inputtext-lg" placeholder="Enter a description">
-                                                                                                            Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero 
-                                                                                                            et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad 
-                                                                                                            litora torquent per conubia nostra, per inceptos himenaeos. 
-                                                                                                            Curabitur tempus urna at turpis condimentum lobortis. Ut commodo 
-                                                                                                            efficitur neque. Ut diam quam, semper iaculis condimentum ac, 
-                                                                                                            vestibulum eu nisl.
-                                                                                                        </Textarea>
+                                                                                                                            Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero 
+                                                                                                                            et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad 
+                                                                                                                            litora torquent per conubia nostra, per inceptos himenaeos. 
+                                                                                                                            Curabitur tempus urna at turpis condimentum lobortis. Ut commodo 
+                                                                                                                            efficitur neque. Ut diam quam, semper iaculis condimentum ac, 
+                                                                                                                            vestibulum eu nisl.
+                                                                                                                        </Textarea>
                                 <template v-for="(syllabusData, key) in syllabusAccordionData">
                                     <div class="flex justify-content-between align-items-center">
                                         <div class="grid align-items-center gap-2 w-full">
@@ -686,6 +698,7 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
 
 <style scoped lang="scss">
 @import "/src/assets/global.scss";
+
 .upload-image {
     height: 350px;
 }
@@ -750,6 +763,13 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
     align-items: center;
     align-self: stretch;
 
+    @media screen and (max-width: 1024px) {
+        width: fit-content;
+        ::v-deep(.p-inputnumber) {
+            width: 100%;
+        }
+    }
+
     ::v-deep(.p-inputnumber) {
         width: 168px;
         padding: 3px 0px;
@@ -790,6 +810,10 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
     font-weight: 700;
     line-height: 160%;
     border-spacing: 0;
+
+    @media screen and (max-width: 767px) {
+        width: 100%;
+    }
 
     thead {
         background: var(--suggested-dark-grey, #808081);
@@ -912,9 +936,21 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
     gap: 10px;
     display: grid;
     grid-template-columns: repeat(3, 33%);
+
+    @media screen and (max-width: 767px) {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: column;
+        div {
+            width: 100%;
+        }
+    }
 }
 
 .btn-new-section {
+    border-radius: 0;
+
     span {
         color: var(--bg-1, #FFF);
         font-family: Inter;
@@ -951,6 +987,15 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
             padding: 0;
             margin: 0;
             width: inherit;
+        }
+    }
+}
+.step-container {
+    @media screen and (max-width: 767px) {
+        display: flex;
+        flex-direction: column;
+        button {
+            width: 100%;
         }
     }
 }
