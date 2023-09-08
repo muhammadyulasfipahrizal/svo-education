@@ -6,7 +6,11 @@
 #app {
   margin: 0;
   font-weight: normal;
-  overflow-x: hidden;
+  height: 100vh;
+}
+
+.main-content {
+  overflow: auto;
 }
 
 a,
@@ -115,6 +119,7 @@ textarea {
 
     .p-datatable-thead {
       .p-checkbox {
+        width: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -125,6 +130,10 @@ textarea {
           width: 12px;
           height: 12px;
           background: transparent;
+
+          svg {
+            color: black;
+          }
         }
       }
     }
@@ -144,6 +153,10 @@ textarea {
             width: 12px;
             height: 12px;
             background: transparent;
+
+            svg {
+              color: black;
+            }
           }
         }
       }
@@ -355,4 +368,388 @@ div {
   }
 }
 
-textarea { resize: vertical; }
+textarea {
+  resize:none;
+}
+
+.dropdown-course {
+  max-width: 330px;
+  padding: 5px 10px;
+  max-height: 50px;
+  border-radius: 5px;
+  border: 1px solid #D9D5EC;
+  background: #FFF;
+
+  .p-dropdown-label {
+    width: 100%;
+    padding: 0;
+    border-radius: 0;
+    margin: 0;
+
+    img {
+      width: 55px;
+      height: 30px;
+    }
+
+    h1 {
+      width: 100%;
+      color: var(--fonts-primary, #25213B);
+      text-align: center;
+      font-family: Inter;
+      font-size: 25px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+    }
+  }
+}
+
+/**
+* used in admin guest profile
+*/
+.filter-search {
+
+  .filter-container {
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+
+    .instructor {
+      @media screen and (min-width: 767px) {
+        max-width: 91px;
+      }
+
+      img {
+        width: 25px;
+        height: 25px;
+      }
+
+      p {
+        margin: 0;
+        padding: 0;
+        color: var(--fonts-primary, #25213B);
+        font-family: Inter;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        max-width: 91px;
+      }
+    }
+
+    .filter-button {
+      max-width: 88px;
+      display: flex;
+      padding: 10px !important;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border-radius: 6px;
+      border: 1px solid var(--Suggested-dark-grey, #808081) !important;
+      background: var(--backgrounds-primary, #FFF) !important;
+      max-height: 40px;
+
+      &:hover {
+        p {
+          color: var(--Suggested-dark-grey, #808081);
+        }
+
+        svg {
+          path {
+            fill: #808081;
+          }
+        }
+      }
+
+      p {
+        color: var(--Suggested-dark-grey, #808081);
+        font-family: Inter;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
+
+      svg {
+        color: #808081;
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    .search-input {
+      max-width: 392px;
+      min-height: 40px;
+    }
+
+    .download {
+      padding: 10px !important;
+      max-width: 146px;
+      max-height: 40px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+      flex-direction: row;
+      border-radius: 6px;
+      background: var(--Suggested-Pass-Color, #E26954);
+      border: none;
+
+      p {
+        color: var(--backgrounds-primary, #FFF);
+        font-family: Inter;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        text-transform: uppercase;
+      }
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      &:hover {
+        background: var(--Suggested-Pass-Color, #E26954) !important;
+      }
+
+      @media screen and (max-width: 767px) {
+        display: none;
+      }
+    }
+  }
+
+
+}
+
+
+/**
+* vue3datepicker
+*/
+:root {
+  .dp__theme_light {
+    --dp-background-color: #ffffff;
+    --dp-text-color: #212121;
+    --dp-hover-color: #f3f3f3;
+    --dp-hover-text-color: #212121;
+    --dp-hover-icon-color: #959595;
+    --dp-primary-color: #E96853;
+    --dp-primary-text-color: #f8f5f5;
+    --dp-secondary-color: #c0c4cc;
+    --dp-border-color: #ddd;
+    --dp-menu-border-color: #ddd;
+    --dp-border-color-hover: #aaaeb7;
+    --dp-disabled-color: #f6f6f6;
+    --dp-scroll-bar-background: #f3f3f3;
+    --dp-scroll-bar-color: #959595;
+    --dp-success-color: #76d275;
+    --dp-success-color-disabled: #a3d9b1;
+    --dp-icon-color: #959595;
+    --dp-danger-color: #ff6f60;
+    --dp-highlight-color: rgba(25, 118, 210, 0.1);
+  }
+
+  /*General*/
+  --dp-font-family: Poppins,
+  -apple-system,
+  blinkmacsystemfont,
+  "Segoe UI",
+  roboto,
+  oxygen,
+  ubuntu,
+  cantarell,
+  "Open Sans",
+  "Helvetica Neue",
+  sans-serif !important;
+  --dp-border-radius: 20px !important;
+  /*Configurable border-radius*/
+  --dp-cell-border-radius: 5px !important;
+  /*Specific border radius for the calendar cell*/
+  --dp-common-transition: all 0.1s ease-in;
+  /*Generic transition applied on buttons and calendar cells*/
+
+  /*Sizing*/
+  --dp-button-height: 35px;
+  /*Size for buttons in overlays*/
+  --dp-month-year-row-height: 40px !important;
+  /*Height of the month-year select row*/
+  --dp-month-year-row-button-size: 40px !important;
+  /*Specific height for the next/previous buttons*/
+  --dp-button-icon-height: 20px;
+  /*Icon sizing in buttons*/
+  --dp-cell-size: 50px !important;
+  /*Width and height of calendar cell*/
+  --dp-cell-padding: 7px !important;
+  /*Padding in the cell*/
+  --dp-common-padding: 10px;
+  /*Common padding used*/
+  --dp-input-icon-padding: 35px;
+  /*Padding on the left side of the input if icon is present*/
+  --dp-input-padding: 6px 30px 6px 12px;
+  /*Padding in the input*/
+  --dp-menu-min-width: unset !important;
+  /*Adjust the min width of the menu*/
+  --dp-action-buttons-padding: 2px 5px;
+  /*Adjust padding for the action buttons in action row*/
+  --dp-row-maring: 5px 0;
+  /*Adjust the spacing between rows in the calendar*/
+  --dp-calendar-header-cell-padding: 0.5rem;
+  /*Adjust padding in calendar header cells*/
+  --dp-two-calendars-spacing: 10px;
+  /*Space between multiple calendars*/
+  --dp-overlay-col-padding: 3px;
+  /*Padding in the overlay column*/
+  --dp-time-inc-dec-button-size: 32px;
+  /*Sizing for arrow buttons in the time picker*/
+  --dp-menu-padding: 6px 8px;
+  /*Menu padding*/
+
+  /*Font sizes*/
+  --dp-font-size: 1rem;
+  /*Default font-size*/
+  --dp-preview-font-size: 0.8rem;
+  /*Font size of the date preview in the action row*/
+  --dp-time-font-size: 0.8rem;
+  /*Font size in the time picker*/
+
+  /*Transitions*/
+  --dp-animation-duration: 0.1s;
+  /*Transition duration*/
+  --dp-menu-appear-transition-timing: cubic-bezier(.4, 0, 1, 1);
+  /*Timing on menu appear animation*/
+  --dp-transition-timing: ease-out;
+  /*Timing on slide animations*/
+}
+
+.dp__calendar_item {
+  .dp__cell_inner {
+    display: flex;
+    flex-direction: column;
+
+    &:not(.dp__active_date, .dp__range_start, .dp__range_between, .dp__range_end) {
+      background: rgba(250, 250, 250, 0.50);
+    }
+
+    &.dp__range_between {
+      background: #D9D9D9;
+    }
+
+    &.dp__active_date {
+      .custom-marker {
+        width: 30px;
+        height: 20px;
+        color: var(--Suggested-orange, #E96853);
+        text-align: center;
+        font-family: Poppins;
+        font-size: 10px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        letter-spacing: 0.3px;
+
+        border-radius: 16px;
+        border: 1px solid var(--White, #FFF);
+        background: var(--White, #FFF);
+      }
+    }
+  }
+}
+
+.dp__instance_calendar {
+  .dp__button_bottom {
+    display: none;
+  }
+}
+
+.dp__month_year_wrap {
+  gap: 10px;
+
+  .dp__month_year_select {
+    display: flex;
+    padding: 5px 10px;
+    align-items: center;
+    gap: 5px;
+    border-radius: 5px;
+    border: 1px solid #D9D5EC;
+    background: #FFF;
+
+    color: #000;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    letter-spacing: 0.6px;
+  }
+}
+
+.dp__overlay.dp--overlay-absolute {
+  border-radius: 20px;
+}
+
+.list-container {
+  display: grid;
+  grid-template-columns: repeat(5, 20%);
+  @media screen and (max-width: 1200px) {
+    grid-template-columns: repeat(3, 33.3%);
+  }
+  @media screen and (max-width: 600px) {
+    grid-template-columns: repeat(2, 50%);
+  }
+
+  .list-item {
+    box-sizing: border-box;
+    transition: all 200ms ease-in-out;
+
+
+    .event-title {
+      display: flex;
+      gap: 10px;
+
+      .card-title {
+        color: var(--font-1, #001125);
+        font-family: Inter;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 160%;
+      }
+
+      button {
+        padding: 0;
+        margin: 0;
+        width: 22px;
+        height: 22px;
+
+        svg {
+          width: 22px;
+          height: 22px;
+          color: #000;
+        }
+      }
+    }
+  }
+}
+
+.btn-new {
+  display: flex;
+  width: 163px;
+  height: 45px;
+  padding: 8px 28px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 4px;
+  background: var(--Primary, #00C0DD) !important;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) !important;
+  border: none !important;
+  color: #FFF;
+  text-align: center;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-transform: uppercase;
+}

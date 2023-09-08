@@ -88,7 +88,7 @@ const router = createRouter({
         {
           path: '',
           name: 'admin-create-root',
-          component: () => import('../views/Admin/AdminCreate/Course/CourseList/CourseList.vue')
+          redirect: '/admin/create/course'
         },
         // Course
         {
