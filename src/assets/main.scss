@@ -589,6 +589,7 @@ textarea {
   --dp-input-padding: 6px 30px 6px 12px;
   /*Padding in the input*/
   --dp-menu-min-width: unset !important;
+  --dp-menu-width: 100% !important;
   /*Adjust the min width of the menu*/
   --dp-action-buttons-padding: 2px 5px;
   /*Adjust padding for the action buttons in action row*/
@@ -620,6 +621,13 @@ textarea {
   /*Timing on menu appear animation*/
   --dp-transition-timing: ease-out;
   /*Timing on slide animations*/
+}
+
+.dp__main {
+  width: 100%;
+  .dp__outer_menu_wrap {
+    width: inherit;
+  }
 }
 
 .dp__calendar_item {

@@ -1,7 +1,7 @@
 <template>
     <VueDatePicker v-model="date" inline auto-apply :day-names="['S', 'M', 'T', 'W', 'T', 'F', 'S']" :markers="markers"
         :highlight="highlightedDates" :pickerOptions="{ timePicker: false }" @update:model-value="onChangeDate"
-        :range="range">
+        :range="range" :month-change-on-scroll="false">
         <template #day="{ day, date }">
             <div class="flex">
                 {{ day }}
