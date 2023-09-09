@@ -178,8 +178,7 @@
           </router-link>
         </li>
         <li>
-          <router-link to="" @click="openSub('profiles')" class="grid gap-2 menuitem-link"
-          :class="{ active: subMenuState.profiles }">
+          <router-link to="" @click="openSub('profiles')" class="grid gap-2 menuitem-link">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g id="Clip path group">
                 <mask id="mask0_1990_52896" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="20"

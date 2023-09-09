@@ -5,7 +5,7 @@ import HeaderLayout from './components/HeaderLayout.vue'
 </script>
 
 <template>
-  <div id="root" class="min-h-screen flex relative md:static">
+  <div id="root" class="flex relative md:static">
     <SidebarLayout />
     <div class="min-h-screen flex flex-column relative flex-auto main-content">
       <HeaderLayout />
@@ -19,9 +19,8 @@ import HeaderLayout from './components/HeaderLayout.vue'
 
 <style scope>
 #root {
-  /* background: #f9fafc; */
   background: white;
-  overflow: scroll;
+  overflow: hidden;
   height: 100%;
 }
 
