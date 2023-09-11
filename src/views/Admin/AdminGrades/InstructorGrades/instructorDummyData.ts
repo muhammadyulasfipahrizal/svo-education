@@ -4,7 +4,7 @@ export const instructorDummyData: Instructor[] = [
     {
         id: 1,
         name: "John Smith",
-        image: '/assets/img/instructor-2.png',
+        image: '/assets/img/instructor.png',
         email: "john.smith@example.com",
         work_as: "Assistant Professor",
         department: "Computer Science",

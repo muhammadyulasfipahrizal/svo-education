@@ -31,16 +31,15 @@ const dataList = ref<ICourse[]>([{
 
 <template>
     <section class="grid-nogutter">
-        <div class="my-5 shadow-5 col-12 h-5rem border-round">
-            <div class="grid col-12 align-items-center justify-content-between">
-                <h1 class="title text-2xl sm:text-3xl col-6 ml-3">Assigned Daily Task</h1>
-                <Button label="NEW" @click="$router.push('/admin/create/task/add')"
-                    class="btn-new col-6 mr-3"></Button>
-            </div>
+
+        <div class="flex flex-column md:flex-row align-items-center justify-content-center sm:justify-content-between shadow-5 border-round-md" style="padding: 16px 25px; gap:10px">
+            <h1 class="title text-2xl sm:text-3xl">Assigned Daily Task</h1>
+            <Button label="NEW" @click="$router.push('/admin/create/task/add')"
+                class="btn-new sm:mr-6"></Button>
         </div>
 
-        <article class="list-container col-12 p-0 m-0 gap-2">
-            <div v-for="(event, idx) of dataList" class="item-flex py-0 px-0 mx-0 my-3 md:my-3">
+        <article class="list-container col-12" style="gap: 5px">
+            <div v-for="(event, idx) of dataList" class="item-flex py-0 px-0 mx-0" style="margin-top: 20px">
                 <div class="grid cursor-pointer list-item align-items-center justify-content-center p-0 m-0">
                     <img :src="event.image" :alt="event.title" class="col-10" />
                     <div class="event-title">

@@ -1,16 +1,16 @@
 <template>
   <main>
-    <section>
-      <h1 class="font-bold title">Customize</h1>
+    <section style="padding: 10px; gap: 10px;">
+      <h1 class="font-bold title" style="padding: 10px 0px;">Customize</h1>
       
-      <div class="my-5 shadow-5 col-12 border-round-md">
-        <div class="grid col-12 align-items-center justify-content-center">
-          <h1 class="inter-normal black-2 sm:text-3xl col-6 sm:col-7 md:col-8 lg:col-10" style="font-size: 30px; font-weight: 700;">Badge</h1>
-          <Button label="NEW" @click="router.push({ path: '/admin/customize/editor' })" class="btn-new col-6 "></Button>
+        <div class="flex flex-column md:flex-row align-items-center justify-content-center sm:justify-content-between shadow-5 border-round-md" style="padding: 16px 25px; gap:20px">
+          <div class="">
+            <h1 class="inter-normal black-2 sm:text-3xl " style="font-size: 30px; font-weight: 700;">Badge</h1>
+          </div>
+          <Button label="NEW" @click="$router.push('/admin/customize/editor')" class="btn-new" style="margin: 0px 25px"></Button>
         </div>
-      </div>
       
-      <div class="customize-container">
+      <div class="customize-container" style="padding: 10px 0px;">
         <div v-for="(item, index) in DummyBadges" :key="index" class="card-badge">
           <div class="flex flex-column align-items-center gap-2">
             <div class="flex w-full">
@@ -28,7 +28,7 @@
               
             </div>
             <div class="relative">
-              <Badge :color="item.color" :word="firstLetterOfWord(item.title)" :width="isMobile ? '150' : undefined" :height="isMobile ? '200': undefined" />
+              <Badge :color="item.color" :word="firstLetterOfWord(item.title)" :width="isMobile ? '150' : undefined" :height="isMobile ? '144': undefined" />
               <span class="title-badge"><em>{{ item.title }}</em></span>
             </div> 
             <p class="title">{{ item.title  }}</p>
@@ -112,7 +112,7 @@ watchEffect(() => {
     text-align: center;
     width: 100px;
 
-    @media screen and (min-width: 756px) {
+    @media screen and (min-width: 769px) {
       top: 45%;
       line-height: 1.4em;
       width: 150px;
@@ -124,7 +124,7 @@ watchEffect(() => {
       font-family: Inter;
       font-size: 10px;
 
-      @media screen and (min-width: 756px) {
+      @media screen and (min-width: 769px) {
         font-size: 20px;
       }
     }

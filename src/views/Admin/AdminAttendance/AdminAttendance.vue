@@ -1,10 +1,10 @@
 <template>
-  <section class="px-2">
-    <section class="grid overflow-hidden flex-column md:flex-row px-0 sm:px-2 md:px-0 py-2">
-      <h1 class="col-12 inter-normal black-1" style="font-size: 35px; font-weight: 700;">Student Attendance</h1>
+  <section>
+    <section class="grid overflow-hidden flex-column md:flex-row" style="padding: 10px;">
+      <h1 class="col-12 inter-normal black-1" style="font-size: 35px; font-weight: 700; padding: 0px 10px">Student Attendance</h1>
       <div
-        class="col-12 flex flex-row align-items-center justify-content-between filter-search px-0 sm:px-3 py-0 ml-2 sm:ml-0">
-        <div class="col-12 md:col-10 lg:col-10 lg:col-10 grid grid-nogutter gap-2 align-items-center filter-container ">
+        class="col-12 flex flex-row align-items-center justify-content-between filter-search p-0 m-0">
+        <div class="col-12 md:col-10 lg:col-10 lg:col-10 grid grid-nogutter gap-2 align-items-center filter-container" style="padding: 5px 10px ">
           <Button size="small" class="filter-button sm:col-2">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
               <g clip-path="url(#clip0_2726_4798)">
@@ -18,8 +18,8 @@
             </svg>
             <p>Filter</p>
           </Button>
-          <div class="p-input-icon-left sm:w-7 w-6 col-5 mt-1 sm:mt-0 p-0 search-input">
-            <i class="pi pi-search search-icon ml-2" />
+          <div class="p-input-icon-left sm:w-7 w-6 col-5 search-input">
+            <i class="pi pi-search search-icon" />
             <InputText placeholder="Search by Name" class="search-bar p-inputtext-sm w-full h-full" />
           </div>
           <Button size="small" class="col-2 download ml-auto">
@@ -45,11 +45,11 @@
           </Button>
         </div>
       </div>
-      <div class="col-12 md:p-0 md:mx-1 md:my-2 grid" style="gap: 5px">
+      <div class="col-12 grid" style="gap: 5px; padding: 15px 10px 10px 10px">
         <Dropdown optionLabel="name" v-model="selectedMonth" placeholder="Month" :options="monthList"
-          class="md:flex dropdown-course medium col-6" :class="{ 'selected': selectedMonth }">
+          class="md:flex dropdown-course medium max-w-full md:max-w-max" :class="{ 'selected': selectedMonth }">
           <template #value="slotProps">
-            <div v-if="slotProps.value" class="flex align-items-center">
+            <div v-if="slotProps.value" class="flex align-items-center" style="padding-right: 10px;">
               <div class="inter-normal black-2" style="font-size: 20px; font-weight: 500; letter-spacing: 0.6px;">{{
                 slotProps.value.name }}</div>
             </div>
@@ -65,9 +65,9 @@
           </template>
         </Dropdown>
         <Dropdown optionLabel="name" v-model="selectedYear" placeholder="Year" :options="yearList"
-          class="md:flex dropdown-course small col-6" :class="{ 'selected': selectedYear }">
+          class="md:flex dropdown-course small max-w-full md:max-w-max" :class="{ 'selected': selectedYear }">
           <template #value="slotProps">
-            <div v-if="slotProps.value" class="flex align-items-center">
+            <div v-if="slotProps.value" class="flex align-items-center" style="padding-right: 10px;">
               <div class="inter-normal black-2" style="font-size: 20px; font-weight: 500; letter-spacing: 0.6px;">{{
                 slotProps.value.name }}</div>
             </div>
@@ -82,9 +82,9 @@
           </template>
         </Dropdown>
         <Dropdown optionLabel="courseName" :options="courseList" v-model="selectedCourse" placeholder="Course Name"
-          class="md:flex dropdown-course col-12" :class="{ 'selected': selectedCourse }" style="height: 44px">
+          class="md:flex dropdown-course w-full md:w-max" :class="{ 'selected': selectedCourse }" style="height: 44px">
           <template #value="slotProps">
-            <div v-if="slotProps.value" class="flex align-items-center">
+            <div v-if="slotProps.value" class="flex align-items-center" style="padding-right: 10px;">
               <img :alt="slotProps.value.courseName" :src="slotProps.value.image" class="mr-2" style="width: 53px" />
               <h1>{{ slotProps.value.courseName }}</h1>
             </div>
@@ -356,6 +356,8 @@ onMounted(() => {
     background: transparent;
   }
 
+  
+
   .p-paginator-current {
     text-align: left;
     margin-right: auto;
@@ -427,6 +429,12 @@ onMounted(() => {
       width: 49.3% !important;
     }
 
+  }
+}
+
+::v-deep(.p-dropdown) {
+  .p-dropdown-trigger {
+    width: 24px;
   }
 }
 </style>

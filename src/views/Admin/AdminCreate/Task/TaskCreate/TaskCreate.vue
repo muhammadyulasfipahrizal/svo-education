@@ -47,20 +47,22 @@ const changeSubtitle = (mainTaskIndex: number, taskIndex: number, subtitleIndex:
 </script>
 
 <template>
-    <section class="m-3">
-        <p class="text text-2xl font-bold">Assigned daily task</p>
-        <div class="grid w-full mt-3 wrapper gap-2">
-            <div v-for="(mainTask, mainTaskIndex) in tasks" :key="mainTaskIndex" class="col-12 grid gap-2">
+    <section style="padding: 20px 10px 10px 10px; gap: 10px">
+       
+        <div class="grid w-full wrapper" style="gap: 10px; padding: 10px">
+            <p class="inter-normal black-1 p-0 m-0" style="font-size: 25px; font-weight: 700;">Assigned daily task</p>
+            <div v-for="(mainTask, mainTaskIndex) in tasks" :key="mainTaskIndex" class="col-12 grid" style="gap: 10px">
                 <div class="flex gap-1 w-full">
                     <InputText v-model="mainTask.title" class="w-full font-bold text-xl" />
                     <Button link size="small" class="p-0 m-0" @click="removeColumn(mainTaskIndex)">
                         <i class="pi pi-times text-900 pl-2 text-sm"></i>
                     </Button>
                 </div>
-                <div class="p-2 border-round-lg surface-border border-1 w-full">
-                    <div v-for="(task, taskIndex) in mainTask.subtasks" class="w-full flex justify-content-between gap-2">
-                        <div
-                            class="flex justify-content-between py-0 px-1 m-0 gap-2 w-full align-items-center surface-200 border-round-lg border-600 border-1">
+                <div class="border-round-lg surface-border border-1 w-full" style="padding: 10px 10px 0px 10px;">
+                    <div v-for="(task, taskIndex) in mainTask.subtasks" class="w-full flex justify-content-between gap-2" 
+                     style="margin-bottom: 20px">
+                        <div style="gap: 10px"
+                            class="flex justify-content-between w-full align-items-center surface-200 border-round-lg border-600 border-1">
                             <div class="flex flex-column">
                                 <InputText
                                     class="text font-medium mb-2 p-0 m-0 bg-transparent border-transparent col-12 pt-2"
@@ -100,18 +102,22 @@ const changeSubtitle = (mainTaskIndex: number, taskIndex: number, subtitleIndex:
                 </div>
 
             </div>
-            <Button size="small" class="btn-new-section border-round-none w-full mt-4 btn-orange" @click="addColumn">
-                <div class="flex flex-row m-auto gap-3">
+            <Button size="small" label="Add new sections"
+            class="w-full text text-white btn-add-material border-noround btn-orange" @click="addColumn">
+            <template #default>
+                <div class="flex flex-row m-auto" style="gap: 8px">
                     <i class="pi pi-plus align-self-center justify-content-center font-bold text-sm"></i>
-                    <p>Add new sections</p>
+                    <p class="font-medium text text-white text-sm">Add new sections</p>
                 </div>
-            </Button>
+            </template>
+        </Button>
         </div>
     </section>
-    <Button size="small" label="Save" class="w-full mx-0 border-none border-noround" style="background: #00C0DD" />
+    <Button size="small" label="Save" class="w-full mx-0 border-none border-noround" style="background: #00C0DD; margin: 10px 0px" />
 </template>
 
 <style scoped lang="scss">
+@import "/src/assets/global.scss";
 .text {
     color: var(--font-1, #001125);
     font-family: Inter;

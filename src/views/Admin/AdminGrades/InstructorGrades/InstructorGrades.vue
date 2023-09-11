@@ -30,14 +30,14 @@ const onSelectProfile = (v: Instructor) => {
 </script>
 
 <template>
-    <section class="px-2">
+    <section>
         <section
-            class="grid overflow-hidden flex-column md:flex-row pl-3 pr-3 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2 py-2">
-            <h1 class="hidden lg:block title-head ml-4">Instructor Grades</h1>
-            <h1 class="title-head lg:hidden">Instructor</h1>
+            class="grid overflow-hidden flex-column md:flex-row"  style="padding: 10px;">
+            <h1 class="hidden lg:block title-head" style="padding: 0px 5px">Instructor Grades</h1>
+            <h1 class="title-head lg:hidden" style="padding: 0px 5px">Instructors</h1>
             <div class="col-12">
                 <div
-                    class="col-12 flex flex-row align-items-center justify-content-between filter-search px-0 sm:px-3 py-0 ml-2 sm:ml-0">
+                    class="col-12 flex flex-row align-items-center justify-content-between filter-search p-0 m-0">
                     <div
                         class="col-12 md:col-10 lg:col-10 lg:col-10 grid grid-nogutter gap-2 align-items-center filter-container ">
                         <Button size="small" class="filter-button sm:col-1 md:col-2">
@@ -263,15 +263,15 @@ const onSelectProfile = (v: Instructor) => {
     </section>
 
     <!-- MODAL Profile -->
-    <Dialog v-model:visible="modalProfile" modal :style="{ width: '40vw' }" :breakpoints="{ '764px': '90vw' }">
+    <Dialog v-model:visible="modalProfile" modal :style="{ width: '35vw' }" :breakpoints="{ '764px': '90vw' }">
         <template #header>
-            <div class="flex gap-2 align-items-center p-2">
+            <div class="flex gap-2 align-items-center" style="margin: 10px">
                 <img :src="selectedProfile?.image" alt="" style="width: 39px; height: 39px;" />
                 <div class="title-text">{{ selectedProfile?.name }}</div>
             </div>
         </template>
-        <div class="flex flex-column gap-2 p-2">
-            <div class="flex flex-column gap-2 align-items-center">
+        <div class="flex flex-column" style="padding: 10px">
+            <div class="flex flex-column align-items-center" style="gap: 25px">
                 <div class="flex align-items-center justify-content-between w-full">
                     <h3 class="inter-normal black-1" style="font-size: 16px; font-weight: 600;">Helpfullness</h3>
                     <star-rating :show-rating="false" :round-start-rating="false" :star-size="16" inactive-color="#FFF"
@@ -291,7 +291,7 @@ const onSelectProfile = (v: Instructor) => {
                         :rating="(selectedProfile?.rating.ratings.clarity || 0)"></star-rating>
                 </div>
             </div>
-            <span class="border-200 surface-overlay border-1" />
+            <span class="border-200 surface-overlay border-1" style="margin: 15px 0px;"/>
             <div class="flex align-items-center justify-content-between">
                 <h3 class="inter-normal black-1" style="font-size: 16px; font-weight: 600;">Overall rating ({{
                     selectedProfile?.rating.total_rating }} rated)

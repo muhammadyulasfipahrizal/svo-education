@@ -26,9 +26,9 @@ const getBackgroundColor = (progress: number) => {
 </script>
 
 <template>
-    <section class="px-2">
+    <section>
         <section
-            class="grid overflow-hidden flex-column md:flex-row pl-3 pr-3 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2 py-2">
+            class="grid overflow-hidden flex-column md:flex-row" style="padding: 10px">
             <h1 class="title-head pl-2">Student Grades</h1>
             <div class="col-12">
                 <DataTable :value="courseList" removableSort paginator :rows="10" :rowsPerPageOptions="[5, 10, 20, 50]"

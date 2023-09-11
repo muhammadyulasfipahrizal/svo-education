@@ -72,11 +72,11 @@ router.afterEach((to, from) => {
 </script>
 
 <template>
-  <main class="grid justify-content-between bg-white min-h-screen">
+  <main class="grid justify-content-between bg-white min-h-screen" style="padding: 10px">
     <section class="event-list w-full">
-      <h1 class="font-bold mb-2 title col-12">Create</h1>
+      <h1 class="font-bold mb-2 title col-12" style="padding-left: 10px">Create</h1>
 
-      <article class="flex gap-2 overflow-x-scroll col-12">
+      <article class="flex overflow-x-scroll col-12" style="gap: 5px; padding: 10px 5px;">
         <div v-for="(data, index) in categoryData" :key="index">
           <Button size="small" class="btn-header min-w-max" @click="goToLocation(data.location)"
             :class="{ active: activeMenu.startsWith(data.location) }">

@@ -137,9 +137,9 @@ const instructorNew = ref();
 </script>
 
 <template>
-  <section class="px-2">
-    <section class="grid pl-4 pr-4 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2 py-2 w-full py-3">
-      <h1 class="inter-normal black-1 py-2" style="font-size: 35px; font-weight: 700;">Live video for you</h1>
+  <section style="padding: 10px; gap: 10px;">
+    <section class="grid w-full" >
+      <h1 class="inter-normal black-1" style="font-size: 35px; font-weight: 700; padding: 0px 10px; margin: 10px 0px">Live video for you</h1>
       <div class="border-1 surface-border surface-0 mb-3 w-full" @click="openModal(null)">
         <div v-if="!videoUrls[0]" class="p-5 flex justify-content-center align-items-center h-30rem cursor-pointer">
           <i class="pi pi-fw pi-plus-circle upload-icon"></i>
@@ -222,42 +222,49 @@ const instructorNew = ref();
             Upload new media
           </div>
         </template>
-        <div class="upload-section px-1">
-          <label class="upload-label" v-if="!selectedVideo">
-            <input ref="fileInput" type="file" accept="video/*" style="display: none" @change="handleFileChange" />
-            <span class="inter-normal grey-3" style="font-size: 20px; font-weight: 400;">Drop Files Here</span>
-            <p class="inter-normal grey-3" style="font-size: 15px; font-weight: 400;">Or</p>
-            <Button size="small" plain outlined class="py-1 px-3">
-              <template #default>
-                <div class="mx-auto">
-                  <p class="inter-normal grey-3" style="font-size: 12px; font-weight: 600;">Select File</p>
+        <div>
+          <div class="upload-section px-1">
+            <label class="upload-label" v-if="!selectedVideo">
+              <input ref="fileInput" type="file" accept="video/*" style="display: none" @change="handleFileChange" />
+              <span class="inter-normal grey-3" style="font-size: 20px; font-weight: 400;">Drop Files Here</span>
+              <p class="inter-normal grey-3" style="font-size: 15px; font-weight: 400;">Or</p>
+              <Button size="small" plain outlined style="padding: 5px 10px;">
+                <template #default>
+                  <div class="mx-auto">
+                    <p class="inter-normal grey-3" style="font-size: 12px; font-weight: 600;">Select File</p>
+                  </div>
+                </template>
+              </Button>
+            </label>
+            <video v-else :src="selectedVideo" class="min-w-full"></video>
+            <p class="max-file-size inter-normal black-2" style="font-size: 15px; font-weight: 400;">Maximum upload file size: 8 MB</p>
+          </div>
+          <div class="flex flex-column align-items-center md:align-items-start" style="padding: 0px 10px 10px 10px">
+            <h3 class="live-video-details inter-normal black-2" style="font-size: 30px; font-weight: 4700;">Live Video Details</h3>
+            <div class="profile-section flex flex-column md:flex-row align-items-center modal-input">
+              <input type="file" ref="fileInput" accept="image/*" style="display: none" @change="handleImageChange" />
+              <img :src="profileImage" alt="Profile" class="modal-profile" @click="changeProfileImage" />
+              <div class="grid align-items-center px-2">
+                <InputText v-model="currentCard.details.title" size="small" placeholder="Title"
+                  class="col-12 md:col-4 lg:col-6 p-inputtext-sm h-2rem" />
+                <div class="flex flex-column md:flex-row col-12 md:col-4 lg:col-6 align-items-center md:h-2rem p-0 pt-2 md:pt-0 md:pl-2" style="gap: 10px">
+                  <p class="text-700 text-normal">by</p>
+                  <Dropdown v-model="instructorNew" :options="instructors" optionLabel="name" placeholder="Instructor name"
+                    class="w-full md:w-14rem h-2rem flex align-items-center" :class="{ selected: instructorNew }" style="background: #D9D9D9"></Dropdown>
                 </div>
-              </template>
-            </Button>
-          </label>
-          <video v-else :src="selectedVideo" class="min-w-full"></video>
-          <p class="max-file-size inter-normal black-2" style="font-size: 15px; font-weight: 400;">Maximum upload file size: 8 MB</p>
-        </div>
-        <h3 class="live-video-details inter-normal black-2" style="font-size: 30px; font-weight: 4700;">Live Video Details</h3>
-        <div class="profile-section flex flex-column md:flex-row align-items-center gap-4">
-          <input type="file" ref="fileInput" accept="image/*" style="display: none" @change="handleImageChange" />
-          <img :src="profileImage" alt="Profile" class="modal-profile" @click="changeProfileImage" />
-          <div class="grid align-items-center px-2">
-            <InputText v-model="currentCard.details.title" size="small" placeholder="Title"
-              class="col-12 md:col-4 lg:col-6 p-inputtext-sm h-2rem" />
-            <div class="flex flex-column md:flex-row gap-2 col-12 md:col-4 lg:col-6 align-items-center h-2rem">
-              <p class="text-700 text-normal">by</p>
-              <Dropdown v-model="instructorNew" :options="instructors" optionLabel="name" placeholder="Instructor name"
-                class="w-full md:w-14rem h-2rem flex align-items-center" :class="{ selected: instructorNew }" style="background: #D9D9D9"></Dropdown>
+              </div>
             </div>
-          </div>
         </div>
-
-        <template #footer>
-          <div class="flex justify-content-center align-items-center py-2">
-            <Button size="small" class="w-full save-button inter-normal" style="font-size: 13px; font-weight: 700;" @click="saveVideo">Save</Button>
-          </div>
-        </template>
+        </div>
+        <div class="w-full" style="padding-bottom: 10px">
+          <Button class="w-full save-button inter-normal" style="font-size: 13px; font-weight: 700;" @click="saveVideo">
+            <template #default>
+              <div class="mx-auto">
+                <p class="inter-normal white-1" style="font-size: 13px; font-weight: 700;">Save</p>
+              </div>
+            </template>
+          </Button>
+        </div>
       </Dialog>
     </section>
   </section>
@@ -472,5 +479,15 @@ const instructorNew = ref();
   border: none;
   border-radius: 4px;
   cursor: pointer;
+}
+
+.modal-input {
+  gap: 5px;
+}
+
+@media (max-width: 767px) {
+  .modal-input {
+    gap: 15px;
+  }
 }
 </style>
