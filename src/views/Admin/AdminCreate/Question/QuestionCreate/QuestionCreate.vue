@@ -49,11 +49,12 @@ const tryAgainAttemptList = ref([{
 {
     name: 'Minutes',
     code: 'Minutes',
-},{
+}, {
     name: 'Seconds',
     code: 'seconds',
 }])
 const tryAgainAttemptType = ref();
+const questions = ref(0)
 </script>
 
 <template>
@@ -68,25 +69,29 @@ const tryAgainAttemptType = ref();
                 <div class="flex flex-column sm:flex-row sm:align-items-center sm:flex-wrap" style="gap: 17px; margin-top: 10px">
                     <div class="flex align-items-center">
                         <RadioButton v-model="access" inputId="access1" name="access" :value="1" />
-                        <label for="access1" class="ml-2 inter-normal black-4" style="font-size: 20px; font-weight: 700; letter-spacing: 0.2px;">View</label>
+                        <label for="access1" class="ml-2 inter-normal black-4"
+                            style="font-size: 20px; font-weight: 700; letter-spacing: 0.2px;">View</label>
                     </div>
                     <div class="flex align-items-center">
                         <RadioButton v-model="access" inputId="access2" name="access" :value="2" />
-                        <label for="access2" class="ml-2 inter-normal black-4" style="font-size: 20px; font-weight: 700; letter-spacing: 0.2px;">Marking</label>
+                        <label for="access2" class="ml-2 inter-normal black-4"
+                            style="font-size: 20px; font-weight: 700; letter-spacing: 0.2px;">Marking</label>
                     </div>
                     <div class="flex align-items-center">
                         <RadioButton v-model="access" inputId="access3" name="access" :value="3" />
-                        <label for="access3" class="ml-2 inter-normal black-4" style="font-size: 20px; font-weight: 700; letter-spacing: 0.2px;">View & Marking</label>
+                        <label for="access3" class="ml-2 inter-normal black-4"
+                            style="font-size: 20px; font-weight: 700; letter-spacing: 0.2px;">View & Marking</label>
                     </div>
                 </div>
             </div>
             <div class="grid">
-                <div class="col-12 sm:col-4 sm:pl-3" style="gap: 10px;">
+                <div class="col-12 sm:col-4">
                     <p class="inter-normal black-1" style="font-size: 12px; font-weight: 400;">Calendar</p>
                     <div class="flex bg-transparent gap-1 p-1 align-items-center border-300 border-1 w-20rem xl:w-full">
                         <Dropdown v-model="calendar.month" v-bind:class="{ selected: calendar.month }" :options="monthList"
                             optionLabel="name" placeholder="MM"
-                            class="h-2rem border-none border-noround w-7rem xl:w-10rem flex align-items-center" size="small" />
+                            class="h-2rem border-none border-noround w-7rem xl:w-10rem flex align-items-center"
+                            size="small" />
                         <svg xmlns="http://www.w3.org/2000/svg" width="2" height="18" viewBox="0 0 2 18" fill="none">
                             <path opacity="0.1" d="M1.33398 1V17" stroke="#001125" stroke-linecap="round"
                                 stroke-linejoin="round" />
@@ -106,20 +111,24 @@ const tryAgainAttemptType = ref();
                 <div class="col-12 sm:col-3">
                     <p class="inter-normal black-1" style="font-size: 12px; font-weight: 400;">Time Limit</p>
                     <div class="flex bg-transparent gap-1 p-1 align-items-center border-300 border-1">
-                        <InputText size="small" class="p-0 m-0 border-noround p-inputtext-sm border-none text-center h-2rem w-3rem" v-model="timeLimit.time" />
+                        <InputText size="small"
+                            class="p-0 m-0 border-noround p-inputtext-sm border-none text-center h-2rem w-3rem"
+                            v-model="timeLimit.time" />
                         <svg xmlns="http://www.w3.org/2000/svg" width="2" height="18" viewBox="0 0 2 18" fill="none">
                             <path opacity="0.1" d="M1.33398 1V17" stroke="#001125" stroke-linecap="round"
                                 stroke-linejoin="round" />
                         </svg>
                         <Dropdown v-model="timeLimit.type" v-bind:class="{ selected: timeLimit.type }" :options="timeTypes"
-                            optionLabel="name" placeholder="Time Limit" class="h-2rem border-none border-noround flex align-items-center w-full"
-                            size="small" />
+                            optionLabel="name" placeholder="Time Limit"
+                            class="h-2rem border-none border-noround flex align-items-center w-full" size="small" />
                     </div>
                 </div>
                 <div class="col-12 sm:col-2">
                     <p class="inter-normal black-1" style="font-size: 12px; font-weight: 400;">Attempt</p>
                     <div class="flex bg-transparent gap-1 p-1 align-items-center border-300 border-1">
-                        <InputText size="small" class="p-0 m-0 border-noround p-inputtext-sm border-none text-center h-2rem w-3rem" v-model="attempts" />
+                        <InputText size="small"
+                            class="p-0 m-0 border-noround p-inputtext-sm border-none text-center h-2rem w-3rem"
+                            v-model="attempts" />
                         <svg xmlns="http://www.w3.org/2000/svg" width="2" height="18" viewBox="0 0 2 18" fill="none">
                             <path opacity="0.1" d="M1.33398 1V17" stroke="#001125" stroke-linecap="round"
                                 stroke-linejoin="round" />
@@ -130,18 +139,20 @@ const tryAgainAttemptType = ref();
                 <div class="col-12 sm:col-3">
                     <p class="inter-normal black-1" style="font-size: 12px; font-weight: 400;">Try Again After Attempts</p>
                     <div class="flex bg-transparent gap-1 p-1 align-items-center border-300 border-1">
-                        <InputText size="small" class="p-0 m-0 border-noround p-inputtext-sm border-none text-center h-2rem w-3rem" v-model="tryAgainAttempt" />
+                        <InputText size="small"
+                            class="p-0 m-0 border-noround p-inputtext-sm border-none text-center h-2rem w-3rem"
+                            v-model="tryAgainAttempt" />
                         <svg xmlns="http://www.w3.org/2000/svg" width="2" height="18" viewBox="0 0 2 18" fill="none">
                             <path opacity="0.1" d="M1.33398 1V17" stroke="#001125" stroke-linecap="round"
                                 stroke-linejoin="round" />
                         </svg>
-                        <Dropdown v-model="tryAgainAttemptType" v-bind:class="{ selected: tryAgainAttemptType }" :options="tryAgainAttemptList"
-                            optionLabel="name" placeholder="Time Limit" class="h-2rem border-none border-noround flex align-items-center w-full"
-                            size="small" />
+                        <Dropdown v-model="tryAgainAttemptType" v-bind:class="{ selected: tryAgainAttemptType }"
+                            :options="tryAgainAttemptList" optionLabel="name" placeholder="Time Limit"
+                            class="h-2rem border-none border-noround flex align-items-center w-full" size="small" />
                     </div>
                 </div>
             </div>
-            <div class="flex flex-column gap-2">
+            <!-- <div class="flex flex-column gap-2">
                 <h4 class="inter-normal black-2" style="font-size: 20px; font-weight: 600;">Assesment</h4>
                 <div class="grid align-items-center w-full">
                     <h4 class="font-bold text-lg col-12 md:col-9 lg:col-9 xl:col-9">Assesment (2 questions)</h4>
@@ -149,6 +160,24 @@ const tryAgainAttemptType = ref();
                         <h5 class="font-bold text-900 text-lg">Due</h5>
                         <Dropdown v-model="selectedDue" :options="dueList" optionLabel="name" placeholder="Select Limit"
                             class="w-full md:w-10rem h-2rem flex align-items-center " :class="{ selected: selectedDue }" />
+                    </div>
+                </div>
+            </div> -->
+            <div class="grid">
+                <div class="col-12 sm:col-9">
+                    <InputText placeholder="Title..." class="p-inputtext-sm w-full" />
+                </div>
+                <div class="col-12 sm:col-3">
+                    <div
+                        class="flex bg-transparent gap-1 p-1 align-items-center justify-content-around border-300 border-1">
+                        <InputNumber size="small"
+                            class="p-0 m-0 border-noround p-inputtext-sm border-none text-center h-2rem w-3rem text-questions"
+                            v-model="questions" />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="2" height="18" viewBox="0 0 2 18" fill="none">
+                            <path opacity="0.1" d="M1.33398 1V17" stroke="#001125" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        <p class="inter-normal black-1" style="font-size: 14px; font-weight: 400;">Questions</p>
                     </div>
                 </div>
             </div>
@@ -162,18 +191,18 @@ const tryAgainAttemptType = ref();
                 <!-- ADD more quiz -->
                 <div class="grid">
                     <div class="col">
-                        <Button class="btn-orange w-full border-noround" size="small"
-                            @click="assesments.push({
-                                question: 'New Assesment',
-                                points: '0/1',
-                                answerType: 'text',
-                                answerText: '',
-                                answerRadio: [],
-                            })">
+                        <Button class="btn-orange w-full border-noround" size="small" @click="assesments.push({
+                            question: 'New Assesment',
+                            points: '0/1',
+                            answerType: 'text',
+                            answerText: '',
+                            answerRadio: [],
+                        })">
                             <template #default>
                                 <div class="flex flex-row align-items-center gap-3">
                                     <i class="pi pi-plus align-self-center justify-content-center font-bold text-sm"></i>
-                                    <p class="font-medium text text-sm lowercase"><span class="capitalize">Add</span> new assesment question</p>
+                                    <p class="font-medium text text-sm lowercase"><span class="capitalize">Add</span> new
+                                        assesment question</p>
                                 </div>
                             </template>
                         </Button>
@@ -193,10 +222,17 @@ const tryAgainAttemptType = ref();
     .p-dropdown-label {
         width: 55px;
     }
-    .p-dropdown-trigger	{
+
+    .p-dropdown-trigger {
         width: 30px;
         margin-left: 0px;
         padding-left: 0px;
+    }
+}
+
+::v-deep(.text-questions) {
+    input {
+        border: none;
     }
 }
 </style>

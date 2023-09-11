@@ -157,6 +157,19 @@ const deleteSyllabus = (index: number) => {
     syllabusAccordion.value = syllabusAccordion.value.filter((v, x) => x !== index);
 }
 const syllabusAddList = ref<{ title: string; duration: string; selectedType: string }[]>([])
+
+const addNewSection = () => {
+    syllabusAccordion.value.push(false)
+    // syllabusAccordionData.value.push({
+    //     title: '',
+    //     duration: 5
+    // })
+    // syllabusAddList.value.push({
+    //     title: '',
+    //     duration: '0',
+    //     selectedType: 'none'
+    // })
+}
 </script>
 
 <template>
@@ -222,27 +235,28 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                             <InputText type="text" label="Title" v-model="title" style="margin-top: 40px"
                                 class="p-inputtext-lg w-full text-6xl h-4rem" required placeholder="Title" />
 
-                            <div class="grid align-items-start md:align-items-center w-full justify-content-between sm:p-0" style="padding: 10px; 0px">
-                                <div class="grid align-items-start sm:align-items-center col-12 sm:col-9">
-                                    <h1 class="col-12 sm:col-6 inter-normal black-1 min-w-max"
-                                        style="font-size: 25px; font-weight: 700;">
-                                        Instructor By
-                                    </h1>
+                            <div class="grid align-items-center col-12 gap-2 p-0 m-0">
+                                <h1 class="col-12 sm:col-3 inter-normal black-1 min-w-max p-0 m-0"
+                                    style="font-size: 25px; font-weight: 700;">
+                                    Instructor By
+                                </h1>
+                                <div
+                                    class="flex col justify-content-between gap-2 align-items-start flex-column p-0 sm:align-items-center sm:flex-row">
                                     <Dropdown v-model="selectedInstructor" v-bind:class="{ selected: selectedInstructor }"
-                                        :options="instructorList" optionLabel="name" placeholder="Select Instructor" class=" 
-                                        col-12 sm:col-6 h-2rem flex align-items-center" size="small"
+                                        :options="instructorList" optionLabel="name" placeholder="Select Instructor"
+                                        class=" h-2rem flex align-items-center w-full" size="small"
                                         @change="(value: any) => onChangeInstructor(value.value)" />
-                                </div>
-                                <div class="col-12 md:col-2 flex gap-1">
-                                    <i class="pi-thumbs-up pi mt-1"></i>
-                                    <p class="text-900 font-normal">0%</p>
-                                    <p>|</p>
-                                    <i class="pi-thumbs-down pi mt-1"></i>
-                                    <p class="text-900 font-normal">0%</p>
+                                    <div class="flex gap-1">
+                                        <i class="pi-thumbs-up pi mt-1"></i>
+                                        <p class="text-900 font-normal">0%</p>
+                                        <p>|</p>
+                                        <i class="pi-thumbs-down pi mt-1"></i>
+                                        <p class="text-900 font-normal">0%</p>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="w-full ratings-container" style="padding: 0px 20px; margin-top: -10px">
+                            <div class="w-full ratings-container">
                                 <div class="w-full p-2 card shadow-1 flex flex-column">
                                     <div
                                         class="flex flex-row md:flex-column gap-2 md:gap-0 align-items-center md:align-items-start mb-1">
@@ -305,21 +319,21 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                             <UploadImage class="w-full upload-image " style="height: 257px" />
                         </div>
                         <div class="flex justify-content-center align-items-center gap-2 my-2 col-12">
-                            <div class="card-price flex justify-content-center align-items-center flex-column p-2">
+                            <div class="card-price flex justify-content-center align-items-center flex-column p-2 w-full">
                                 <h4 class="inter-normal black-2" style="font-size: 15px; font-weight: 700;">Original Price
                                 </h4>
                                 <InputNumber v-model="originalPrice" inputId="integeronly" placeholder="0.00" />
                             </div>
-                            <div class="card-price flex justify-content-center align-items-center flex-column p-2">
+                            <div class="card-price flex justify-content-center align-items-center flex-column p-2 w-full">
                                 <h4 class="inter-normal black-2" style="font-size: 15px; font-weight: 700;">Discount Price
                                 </h4>
                                 <InputNumber v-model="discountPrice" inputId="integeronly" placeholder="0.00" />
                             </div>
                         </div>
                         <div class="flex justify-content-center align-items-center gap-2 col-12 -mt-3">
-                            <Button class="btn-orange w-5"
+                            <Button class="btn-orange w-full"
                                 style="font-size: 15px; font-style: normal; font-weight: 500;">ADD TO CART</Button>
-                            <Button class="btn-orange w-5"
+                            <Button class="btn-orange w-full"
                                 style="font-size: 15px; font-style: normal; font-weight: 500;">ADD BUY NOW</Button>
                         </div>
                     </div>
@@ -353,16 +367,15 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                             <template v-for="(item, key) in gradeSystem">
                                 <tr>
                                     <td>
-                                        <InputText v-model="item.title"
-                                            class="p-0 m-0 bg-transparent border-none input-grade" />
+                                        <InputText v-model="item.title" placeholder="Enter grade title"
+                                            class="p-0 m-0 bg-transparent border-none input-grade p-inputtext-sm" />
                                     </td>
-                                    <td><span class="divider"></span></td>
+                                    <td class="p-2"><span class="divider"></span></td>
                                     <td>
-                                        <div class="flex grade-weight" style="gap: 10px">
-                                            <div class="flex flex-row">
-                                                <InputNumber class="weight" inputClass="inter-normal black-2" :inputStyle="{ fontSize: '20px', fontWeight: 400 }" v-model="item.weight"/>
-                                                <span class="-ml-1">%</span>
-                                            </div>
+                                        <div class="flex grade-weight">
+                                            <InputNumber class="weight p-inputtext-sm" placeholder="Enter grade weight"
+                                                v-model="item.weight" />
+                                            <span>%</span>
                                             <Button size="small" class="p-0 m-0" link @click="deleteGradeSystem(key)">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="31" height="30"
                                                     viewBox="0 0 31 30" fill="none">
@@ -474,35 +487,41 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                                     class="col-2" @click="syllabusAccordion[key] = !syllabusAccordion[key]" />
                                 <InputText label="Title" class="p-inputtext-sm col-9 text-xl syllabus-title"
                                     placeholder="Title" />
-                                <div class="col-2 flex justify-content-start align-items-center gap-2 p-0 ml-1">
-                                    <InputNumber v-model="syllabusLectures" inputId="withoutgrouping" :useGrouping="false"
-                                        class="instructor-total-input" />
-                                    <p class="font-bold text-2xl text-900">lectures</p>
-                                    <InputNumber v-model="syllabusHour" inputId="withoutgrouping" :useGrouping="false"
-                                        class="instructor-total-input" />
-                                    <p class="font-bold text-2xl text-900">min</p>
-                                    <Button size="small" link class="px-0 m-0" @click="deleteSyllabus(key)">
-                                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path id="Vector"
-                                                d="M8.53553 1.46522L1.46447 8.53629M8.53553 8.53629L1.46447 1.46522"
-                                                stroke="#001125" stroke-width="1.5" stroke-linecap="round"
-                                                stroke-linejoin="round" />
-                                        </svg>
-                                    </Button>
+                                <div
+                                    class="col-2 flex justify-content-between sm:justify-content-start align-items-center gap-2 p-0 px-2 w-full sm:w-auto">
+                                    <div class="flex gap-1">
+                                        <InputNumber v-model="syllabusLectures" inputId="withoutgrouping"
+                                            :useGrouping="false" class="instructor-total-input" />
+                                        <p class="font-bold text-2xl text-900">lectures</p>
+                                    </div>
+                                    <div class="flex gap-1">
+                                        <InputNumber v-model="syllabusHour" inputId="withoutgrouping" :useGrouping="false"
+                                            class="instructor-total-input" />
+                                        <p class="font-bold text-2xl text-900">min</p>
+                                        <Button size="small" link class="px-0 m-0" @click="deleteSyllabus(key)">
+                                            <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path id="Vector"
+                                                    d="M8.53553 1.46522L1.46447 8.53629M8.53553 8.53629L1.46447 1.46522"
+                                                    stroke="#001125" stroke-width="1.5" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                            </svg>
+                                        </Button>
+                                    </div>
                                 </div>
                             </div>
 
                             <!-- content -->
-                            <div class="flex-column gap-2 w-full p-2" :class="{ 'flex': syllabus, 'hidden': !syllabus }">
+                            <div class="flex-column gap-2 w-full p-2 my-0"
+                                :class="{ 'flex': syllabus, 'hidden': !syllabus }">
                                 <Textarea class="p-inputtext-lg" placeholder="Enter a description">
-                                                                                                                            Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero 
-                                                                                                                            et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad 
-                                                                                                                            litora torquent per conubia nostra, per inceptos himenaeos. 
-                                                                                                                            Curabitur tempus urna at turpis condimentum lobortis. Ut commodo 
-                                                                                                                            efficitur neque. Ut diam quam, semper iaculis condimentum ac, 
-                                                                                                                            vestibulum eu nisl.
-                                                                                                                        </Textarea>
+                                                                                                                                                                Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero 
+                                                                                                                                                                et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad 
+                                                                                                                                                                litora torquent per conubia nostra, per inceptos himenaeos. 
+                                                                                                                                                                Curabitur tempus urna at turpis condimentum lobortis. Ut commodo 
+                                                                                                                                                                efficitur neque. Ut diam quam, semper iaculis condimentum ac, 
+                                                                                                                                                                vestibulum eu nisl.
+                                                                                                                                                            </Textarea>
                                 <template v-for="(syllabusData, key) in syllabusAccordionData">
                                     <div class="flex justify-content-between align-items-center">
                                         <div class="grid align-items-center gap-2 w-full">
@@ -534,16 +553,19 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                                 <template v-for="(addData, key) in syllabusAddList">
                                     <div class="flex justify-content-between align-items-center gap-0">
                                         <div class="grid align-items-center gap-2 w-full p-0 m-0">
-                                            <Dropdown optionLabel="name" style="height: 36px" v-model="addData.selectedType"
-                                                v-bind:class="{ selected: addData.selectedType !== 'none' }"
-                                                :options="types" placeholder="Select"
-                                                class="mr-3 w-min p-0 flex align-items-center col-2">
+                                            <Dropdown optionLabel="name" v-model="addData.selectedType"
+                                                v-bind:class="{ selected: addData.selectedType !== 'none' }" :options="types"
+                                                placeholder="Select" class="mr-3 w-min md:w-13rem flex align-items-center"
+                                                style="height: 35px">
                                                 <template #value="slotProps">
                                                     <div v-if="slotProps.value" class="flex align-items-center gap-2">
                                                         <div class="flex gap-2 align-items-center"
                                                             v-if="slotProps.value.code === 'website'">
                                                             <img class="w-1rem" src="/assets/img/world.png" />
-                                                            <p>{{ slotProps.value.name }}</p>
+                                                            <p class="inter-normal black-2"
+                                                                style="font-size: 20px; font-weight: 500; letter-spacing: 0.6px;">
+                                                                {{
+                                                                    slotProps.value.name }}</p>
                                                         </div>
                                                         <div v-if="slotProps.value.code === 'video'"
                                                             class="flex gap-2 align-items-center">
@@ -553,7 +575,10 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                                                                     d="M17.5938 3.6543H2.55273C1.94531 3.6543 1.61328 3.95703 1.61328 4.59375V15.5605C1.61328 16.1973 1.94531 16.5 2.55273 16.5H17.5938C18.2305 16.5 18.5332 16.168 18.5332 15.5605V4.5957C18.5332 3.98633 18.2305 3.6543 17.5938 3.6543ZM3.80664 15.5625H3.17969C2.67383 15.5625 2.55273 15.2559 2.55273 14.9355V13.6816H3.80664V15.5625ZM3.80664 12.7422H2.55273V10.5488H3.80664V12.7422ZM3.80664 9.60937H2.55273V7.41602H3.80664V9.60937ZM3.80664 6.47461H2.55273V5.2207C2.55273 4.71484 2.85938 4.59375 3.17969 4.59375H3.80664V6.47461ZM15.4004 15.5625H4.74609V4.5957H15.4004V15.5625ZM17.5938 14.9355C17.5938 15.2559 17.4727 15.5625 16.9668 15.5625H16.3398V13.6816H17.5938V14.9355ZM17.5938 12.7422H16.3398V10.5488H17.5938V12.7422ZM17.5938 9.60937H16.3398V7.41602H17.5938V9.60937ZM17.5938 6.47461H16.3398V4.59375H16.9668C17.2871 4.59375 17.5938 4.71484 17.5938 5.2207V6.47461ZM7.74219 13.2656C7.82227 13.3301 7.92188 13.3672 8.03125 13.3691H8.03906C8.12305 13.3691 8.20703 13.3496 8.28516 13.3066L13.1895 10.5254C13.4199 10.3965 13.498 10.1074 13.3652 9.88281V9.88086C13.3262 9.79687 13.2617 9.72266 13.1738 9.67187L8.28711 6.85156C8.20898 6.80664 8.125 6.78711 8.04102 6.78906H8.03711C7.77734 6.78906 7.56641 7 7.56641 7.25977V12.8398C7.55273 12.9395 7.57227 13.043 7.62695 13.1348C7.65625 13.1855 7.69727 13.2305 7.74219 13.2656ZM8.50586 8.06445L12.0254 10.0957L8.50586 12.0937V8.06445Z"
                                                                     fill="#5B99EE" />
                                                             </svg>
-                                                            <p>{{ slotProps.value.name }}</p>
+                                                            <p class="inter-normal black-2"
+                                                                style="font-size: 20px; font-weight: 500; letter-spacing: 0.6px;">
+                                                                {{
+                                                                    slotProps.value.name }}</p>
                                                         </div>
                                                         <div class="flex gap-2 align-items-center"
                                                             v-if="slotProps.value.code === 'pdf'">
@@ -563,7 +588,10 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                                                                     d="M14.8343 13.0481C14.5906 13.1201 14.2328 13.1281 13.8492 13.0725C13.4375 13.0128 13.0175 12.8869 12.6048 12.7015C13.3408 12.5944 13.9118 12.6274 14.4002 12.8005C14.5159 12.8415 14.706 12.9511 14.8343 13.0481ZM10.7276 12.3729C10.6976 12.3811 10.6681 12.3888 10.6388 12.3969C10.4407 12.4508 10.248 12.5035 10.0623 12.5503L9.81195 12.6138C9.30825 12.7412 8.79325 12.8714 8.2846 13.0265C8.4779 12.5603 8.6575 12.089 8.83335 11.6282C8.96355 11.2871 9.0965 10.9387 9.234 10.5947C9.30375 10.7099 9.37655 10.8251 9.4523 10.9407C9.7974 11.4663 10.2312 11.9522 10.7276 12.3729ZM9.44635 7.1163C9.479 7.6915 9.3549 8.24485 9.17285 8.7757C8.9486 8.1193 8.8441 7.39445 9.12445 6.80925C9.19635 6.65925 9.25525 6.57905 9.29345 6.5372C9.35245 6.6283 9.43005 6.8321 9.44635 7.1163ZM6.81673 14.4027C6.69074 14.6281 6.56213 14.8391 6.43031 15.0384C6.11221 15.5177 5.59196 16.031 5.3247 16.031C5.2984 16.031 5.26658 16.0268 5.22007 15.9777C5.19014 15.9463 5.18534 15.9238 5.18679 15.8931C5.1958 15.7168 5.42933 15.403 5.76763 15.1119C6.07469 14.8479 6.42176 14.6131 6.81673 14.4027ZM15.6853 13.073C15.6444 12.4859 14.6561 12.1093 14.6464 12.1058C14.2643 11.9703 13.8493 11.9045 13.3776 11.9045C12.8726 11.9045 12.3282 11.9776 11.6291 12.141C11.007 11.7 10.4696 11.1479 10.0681 10.5366C9.8908 10.2666 9.7314 9.99705 9.59245 9.73375C9.93165 8.9227 10.2371 8.05065 10.1816 7.07395C10.1368 6.2908 9.7837 5.76475 9.30345 5.76475C8.974 5.76475 8.69035 6.00875 8.4597 6.49065C8.04825 7.34935 8.1564 8.4481 8.781 9.7592C8.55605 10.2875 8.34705 10.8353 8.14475 11.3656C7.89305 12.0249 7.6337 12.7052 7.3414 13.3523C6.52167 13.6766 5.84824 14.07 5.28701 14.5528C4.91935 14.8686 4.47611 15.3514 4.45081 15.8553C4.43846 16.0927 4.51984 16.3104 4.68522 16.4848C4.86091 16.6699 5.08165 16.7674 5.32435 16.7677C6.12594 16.7677 6.89744 15.6663 7.0438 15.4454C7.33835 15.0014 7.61405 14.5062 7.8842 13.9349C8.5646 13.689 9.2897 13.5055 9.9925 13.3281L10.2442 13.2641C10.4334 13.216 10.63 13.1628 10.8317 13.1076C11.0452 13.0499 11.2648 12.9901 11.488 12.9333C12.2096 13.3922 12.9857 13.6916 13.7425 13.8014C14.38 13.8941 14.9462 13.8403 15.3294 13.6405C15.6743 13.4609 15.6933 13.1838 15.6853 13.073ZM17.2377 18.1214C17.2377 19.1966 16.2901 19.2629 16.0989 19.2651H3.87243C2.80112 19.2651 2.73661 18.3109 2.73456 18.1214L2.73442 1.87821C2.73442 0.80195 3.68381 0.7367 3.87228 0.73454H12.1315L12.1359 0.7389V3.96198C12.1359 4.60882 12.5269 5.83345 14.0079 5.83345H17.2101L17.2376 5.8609L17.2377 18.1214ZM16.4786 5.0988H14.0084C12.9374 5.0988 12.8726 4.14985 12.8712 3.96209V1.47653L16.4786 5.0988ZM17.9723 18.1214V5.55785L12.8712 0.435511V0.411678H12.8468L12.4371 0H3.87245C3.22477 0 2 0.392668 2 1.87856V18.1217C2 18.7714 2.39148 20 3.87245 20H16.1C16.7476 19.9998 17.9723 19.6072 17.9723 18.1214Z"
                                                                     fill="#EB5757" />
                                                             </svg>
-                                                            <p>{{ slotProps.value.name }}</p>
+                                                            <p class="inter-normal black-2"
+                                                                style="font-size: 20px; font-weight: 500; letter-spacing: 0.6px;">
+                                                                {{
+                                                                    slotProps.value.name }}</p>
                                                         </div>
                                                     </div>
                                                     <span v-else>
@@ -574,7 +602,10 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                                                     <div class="flex gap-2 align-items-center"
                                                         v-if="slotProps.option.code === 'website'">
                                                         <img class="w-1rem" src="/assets/img/world.png" />
-                                                        <p>{{ slotProps.option.name }}</p>
+                                                        <p class="inter-normal black-2"
+                                                            style="font-size: 20px; font-weight: 500; letter-spacing: 0.6px;">
+                                                            {{
+                                                                slotProps.option.name }}</p>
                                                     </div>
                                                     <div v-if="slotProps.option.code === 'video'"
                                                         class="flex gap-2 align-items-center">
@@ -584,7 +615,10 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                                                                 d="M17.5938 3.6543H2.55273C1.94531 3.6543 1.61328 3.95703 1.61328 4.59375V15.5605C1.61328 16.1973 1.94531 16.5 2.55273 16.5H17.5938C18.2305 16.5 18.5332 16.168 18.5332 15.5605V4.5957C18.5332 3.98633 18.2305 3.6543 17.5938 3.6543ZM3.80664 15.5625H3.17969C2.67383 15.5625 2.55273 15.2559 2.55273 14.9355V13.6816H3.80664V15.5625ZM3.80664 12.7422H2.55273V10.5488H3.80664V12.7422ZM3.80664 9.60937H2.55273V7.41602H3.80664V9.60937ZM3.80664 6.47461H2.55273V5.2207C2.55273 4.71484 2.85938 4.59375 3.17969 4.59375H3.80664V6.47461ZM15.4004 15.5625H4.74609V4.5957H15.4004V15.5625ZM17.5938 14.9355C17.5938 15.2559 17.4727 15.5625 16.9668 15.5625H16.3398V13.6816H17.5938V14.9355ZM17.5938 12.7422H16.3398V10.5488H17.5938V12.7422ZM17.5938 9.60937H16.3398V7.41602H17.5938V9.60937ZM17.5938 6.47461H16.3398V4.59375H16.9668C17.2871 4.59375 17.5938 4.71484 17.5938 5.2207V6.47461ZM7.74219 13.2656C7.82227 13.3301 7.92188 13.3672 8.03125 13.3691H8.03906C8.12305 13.3691 8.20703 13.3496 8.28516 13.3066L13.1895 10.5254C13.4199 10.3965 13.498 10.1074 13.3652 9.88281V9.88086C13.3262 9.79687 13.2617 9.72266 13.1738 9.67187L8.28711 6.85156C8.20898 6.80664 8.125 6.78711 8.04102 6.78906H8.03711C7.77734 6.78906 7.56641 7 7.56641 7.25977V12.8398C7.55273 12.9395 7.57227 13.043 7.62695 13.1348C7.65625 13.1855 7.69727 13.2305 7.74219 13.2656ZM8.50586 8.06445L12.0254 10.0957L8.50586 12.0937V8.06445Z"
                                                                 fill="#5B99EE" />
                                                         </svg>
-                                                        <p>{{ slotProps.option.name }}</p>
+                                                        <p class="inter-normal black-2"
+                                                            style="font-size: 20px; font-weight: 500; letter-spacing: 0.6px;">
+                                                            {{
+                                                                slotProps.option.name }}</p>
                                                     </div>
                                                     <div class="flex gap-2 align-items-center"
                                                         v-if="slotProps.option.code === 'pdf'">
@@ -594,7 +628,10 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                                                                 d="M14.8343 13.0481C14.5906 13.1201 14.2328 13.1281 13.8492 13.0725C13.4375 13.0128 13.0175 12.8869 12.6048 12.7015C13.3408 12.5944 13.9118 12.6274 14.4002 12.8005C14.5159 12.8415 14.706 12.9511 14.8343 13.0481ZM10.7276 12.3729C10.6976 12.3811 10.6681 12.3888 10.6388 12.3969C10.4407 12.4508 10.248 12.5035 10.0623 12.5503L9.81195 12.6138C9.30825 12.7412 8.79325 12.8714 8.2846 13.0265C8.4779 12.5603 8.6575 12.089 8.83335 11.6282C8.96355 11.2871 9.0965 10.9387 9.234 10.5947C9.30375 10.7099 9.37655 10.8251 9.4523 10.9407C9.7974 11.4663 10.2312 11.9522 10.7276 12.3729ZM9.44635 7.1163C9.479 7.6915 9.3549 8.24485 9.17285 8.7757C8.9486 8.1193 8.8441 7.39445 9.12445 6.80925C9.19635 6.65925 9.25525 6.57905 9.29345 6.5372C9.35245 6.6283 9.43005 6.8321 9.44635 7.1163ZM6.81673 14.4027C6.69074 14.6281 6.56213 14.8391 6.43031 15.0384C6.11221 15.5177 5.59196 16.031 5.3247 16.031C5.2984 16.031 5.26658 16.0268 5.22007 15.9777C5.19014 15.9463 5.18534 15.9238 5.18679 15.8931C5.1958 15.7168 5.42933 15.403 5.76763 15.1119C6.07469 14.8479 6.42176 14.6131 6.81673 14.4027ZM15.6853 13.073C15.6444 12.4859 14.6561 12.1093 14.6464 12.1058C14.2643 11.9703 13.8493 11.9045 13.3776 11.9045C12.8726 11.9045 12.3282 11.9776 11.6291 12.141C11.007 11.7 10.4696 11.1479 10.0681 10.5366C9.8908 10.2666 9.7314 9.99705 9.59245 9.73375C9.93165 8.9227 10.2371 8.05065 10.1816 7.07395C10.1368 6.2908 9.7837 5.76475 9.30345 5.76475C8.974 5.76475 8.69035 6.00875 8.4597 6.49065C8.04825 7.34935 8.1564 8.4481 8.781 9.7592C8.55605 10.2875 8.34705 10.8353 8.14475 11.3656C7.89305 12.0249 7.6337 12.7052 7.3414 13.3523C6.52167 13.6766 5.84824 14.07 5.28701 14.5528C4.91935 14.8686 4.47611 15.3514 4.45081 15.8553C4.43846 16.0927 4.51984 16.3104 4.68522 16.4848C4.86091 16.6699 5.08165 16.7674 5.32435 16.7677C6.12594 16.7677 6.89744 15.6663 7.0438 15.4454C7.33835 15.0014 7.61405 14.5062 7.8842 13.9349C8.5646 13.689 9.2897 13.5055 9.9925 13.3281L10.2442 13.2641C10.4334 13.216 10.63 13.1628 10.8317 13.1076C11.0452 13.0499 11.2648 12.9901 11.488 12.9333C12.2096 13.3922 12.9857 13.6916 13.7425 13.8014C14.38 13.8941 14.9462 13.8403 15.3294 13.6405C15.6743 13.4609 15.6933 13.1838 15.6853 13.073ZM17.2377 18.1214C17.2377 19.1966 16.2901 19.2629 16.0989 19.2651H3.87243C2.80112 19.2651 2.73661 18.3109 2.73456 18.1214L2.73442 1.87821C2.73442 0.80195 3.68381 0.7367 3.87228 0.73454H12.1315L12.1359 0.7389V3.96198C12.1359 4.60882 12.5269 5.83345 14.0079 5.83345H17.2101L17.2376 5.8609L17.2377 18.1214ZM16.4786 5.0988H14.0084C12.9374 5.0988 12.8726 4.14985 12.8712 3.96209V1.47653L16.4786 5.0988ZM17.9723 18.1214V5.55785L12.8712 0.435511V0.411678H12.8468L12.4371 0H3.87245C3.22477 0 2 0.392668 2 1.87856V18.1217C2 18.7714 2.39148 20 3.87245 20H16.1C16.7476 19.9998 17.9723 19.6072 17.9723 18.1214Z"
                                                                 fill="#EB5757" />
                                                         </svg>
-                                                        <p>{{ slotProps.option.name }}</p>
+                                                        <p class="inter-normal black-2"
+                                                            style="font-size: 20px; font-weight: 500; letter-spacing: 0.6px;">
+                                                            {{
+                                                                slotProps.option.name }}</p>
                                                     </div>
                                                 </template>
                                             </Dropdown>
@@ -644,7 +681,7 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                             </div>
                         </div>
                     </template>
-                    <Button size="small" class="btn-new-section btn-orange w-full" @click="syllabusAccordion.push(false)">
+                    <Button size="small" class="btn-new-section btn-orange w-full" @click="addNewSection">
                         <div class="flex flex-row align-items-center gap-3">
                             <i class="pi pi-plus text-xs"></i>
                             <span>Add new section</span>
@@ -730,8 +767,8 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
 }
 
 ::v-deep(.instructor-total-input) {
-    width: 18px;
-    height: 24px;
+    width: 30px;
+    height: 40px;
 
     input.p-inputnumber-input {
         border-radius: 5px;
@@ -768,20 +805,22 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
 
     @media screen and (max-width: 1024px) {
         width: fit-content;
+
         ::v-deep(.p-inputnumber) {
             width: 100%;
         }
     }
 
     ::v-deep(.p-inputnumber) {
-        width: 168px;
+        width: auto;
         padding: 3px 0px;
         display: flex;
         justify-content: center;
         align-items: center;
 
         input {
-            max-width: 110px;
+            width: 100%;
+            text-align: center;
             height: 56px;
             border: none;
             color: var(--suggested-dark-grey, #808081);
@@ -833,9 +872,11 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
             td {
                 border-bottom: 1px solid #D9D5EC;
                 color: black;
-                padding: 10px;
 
                 .input-grade {
+                    padding: 10px !important;
+                    width: 100%;
+                    border-radius: 0;
                     color: #000;
                     text-align: left;
                     font-family: Inter;
@@ -881,6 +922,10 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
             border-radius: 5px;
             padding: 9px 16px;
             height: 40px;
+        }
+
+        @media screen and (max-width: 767px) {
+            height: 100%;
         }
     }
 }
@@ -945,6 +990,7 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
         justify-content: flex-start;
         align-items: center;
         flex-direction: column;
+
         div {
             width: 100%;
         }
@@ -993,13 +1039,14 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
         }
     }
 }
+
 .step-container {
     @media screen and (max-width: 767px) {
         display: flex;
         flex-direction: column;
+
         button {
             width: 100%;
         }
     }
-}
-</style>
+}</style>
