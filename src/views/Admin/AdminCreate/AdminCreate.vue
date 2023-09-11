@@ -30,8 +30,10 @@ const categoryData = ref<CategoryData[]>([
     location: "/admin/create/task",
   },
 ]);
-
-const dialogData = ref<CategoryData[]>([...categoryData.value]);
+interface EditableCategoryData extends CategoryData {
+  editmode?: boolean;
+}
+const dialogData = ref<EditableCategoryData[]>([...categoryData.value]);
 
 const userInput = ref('');
 
@@ -47,7 +49,10 @@ const addDialog = () => {
 };
 
 const addCategory = () => {
-  categoryData.value = [...categoryData.value, ...dialogData.value];
+  categoryData.value = [...dialogData.value, {
+    location: userInput.value.toLowerCase().replace(/ /g, '-'),
+    title: userInput.value
+  }];
   visible.value = false;
 };
 
@@ -69,6 +74,10 @@ onMounted(() => {
 router.afterEach((to, from) => {
   activeMenu.value = to.fullPath;
 });
+const onCancel = () => {
+  visible.value = false;
+  dialogData.value = categoryData.value
+}
 </script>
 
 <template>
@@ -76,7 +85,7 @@ router.afterEach((to, from) => {
     <section class="event-list w-full">
       <h1 class="font-bold mb-2 title col-12" style="padding-left: 10px">Create</h1>
 
-      <article class="flex overflow-x-scroll col-12" style="gap: 5px; padding: 10px 5px;">
+      <article class="flex gap-2 overflow-x-scroll col-12 align-items-center">
         <div v-for="(data, index) in categoryData" :key="index">
           <Button size="small" class="btn-header min-w-max" @click="goToLocation(data.location)"
             :class="{ active: activeMenu.startsWith(data.location) }">
@@ -84,6 +93,14 @@ router.afterEach((to, from) => {
             <p class="inter-normal ml-2 text-white" style="font-size: 16px; font-weight: 600;">{{ data.title }}</p>
           </Button>
         </div>
+        <Button size="small" link class="min-w-min p-0 m-0">
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M16.6161 12.4521C17.1043 11.9639 17.8957 11.9639 18.3839 12.4521L25.0505 19.1187C25.5387 19.6069 25.5387 20.3983 25.0505 20.8865L18.3839 27.5532C17.8957 28.0413 17.1043 28.0413 16.6161 27.5532C16.128 27.065 16.128 26.2735 16.6161 25.7854L22.3989 20.0026L16.6161 14.2198C16.128 13.7317 16.128 12.9402 16.6161 12.4521Z"
+              fill="black" stroke="black" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" />
+            <rect x="0.5" y="0.5" width="39" height="39" rx="4.5" stroke="#D9D5EC" />
+          </svg>
+        </Button>
         <Button size="small" class="btn-header min-w-min" @click="showModal">
           <i class="pi pi-plus"></i>
         </Button>
@@ -101,12 +118,12 @@ router.afterEach((to, from) => {
         </template>
         <div class="p-3 grid gap-2">
           <template v-for="(data, index) in dialogData" :key="index" class="">
-            <div class="flex flex-row align-items-center col-12">
+            <div class="flex flex-row align-items-center col-12 existing-item">
               <div class="w-full">
-                <p contenteditable>{{ data.title }}</p>
+                <InputText v-model="data.title" :readonly="!data.editmode" />
               </div>
               <div class="flex flex-row gap-0">
-                <Button link size="small" class="p-2">
+                <Button link size="small" class="p-2" @click="data.editmode = !data.editmode">
                   <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g id="Icon">
                       <path fill-rule="evenodd" clip-rule="evenodd"
@@ -138,7 +155,7 @@ router.afterEach((to, from) => {
           </template>
         </div>
         <div class="px-3 mt-2 flex flex-row align-items-center gap-2">
-          <InputText v-on:keyup.enter="addDialog" type="text" class="w-full" v-model="userInput"
+          <InputText v-on:keyup.enter="addDialog" type="text" class="w-full border-noround" v-model="userInput"
             placeholder="Add new title" />
           <Button @click="addDialog" link style="color: #000" class="p-2">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -148,7 +165,7 @@ router.afterEach((to, from) => {
           </Button>
         </div>
         <div class="flex flex-row gap-2">
-          <Button size="small" label="Cancel" severity="danger" class="w-full my-4 border-round-sm" />
+          <Button size="small" label="Cancel" severity="danger" @click="onCancel" class="w-full my-4 border-round-sm" />
           <Button size="small" label="Save" class="w-full my-4 btn-new" @click="addCategory" />
         </div>
 
@@ -158,11 +175,13 @@ router.afterEach((to, from) => {
 </template>
 <style scoped lang="scss">
 @import "/src/assets/global.scss";
+
 .width {
   max-width: 95vw;
 }
 
 .btn-header {
+  height: 40px;
   font-size: 16px;
   border-radius: 6px;
   border: 1px solid #006785;
@@ -222,5 +241,21 @@ router.afterEach((to, from) => {
 .btn-new {
   border: none;
   background-color: #00C0DD;
+}
+
+.existing-item {
+  height: 40px;
+
+  input {
+    margin: 0;
+    border-radius: 0;
+    width: 100%;
+
+    &:read-only {
+      border: none;
+      background: none;
+      padding: 0;
+    }
+  }
 }
 </style>
