@@ -57,15 +57,15 @@ const tryAgainAttemptType = ref();
 </script>
 
 <template>
-    <section class="my-3">
+    <section style="margin-top: 10px">
         <!-- Content -->
-        <div class="flex flex-column gap-3">
+        <div class="flex flex-column" style="gap: 20px; padding: 10px">
             <h1 class="inter-normal black-1" style="font-size: 25px; font-weight: 700;">Prepare Questions</h1>
-            <div class="flex gap-2 align-items-center">
+            <div class="flex flex-column sm:flex-row sm:align-items-center" style="gap: 10px; padding: 0px 10px">
                 <h4 class="inter-normal black-1 mr-3" style="font-size: 20px; font-weight: 700;">
                     Give instructor access to
                 </h4>
-                <div class="flex flex-wrap gap-4">
+                <div class="flex flex-column sm:flex-row sm:align-items-center sm:flex-wrap" style="gap: 17px; margin-top: 10px">
                     <div class="flex align-items-center">
                         <RadioButton v-model="access" inputId="access1" name="access" :value="1" />
                         <label for="access1" class="ml-2 inter-normal black-4" style="font-size: 20px; font-weight: 700; letter-spacing: 0.2px;">View</label>
@@ -81,7 +81,7 @@ const tryAgainAttemptType = ref();
                 </div>
             </div>
             <div class="grid">
-                <div class="col-4">
+                <div class="col-12 sm:col-4 sm:pl-3" style="gap: 10px;">
                     <p class="inter-normal black-1" style="font-size: 12px; font-weight: 400;">Calendar</p>
                     <div class="flex bg-transparent gap-1 p-1 align-items-center border-300 border-1 w-20rem xl:w-full">
                         <Dropdown v-model="calendar.month" v-bind:class="{ selected: calendar.month }" :options="monthList"
@@ -103,7 +103,7 @@ const tryAgainAttemptType = ref();
                             w-7rem xl:w-10rem" size="small" />
                     </div>
                 </div>
-                <div class="col-3">
+                <div class="col-12 sm:col-3">
                     <p class="inter-normal black-1" style="font-size: 12px; font-weight: 400;">Time Limit</p>
                     <div class="flex bg-transparent gap-1 p-1 align-items-center border-300 border-1">
                         <InputText size="small" class="p-0 m-0 border-noround p-inputtext-sm border-none text-center h-2rem w-3rem" v-model="timeLimit.time" />
@@ -116,7 +116,7 @@ const tryAgainAttemptType = ref();
                             size="small" />
                     </div>
                 </div>
-                <div class="col-2">
+                <div class="col-12 sm:col-2">
                     <p class="inter-normal black-1" style="font-size: 12px; font-weight: 400;">Attempt</p>
                     <div class="flex bg-transparent gap-1 p-1 align-items-center border-300 border-1">
                         <InputText size="small" class="p-0 m-0 border-noround p-inputtext-sm border-none text-center h-2rem w-3rem" v-model="attempts" />
@@ -127,7 +127,7 @@ const tryAgainAttemptType = ref();
                         <p>Attempts</p>
                     </div>
                 </div>
-                <div class="col-3">
+                <div class="col-12 sm:col-3">
                     <p class="inter-normal black-1" style="font-size: 12px; font-weight: 400;">Try Again After Attempts</p>
                     <div class="flex bg-transparent gap-1 p-1 align-items-center border-300 border-1">
                         <InputText size="small" class="p-0 m-0 border-noround p-inputtext-sm border-none text-center h-2rem w-3rem" v-model="tryAgainAttempt" />
@@ -154,7 +154,7 @@ const tryAgainAttemptType = ref();
             </div>
             <div class="flex flex-column gap-2">
                 <template v-for="asses in assesments">
-                    <div class="flex w-full mb-3">
+                    <div class="flex w-full" style="padding-left: 10px">
                         <QuizInput :question="asses.question" :points="asses.points" :answerType="asses.answerType"
                             :answerText="asses.answerText" :answerRadio="asses.answerRadio" />
                     </div>

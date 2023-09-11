@@ -1,9 +1,9 @@
 <template>
   <section>
     <section
-      class="grid overflow-hidden flex-column md:flex-row pl-4 pr-4 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2">
-      <div class="flex flex-row align-items-center col-12">
-        <h1 class="title-head">Student Progress</h1>
+      class="grid overflow-hidden flex-column md:flex-row" style="padding: 10px;">
+      <div class="flex flex-row align-items-center col-12 pb-0">
+        <h1 class="inter-normal black-1" style="white-space: nowrap; font-size: 35px; font-weight: 700;">Student Progress</h1>
       </div>
       <div class="col-12">
         <DataTable :value="courseData" class="shadow-2" selectionMode="single" :selection="selectedCourse"
@@ -157,6 +157,7 @@ const getBackgroundColor = (progress: number) => {
     text-align: center;
     font-size: 20px;
     font-weight: 700;
+    padding: 16px 10px ;
 
     svg path {
       fill: white;

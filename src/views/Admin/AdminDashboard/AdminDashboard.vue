@@ -52,13 +52,13 @@ const checkIfEventExist = (date: string) => {
 </script>
 
 <template>
-    <h1 class="inter-normal black-1 mb-1" style="font-size: 35px; font-weight: 700;">Dashboard</h1>
-    <div class="grid">
+    <h1 class="inter-normal black-1" style="font-size: 35px; font-weight: 700; padding: 0px 10px; gap: 10px;">Dashboard</h1>
+    <div class="grid" style="padding: 10px;">
 
-        <div class="col-12 xl:col-8 flex flex-column gap-3">
+        <div class="col-12 xl:col-8 flex flex-column" style="padding: 0px 10px; gap: 10px;">
 
             <div class="flex flex-column">
-                <div class="flex flex-row justify-content-between py-1">
+                <div class="flex flex-row justify-content-between">
                     <p class="inter-normal black-1" style="font-size: 25px; font-weight: 700;">Ongoing Courses</p>
                     <Button link size="small" class="font-bold text-xl flex gap-2 p-0">
                         <span class="inter-normal black-1 -mr-2" style="font-size: 20px; font-weight: 700;">see
@@ -71,7 +71,7 @@ const checkIfEventExist = (date: string) => {
                     </Button>
                 </div>
                 <DataTable :value="courseList" :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]" dataKey="id"
-                    :showGridlines="false" class="shadow-2" tableStyle="min-width: 40rem">
+                    :showGridlines="false" class="shadow-2" tableStyle="min-width: 40rem" style="margin-top: 10px">
                     <Column field="course">
                         <template #header>
                             <div class="flex justify-content-center w-full dm-sans-normal white-1"
@@ -133,7 +133,7 @@ const checkIfEventExist = (date: string) => {
                     </Button>
                 </div>
                 <DataTable :value="courseList.sort((a, b) => a.position - b.position).filter((v, k) => k <= 2)" :rows="5"
-                    :rowsPerPageOptions="[5, 10, 20, 50]" dataKey="id" class="shadow-2">
+                    :rowsPerPageOptions="[5, 10, 20, 50]" dataKey="id" class="shadow-2" style="margin-top: 10px">
                     <Column field="position">
                         <template #header>
                             <div class="dm-sans-normal white-1" style="font-size: 12px; font-weight: 700;">
@@ -217,7 +217,7 @@ const checkIfEventExist = (date: string) => {
                     </Button>
                 </div>
                 <DataTable :value="instructorList" :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]" dataKey="id"
-                    class="shadow-2">
+                    class="shadow-2" style="margin-top: 10px">
                     <Column field="position">
                         <template #header>
                             <div class="dm-sans-normal white-1" style="font-size: 12px; font-weight: 700;">
@@ -295,7 +295,7 @@ const checkIfEventExist = (date: string) => {
                     </Button>
                 </div>
                 <DataTable :value="studentList" :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]" dataKey="id"
-                    class="shadow-2">
+                    class="shadow-2" style="margin-top: 10px">
                     <Column field="position">
                         <template #header>
                             <div class="dm-sans-normal white-1" style="font-size: 12px; font-weight: 700;">
@@ -361,10 +361,10 @@ const checkIfEventExist = (date: string) => {
 
         </div>
 
-        <div class="col-12 xl:col-4 flex-column gap-4">
+        <div class="col-12 xl:col-4 flex-column" style="gap: 10px; padding: 0px 10px; margin-top: 10px">
 
             <div class="flex flex-column">
-                <p class="inter-normal black-2" style="font-size: 25px; font-weight: 700;">Calendar</p>
+                <p class="inter-normal black-2" style="font-size: 25px; font-weight: 700; margin-bottom: 10px">Calendar</p>
                 <div class="flex justify-content-center">
                     <CustomCalendar @date-select="onClickDay" :markers="dataEvent" />
                 </div>

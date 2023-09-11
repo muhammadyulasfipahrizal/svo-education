@@ -70,12 +70,12 @@ const getBackgroundColor = (progress: number) => {
 </script>
 
 <template>
-  <section class="px-2">
+  <section>
     <section
-      class="grid overflow-hidden flex-column md:flex-row pl-0 pr-0 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2">
-      <div class="col-12 flex flex-row align-items-center my-2">
-        <i class="pi pi-chevron-left mr-3 back-arrow cursor-pointer" @click="$router.push('/admin/progress/student')"></i>
-        <h1 class="inter-normal black-2" style="font-size: 35px; font-weight: 700;">Student Progress</h1>
+      class="grid overflow-hidden flex-column md:flex-row" style="padding: 10px;">
+      <div class="col-12 flex flex-row align-items-center">
+        <i class="pi pi-chevron-left back-arrow cursor-pointer" style="padding: 10px" @click="$router.push('/admin/progress/student')"></i>
+        <h1 class="inter-normal black-2 " style="font-size: 35px; font-weight: 700; ">Student Progress</h1>
       </div>
       <div class="grid col-12 p-0 m-0">
         <div class="col-12">
@@ -83,7 +83,7 @@ const getBackgroundColor = (progress: number) => {
             class="w-full md:flex dropdown-course" :class="{ 'selected': selectedCourse }">
             <template #value="slotProps">
               <div v-if="slotProps.value" class="flex align-items-center">
-                <img :alt="slotProps.value.courseName" :src="slotProps.value.image" class="mr-2" style="width: 53px" />
+                <img :alt="slotProps.value.courseName" :src="slotProps.value.image"  style="width: 55px; margin-right: 10px" />
                 <h1>{{ slotProps.value.courseName }}</h1>
               </div>
               <span v-else>
@@ -92,7 +92,7 @@ const getBackgroundColor = (progress: number) => {
             </template>
             <template #option="slotProps">
               <div class="flex align-items-center">
-                <img :alt="slotProps.option.courseName" :src="slotProps.option.image" class="mr-2" style="width: 53px" />
+                <img :alt="slotProps.option.courseName" :src="slotProps.option.image"  style="width: 55px; margin-right: 10px" />
                 <div class="text-900 font-bold text-lg">{{ slotProps.option.courseName }}</div>
               </div>
             </template>
@@ -143,7 +143,7 @@ const getBackgroundColor = (progress: number) => {
         </div>
 
         <!-- table -->
-        <div class="col-12 pr-3">
+        <div class="col-12 pt-0">
           <DataTable :value="studentData" removableSort paginator :rows="10"
             tableStyle="min-width: 50rem" sortMode="multiple" dataKey="id" v-model:selection="checkedStudent"
             class="shadow-2 detail-table"
@@ -326,14 +326,14 @@ const getBackgroundColor = (progress: number) => {
 
   <!-- modal -->
   <Dialog v-model:visible="visible" @show="initialTable" :value="studentData" modal header="Header"
-    :style="{ width: '40vw' }" :breakpoints="{ '764px': '90vw' }">
+    :style="{ width: '40vw' }" :breakpoints="{ '764px': '90vw' }" >
     <template #header>
-      <div class="flex flex-row align-items-center">
-        <Avatar :image="currentStudent?.image" class="modal-image mr-2" shape="circle" />
+      <div class="flex flex-row align-items-center" style="padding: 0px 10px;">
+        <Avatar :image="currentStudent?.image" class="modal-image" shape="circle" style="margin-right: 10px"/>
         <p class="modal-student-name">{{ currentStudent?.name }}</p>
       </div>
     </template>
-    <div class="flex flex-row py-4">
+    <div class="flex flex-row" style="padding: 15px 0px 10px 0px ;">
       <!-- PREV BUTTON -->
       <button class="prev-button cursor-pointer" v-bind:class="{ 'opacity-0': !showButton.prev }" @click="showPrevDays">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" viewBox="0 0 16 15" fill="none">
@@ -385,8 +385,8 @@ const getBackgroundColor = (progress: number) => {
             fill="black" />
         </svg></button>
     </div>
-    <div class="px-2">
-      <div class="flex flex-row align-items-center -mt-3 mb-2 gap-2 ">
+    <div class="flex flex-column" style="padding: 10px; gap: 20px">
+      <div class="flex flex-row align-items-center" style="gap: 10px;">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
           <rect width="24" height="24" rx="12" fill="#659872" />
           <path
@@ -395,7 +395,7 @@ const getBackgroundColor = (progress: number) => {
         </svg>
         <p class="modal-text">You have completed all of the assessment</p>
       </div>
-      <div class="flex flex-row align-items-center my-4 gap-2">
+      <div class="flex flex-row align-items-center" style="gap: 10px;">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
           <path
             d="M16 14H8C7.73478 14 7.48043 14.1054 7.29289 14.2929C7.10536 14.4804 7 14.7348 7 15C7 15.2652 7.10536 15.5196 7.29289 15.7071C7.48043 15.8946 7.73478 16 8 16H16C16.2652 16 16.5196 15.8946 16.7071 15.7071C16.8946 15.5196 17 15.2652 17 15C17 14.7348 16.8946 14.4804 16.7071 14.2929C16.5196 14.1054 16.2652 14 16 14ZM16 10H10C9.73478 10 9.48043 10.1054 9.29289 10.2929C9.10536 10.4804 9 10.7348 9 11C9 11.2652 9.10536 11.5196 9.29289 11.7071C9.48043 11.8946 9.73478 12 10 12H16C16.2652 12 16.5196 11.8946 16.7071 11.7071C16.8946 11.5196 17 11.2652 17 11C17 10.7348 16.8946 10.4804 16.7071 10.2929C16.5196 10.1054 16.2652 10 16 10ZM20 4H17V3C17 2.73478 16.8946 2.48043 16.7071 2.29289C16.5196 2.10536 16.2652 2 16 2C15.7348 2 15.4804 2.10536 15.2929 2.29289C15.1054 2.48043 15 2.73478 15 3V4H13V3C13 2.73478 12.8946 2.48043 12.7071 2.29289C12.5196 2.10536 12.2652 2 12 2C11.7348 2 11.4804 2.10536 11.2929 2.29289C11.1054 2.48043 11 2.73478 11 3V4H9V3C9 2.73478 8.89464 2.48043 8.70711 2.29289C8.51957 2.10536 8.26522 2 8 2C7.73478 2 7.48043 2.10536 7.29289 2.29289C7.10536 2.48043 7 2.73478 7 3V4H4C3.73478 4 3.48043 4.10536 3.29289 4.29289C3.10536 4.48043 3 4.73478 3 5V19C3 19.7956 3.31607 20.5587 3.87868 21.1213C4.44129 21.6839 5.20435 22 6 22H18C18.7956 22 19.5587 21.6839 20.1213 21.1213C20.6839 20.5587 21 19.7956 21 19V5C21 4.73478 20.8946 4.48043 20.7071 4.29289C20.5196 4.10536 20.2652 4 20 4ZM19 19C19 19.2652 18.8946 19.5196 18.7071 19.7071C18.5196 19.8946 18.2652 20 18 20H6C5.73478 20 5.48043 19.8946 5.29289 19.7071C5.10536 19.5196 5 19.2652 5 19V6H7V7C7 7.26522 7.10536 7.51957 7.29289 7.70711C7.48043 7.89464 7.73478 8 8 8C8.26522 8 8.51957 7.89464 8.70711 7.70711C8.89464 7.51957 9 7.26522 9 7V6H11V7C11 7.26522 11.1054 7.51957 11.2929 7.70711C11.4804 7.89464 11.7348 8 12 8C12.2652 8 12.5196 7.89464 12.7071 7.70711C12.8946 7.51957 13 7.26522 13 7V6H15V7C15 7.26522 15.1054 7.51957 15.2929 7.70711C15.4804 7.89464 15.7348 8 16 8C16.2652 8 16.5196 7.89464 16.7071 7.70711C16.8946 7.51957 17 7.26522 17 7V6H19V19Z"
@@ -404,8 +404,8 @@ const getBackgroundColor = (progress: number) => {
         <p class="modal-text mr-1">You passed the course! Your overall grade</p>
         <p class="modal text correct-color font-bold">100%</p>
       </div>
-      <div class="flex flex-row align-items-center my-4">
-        <div class="flex flex-row align-items-center gap-2">
+      <div class="flex flex-row align-items-center">
+        <div class="flex flex-row align-items-center" style="gap: 10px;">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
             <rect width="24" height="24" rx="12" fill="#659872" />
             <path
@@ -419,8 +419,8 @@ const getBackgroundColor = (progress: number) => {
           <p class="modal text correct-color font-bold">100%</p>
         </div>
       </div>
-      <div class="flex flex-row align-items-center my-4">
-        <div class="flex flex-row align-items-center gap-2">
+      <div class="flex flex-row align-items-center">
+        <div class="flex flex-row align-items-center" style="gap: 10px;">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
             <rect width="24" height="24" rx="12" fill="#659872" />
             <path
@@ -434,8 +434,8 @@ const getBackgroundColor = (progress: number) => {
           <p class="modal text correct-color font-bold">100%</p>
         </div>
       </div>
-      <div class="flex flex-row align-items-center my-4">
-        <div class="flex flex-row align-items-center gap-2">
+      <div class="flex flex-row align-items-center">
+        <div class="flex flex-row align-items-center" style="gap: 10px;">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
             <rect width="24" height="24" rx="12" fill="#659872" />
             <path
@@ -450,8 +450,8 @@ const getBackgroundColor = (progress: number) => {
         </div>
       </div>
 
-      <div class="flex flex-row align-items-center my-4">
-        <div class="flex flex-row align-items-center gap-2">
+      <div class="flex flex-row align-items-center">
+        <div class="flex flex-row align-items-center" style="gap: 10px;">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
             <rect width="24" height="24" rx="12" fill="#659872" />
             <path
@@ -465,8 +465,8 @@ const getBackgroundColor = (progress: number) => {
           <p class="modal text correct-color font-bold">100%</p>
         </div>
       </div>
-      <div class="flex f  lex-row align-items-center my-4">
-        <div class="flex flex-row align-items-center gap-2">
+      <div class="flex f  lex-row align-items-center">
+        <div class="flex flex-row align-items-center" style="gap: 10px;">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
             <rect width="24" height="24" rx="12" fill="#659872" />
             <path
@@ -481,8 +481,8 @@ const getBackgroundColor = (progress: number) => {
         </div>
       </div>
       <div class="line"></div>
-      <div class="flex flex-row align-items-center mt-3 mb-4">
-        <div class="flex flex-row align-items-center gap-2">
+      <div class="flex flex-row align-items-center" style="margin-bottom: 5px">
+        <div class="flex flex-row align-items-center" style="gap: 10px;">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
             <rect width="24" height="24" rx="12" fill="#659872" />
             <path
@@ -752,6 +752,12 @@ const getBackgroundColor = (progress: number) => {
   max-width: 85%; 
   @media screen and (min-width: 1024px) {
     max-width: 90%;
+  }
+}
+
+::v-deep(.p-dropdown) {
+  .p-dropdown-trigger {
+    width: 25px;
   }
 }
 </style>

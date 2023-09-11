@@ -160,11 +160,11 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
 </script>
 
 <template>
-    <section class="my-3">
+    <section style="margin-top: 10px; gap:10px">
         <Accordion>
             <AccordionTab header="Who can access the course">
                 <div>
-                    <div class="flex flex-column gap-3">
+                    <div class="flex flex-column" style="gap: 15px; margin: -5px 0px">
                         <div v-for="role in roleList" :key="role.key" class="grid p-0 m-0">
                             <div class="flex justify-content-between align-items-center w-full col-12">
                                 <div class="flex justify-content-start">
@@ -210,27 +210,27 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
             </AccordionTab>
         </Accordion>
 
-        <h2 class="inter-normal black-1 my-2" style="font-size: 25px; font-weight: 700;">
+        <h2 class="inter-normal black-1" style="font-size: 25px; font-weight: 700; margin: 10px 0px">
             Add Courses
         </h2>
 
         <div class="card card-container p-2">
             <div class="card-content">
-                <div class="grid">
+                <div class="grid grid-nogutter">
                     <div class="col-12 xl:col-6">
-                        <div class="flex flex-column align-items-start justify-content-start gap-3 ">
-                            <InputText type="text" label="Title" v-model="title"
-                                class="p-inputtext-lg w-full text-6xl mt-6 h-4rem" required placeholder="Title" />
+                        <div class="flex flex-column align-items-start justify-content-start " style="gap: 10px">
+                            <InputText type="text" label="Title" v-model="title" style="margin-top: 40px"
+                                class="p-inputtext-lg w-full text-6xl h-4rem" required placeholder="Title" />
 
-                            <div class="grid align-items-start md:align-items-center w-full justify-content-between">
-                                <div class="flex align-items-center col-12 sm:col-9">
-                                    <h1 class="col-5 md:col-2 lg:col-2 inter-normal black-1 min-w-max"
+                            <div class="grid align-items-start md:align-items-center w-full justify-content-between sm:p-0" style="padding: 10px; 0px">
+                                <div class="grid align-items-start sm:align-items-center col-12 sm:col-9">
+                                    <h1 class="col-12 sm:col-6 inter-normal black-1 min-w-max"
                                         style="font-size: 25px; font-weight: 700;">
                                         Instructor By
                                     </h1>
                                     <Dropdown v-model="selectedInstructor" v-bind:class="{ selected: selectedInstructor }"
                                         :options="instructorList" optionLabel="name" placeholder="Select Instructor" class=" 
-                                         col-6 md:col-8 h-2rem flex align-items-center" size="small"
+                                        col-12 sm:col-6 h-2rem flex align-items-center" size="small"
                                         @change="(value: any) => onChangeInstructor(value.value)" />
                                 </div>
                                 <div class="col-12 md:col-2 flex gap-1">
@@ -242,7 +242,7 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                                 </div>
                             </div>
 
-                            <div class="w-full px-2 ratings-container">
+                            <div class="w-full ratings-container" style="padding: 0px 20px; margin-top: -10px">
                                 <div class="w-full p-2 card shadow-1 flex flex-column">
                                     <div
                                         class="flex flex-row md:flex-column gap-2 md:gap-0 align-items-center md:align-items-start mb-1">
@@ -288,16 +288,17 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                                             v-bind:class="{ selected: selectedLanguage !== '' }" size="small" />
                                     </div>
                                 </div>
+                                <Button class="btn-default w-full md:w-max hidden sm:block" style="margin: 5px 0px 10px 0px;">
+                                    <template #default>
+                                        <div class="inter-normal -mt-1" style="font-size: 20px; font-weight: 500;">
+                                            Enroll
+                                        </div>
+                                    </template>
+                                </Button>
                             </div>
                         </div>
 
-                        <Button class="btn-default mt-4 md:w-max mb-3 md:mb-0">
-                            <template #default>
-                                <div class="inter-normal px-2" style="font-size: 20px; font-weight: 500;">
-                                    Enroll
-                                </div>
-                            </template>
-                        </Button>
+                        
                     </div>
                     <div class="col-12 md:col-6">
                         <div class="col-12">
@@ -357,9 +358,11 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                                     </td>
                                     <td><span class="divider"></span></td>
                                     <td>
-                                        <div class="flex grade-weight">
-                                            <InputNumber class="weight" v-model="item.weight" />
-                                            <span>%</span>
+                                        <div class="flex grade-weight" style="gap: 10px">
+                                            <div class="flex flex-row">
+                                                <InputNumber class="weight" inputClass="inter-normal black-2" :inputStyle="{ fontSize: '20px', fontWeight: 400 }" v-model="item.weight"/>
+                                                <span class="-ml-1">%</span>
+                                            </div>
                                             <Button size="small" class="p-0 m-0" link @click="deleteGradeSystem(key)">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="31" height="30"
                                                     viewBox="0 0 31 30" fill="none">
@@ -394,17 +397,17 @@ const syllabusAddList = ref<{ title: string; duration: string; selectedType: str
                     </table>
                 </div>
 
-                <div class="card py-3">
+                <div class="card" style="padding: 10px 0 ">
                     <div class="row">
                         <div class="col-12 md:col-8 lg:col-6 xl:col-4">
                             <UploadVideo class="upload-video w-full" />
-                            <h4 class="inter-normal black-1 my-3 text-center" style="font-size: 25px; font-weight: 700;">
+                            <h4 class="inter-normal black-1 text-center" style="font-size: 25px; font-weight: 700; margin-top: 10px">
                                 Course Preview
                             </h4>
                         </div>
                     </div>
                 </div>
-                <div class="flex flex-column gap-2">
+                <div class="flex flex-column gap-2" style="margin: -10px 0px">
                     <label for="about-description" class="inter-normal black-1"
                         style="font-size: 25px; font-weight: 700;">About</label>
                     <Textarea id="about-description" size="small" v-model="aboutDescription"

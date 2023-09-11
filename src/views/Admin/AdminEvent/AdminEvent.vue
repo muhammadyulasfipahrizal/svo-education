@@ -93,28 +93,30 @@ const dataEvent = [{
 </script>
 
 <template>
-  <section class="px-2">
+  <section>
     <section
-      class="grid overflow-hidden flex-column md:flex-row pl-4 pr-4 md:pl-0 md:pr-2 lg:pl-0 lg:pr-2 xl:pl-0 xl:pr-2 px-2 pt-0 min-h-full">
-      <div class="col-12 xl:col-8 px-2 bg-white min-h-screen">
-        <div class="flex justify-content-between align-items-center">
-          <h1 class="title mb-2">Ongoing Event</h1>
-          <button @click="onAddEvent" class="btn-add">
-            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
-              <path d="M10.5 14.1693V5.83594" stroke="white" stroke-width="1.5" stroke-linecap="round" />
-              <path d="M6.33268 10L14.666 10" stroke="white" stroke-width="1.5" stroke-linecap="round" />
-            </svg>
-            <span>ADD</span>
+      class="grid overflow-hidden flex-column md:flex-row min-h-full" style="padding: 10px; margin-top: 10px">
+      <div class="col-12 xl:col-8 bg-white min-h-screen" style="padding: 0px 10px; gap: 5px;">
+        <div class="flex flex-column md:flex-row justify-content-between align-items-center md:align-items-center md:mb-3" style="margin-bottom: 20px; gap: 10px;">
+          <h1 class="title" style="margin-bottom: 10px">Ongoing Event</h1>
+          <button @click="onAddEvent" class="btn-add w-full md:w-max">
+            <div class="flex flex-row mx-auto">
+              <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
+                <path d="M10.5 14.1693V5.83594" stroke="white" stroke-width="1.5" stroke-linecap="round" />
+                <path d="M6.33268 10L14.666 10" stroke="white" stroke-width="1.5" stroke-linecap="round" />
+              </svg>
+              <span>ADD</span>
+            </div>
           </button>
         </div>
-        <div class="grid justify-center flex-wrap gap-2 flex-column md:flex-row px-2">
+        <div class="grid justify-center flex-wrap gap-2 flex-column md:flex-row" style="padding: 0px 10px">
           <template v-for="item in eventList">
             <EventItem :item="item" />
           </template>
         </div>
       </div>
-      <div class="col-12 xl:col-4">
-        <h1 class="inter-normal black-2" style="font-size: 25px; font-weight: 700;">Calendar</h1>
+      <div class="col-12 xl:col-4" style="padding-left: 15px; gap: 10px;">
+        <h1 class="inter-normal black-2" style="font-size: 25px; font-weight: 700; margin: 10px 0px">Calendar</h1>
         <div class="flex justify-content-start">
           <div class="flex justify-content-center">
             <CustomCalendar :markers="dataEvent" />
@@ -123,7 +125,7 @@ const dataEvent = [{
       </div>
 
       <div class="col-12 md:hidden lg:hidden xl:hidden py-2">
-        <div class="flex gap-2 align-items-center my-3">
+        <div class="flex gap-2 align-items-center" style="margin: 20px 0px">
           <i class="pi pi-calendar"></i>
           <p class="text-md font-grey-500 font-bold">
             {{ format(new Date(), 'dd-MMM-yyyy') }}
@@ -180,7 +182,7 @@ const dataEvent = [{
           <h2 class="inter-normal grey-3" style="font-size: 20px; font-weight: 400;">Drop files here</h2>
           <p class="inter-normal grey-3" style="font-size: 15px; font-weight: 400;">or</p>
           <div class="flex">
-            <Button size="small" plain outlined @click="fileUpload.click()">
+            <Button size="small" plain outlined style="padding: 5px 10px;">
               <template #default>
                 <div class="mx-auto">
                   <p class="inter-normal grey-3" style="font-size: 12px; font-weight: 600;">Select File</p>
@@ -191,9 +193,11 @@ const dataEvent = [{
         </template>
       </div>
       <div class="flex">
-        <p class="inter-normal black-2" style="font-size: 15px; font-weight: 400;">Maximum upload file size: 8 MB</p>
+        <p class="inter-normal black-2" style="font-size: 15px; font-weight: 400; margin-bottom: 15px">
+          Maximum upload file size: 8 MB
+        </p>
       </div>
-      <div class="grid">
+      <div class="grid" style="padding: 10px">
         <h1 class="inter-normal black-1 col-12 p-0 pl-2" style="font-size: 30px; font-weight: 700;">Ongoing Event Details
         </h1>
         <div class="flex gap-0 align-items-center col-12 pt-0">
@@ -208,7 +212,7 @@ const dataEvent = [{
             <InputText class="p-inputtext-sm" v-model="location" placeholder="Location" />
           </span>
         </div>
-        <div class="grid pl-2 w-full md:w-auto lg:w-auto">
+        <div class="grid pl-2 w-full md:w-auto lg:w-auto" style="margin-top: -18px">
           <span class="p-input-icon-left col-12 md:col-4 lg:col-4 xl:col-4">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path
@@ -249,16 +253,19 @@ const dataEvent = [{
           </span>
         </div>
 
-        <div class="grid px-3 w-full py-3">
-          <Button class="w-full btn-save" @click="visible = false">
-            <template #default>
-              <div class="mx-auto">
-                <p class="inter-normal white-1" style="font-size: 13px; font-weight: 700;">Save</p>
-              </div>
-            </template>
-          </Button>
-        </div>
+        
       </div>
+
+      <div class="grid w-full" style="padding: 0px 10px">
+        <Button class="w-full btn-save" @click="visible = false">
+          <template #default>
+            <div class="mx-auto">
+              <p class="inter-normal white-1" style="font-size: 13px; font-weight: 700;">Save</p>
+            </div>
+          </template>
+        </Button>
+      </div>
+
     </div>
   </Dialog>
 </template>
