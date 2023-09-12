@@ -302,7 +302,7 @@ const getBackgroundColor = (progress: number) => {
   </section>
 
   <!-- modal -->
-  <Dialog v-model:visible="visible" :value="guestListData" modal header="Header" :style="{ width: '40vw' }"
+  <Dialog :dismissable-mask="true" v-model:visible="visible" :value="guestListData" modal header="Header" :style="{ width: '40vw' }"
     :breakpoints="{ '764px': '90vw' }">
     <template #header>
       <div class="flex flex-row align-items-center" style="padding: 0px 10px;">

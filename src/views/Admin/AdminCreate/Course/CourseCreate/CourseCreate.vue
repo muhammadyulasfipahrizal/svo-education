@@ -77,7 +77,12 @@ const dataRoles = ref<{ title: string; id: number }[]>([
 const discountPrice = ref<number>()
 const originalPrice = ref<number>()
 
-const steps = ref<'about' | 'instructor' | 'syllabus' | 'reviews'>('about');
+const steps = ref({
+    about: true,
+    instructor: true,
+    syllabus: true,
+    reviews: true
+});
 
 interface GradeSystem {
     title: string;
@@ -343,17 +348,17 @@ const addNewSection = () => {
 
         <!-- STEP SECTION -->
         <div class="flex justify-content-start align-items-center gap-2 my-3 step-container">
-            <Button label="ABOUT" :class="{ 'btn-default': steps === 'about' }" outlined @click="steps = 'about'" />
-            <Button label="INSTRUCTOR" :class="{ 'btn-default': steps === 'instructor' }" outlined
-                @click="steps = 'instructor'" />
-            <Button label="SYLLABUS" :class="{ 'btn-default': steps === 'syllabus' }" outlined
-                @click="steps = 'syllabus'; syllabusAccordion[0] = true" />
-            <Button label="REVIEWS" :class="{ 'btn-default': steps === 'reviews' }" outlined @click="steps = 'reviews'" />
+            <Button label="ABOUT" :class="{ 'btn-default': steps.about }" outlined @click="steps.about = !steps.about" />
+            <Button label="INSTRUCTOR" :class="{ 'btn-default': steps.instructor }" outlined
+                @click="steps.instructor = !steps.instructor" />
+            <Button label="SYLLABUS" :class="{ 'btn-default': steps.syllabus }" outlined
+                @click="steps.syllabus = !steps.syllabus; syllabusAccordion[0] = true" />
+            <Button label="REVIEWS" :class="{ 'btn-default': steps.reviews }" outlined @click="steps.reviews = !steps.reviews" />
         </div>
 
         <div class="flex flex-column">
             <!-- ABOUT -->
-            <template v-if="steps === 'about'">
+            <template v-if="steps.about">
                 <div class="card p-1 border-1 surface-border justify-content-center flex md:w-fit">
                     <table class="table-grade-system">
                         <thead>
@@ -429,7 +434,7 @@ const addNewSection = () => {
             </template>
 
             <!-- INSTRUCTOR -->
-            <template v-if="steps === 'instructor'">
+            <template v-if="steps.instructor">
                 <div class="card p-1 flex flex-column gap-3 my-3">
                     <h1 class="text-900 text-xl font-bold">Instructor</h1>
                     <img :src="selectedInstructor?.image" alt="" class="w-5rem" />
@@ -441,7 +446,7 @@ const addNewSection = () => {
             </template>
 
             <!-- SYLLABUS -->
-            <template v-if="steps === 'syllabus'">
+            <template v-if="steps.syllabus">
                 <div class="card flex flex-column gap-2">
                     <div class="flex justify-content-between">
                         <h1 class="text-2xl font-bold text-900">Syllabus</h1>
@@ -691,7 +696,7 @@ const addNewSection = () => {
             </template>
 
             <!-- REVIEW -->
-            <template v-if="steps === 'reviews'">
+            <template v-if="steps.reviews">
                 <div class="flex flex-column gap-2">
                     <h2 class="text-900 font-bold text-3xl">
                         Developer Instructor reviews

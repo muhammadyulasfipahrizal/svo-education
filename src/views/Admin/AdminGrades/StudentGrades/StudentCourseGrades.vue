@@ -309,7 +309,7 @@ onMounted(() => {
     </section>
 
     <!-- MODAL Profile -->
-    <Dialog v-model:visible="modalProfile" modal :style="{ width: '40vw' }" :breakpoints="{ '764px': '90vw' }">
+    <Dialog :dismissable-mask="true" v-model:visible="modalProfile" modal :style="{ width: '40vw' }" :breakpoints="{ '764px': '90vw' }">
         <template #header>
             <div class="flex flex-row align-items-center" style="padding: 15px 10px">
                 <img :src="selectedProfile?.student.image || '/assets/img/avatar-black.png'"

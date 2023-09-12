@@ -26,7 +26,7 @@
                 </div>
             </div>
 
-            <Dialog v-model:visible="visible" modal :style="{ width: '30vw' }" :breakpoints="{ '960px': '90vw' }">
+            <Dialog :dismissableMask="true" v-model:visible="visible" modal :style="{ width: '30vw' }" :breakpoints="{ '960px': '90vw' }">
                 <template #header>
                     <p class="text-5xl font-bold">Add card</p>
                 </template>
@@ -62,7 +62,7 @@
             <p class="inter-normal text-4xl black-1 col-3 md:col-3 lg:col-2 font-bold">RM 49.99</p>
         </div>
         <Button size="small" label="COMPLETE CHECKOUT" class="col-12 btn-save" @click="checkoutVisible = true"></Button>
-        <Dialog v-model:visible="checkoutVisible" modal :style="{ width: '30vw' } " :breakpoints="{ '960px': '90vw' }">
+        <Dialog :dismissableMask="true" v-model:visible="checkoutVisible" modal :style="{ width: '30vw' } " :breakpoints="{ '960px': '90vw' }">
             <div class="flex flex-column align-items-center gap-4">
                 <img src="/assets/icon/check.png" alt="" style="width: 118px; height: 118px;">
                 <p class="text-xl font-bold">Checkout successful</p>

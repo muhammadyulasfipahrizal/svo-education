@@ -33,20 +33,9 @@ const points = ref(props.points);
 const radioSelected = ref('model')
 const answerList = ref<{ title: string; isCorrect: boolean }[]>([
     {
-        title: 'To make the product visually appealing',
+        title: '',
         isCorrect: true,
-    }, {
-        title: 'To create a seamless user experience',
-        isCorrect: false,
     },
-    {
-        title: 'To optimize the product for search engines',
-        isCorrect: false,
-    },
-    {
-        title: 'To increase website traffic',
-        isCorrect: false
-    }
 ]);
 
 const numberToChar = (number: number) => {
@@ -65,7 +54,7 @@ watchEffect(() => {
 <template>
     <div class="flex flex-column gap-2 w-full">
         <div class="grid">
-            <InputText label="Title" v-model="title" class="col-12 square-input sm:col-11" />
+            <InputText label="Title" placeholder="Title..." v-model="title" class="p-inputtext-sm col-12 sm:col-11" />
             <div class="flex flex-row text-900 text-sm font-bold col-1 align-items-center gap-1 col-12 sm:col-1">
                 <InputText size="small" class="instructor-total-input py-0 m-0 w-3rem p-inputtext-sm h-2rem surface-200"
                     inputId="withoutgrouping" :useGrouping="false" v-model="points" />
@@ -79,7 +68,7 @@ watchEffect(() => {
                     <template #value="slotProps">
                         <div v-if="slotProps.value" class="flex align-items-center gap-2">
                             <RadioButton v-if="slotProps.value.code === 'radio'" value="model" />
-                            <Checkbox v-if="slotProps.value.code === 'text'">
+                            <Checkbox v-if="slotProps.value.code === 'text'" :value="true" :binary="true">
                             </Checkbox>
                             <div>{{ slotProps.value.name }}</div>
                         </div>
@@ -114,17 +103,17 @@ watchEffect(() => {
 
         <div class="flex flex-column gap-2" v-if="selectedType?.code === 'radio'">
             <!-- Question list -->
-            <template v-for="(answer, key) in answerList">
-                <div class="grid pl-3">
+            <template v-for="(answer, key) in answerList" :key="key">
+                <div class="grid pl-3 mb-2 p-inputtext-sm" :class="{ 'blank-question': !answer.title }">
                     <div class="col-11">
                         <div class="flex align-items-center gap-2">
-                            <RadioButton :inputId="'answer_radio' + key" name="answer_radio" v-model="radioSelected"
+                            <RadioButton :inputId="'answer_radio' + key" name="answer_radio" disabled v-model="radioSelected"
                                 :value="answer.title" />
                             <label :for="'answer_radio' + key" class="ml-2">{{ numberToChar(key) }}.</label>
-                            <InputText v-model="answer.title" class="border-0 w-full" />
+                            <InputText v-model="answer.title" placeholder="Title..." class="border-0 w-full answer-title" :class="{ 'blank-question': !answer.title }" />
                         </div>
                     </div>
-                    <div class="col-1 flex gap-2 align-items-center">
+                    <div class="col-1 flex gap-2 align-items-center" v-if="answer.title">
                         <Checkbox v-model="answer.isCorrect" :binary="true">
                             <template #icon="{ checked }">
                                 <svg v-if="!checked" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
@@ -145,6 +134,14 @@ watchEffect(() => {
                     </div>
                 </div>
             </template>
+            <div class="grid pl-3 p-inputtext-sm">
+                    <div class="col-11">
+                        <div class="flex align-items-center gap-2">
+                            <RadioButton disabled name="add_answer_radio" />
+                            <span role="button" class="text-600 cursor-pointer" @click="answerList.push({ title: '', isCorrect: false })">+ Add new option</span>
+                        </div>
+                    </div>
+                </div>
         </div>
 
         <div class="flex flex-column gap-2" v-if="selectedType?.code === 'text'">
@@ -166,5 +163,18 @@ watchEffect(() => {
         border: none !important;
         background: none !important;
     }
+}
+
+.blank-question {
+    background-color: #D9D9D9 !important;
+    border-radius: 8px;
+}
+
+.blank-question:not(.answer-title) {
+    border: 1px solid #7c7c7c !important;
+}
+
+.blank-question:is(.answer-title) {
+    border: none;
 }
 </style>

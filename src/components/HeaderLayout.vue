@@ -136,7 +136,7 @@
 
         <div class="flex flex-row align-items-center justify-content-between mx-3">
           <i class="pi pi-align-justify cursor-pointer" @click="visible = true"></i>
-          <div class="flex flex-row align-items-center">
+          <div class="flex flex-row align-items-center" @click="$router.push('/dashboard')">
             <img src="/assets/img/svo-academy-logo.png" alt="Logo" class="logo-image">
             <h1 class="header-title">Education</h1>
           </div>
@@ -147,7 +147,7 @@
         </div>
         <Sidebar v-model:visible="visible" class="w-1/2">
           <template #header>
-            <div class="flex flex-row align-items-center mr-4">
+            <div class="flex flex-row align-items-center mr-4" @click="$router.push('/dashboard')">
               <img src="/assets/img/svo-academy-logo.png" alt="Logo" class="logo-image">
               <h1 class="header-title">Education</h1>
             </div>

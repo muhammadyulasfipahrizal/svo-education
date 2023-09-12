@@ -112,7 +112,7 @@ const addInstructor = () => {
 
 
     <!-- modal -->
-    <Dialog v-model:visible="visible" v-for="(data, index) in instructorData" :key="index" modal header="Header"
+    <Dialog :dismissableMask="true" v-model:visible="visible" v-for="(data, index) in instructorData" :key="index" modal header="Header"
       :style="{ width: '30vw' }" :breakpoints="{ '764px': '80vw' }">
       <template #header>
         <div class="flex flex-row align-items-center">
