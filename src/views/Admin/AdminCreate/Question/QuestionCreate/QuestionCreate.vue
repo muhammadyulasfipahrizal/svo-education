@@ -165,7 +165,7 @@ const questions = ref(0)
             </div> -->
             <div class="grid">
                 <div class="col-12 sm:col-9">
-                    <InputText placeholder="Title..." class="p-inputtext-sm w-full" />
+                    <InputText placeholder="Title..." class="p-inputtext-sm w-full h-full" />
                 </div>
                 <div class="col-12 sm:col-3">
                     <div
