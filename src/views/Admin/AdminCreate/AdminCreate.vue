@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import router from '@/router';
-import { ref, onMounted } from 'vue';
+import { isElementOverflown } from '@/utils/utils';
+import { ref, onMounted, computed, watch, onUpdated } from 'vue';
 const activeMenu = ref<string>('/admin/create/course');
 
 interface CategoryData {
@@ -78,31 +79,65 @@ const onCancel = () => {
   visible.value = false;
   dialogData.value = categoryData.value
 }
+const categoryEl = ref<HTMLElement | null>(null)
+const isCategoryOverflown = computed(() => {
+  if (!categoryEl.value) return
+  const { clientWidth, clientHeight, scrollHeight, scrollWidth } = categoryEl.value
+  return isElementOverflown({ clientHeight, clientWidth, scrollHeight, scrollWidth })
+})
+
+const posXCategoryScroll = ref(0)
+const scrollWidthCategory = ref(0)
+const categoryScrollWidthClient = ref(0)
+const scrollCategory = (isIncrement: boolean) => {
+  const categoryEl = document.getElementById('category-container') as HTMLElement
+  categoryEl.scroll({
+    left: isIncrement ? categoryEl.scrollLeft + 220 : categoryEl.scrollLeft - 220,
+    behavior: 'smooth'
+  })
+}
+
+onUpdated(() => {
+  const categoryEl = document.getElementById('category-container') as HTMLElement
+  scrollWidthCategory.value = categoryEl.scrollWidth
+  posXCategoryScroll.value = categoryEl.scrollLeft
+  categoryScrollWidthClient.value = categoryEl.clientWidth
+})
+
+const onScrollCategory = () => {
+  const categoryEl = document.getElementById('category-container') as HTMLElement
+  posXCategoryScroll.value = categoryEl.scrollLeft
+  scrollWidthCategory.value = categoryEl.scrollWidth
+}
+
+const enabledScrollLeft = computed(() => posXCategoryScroll.value > 0)
+const enabledScrollRight = computed(() => (posXCategoryScroll.value + categoryScrollWidthClient.value) < scrollWidthCategory.value )
+
+ 
 </script>
 
 <template>
   <main class="grid justify-content-between bg-white min-h-screen" style="padding: 10px">
     <section class="event-list w-full">
       <h1 class="font-bold mb-2 title col-12" style="padding-left: 10px">Create</h1>
-
-      <article class="flex gap-2 overflow-x-scroll col-12 align-items-center">
-        <div v-for="(data, index) in categoryData" :key="index">
-          <Button size="small" class="btn-header min-w-max" @click="goToLocation(data.location)"
+      <article class="flex gap-2 mb-2 overflow-hidden relative align-items-center" :class="{'mx-auto': isCategoryOverflown, 'col-12': !isCategoryOverflown }">
+        <Button v-if="isCategoryOverflown" @click="scrollCategory(false)" outlined severity="secondary" size="small" link class="btn-nav-category min-w-min">
+          <i class="pi pi-chevron-left" style="color: black;"></i>
+        </Button>
+        <div @scroll="onScrollCategory" class="flex gap-2 overflow-hidden" ref="categoryEl" id="category-container">
+          <div v-for="(data, index) in categoryData" :key="index">
+            <Button size="small" class="btn-header min-w-max" @click="goToLocation(data.location)"
             :class="{ active: activeMenu.startsWith(data.location) }">
             <i class="pi pi-plus" @click="addDialog"></i>
             <p class="inter-normal ml-2 text-white" style="font-size: 16px; font-weight: 600;">{{ data.title }}</p>
           </Button>
+          </div>
+          <Button size="small" class="btn-header min-w-min" @click="showModal">
+            <i class="pi pi-plus"></i>
+          </Button>
         </div>
-        <Button size="small" link class="min-w-min p-0 m-0">
-          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
-            <path fill-rule="evenodd" clip-rule="evenodd"
-              d="M16.6161 12.4521C17.1043 11.9639 17.8957 11.9639 18.3839 12.4521L25.0505 19.1187C25.5387 19.6069 25.5387 20.3983 25.0505 20.8865L18.3839 27.5532C17.8957 28.0413 17.1043 28.0413 16.6161 27.5532C16.128 27.065 16.128 26.2735 16.6161 25.7854L22.3989 20.0026L16.6161 14.2198C16.128 13.7317 16.128 12.9402 16.6161 12.4521Z"
-              fill="black" stroke="black" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round" />
-            <rect x="0.5" y="0.5" width="39" height="39" rx="4.5" stroke="#D9D5EC" />
-          </svg>
-        </Button>
-        <Button size="small" class="btn-header min-w-min" @click="showModal">
-          <i class="pi pi-plus"></i>
+        <Button v-if="isCategoryOverflown" @click="scrollCategory(true)" outlined severity="secondary" size="small" link class="btn-nav-category min-w-min">
+          <i class="pi pi-chevron-right" style="color: black;"></i>
         </Button>
       </article>
 
@@ -110,14 +145,14 @@ const onCancel = () => {
         <router-view></router-view>
       </article>
 
-      <Dialog v-model:visible="visible" modal header="Header" :style="{ width: '30vw' }">
+      <Dialog v-model:visible="visible" modal header="Header" :dismissable-mask="true" :style="{ width: '30vw' }" :breakpoints="{ '960px': '30vw', '641px': '100vw'}">
         <template #header>
           <div class="flex flex-row align-items-center px-3 py-1">
             <p class="modal-title">Existing title</p>
           </div>
         </template>
         <div class="p-3 grid gap-2">
-          <template v-for="(data, index) in dialogData" :key="index" class="">
+          <template v-for="(data, index) in dialogData" :key="index">
             <div class="flex flex-row align-items-center col-12 existing-item">
               <div class="w-full">
                 <InputText v-model="data.title" :readonly="!data.editmode" />
@@ -257,5 +292,13 @@ const onCancel = () => {
       padding: 0;
     }
   }
+}
+
+.btn-nav-category {
+ z-index: 99; 
+ max-width: max-content;
+ background-color: white;
+ padding-right: .6em;
+ padding-left: .6em;
 }
 </style>

@@ -95,8 +95,8 @@ const dataEvent = [{
 <template>
   <section>
     <section
-      class="grid overflow-hidden flex-column md:flex-row min-h-full" style="padding: 10px; margin-top: 10px">
-      <div class="col-12 xl:col-8 bg-white min-h-screen" style="padding: 0px 10px; gap: 5px;">
+      class="grid overflow-hidden flex-column md:flex-row" style="padding: 10px; margin-top: 10px">
+      <div class="col-12 xl:col-8 bg-white" style="padding: 0px 10px; gap: 5px;">
         <div class="flex flex-column md:flex-row justify-content-between align-items-center md:align-items-center md:mb-3" style="margin-bottom: 20px; gap: 10px;">
           <h1 class="title" style="margin-bottom: 10px">Ongoing Event</h1>
           <button @click="onAddEvent" class="btn-add w-full md:w-max">
@@ -110,7 +110,7 @@ const dataEvent = [{
           </button>
         </div>
         <div class="grid justify-center flex-wrap gap-2 flex-column md:flex-row" style="padding: 0px 10px">
-          <template v-for="item in eventList">
+          <template v-for="(item, index) in eventList" :key="index">
             <EventItem :item="item" />
           </template>
         </div>
@@ -163,7 +163,7 @@ const dataEvent = [{
 
 
   <!-- MODAL Upload -->
-  <Dialog v-model:visible="visible" modal :style="{ width: '50vw' }" :breakpoints="{ '960px': '75vw', '641px': '90vw' }">
+  <Dialog :dismissable-mask="true" v-model:visible="visible" modal :style="{ width: '50vw' }" :breakpoints="{ '960px': '75vw', '641px': '90vw' }">
     <template #header>
       <h1 class="inter-normal black-1" style="font-size: 35px; font-weight: 700;">Upload new Media</h1>
     </template>

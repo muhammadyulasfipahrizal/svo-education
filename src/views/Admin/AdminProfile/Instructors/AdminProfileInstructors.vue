@@ -56,7 +56,7 @@
   </section>
 
   <!-- MODAL Add Profile -->
-  <Dialog v-model:visible="visible" modal :style="{ width: '50vw' }" :breakpoints="{ '960px': '75vw', '641px': '90vw' }">
+  <Dialog :dismissable-mask="true" v-model:visible="visible" modal :style="{ width: '50vw' }" :breakpoints="{ '960px': '75vw', '641px': '90vw' }">
     <template #header>
       <h1 class="text-4xl font-bold">{{ isEdit ? 'Edit' : 'Add' }} Profile</h1>
     </template>

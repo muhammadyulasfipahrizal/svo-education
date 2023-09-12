@@ -263,7 +263,7 @@ const onSelectProfile = (v: Instructor) => {
     </section>
 
     <!-- MODAL Profile -->
-    <Dialog v-model:visible="modalProfile" modal :style="{ width: '35vw' }" :breakpoints="{ '764px': '90vw' }">
+    <Dialog :dismissable-mask="true" v-model:visible="modalProfile" modal :style="{ width: '35vw' }" :breakpoints="{ '764px': '90vw' }">
         <template #header>
             <div class="flex gap-2 align-items-center" style="margin: 10px">
                 <img :src="selectedProfile?.image" alt="" style="width: 39px; height: 39px;" />

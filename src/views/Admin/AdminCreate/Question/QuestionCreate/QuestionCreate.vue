@@ -11,7 +11,7 @@ const dueList = ref([
 
 const assesments = ref<IAssesment[]>([
     {
-        question: 'Assessment question 1: What are the key principles of user-centered design, and how do they inform UI UX design decisions? Provide examples of how you have applied these principles in your own design work. ',
+        question: '',
         points: '0/1',
         answerType: 'text',
         answerText: '',
@@ -27,7 +27,7 @@ const monthList = [{ name: 'Jan', code: 'Jan' }, { name: 'Feb', code: 'Feb' }, {
 const yearList = [...Array(40).keys()].map((value) => ({ name: 1990 + value, code: 1990 + value }))
 const dayList = [...Array(30).keys()].map((v) => ({ name: v + 1, code: v + 1 }))
 const timeLimit = ref<{ time: string; type: string }>({
-    time: '60',
+    time: '0',
     type: 'minutes'
 })
 const timeTypes = ref([{
@@ -40,8 +40,8 @@ const timeTypes = ref([{
     name: 'Hours',
     code: 'hours',
 }])
-const attempts = ref('3')
-const tryAgainAttempt = ref('24')
+const attempts = ref('0')
+const tryAgainAttempt = ref('0')
 const tryAgainAttemptList = ref([{
     name: 'Hours',
     code: 'hours',

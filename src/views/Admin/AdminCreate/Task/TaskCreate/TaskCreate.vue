@@ -35,8 +35,8 @@ const addSubtaskSubtitle = (index: number, subtaskIndex: number) => tasks.value[
 const tasks = ref<{ title: string; subtasks: { title: string; subtitle: string[]; }[] }[]>([{
     title: 'Monday',
     subtasks: [{
-        title: 'Daily Task 1',
-        subtitle: ['Watch 1 module']
+        title: '',
+        subtitle: ['']
     }]
 }])
 
@@ -59,20 +59,20 @@ const changeSubtitle = (mainTaskIndex: number, taskIndex: number, subtitleIndex:
                     </Button>
                 </div>
                 <div class="p-2 border-round-lg surface-border border-1 w-full flex flex-column gap-2">
-                    <div v-for="(task, taskIndex) in mainTask.subtasks"
+                    <div v-for="(task, taskIndex) in mainTask.subtasks" :key="taskIndex"
                         class="w-full flex flex-column justify-content-between gap-2">
                         <div class="flex gap-2">
                             <div class="flex justify-content-between py-0 px-1 m-0 gap-2 w-full align-items-center border-round-lg border-600 border-1"
                                 :class="{
-                                    'surface-200': !task.title || !task.subtitle
+                                    'blank': !task.title || !task.subtitle
                                 }">
                                 <div class="flex flex-column w-full">
                                     <InputText
-                                        class="text font-medium mb-2 p-0 m-0 bg-transparent border-transparent col-12 pt-2"
-                                        placeholder="Enter a title" v-model="task.title" />
-                                    <template v-for="(subtitle, subtitleIndex) in task.subtitle">
-                                        <InputText placeholder="Enter a description"
-                                            class="text text-desc mb-2 p-0 m-0 bg-transparent border-transparent col-12"
+                                        class="text font-medium p-inputtext-sm mb-2 p-0 m-0 bg-transparent border-transparent col-12 pt-2"
+                                        placeholder="Title..." v-model="task.title" />
+                                    <template v-for="(subtitle, subtitleIndex) in task.subtitle" :key="subtitleIndex">
+                                        <InputText placeholder="Title..."
+                                            class="text text-desc p-inputtext-sm mb-2 p-0 m-0 bg-transparent border-transparent col-12"
                                             :value="subtitle"
                                             @update:modelValue="(v) => changeSubtitle(mainTaskIndex, taskIndex, subtitleIndex, v)" />
                                     </template>
@@ -188,5 +188,9 @@ const changeSubtitle = (mainTaskIndex: number, taskIndex: number, subtitleIndex:
 .grid {
     padding: 0;
     margin: 0;
+}
+
+.blank {
+    background-color: #D9D9D9;
 }
 </style>

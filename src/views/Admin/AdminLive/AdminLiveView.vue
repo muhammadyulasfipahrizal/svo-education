@@ -215,7 +215,7 @@ const instructorNew = ref();
         </div>
       </div>
       <!-- Modal -->
-      <Dialog v-model:visible="showModal" modal header="" class="modal min-w-min" :style="{ width: '50vw' }"
+      <Dialog :dismissable-mask="true" v-model:visible="showModal" modal header="" class="modal min-w-min" :style="{ width: '50vw' }"
         :breakpoints="{ '764px': '70vw' }">
         <template #header>
           <div class="inter-normal black-1" style="font-size: 35px; font-weight: 700; white-space: nowrap;">
