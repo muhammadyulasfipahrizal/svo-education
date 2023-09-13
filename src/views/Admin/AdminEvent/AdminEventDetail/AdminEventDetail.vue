@@ -171,22 +171,23 @@ const dataEvent = [{
             <!-- Information -->
             <h1 class="inter-normal black-2 mb-2 mt-3" style="font-size: 20px; font-weight: 700;">Event Information</h1>
             <div>
-                <div class="w-full flex flex-column align-items-center ">
-                    <img src="/assets/img/ticket.png" alt="ticket" class="mb-3" style="width: 185px" />
-                    <div class="grid w-full">
-                        <div class="col-6 pl-0">
-                            <InputText v-model="ticketType" class="border-noround w-full font-bold" />
+                <div class="w-full flex flex-column">
+                    <img src="/assets/img/ticket.png" alt="ticket" class="mb-3 align-self-center" style="width: 185px" />
+                    <div class="grid">
+                        <div class="col-7">
+                            <InputText v-model="ticketType" class="border-noround w-full inter-normal black-2" 
+                             style="font-size: 15px; font-weight: 700; height: 40px"/>
                         </div>
-                        <div class="col-6 pr-0">
-                            <div class="flex border-red-500 border-1 align-items-center p-1 border-round gap-1 w-max">
+                        <div class="col-5" >
+                            <div class="flex border-red-500 border-1 justify-content-center align-items-center border-round gap-1 w-full" style="height: 40px" >
                                 <button class="bg-transparent text-red-500 border-none cursor-pointer"
                                     @click="decrementTicketCount">
                                     <img src="/assets/icon/minus.svg" alt="minus" />
                                 </button>
-                                <span class="border-1 border-solid border-300 w-1px" style="height: 30px;"></span>
+                                <span class="border-1 border-solid border-300" style="height: 30px;"></span>
                                 <InputNumber v-model="ticketCount" class="border-none ticket-count" type="number"
                                     :min="1" />
-                                <span class="border-1 border-solid border-300 w-1px" style="height: 30px;"></span>
+                                <span class="border-1 border-solid border-300" style="height: 30px;"></span>
                                 <button class="bg-transparent text-red-500 border-none cursor-pointer"
                                     @click="ticketCount = ticketCount + 1">
                                     <img src="/assets/icon/plus.svg" alt="plus" />

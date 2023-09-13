@@ -116,12 +116,8 @@ const dataEvent = [{
         </div>
       </div>
       <div class="col-12 xl:col-4" style="padding-left: 15px; gap: 10px;">
-        <h1 class="inter-normal black-2" style="font-size: 25px; font-weight: 700; margin: 10px 0px">Calendar</h1>
-        <div class="flex justify-content-start">
-          <div class="flex justify-content-center">
-            <CustomCalendar :markers="dataEvent" />
-          </div>
-        </div>
+        <h1 class="inter-normal black-2" style="font-size: 25px; font-weight: 700; margin: -5px 0px 10px 0px">Calendar</h1>
+          <CustomCalendar :markers="dataEvent" />
       </div>
 
       <div class="col-12 md:hidden lg:hidden xl:hidden py-2">

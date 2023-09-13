@@ -378,7 +378,7 @@ const addNewSection = () => {
                                     <td class="p-2"><span class="divider"></span></td>
                                     <td>
                                         <div class="flex grade-weight">
-                                            <InputNumber class="weight p-inputtext-sm" placeholder="Enter grade weight"
+                                            <InputNumber class="weight p-inputtext-sm"
                                                 v-model="item.weight" />
                                             <span>%</span>
                                             <Button size="small" class="p-0 m-0" link @click="deleteGradeSystem(key)">
@@ -487,13 +487,13 @@ const addNewSection = () => {
                         <div
                             class="card flex-column flex gap-2 card-accordion border-round px-0 py-0 align-items-start border-1 border-300 bg-white">
                             <!-- title -->
-                            <div class="grid gap-2 header w-full p-0 m-0 py-2 align-items-center" style="background: #EEE;">
+                            <div class="flex sm-flex-row gap-2 header w-full p-0 m-0 py-2 align-items-center" style="background: #EEE;">
                                 <Button :icon="syllabus ? 'pi pi-angle-up' : 'pi pi-angle-down'" size="small" link
-                                    class="col-2" @click="syllabusAccordion[key] = !syllabusAccordion[key]" />
-                                <InputText label="Title" class="p-inputtext-sm col-9 text-xl syllabus-title"
+                                    class="" @click="syllabusAccordion[key] = !syllabusAccordion[key]" />
+                                <InputText label="Title" class="p-inputtext-sm text-xl syllabus-title w-full"
                                     placeholder="Title" />
                                 <div
-                                    class="col-2 flex justify-content-between sm:justify-content-start align-items-center gap-2 p-0 px-2 w-full sm:w-auto">
+                                    class="ml-auto flex justify-content-between sm:justify-content-start align-items-center gap-2 p-0 px-2 w-full sm:w-auto">
                                     <div class="flex gap-1">
                                         <InputNumber v-model="syllabusLectures" inputId="withoutgrouping"
                                             :useGrouping="false" class="instructor-total-input" />
@@ -503,7 +503,7 @@ const addNewSection = () => {
                                         <InputNumber v-model="syllabusHour" inputId="withoutgrouping" :useGrouping="false"
                                             class="instructor-total-input" />
                                         <p class="font-bold text-2xl text-900">min</p>
-                                        <Button size="small" link class="px-0 m-0" @click="deleteSyllabus(key)">
+                                        <Button size="small" link class="px-0 mx-2" @click="deleteSyllabus(key)">
                                             <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path id="Vector"
@@ -515,18 +515,10 @@ const addNewSection = () => {
                                     </div>
                                 </div>
                             </div>
-
                             <!-- content -->
                             <div class="flex-column gap-2 w-full p-2 my-0"
                                 :class="{ 'flex': syllabus, 'hidden': !syllabus }">
-                                <Textarea class="p-inputtext-lg" placeholder="Enter a description">
-                                                                                                                                                                Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero 
-                                                                                                                                                                et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad 
-                                                                                                                                                                litora torquent per conubia nostra, per inceptos himenaeos. 
-                                                                                                                                                                Curabitur tempus urna at turpis condimentum lobortis. Ut commodo 
-                                                                                                                                                                efficitur neque. Ut diam quam, semper iaculis condimentum ac, 
-                                                                                                                                                                vestibulum eu nisl.
-                                                                                                                                                            </Textarea>
+                                <Textarea class="p-inputtext-lg" placeholder="Enter a description">                                                                                                                   </Textarea>
                                 <template v-for="(syllabusData, key) in syllabusAccordionData">
                                     <div class="flex justify-content-between align-items-center">
                                         <div class="grid align-items-center gap-2 w-full">
@@ -932,6 +924,10 @@ const addNewSection = () => {
         @media screen and (max-width: 767px) {
             height: 100%;
         }
+
+        @media screen and (min-width: 767px) {
+            min-width: 820px;
+        }
     }
 }
 
@@ -1019,23 +1015,22 @@ const addNewSection = () => {
 .grade-weight {
     .weight {
         width: 29px;
-        color: #000;
-        text-align: center;
-        font-family: Inter;
-        font-size: 20px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 160%;
         background: none;
         border: none;
         padding: 0;
         margin: 0;
-
         display: flex;
         justify-content: center;
         align-items: center;
 
         ::v-deep(.p-inputtext) {
+            color: #000;
+            text-align: center;
+            font-family: Inter;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 160%;
             background: transparent;
             border: none;
             padding: 0;
