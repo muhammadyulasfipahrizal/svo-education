@@ -107,10 +107,11 @@ watchEffect(() => {
                 <div class="grid pl-3 mb-2 p-inputtext-sm" :class="{ 'blank-question': !answer.title }">
                     <div class="col-11">
                         <div class="flex align-items-center gap-2">
-                            <RadioButton :inputId="'answer_radio' + key" name="answer_radio" disabled v-model="radioSelected"
-                                :value="answer.title" />
+                            <RadioButton :inputId="'answer_radio' + key" name="answer_radio" disabled
+                                v-model="radioSelected" :value="answer.title" />
                             <label :for="'answer_radio' + key" class="ml-2">{{ numberToChar(key) }}.</label>
-                            <InputText v-model="answer.title" placeholder="Title..." class="border-0 w-full answer-title" :class="{ 'blank-question': !answer.title }" />
+                            <InputText v-model="answer.title" placeholder="Title..." class="border-0 w-full answer-title"
+                                :class="{ 'blank-question': !answer.title }" />
                         </div>
                     </div>
                     <div class="col-1 flex gap-2 align-items-center" v-if="answer.title">
@@ -130,18 +131,19 @@ watchEffect(() => {
                             </template>
                         </Checkbox>
                         <button class="w-1rem border-none cursor-pointer p-1 bg-white hover:text-white hover:surface-700"
-                            @click="answerList.splice(0, key)">&times;</button>
+                            @click="answerList = answerList.filter((v, k) => k !== key)">&times;</button>
                     </div>
                 </div>
             </template>
             <div class="grid pl-3 p-inputtext-sm">
-                    <div class="col-11">
-                        <div class="flex align-items-center gap-2">
-                            <RadioButton disabled name="add_answer_radio" />
-                            <span role="button" class="text-600 cursor-pointer" @click="answerList.push({ title: '', isCorrect: false })">+ Add new option</span>
-                        </div>
+                <div class="col-11">
+                    <div class="flex align-items-center gap-2">
+                        <RadioButton disabled name="add_answer_radio" />
+                        <span role="button" class="text-600 cursor-pointer"
+                            @click="answerList.push({ title: '', isCorrect: false })">+ Add new option</span>
                     </div>
                 </div>
+            </div>
         </div>
 
         <div class="flex flex-column gap-2" v-if="selectedType?.code === 'text'">
