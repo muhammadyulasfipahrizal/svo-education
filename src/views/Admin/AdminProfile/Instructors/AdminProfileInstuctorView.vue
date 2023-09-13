@@ -72,25 +72,25 @@
               <div v-for="course in instructor.course" :key="course.name"
                 class="course-card p-1 border-1 surface-border flex flex-column gap-1">
                 <img :src="course.image" :alt="course.name" class="image-course">
-                <h1>{{ course.name }}</h1>
+                <h1 class="inter-normal black-1" style="font-size: 15px; font-weight: 700;">{{ course.name }}</h1>
 
                 <div class="flex gap-1 align-items-center instructor">
-                  <img :src="instructor.image" :alt="instructor.name" class="border-circle w-1rem h-1rem">
-                  <h2 style="font-size: 8px;">{{ instructor.name }}</h2>
+                  <img :src="instructor.image" :alt="instructor.name" class="border-circle" style="width: 13px; height: 13px">
+                  <h2 class="inter-normal black-1" style="font-size: 8px; font-weight: 400;">{{ instructor.name }}</h2>
                 </div>
 
                 <div class="flex align-items-center flex-wrap gap-1 rating">
-                  <h1>
+                  <h1 class="inter-normal black-1" style="font-size: 8px; font-weight: 400;">
                     {{ course.rating }}
                   </h1>
                   <StarRating class="star-container" active-color="#333" v-model:rating="course.rating" :increment="0.01"
                     :round-star-rating="false" :show-rating="false" :star-size="10" read-only />
-                  <h2>
+                  <h2 class="inter-normal black-1" style="font-size: 8px; font-weight: 400;">
                     ({{ course.review }} Reviews)
                   </h2>
                 </div>
 
-                <h1 class="completed"> <span class="font-bold text-orange-400">{{
+                <h1 class="completed"> <span class="font-bold suggested-orange">{{
                   course.totalCompleted.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })
                 }}</span>
                   completed the course</h1>

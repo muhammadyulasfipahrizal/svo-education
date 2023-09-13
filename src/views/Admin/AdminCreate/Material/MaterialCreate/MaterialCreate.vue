@@ -110,20 +110,20 @@ watchEffect(() => {
                         style="font-size: 20px; font-weight: 400; padding: 10px;">
                         <div class="flex flex-column md:flex-row md:align-items-center mx-2 gap-2 md:gap-0">
                             <div class="flex flex-row" style="gap: 10px">
-                                <p class="inter-normal black-2" style="font-size: 20px; font-weight: 400;">{{ index + 1 + "." }}</p>
+                                <p class="inter-normal black-2" style="font-size: 20px; font-weight: 400;">{{ itemIndex + 1 + "." }}</p>
                                 <Dropdown optionLabel="name" v-model="item.selectedType"
                                 v-bind:class="{ selected: item.type !== 'none' }" :options="types" placeholder="Select type"
-                                class="mr-3 w-min flex align-items-center" style="height: 35px">
+                                class="mr-3 sm:w-full flex align-items-center" style="height: 35px;">
                                 <template #value="slotProps">
                                     <div v-if="slotProps.value" class="flex align-items-center gap-2">
-                                        <div class="flex gap-2 align-items-center"
+                                        <div class="flex gap-2 align-items-center min-dropdown" style="min-width: 113px" 
                                             v-if="slotProps.value.code === 'website'">
                                             <img class="w-1rem" src="/assets/img/world.png" />
                                             <p class="inter-normal black-2"
                                                 style="font-size: 20px; font-weight: 500; letter-spacing: 0.6px;">{{
                                                     slotProps.value.name }}</p>
                                         </div>
-                                        <div v-if="slotProps.value.code === 'video'" class="flex gap-2 align-items-center">
+                                        <div v-if="slotProps.value.code === 'video'" class="flex gap-2 align-items-center min-dropdown" style="min-width: 113px" >
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                 viewBox="0 0 20 20" fill="none">
                                                 <path
@@ -134,7 +134,7 @@ watchEffect(() => {
                                                 style="font-size: 20px; font-weight: 500; letter-spacing: 0.6px;">{{
                                                     slotProps.value.name }}</p>
                                         </div>
-                                        <div class="flex gap-2 align-items-center" v-if="slotProps.value.code === 'pdf'">
+                                        <div class="flex gap-2 align-items-center min-dropdown" v-if="slotProps.value.code === 'pdf'" style="min-width: 113px">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                 viewBox="0 0 20 20" fill="none">
                                                 <path
@@ -224,7 +224,7 @@ watchEffect(() => {
             <template #default>
                 <div class="flex flex-row m-auto" style="gap: 8px">
                     <i class="pi pi-plus align-self-center justify-content-center font-bold text-sm"></i>
-                    <p class="font-medium text text-white text-sm">Add new material sources</p>
+                    <p class="font-medium text text-white text-sm">Add new section</p>
                 </div>
             </template>
         </Button>
@@ -312,6 +312,12 @@ watchEffect(() => {
         line-height: normal;
         letter-spacing: 0.6px;
         margin-right: -15px;
+    }
+}
+
+.min-dropdown {
+    @media screen and (max-width: 764px) {
+        width: 50px;
     }
 }
 </style>

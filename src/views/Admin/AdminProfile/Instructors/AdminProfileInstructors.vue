@@ -1,6 +1,6 @@
 <template>
   <section class=" py-4 bg-white">
-    <div class="grid overflow-hidden flex-column px-2 md:px-3 lg:pl-0 lg:px-3">
+    <div class="grid overflow-hidden flex-column px-2 md:px-3 lg:pl-0 lg:px-3 h-screen">
       <div class="flex flex-column col-12 gap-2 md:gap-0 md:flex-row justify-content-between">
         <h1 class="title-head">Instructors</h1>
 
@@ -46,13 +46,14 @@
           </div>
         </div>
       </div>
-      <Paginator :rows="10" :totalRecords="instructorsDummy.length" :template="{
+      
+    </div>
+    <Paginator :rows="10" :totalRecords="instructorsDummy.length" :template="{
         '600px': 'CurrentPageReport PrevPageLink PageLinks NextPageLink',
         '1062px': 'CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink',
         default: 'CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown'
       }" :pageLinkSize="3" currentPageReportTemplate='Showing data {first} to {last} of {totalRecords} entries'
         class="col-12" @page="pageChanged" />
-    </div>
   </section>
 
   <!-- MODAL Add Profile -->
