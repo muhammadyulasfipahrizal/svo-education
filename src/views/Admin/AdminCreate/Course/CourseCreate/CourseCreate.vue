@@ -89,13 +89,9 @@ interface GradeSystem {
     weight: number;
 }
 const gradeSystem = ref<GradeSystem[]>([{
-    title: 'Daily Task',
+    title: '',
     weight: 0
-},
-{
-    title: 'Quiz',
-    weight: 0
-}])
+},])
 const onChangeGradeSystemTitle = (e: string, key: number) => {
     gradeSystem.value[key].title = e;
 }
@@ -125,7 +121,7 @@ interface ISyllabusAccordion {
     title: string;
     duration: number;
 }
-const syllabusAccordion = ref<boolean[]>([false])
+const syllabusAccordion = ref<boolean[]>([true])
 const syllabusAccordionData = ref<ISyllabusAccordion[]>([{
     title: 'Start by learning the fundamentals of design',
     duration: 5
@@ -164,7 +160,7 @@ const deleteSyllabus = (index: number) => {
 const syllabusAddList = ref<{ title: string; duration: string; selectedType: string }[]>([])
 
 const addNewSection = () => {
-    syllabusAccordion.value.push(false)
+    syllabusAccordion.value.push(true)
     // syllabusAccordionData.value.push({
     //     title: '',
     //     duration: 5
@@ -369,7 +365,7 @@ const addNewSection = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            <template v-for="(item, key) in gradeSystem">
+                            <template v-for="(item, key) in gradeSystem" :key="key">
                                 <tr>
                                     <td>
                                         <InputText v-model="item.title" placeholder="Enter grade title"
@@ -378,7 +374,7 @@ const addNewSection = () => {
                                     <td class="p-2"><span class="divider"></span></td>
                                     <td>
                                         <div class="flex grade-weight">
-                                            <InputNumber class="weight p-inputtext-sm"
+                                            <InputNumber class="weight p-inputtext-sm" :max="100"
                                                 v-model="item.weight" />
                                             <span>%</span>
                                             <Button size="small" class="p-0 m-0" link @click="deleteGradeSystem(key)">
@@ -483,7 +479,7 @@ const addNewSection = () => {
                     </div>
 
                     <!-- ACCORDION SYLLABUS -->
-                    <template v-for="(syllabus, key) in syllabusAccordion">
+                    <template v-for="(syllabus, key) in syllabusAccordion" :key="key">
                         <div
                             class="card flex-column flex gap-2 card-accordion border-round px-0 py-0 align-items-start border-1 border-300 bg-white">
                             <!-- title -->
@@ -519,7 +515,7 @@ const addNewSection = () => {
                             <div class="flex-column gap-2 w-full p-2 my-0"
                                 :class="{ 'flex': syllabus, 'hidden': !syllabus }">
                                 <Textarea class="p-inputtext-lg" placeholder="Enter a description">                                                                                                                   </Textarea>
-                                <template v-for="(syllabusData, key) in syllabusAccordionData">
+                                <template v-for="(syllabusData, key) in syllabusAccordionData" :key="key">
                                     <div class="flex justify-content-between align-items-center">
                                         <div class="grid align-items-center gap-2 w-full">
                                             <img src="/assets/icon/video.png" alt="video" class="col-1 w-3rem" />
@@ -547,7 +543,7 @@ const addNewSection = () => {
                                 </template>
 
                                 <!-- adding -->
-                                <template v-for="(addData, key) in syllabusAddList">
+                                <template v-for="(addData, key) in syllabusAddList" :key="key">
                                     <div class="flex justify-content-between align-items-center gap-0">
                                         <div class="grid align-items-center gap-2 w-full p-0 m-0">
                                             <Dropdown optionLabel="name" v-model="addData.selectedType"
@@ -632,7 +628,7 @@ const addNewSection = () => {
                                                     </div>
                                                 </template>
                                             </Dropdown>
-                                            <InputText class="text-lg col-10" style="height: 36px"
+                                            <InputText class="text-lg col-10 p-inputtext-sm" placeholder="Title..." style="height: 36px"
                                                 v-model="addData.title" />
                                         </div>
                                         <div class="flex gap-3 p-0 m-0">

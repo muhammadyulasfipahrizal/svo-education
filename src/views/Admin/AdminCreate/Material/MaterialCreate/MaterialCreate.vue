@@ -45,11 +45,11 @@ const addMaterial = (index: number) => {
 
 const addNewMaterial = () => {
     materialData.value.push({
-        heading: 'Your Title',
+        heading: '',
         items: [
             {
                 type: 'website',
-                selectedItemURL: 'www.website1.com',
+                selectedItemURL: '',
                 selectedType: types.find(type => type.code === 'website'),
             }
         ]
@@ -72,13 +72,13 @@ const setSelectedItem = (item: MaterialItem) => {
     if (item.selectedType) {
         switch (item.selectedType.code) {
             case 'website':
-                item.selectedItemURL = 'www.website1.com';
+                item.selectedItemURL = '';
                 break;
             case 'pdf':
-                item.selectedItemURL = 'www.reading1.pdf';
+                item.selectedItemURL = '';
                 break;
             case 'video':
-                item.selectedItemURL = 'www.video1.mp3';
+                item.selectedItemURL = '';
                 break;
             default:
                 item.selectedItemURL = '';
