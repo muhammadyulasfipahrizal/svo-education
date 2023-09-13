@@ -222,7 +222,7 @@ const dataEvent = [{
                     </span>
                 </div>
 
-                <Button class="btn-add my-2 inter-normal justify-content-center">Add to cart for RM {{ ticketPrice
+                <Button class="btn-add my-2 inter-normal justify-content-center" style="font-size: 0.875rem; font-weight: 600;">Add to cart for RM {{ ticketPrice
                 }}</Button>
             </div>
         </div>
@@ -344,9 +344,9 @@ const dataEvent = [{
 .ticket-type,
 .ticket-count {
     width: 40px;
-    height: 34px;
+    height: 30px;
     border-radius: 0;
-    padding: 5px;
+    padding: 0px 5px 5px 12px;
     font-size: 12px;
     -moz-appearance: textfield;
     -o-appearance: none;
