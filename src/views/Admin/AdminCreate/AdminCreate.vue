@@ -42,7 +42,7 @@ const addDialog = () => {
   if (userInput.value.trim() !== '') {
     const newDialogData = {
       title: userInput.value,
-      location: ""
+      location: userInput.value.toLowerCase().replace(/ /g, '-'),
     };
     dialogData.value.push(newDialogData);
     userInput.value = '';
@@ -50,10 +50,7 @@ const addDialog = () => {
 };
 
 const addCategory = () => {
-  categoryData.value = [...dialogData.value, {
-    location: userInput.value.toLowerCase().replace(/ /g, '-'),
-    title: userInput.value
-  }];
+  categoryData.value = dialogData.value
   visible.value = false;
 };
 
@@ -71,6 +68,7 @@ const showModal = () => {
 
 onMounted(() => {
   activeMenu.value = router.currentRoute.value.fullPath;
+  isCategoryOverflown.value = checkIfCategoryOverflown()
 })
 router.afterEach((to, from) => {
   activeMenu.value = to.fullPath;
@@ -79,12 +77,15 @@ const onCancel = () => {
   visible.value = false;
   dialogData.value = categoryData.value
 }
+
 const categoryEl = ref<HTMLElement | null>(null)
-const isCategoryOverflown = computed(() => {
-  if (!categoryEl.value) return
+const isCategoryOverflown = ref(false)
+
+const checkIfCategoryOverflown = (): boolean => {
+  if (!categoryEl.value) return false
   const { clientWidth, clientHeight, scrollHeight, scrollWidth } = categoryEl.value
   return isElementOverflown({ clientHeight, clientWidth, scrollHeight, scrollWidth })
-})
+}
 
 const posXCategoryScroll = ref(0)
 const scrollWidthCategory = ref(0)
@@ -98,6 +99,10 @@ const scrollCategory = (isIncrement: boolean) => {
 }
 
 onUpdated(() => {
+  isCategoryOverflown.value = checkIfCategoryOverflown()
+
+  console.log('on Updated')
+  
   const categoryEl = document.getElementById('category-container') as HTMLElement
   scrollWidthCategory.value = categoryEl.scrollWidth
   posXCategoryScroll.value = categoryEl.scrollLeft
@@ -110,8 +115,8 @@ const onScrollCategory = () => {
   scrollWidthCategory.value = categoryEl.scrollWidth
 }
 
-const enabledScrollLeft = computed(() => posXCategoryScroll.value > 0)
-const enabledScrollRight = computed(() => (posXCategoryScroll.value + categoryScrollWidthClient.value) < scrollWidthCategory.value )
+// const enabledScrollLeft = computed(() => posXCategoryScroll.value > 0)
+// const enabledScrollRight = computed(() => (posXCategoryScroll.value + categoryScrollWidthClient.value) < scrollWidthCategory.value )
 
  
 </script>

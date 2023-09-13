@@ -16,8 +16,8 @@ const taskData = ref<TaskData[]>([
 const addColumn = () => tasks.value.push({
     title: 'Tuesday',
     subtasks: [{
-        title: 'Daily Task 1',
-        subtitle: ['Watch 1 module']
+        title: '',
+        subtitle: ['']
     }]
 });
 

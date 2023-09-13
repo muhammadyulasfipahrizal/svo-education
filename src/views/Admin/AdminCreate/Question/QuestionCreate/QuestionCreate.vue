@@ -192,7 +192,7 @@ const questions = ref(0)
                 <div class="grid">
                     <div class="col">
                         <Button class="btn-orange w-full border-noround" size="small" @click="assesments.push({
-                            question: 'New Assesment',
+                            question: '',
                             points: '0/1',
                             answerType: 'text',
                             answerText: '',
