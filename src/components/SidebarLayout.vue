@@ -1,10 +1,12 @@
 <template>
-  <div id="app-sidebar" class="sidebar surface-section h-full md:h-auto hidden md:block flex-shrink-0 absolute md:static left-0 top-0 surface-border select-none">
+  <div id="app-sidebar" class="sidebar surface-section h-full md:h-auto hidden md:block flex-shrink-0 absolute md:static left-0 top-0 surface-border select-none max-h-screen overflow-y-auto">
     <div v-show="!isMobile">
-      <div class="logo-container">
-        <img src="/assets/img/svo-academy-logo.png" alt="Logo" class="logo-image">
-        <h1 class="header-title">Education</h1>
-      </div>
+      <a href="/dashboard">
+        <div class="logo-container">
+          <img src="/assets/img/svo-academy-logo.png" alt="Logo" class="logo-image">
+          <h1 class="header-title">Education</h1>
+        </div>
+      </a>
       <SidebarNavigation/>
     </div>
   </div>

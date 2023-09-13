@@ -55,6 +55,30 @@ export const instructorsDummy: Instructor[] = [
         level: 'Intermediate',
         image: '/assets/img/course/marketing.png'
       },
+      {
+        name: 'Marketing',
+        price: 120.00,
+        rating: 4.3,
+        review: 10000,
+        totalCompleted: 1301290,
+        priceWas: 190.00,
+        lecturers: 20,
+        totalHour: 35,
+        level: 'Intermediate',
+        image: '/assets/img/course/marketing.png'
+      },
+      {
+        name: 'Marketing',
+        price: 120.00,
+        rating: 4.3,
+        review: 10000,
+        totalCompleted: 1301290,
+        priceWas: 190.00,
+        lecturers: 20,
+        totalHour: 35,
+        level: 'Intermediate',
+        image: '/assets/img/course/marketing.png'
+      },
     ]
   },
   {
