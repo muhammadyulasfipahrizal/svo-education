@@ -96,10 +96,12 @@
       <p class="inter-normal black-1" style="font-size: 30px; font-weight: 700;">Profile Information</p>
 
       <div class="flex flex-column md:flex-row gap-2">
-        <InputText class="p-inputtext-sm" type="text" v-model="form.name" placeholder="Instructor Name" />
+        <InputText class="p-inputtext-sm" type="text" :placeholder="form.name ? form.name : ''" 
+         style="background-color: white !important"/>
         <Dropdown optionLabel="name" v-model="form.branch" placeholder="Branch" :options="branchList"
-          class="p-inputtext-sm" :class="{'selected': form.branch}" />
-        <InputText class="p-inputtext-sm" type="number" v-model="form.enrolled" placeholder="Enrolled" />
+          class="p-inputtext-sm" :class="{'selected': form.branch}" style="background-color: white !important"/>
+        <InputText class="p-inputtext-sm" type="number" :placeholder="form.enrolled ? form.enrolled : ''" 
+         style="background-color: white !important"/>
       </div>
 
       <Button label="SAVE" size="small" class="btn-primary" @click="visible = false"></Button>

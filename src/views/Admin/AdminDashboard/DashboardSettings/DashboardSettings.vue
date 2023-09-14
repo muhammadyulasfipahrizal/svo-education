@@ -29,31 +29,31 @@
                         <div class="grid">
                             <div class="col-6">
                                 <p class="inter-normal black-1" style="font-size: 12px; font-weight: 400;">First Name</p>
-                                <InputText type="text" class="w-full" value="Tracey"/>
+                                <InputText type="text" class="w-full" placeholder="Tracey"/>
                             </div>
                             <div class="col-6">
                                 <p class="inter-normal black-1" style="font-size: 12px; font-weight: 400;">Last Name</p>
-                                <InputText type="text" class="w-full" value="Tam"/>
+                                <InputText type="text" class="w-full" placeholder="Tam"/>
                             </div>
                         </div>
                         <div class="grid">
                             <div class="col-6">
                                 <p class="inter-normal black-1" style="font-size: 12px; font-weight: 400;">Email</p>
-                                <InputText type="email" class="w-full" value="TraceyTam@gmail.com"/>
+                                <InputText type="email" class="w-full" placeholder="TraceyTam@gmail.com"/>
                             </div>
                             <div class="col-6">
                                 <p class="inter-normal black-1" style="font-size: 12px; font-weight: 400;">Phone Number</p>
-                                <InputText type="text" class="w-full" value="+01 7093 000"/>
+                                <InputText type="text" class="w-full" placeholder="+01 7093 000"/>
                             </div>
                         </div>
                         <div class="grid">
                             <div class="col-6">
                                 <p class="inter-normal black-1" style="font-size: 12px; font-weight: 400;">Password</p>
-                                <InputText type="password" class="w-full" value="********************"/>
+                                <InputText type="password" class="w-full" placeholder="********************"/>
                             </div>
                             <div class="col-6">
                                 <p class="inter-normal black-1" style="font-size: 12px; font-weight: 400;">Confirm Password</p>
-                                <InputText type="password" class="w-full" value="********************"/>
+                                <InputText type="password" class="w-full" placeholder="********************"/>
                             </div>
                         </div>
                         <p class="inter-normal black-2" style="font-size: 20px; font-weight: 700;">Social profile</p>
@@ -91,48 +91,48 @@
                         <div class="grid">
                             <div class="col-12">
                                 <p class="inter-normal black-2" style="font-size: 12px; font-weight: 400;">Name on card</p>
-                                <InputText type="text" class="w-full" value="Tracey Tam"/>
+                                <InputText type="text" class="w-full" placeholder="Tracey Tam"/>
                             </div>
                         </div>
                         <div class="grid">
                             <div class="col-4">
                                 <p class="inter-normal black-2" style="font-size: 12px; font-weight: 400;">Card number</p>
-                                <InputText type="text" class="w-full" value="(1234)-(5678)-(1234)-(5678)"/>
+                                <InputText type="text" class="w-full" placeholder="(1234)-(5678)-(1234)-(5678)"/>
                             </div>
                             <div class="col-4">
                                 <p class="inter-normal black-2" style="font-size: 12px; font-weight: 400;">Expiry date (MM/YY)</p>
-                                <InputText type="text" class="w-full" value="11/30"/>
+                                <InputText type="text" class="w-full" placeholder="11/30"/>
                             </div>
                             <div class="col-4">
                                 <p class="inter-normal black-2" style="font-size: 12px; font-weight: 400;">CVV</p>
-                                <InputText type="text" class="w-full" value="111"/>
+                                <InputText type="text" class="w-full" placeholder="111"/>
                             </div>
                         </div>
                         <p class="font-bold text-xl">Address</p>
                         <div class="grid">
                             <div class="col-6">
                                 <p class="inter-normal black-2" style="font-size: 12px; font-weight: 400;">Street Address</p>
-                                <InputText type="text" class="w-full" value="123 Bukit Tinggi"/>
+                                <InputText type="text" class="w-full" placeholder="123 Bukit Tinggi"/>
                             </div>
                             <div class="col-6">
                                 <p class="inter-normal black-2" style="font-size: 12px; font-weight: 400;">Apt, suite, etc (optional)</p>
-                                <InputText type="text" class="w-full" value="Block C - 10 - 10"/>
+                                <InputText type="text" class="w-full" placeholder="Block C - 10 - 10"/>
                             </div>
                         </div>
                         <div class="grid">
                             <div class="col-6">
                                 <p class="inter-normal black-2" style="font-size: 12px; font-weight: 400;">City</p>
-                                <InputText type="text" class="w-full" value="Klang"/>
+                                <InputText type="text" class="w-full" placeholder="Klang"/>
                             </div>
                             <div class="col-6">
                                 <p class="inter-normal black-2" style="font-size: 12px; font-weight: 400;">Country</p>
-                                <InputText type="text" class="w-full" value="Selangor"/>
+                                <InputText type="text" class="w-full" placeholder="Selangor"/>
                             </div>
                         </div>
                         <div class="grid">
                             <div class="col-6">
                                 <p class="inter-normal black-2" style="font-size: 12px; font-weight: 400;">ZIP / Postcode</p>
-                                <InputText type="text" class="w-full" value="41000"/>
+                                <InputText type="text" class="w-full" placeholder="41000"/>
                             </div>
                         </div>
                         <Button size="small" label="Save" class="col-12 btn-save"></Button>
