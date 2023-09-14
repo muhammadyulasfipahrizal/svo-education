@@ -14,7 +14,7 @@ const taskData = ref<TaskData[]>([
 ])
 
 const addColumn = () => tasks.value.push({
-    title: 'Tuesday',
+    title: '',
     subtasks: [{
         title: '',
         subtitle: ['']
@@ -33,7 +33,7 @@ const removeSubtask = (index: number, subtaskIndex: number) => tasks.value[index
 const addSubtaskSubtitle = (index: number, subtaskIndex: number) => tasks.value[index].subtasks[subtaskIndex].subtitle.push('Watch 1 module');
 
 const tasks = ref<{ title: string; subtasks: { title: string; subtitle: string[]; }[] }[]>([{
-    title: 'Monday',
+    title: '',
     subtasks: [{
         title: '',
         subtitle: ['']
@@ -53,7 +53,7 @@ const changeSubtitle = (mainTaskIndex: number, taskIndex: number, subtitleIndex:
             <p class="inter-normal black-1 p-0 m-0" style="font-size: 25px; font-weight: 700;">Assigned daily task</p>
             <div v-for="(mainTask, mainTaskIndex) in tasks" :key="mainTaskIndex" class="col-12 grid" style="gap: 10px">
                 <div class="flex gap-1 w-full">
-                    <InputText v-model="mainTask.title" class="w-full font-bold text-xl" />
+                    <InputText v-model="mainTask.title" placeholder="Title..." class="w-full font-bold text-xl" />
                     <Button link size="small" class="p-0 m-0" @click="removeColumn(mainTaskIndex)">
                         <i class="pi pi-times text-900 pl-2 text-sm"></i>
                     </Button>
