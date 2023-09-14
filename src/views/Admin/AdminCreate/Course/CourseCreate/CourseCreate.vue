@@ -121,7 +121,16 @@ interface ISyllabusAccordion {
     title: string;
     duration: number;
 }
-const syllabusAccordion = ref<boolean[]>([true])
+const syllabusAccordion = ref([
+    {
+        expand: true,
+        syllabusList: [{
+            title: '',
+            duration: '0',
+            selectedType: ''
+        }]
+    }
+])
 const syllabusAccordionData = ref<ISyllabusAccordion[]>([])
 
 const resizeInput = (e: InputNumberBlurEvent, className: string) => {
@@ -157,11 +166,14 @@ const deleteSyllabus = (index: number) => {
 const syllabusAddList = ref<{ title: string; duration: string; selectedType: string }[]>([])
 
 const addNewSection = () => {
-    syllabusAccordion.value.push(true)
-    // syllabusAccordionData.value.push({
-    //     title: '',
-    //     duration: 0
-    // })
+    syllabusAccordion.value.push({
+        expand: true,
+        syllabusList: [{
+            title: '',
+            duration: '0',
+            selectedType: 'none'
+        }]
+    })
     syllabusAddList.value.push({
         title: '',
         duration: '0',
@@ -345,7 +357,7 @@ const addNewSection = () => {
             <Button label="INSTRUCTOR" :class="{ 'btn-default': steps.instructor }" outlined
                 @click="steps.instructor = !steps.instructor" />
             <Button label="SYLLABUS" :class="{ 'btn-default': steps.syllabus }" outlined
-                @click="steps.syllabus = !steps.syllabus; syllabusAccordion[0] = true" />
+                @click="steps.syllabus = !steps.syllabus" />
             <Button label="REVIEWS" :class="{ 'btn-default': steps.reviews }" outlined @click="steps.reviews = !steps.reviews" />
         </div>
 
@@ -481,8 +493,8 @@ const addNewSection = () => {
                             class="card flex-column flex gap-2 card-accordion border-round px-0 py-0 align-items-start border-1 border-300 bg-white">
                             <!-- title -->
                             <div class="flex sm-flex-row gap-2 header w-full p-0 m-0 py-2 align-items-center" style="background: #EEE;">
-                                <Button :icon="syllabus ? 'pi pi-angle-up' : 'pi pi-angle-down'" size="small" link
-                                    class="" @click="syllabusAccordion[key] = !syllabusAccordion[key]" />
+                                <Button :icon="syllabus.expand ? 'pi pi-angle-up' : 'pi pi-angle-down'" size="small" link
+                                    class="" @click="syllabus.expand = !syllabus.expand" />
                                 <InputText label="Title" class="p-inputtext-sm text-xl syllabus-title w-full"
                                     placeholder="Title" />
                                 <div
@@ -510,7 +522,7 @@ const addNewSection = () => {
                             </div>
                             <!-- content -->
                             <div class="flex-column gap-2 w-full p-2 my-0"
-                                :class="{ 'flex': syllabus, 'hidden': !syllabus }">
+                                :class="{ 'flex': syllabus.expand, 'hidden': !syllabus.expand }">
                                 <Textarea class="p-inputtext-lg" placeholder="Enter a description">                                                                                                                   </Textarea>
                                 <template v-for="(syllabusData, key) in syllabusAccordionData" :key="key">
                                     <div class="flex justify-content-between align-items-center">
@@ -540,7 +552,7 @@ const addNewSection = () => {
                                 </template>
 
                                 <!-- adding -->
-                                <template v-for="(addData, key) in syllabusAddList" :key="key">
+                                <template v-for="(addData, key) in syllabus.syllabusList" :key="key">
                                     <div class="flex justify-content-between align-items-center gap-0">
                                         <div class="grid align-items-center gap-2 w-full p-0 m-0">
                                             <Dropdown optionLabel="name" v-model="addData.selectedType"
@@ -559,12 +571,10 @@ const addNewSection = () => {
                                                         </div>
                                                         <div v-if="slotProps.value.code === 'video'"
                                                             class="flex gap-2 align-items-center">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                                viewBox="0 0 20 20" fill="none">
-                                                                <path
-                                                                    d="M17.5938 3.6543H2.55273C1.94531 3.6543 1.61328 3.95703 1.61328 4.59375V15.5605C1.61328 16.1973 1.94531 16.5 2.55273 16.5H17.5938C18.2305 16.5 18.5332 16.168 18.5332 15.5605V4.5957C18.5332 3.98633 18.2305 3.6543 17.5938 3.6543ZM3.80664 15.5625H3.17969C2.67383 15.5625 2.55273 15.2559 2.55273 14.9355V13.6816H3.80664V15.5625ZM3.80664 12.7422H2.55273V10.5488H3.80664V12.7422ZM3.80664 9.60937H2.55273V7.41602H3.80664V9.60937ZM3.80664 6.47461H2.55273V5.2207C2.55273 4.71484 2.85938 4.59375 3.17969 4.59375H3.80664V6.47461ZM15.4004 15.5625H4.74609V4.5957H15.4004V15.5625ZM17.5938 14.9355C17.5938 15.2559 17.4727 15.5625 16.9668 15.5625H16.3398V13.6816H17.5938V14.9355ZM17.5938 12.7422H16.3398V10.5488H17.5938V12.7422ZM17.5938 9.60937H16.3398V7.41602H17.5938V9.60937ZM17.5938 6.47461H16.3398V4.59375H16.9668C17.2871 4.59375 17.5938 4.71484 17.5938 5.2207V6.47461ZM7.74219 13.2656C7.82227 13.3301 7.92188 13.3672 8.03125 13.3691H8.03906C8.12305 13.3691 8.20703 13.3496 8.28516 13.3066L13.1895 10.5254C13.4199 10.3965 13.498 10.1074 13.3652 9.88281V9.88086C13.3262 9.79687 13.2617 9.72266 13.1738 9.67187L8.28711 6.85156C8.20898 6.80664 8.125 6.78711 8.04102 6.78906H8.03711C7.77734 6.78906 7.56641 7 7.56641 7.25977V12.8398C7.55273 12.9395 7.57227 13.043 7.62695 13.1348C7.65625 13.1855 7.69727 13.2305 7.74219 13.2656ZM8.50586 8.06445L12.0254 10.0957L8.50586 12.0937V8.06445Z"
-                                                                    fill="#5B99EE" />
+                                                            <svg width="32" height="22" viewBox="0 0 32 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <path d="M22.6667 21H2.66667C2.22464 21 1.80072 20.8244 1.48816 20.5118C1.17559 20.1993 1 19.7754 1 19.3333V2.66667C1 2.22464 1.17559 1.80072 1.48816 1.48816C1.80072 1.1756 2.22464 1 2.66667 1H22.6667C23.1087 1 23.5326 1.1756 23.8452 1.48816C24.1577 1.80072 24.3333 2.22464 24.3333 2.66667V19.3333C24.3333 19.7754 24.1577 20.1993 23.8452 20.5118C23.5326 20.8244 23.1087 21 22.6667 21ZM31 16.6333L24.3333 15.3667L28.5833 17.4833C28.837 17.6112 29.1192 17.6721 29.4031 17.6602C29.687 17.6483 29.9631 17.564 30.2052 17.4154C30.4473 17.2668 30.6475 17.0587 30.7866 16.811C30.9257 16.5633 30.9991 16.2841 31 16V6C30.9991 5.71589 30.9257 5.43672 30.7866 5.189C30.6475 4.94128 30.4473 4.73323 30.2052 4.58461C29.9631 4.43599 29.687 4.35173 29.4031 4.33984C29.1192 4.32795 28.837 4.38882 28.5833 4.51667L24.3333 6.63333L31 16.6333ZM14.3333 11L11 8.5V13.5L14.3333 11Z" stroke="#001125" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                                             </svg>
+
                                                             <p class="inter-normal black-2"
                                                                 style="font-size: 20px; font-weight: 500; letter-spacing: 0.6px;">
                                                                 {{
@@ -599,12 +609,10 @@ const addNewSection = () => {
                                                     </div>
                                                     <div v-if="slotProps.option.code === 'video'"
                                                         class="flex gap-2 align-items-center">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                            viewBox="0 0 20 20" fill="none">
-                                                            <path
-                                                                d="M17.5938 3.6543H2.55273C1.94531 3.6543 1.61328 3.95703 1.61328 4.59375V15.5605C1.61328 16.1973 1.94531 16.5 2.55273 16.5H17.5938C18.2305 16.5 18.5332 16.168 18.5332 15.5605V4.5957C18.5332 3.98633 18.2305 3.6543 17.5938 3.6543ZM3.80664 15.5625H3.17969C2.67383 15.5625 2.55273 15.2559 2.55273 14.9355V13.6816H3.80664V15.5625ZM3.80664 12.7422H2.55273V10.5488H3.80664V12.7422ZM3.80664 9.60937H2.55273V7.41602H3.80664V9.60937ZM3.80664 6.47461H2.55273V5.2207C2.55273 4.71484 2.85938 4.59375 3.17969 4.59375H3.80664V6.47461ZM15.4004 15.5625H4.74609V4.5957H15.4004V15.5625ZM17.5938 14.9355C17.5938 15.2559 17.4727 15.5625 16.9668 15.5625H16.3398V13.6816H17.5938V14.9355ZM17.5938 12.7422H16.3398V10.5488H17.5938V12.7422ZM17.5938 9.60937H16.3398V7.41602H17.5938V9.60937ZM17.5938 6.47461H16.3398V4.59375H16.9668C17.2871 4.59375 17.5938 4.71484 17.5938 5.2207V6.47461ZM7.74219 13.2656C7.82227 13.3301 7.92188 13.3672 8.03125 13.3691H8.03906C8.12305 13.3691 8.20703 13.3496 8.28516 13.3066L13.1895 10.5254C13.4199 10.3965 13.498 10.1074 13.3652 9.88281V9.88086C13.3262 9.79687 13.2617 9.72266 13.1738 9.67187L8.28711 6.85156C8.20898 6.80664 8.125 6.78711 8.04102 6.78906H8.03711C7.77734 6.78906 7.56641 7 7.56641 7.25977V12.8398C7.55273 12.9395 7.57227 13.043 7.62695 13.1348C7.65625 13.1855 7.69727 13.2305 7.74219 13.2656ZM8.50586 8.06445L12.0254 10.0957L8.50586 12.0937V8.06445Z"
-                                                                fill="#5B99EE" />
+                                                        <svg width="32" height="22" viewBox="0 0 32 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M22.6667 21H2.66667C2.22464 21 1.80072 20.8244 1.48816 20.5118C1.17559 20.1993 1 19.7754 1 19.3333V2.66667C1 2.22464 1.17559 1.80072 1.48816 1.48816C1.80072 1.1756 2.22464 1 2.66667 1H22.6667C23.1087 1 23.5326 1.1756 23.8452 1.48816C24.1577 1.80072 24.3333 2.22464 24.3333 2.66667V19.3333C24.3333 19.7754 24.1577 20.1993 23.8452 20.5118C23.5326 20.8244 23.1087 21 22.6667 21ZM31 16.6333L24.3333 15.3667L28.5833 17.4833C28.837 17.6112 29.1192 17.6721 29.4031 17.6602C29.687 17.6483 29.9631 17.564 30.2052 17.4154C30.4473 17.2668 30.6475 17.0587 30.7866 16.811C30.9257 16.5633 30.9991 16.2841 31 16V6C30.9991 5.71589 30.9257 5.43672 30.7866 5.189C30.6475 4.94128 30.4473 4.73323 30.2052 4.58461C29.9631 4.43599 29.687 4.35173 29.4031 4.33984C29.1192 4.32795 28.837 4.38882 28.5833 4.51667L24.3333 6.63333L31 16.6333ZM14.3333 11L11 8.5V13.5L14.3333 11Z" stroke="#001125" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                                         </svg>
+
                                                         <p class="inter-normal black-2"
                                                             style="font-size: 20px; font-weight: 500; letter-spacing: 0.6px;">
                                                             {{
@@ -630,7 +638,7 @@ const addNewSection = () => {
                                         </div>
                                         <div class="flex gap-3 p-0 m-0">
                                             <div class="flex gap-1 align-items-center">
-                                                <InputText type="number" v-model="addData.duration" style="height: 36px"
+                                                <InputText type="number" style="height: 36px"
                                                     class="w-4rem" />
                                                 <span class="text-900 text-lg font-md">min</span>
                                             </div>
@@ -650,7 +658,7 @@ const addNewSection = () => {
                                 <div class="flex justify-content-center">
                                     <Button
                                         class="w-14rem border-rounded-sm px-0 m-0 flex align-items-center justify-content-center btn-default px-3 py-2"
-                                        style="border-radius: 10px" @click="syllabusAddList.push({
+                                        style="border-radius: 10px" @click="syllabus.syllabusList.push({
                                             title: '',
                                             duration: '0',
                                             selectedType: ''
@@ -704,7 +712,7 @@ const addNewSection = () => {
                             <div class="flex gap-2 flex-column justify-content-center align-items-center col-12">
                                 <div class="flex gap-1 align-items-center">
                                     <div class="flex gap-1">
-                                        <template v-for="star in  Array.from({ length: 5 }, (_, index) => index + 1)">
+                                        <template v-for="star in  Array.from({ length: 5 }, (_, index) => index + 1)" :key="star">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
                                                 viewBox="0 0 22 22" fill="none">
                                                 <path
