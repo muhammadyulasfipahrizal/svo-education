@@ -122,10 +122,7 @@ interface ISyllabusAccordion {
     duration: number;
 }
 const syllabusAccordion = ref<boolean[]>([true])
-const syllabusAccordionData = ref<ISyllabusAccordion[]>([{
-    title: 'Start by learning the fundamentals of design',
-    duration: 5
-}])
+const syllabusAccordionData = ref<ISyllabusAccordion[]>([])
 
 const resizeInput = (e: InputNumberBlurEvent, className: string) => {
     const inputEl = document.querySelector(className) as HTMLElement
@@ -141,7 +138,7 @@ const onChangeSyllabusDuration = (e: number, key: number) => {
 }
 const quizList = ref<{ title: string; }[]>([
     {
-        title: 'What is the purpose of UI Design?'
+        title: ''
     }
 ])
 // END syllabus
@@ -163,13 +160,13 @@ const addNewSection = () => {
     syllabusAccordion.value.push(true)
     // syllabusAccordionData.value.push({
     //     title: '',
-    //     duration: 5
+    //     duration: 0
     // })
-    // syllabusAddList.value.push({
-    //     title: '',
-    //     duration: '0',
-    //     selectedType: 'none'
-    // })
+    syllabusAddList.value.push({
+        title: '',
+        duration: '0',
+        selectedType: 'none'
+    })
 }
 </script>
 
@@ -519,7 +516,7 @@ const addNewSection = () => {
                                     <div class="flex justify-content-between align-items-center">
                                         <div class="grid align-items-center gap-2 w-full">
                                             <img src="/assets/icon/video.png" alt="video" class="col-1 w-3rem" />
-                                            <h1 class="text-lg  col-10">{{ syllabusData.title }}</h1>
+                                            <h1 class="text-lg  col-10" contenteditable>{{ syllabusData.title }}</h1>
                                         </div>
                                         <div class="flex gap-3">
                                             <div class="flex gap-1">
