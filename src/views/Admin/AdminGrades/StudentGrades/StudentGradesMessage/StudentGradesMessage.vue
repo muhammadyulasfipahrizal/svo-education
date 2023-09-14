@@ -57,8 +57,8 @@ onMounted(() => {
                     <h1 class="inter-normal black-1" style="font-size: 25px; font-weight: 700;">
                         Message
                     </h1>
-                    <Textarea class="message p-inputtext-sm" placeholder="Write a message" v-model="message" autoResize
-                        rows="5"></Textarea>
+                    <Textarea class="message p-inputtext-sm" :placeholder="message ? message : ''" autoResize
+                        rows="5" style="background-color: white !important"></Textarea>
                     <Button size="small" class="btn-send">
                         <template #default>
                             <div class="flex gap-2 justify-content-center align-items-center w-full">

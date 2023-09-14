@@ -155,9 +155,9 @@ const dataEvent = [{
                         </div>
                     </template>
                 </Carousel>
-                <InputText v-model="name" class="inter-normal black-2 mx-3" style="font-size: 25px; font-weight: 700;" />
-                <Textarea v-model="description" rows="8" class="inter-normal black-2 mx-3"
-                    style="font-size: 14px; font-weight: 400;" />
+                <InputText :placeholder="name ? name : 'Network Technology Seminar'" class="inter-normal black-2 mx-3" style="font-size: 25px; font-weight: 700;" />
+                <Textarea :placeholder="description ? description : ''" rows="8" class="inter-normal black-2 mx-3"
+                    style="font-size: 14px; font-weight: 400; background-color: white !important" />
             </div>
         </div>
 
@@ -175,10 +175,10 @@ const dataEvent = [{
                     <img src="/assets/img/ticket.png" alt="ticket" class="mb-3 align-self-center" style="width: 185px" />
                     <div class="grid">
                         <div class="col-7">
-                            <InputText v-model="ticketType" class="border-noround w-full inter-normal black-2" 
-                             style="font-size: 15px; font-weight: 700; height: 40px"/>
+                            <InputText class="border-noround w-full inter-normal black-2" 
+                             style="font-size: 15px; font-weight: 700; height: 40px" :placeholder="ticketType ? ticketType : 'Gold - EarlyBird'"/>
                         </div>
-                        <div class="col-5" >
+                        <div class="col-5" > 
                             <div class="flex border-red-500 border-1 justify-content-center align-items-center border-round gap-1 w-full" style="height: 40px" >
                                 <button class="bg-transparent text-red-500 border-none cursor-pointer"
                                     @click="decrementTicketCount">
@@ -199,26 +199,27 @@ const dataEvent = [{
                 <div class="grid py-2">
                     <span class="p-input-icon-left col-12 md:col-6 lg:col-6 xl:col-6 py-1">
                         <i class="pi pi-map-marker ml-1"></i>
-                        <InputText class="p-inputtext-sm w-full" type="text" v-model="location" placeholder="Location" />
+                        <InputText class="p-inputtext-sm w-full" type="text" :placeholder="location ? location : 'Bukit Bintang'" 
+                         style="background-color: white !important"/>
                     </span>
                     <span class="p-input-icon-left col-12 md:col-6 lg:col-6 xl:col-6 py-1">
                         <i class="pi pi-calendar ml-1"></i>
-                        <InputText class="p-inputtext-sm w-full" v-model="calendar" placeholder="Calendar"
-                            @click="showCalendar" />
+                        <InputText class="p-inputtext-sm w-full" :placeholder="calendar ? calendar : 'Calendar'"
+                            @click="showCalendar" style="background-color: white !important"/>
                         <Calendar v-model="calendar" id="calendar" placeholder="Calendars"
                             @date-select="onDateSelectCalendarRef" class="calendarRef" ref="calendarRef" />
                     </span>
                     <span class="p-input-icon-left col-12 md:col-6 lg:col-6 xl:col-6 py-1">
                         <i class="pi pi-clock ml-1"></i>
-                        <InputText class="p-inputtext-sm w-full" v-model="time" placeholder="Time"
-                            @click="showTimepicker" />
-                        <Calendar id="time-picker" placeholder="Time" @date-select="onTimeSelect" timeOnly class="timeRef"
+                        <InputText class="p-inputtext-sm w-full" :placeholder="time ? time : 'Starts at 09:51 AM'"
+                            @click="showTimepicker" style="background-color: white !important"/>
+                        <Calendar id="time-picker" placeholder="Calender" @date-select="onTimeSelect" timeOnly class="timeRef"
                             ref="timeRef" />
                     </span>
                     <span class="p-input-icon-left col-12 md:col-6 lg:col-6 xl:col-6 py-1">
                         <i class="pi pi-ticket ml-1"></i>
-                        <InputText class="p-inputtext-sm w-full" type="text" v-model="ticketPrice"
-                            placeholder="Ticket price" />
+                        <InputText class="p-inputtext-sm w-full" type="text" style="background-color: white !important"
+                        :placeholder="ticketPricePerItem ? ticketPricePerItem : '9.99'" />
                     </span>
                 </div>
 
