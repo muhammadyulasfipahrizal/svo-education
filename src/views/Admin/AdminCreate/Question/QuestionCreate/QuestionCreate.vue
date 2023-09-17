@@ -181,13 +181,14 @@ const questions = ref(0)
                     </div>
                 </div>
             </div>
-            <div class="flex flex-column gap-2">
-                <template v-for="asses in assesments">
-                    <div class="flex w-full" style="padding-left: 10px">
+            <div class="flex flex-column gap-2 border-1 border-200 p-3 border-round-lg">
+                <!-- <template > -->
+                    <div v-for="asses in assesments" :key="asses.question" class="flex w-full mb-3" style="padding-left: 10px">
                         <QuizInput :question="asses.question" :points="asses.points" :answerType="asses.answerType"
                             :answerText="asses.answerText" :answerRadio="asses.answerRadio" />
+                            <hr>
                     </div>
-                </template>
+                <!-- </template> -->
                 <!-- ADD more quiz -->
                 <div class="grid">
                     <div class="col">

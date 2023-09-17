@@ -1,11 +1,10 @@
 <template>
-  <section>
+  <section class="max-h-full">
     <h1 class="title hidden sm:block">Customize New</h1>
-
     <div class="badge-editor flex-col h-full md:flex-row mt-2" :style="`background: ${activeColor};`" style="border-radius: 10px;">
       <div class="bg-white flex justify-content-center align-items-center flex-column" style="gap: 15px;">
-        <div class="">
-          <Badge :color="activeColor" :width="isMobile ? '340' : '700'" :height="isMobile ? '340' : '700'" :word="firstLetterOfWord(form.title)" />
+        <div class="relative">
+          <Badge :color="activeColor" :width="isMobile ? '340' : '400'" :height="isMobile ? '340' : '400'" :word="firstLetterOfWord(form.title)" />
           <span class="title-badge"><em>{{ form.title }}</em></span>
         </div>
         <div class="flex justify-content-center badge-padding" style="gap: 8px;">
@@ -93,6 +92,7 @@ watchEffect(() => {
   grid-template-columns: 1fr;
   padding: 10px;
   gap: 10px;
+  min-height: calc(100vh - 139px);
 
   @media screen and (min-width: 756px) {
     grid-template-columns: repeat(2, 1fr);
@@ -157,7 +157,7 @@ watchEffect(() => {
       font-size: 20px;
 
       @media screen and (min-width: 756px) {
-        font-size: 35px;
+        font-size: 20px;
       }
     }
   }

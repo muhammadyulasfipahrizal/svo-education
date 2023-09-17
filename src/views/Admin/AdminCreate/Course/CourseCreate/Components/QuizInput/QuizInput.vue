@@ -68,7 +68,20 @@ watchEffect(() => {
                     <template #value="slotProps">
                         <div v-if="slotProps.value" class="flex align-items-center gap-2">
                             <RadioButton v-if="slotProps.value.code === 'radio'" value="model" />
-                            <Checkbox v-if="slotProps.value.code === 'text'" :value="true" :binary="true">
+                            <Checkbox v-if="slotProps.value.code === 'text'" selected="true">
+                                <template #icon="{ checked }">
+                                    <svg v-if="!checked" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                        viewBox="0 0 18 18" fill="none">
+                                        <path d="M0.5 17.5V0.5H17.5V17.5H0.5Z" fill="white" stroke="#ECEEF5" />
+                                    </svg>
+                                    <svg v-else xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+                                        viewBox="0 0 22 22" fill="none">
+                                        <rect width="22" height="22" rx="11" fill="#659872" />
+                                        <path
+                                            d="M17.1501 6.60904C17.0649 6.52312 16.9635 6.45493 16.8518 6.40839C16.7401 6.36185 16.6203 6.33789 16.4993 6.33789C16.3783 6.33789 16.2584 6.36185 16.1467 6.40839C16.035 6.45493 15.9336 6.52312 15.8484 6.60904L9.01926 13.4474L6.1501 10.569C6.06162 10.4836 5.95717 10.4164 5.84272 10.3713C5.72827 10.3262 5.60606 10.304 5.48306 10.3062C5.36006 10.3083 5.23868 10.3346 5.12586 10.3837C5.01304 10.4327 4.91098 10.5035 4.82551 10.592C4.74004 10.6804 4.67284 10.7849 4.62774 10.8993C4.58263 11.0138 4.56051 11.136 4.56264 11.259C4.56477 11.382 4.5911 11.5034 4.64014 11.6162C4.68917 11.729 4.75995 11.8311 4.84843 11.9165L8.36843 15.4365C8.45364 15.5225 8.55503 15.5907 8.66673 15.6372C8.77844 15.6837 8.89825 15.7077 9.01926 15.7077C9.14027 15.7077 9.26009 15.6837 9.37179 15.6372C9.4835 15.5907 9.58488 15.5225 9.6701 15.4365L17.1501 7.95654C17.2431 7.8707 17.3174 7.76652 17.3682 7.65056C17.419 7.5346 17.4452 7.40938 17.4452 7.28279C17.4452 7.1562 17.419 7.03097 17.3682 6.91502C17.3174 6.79906 17.2431 6.69488 17.1501 6.60904Z"
+                                            fill="white" />
+                                    </svg>
+                                </template>
                             </Checkbox>
                             <div>{{ slotProps.value.name }}</div>
                         </div>
@@ -149,6 +162,22 @@ watchEffect(() => {
         <div class="flex flex-column gap-2" v-if="selectedType?.code === 'text'">
             <Textarea rows="4" class="w-full" placeholder="Please fill description" />
         </div>
+
+        <Button
+            class="w-14rem border-rounded-sm mx-auto px-0 m-0 flex align-items-center justify-content-center btn-default px-3 py-2"
+            style="border-radius: 10px">
+            <div class="flex flex-row align-items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+                    viewBox="0 0 22 22" fill="none">
+                    <path d="M11 15.375V6.625" stroke="white" stroke-width="1.5"
+                        stroke-linecap="round" />
+                    <path d="M6.625 11L15.375 11" stroke="white" stroke-width="1.5"
+                        stroke-linecap="round" />
+                </svg>
+                <p class="font-medium ml-1 lowercase"><span
+                        class="capitalize font-medium">Add</span> new content</p>
+            </div>
+        </Button>
     </div>
 </template>
 
