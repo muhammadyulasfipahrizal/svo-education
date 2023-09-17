@@ -41,7 +41,7 @@
     <path id="coor-word" d="M225.16 136.15H211.31C210.64 136.15 210.09 135.6 210.09 134.93V91.8601C210.09 91.1901 210.64 90.6401 211.31 90.6401H225.16C225.83 90.6401 226.38 91.1901 226.38 91.8601V134.93C226.38 135.6 225.84 136.15 225.16 136.15Z" :fill="props.color"/>
     <path d="M225.16 136.15H211.31C210.64 136.15 210.09 135.6 210.09 134.93V91.8601C210.09 91.1901 210.64 90.6401 211.31 90.6401H225.16C225.83 90.6401 226.38 91.1901 226.38 91.8601V134.93C226.38 135.6 225.84 136.15 225.16 136.15Z" stroke="url(#paint13_linear_2284_237261)" stroke-width="1.0496" stroke-miterlimit="10"/>
 
-    <text x="218" :y="startYPosition" class="vertical-text" fill="white" text-length="100%" font-size="8px">{{  word }}</text>
+    <text x="218" :y="startYPosition" class="vertical-text" fill="white" text-length="100%" font-size="8px">{{ word }}</text>
   </g>
   <defs>
     <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
