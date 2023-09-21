@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import QuizInput from '../../Course/CourseCreate/Components/QuizInput/QuizInput.vue';
 import type { IAssesment } from './AssesmentInterface';
 const access = ref<number>(3);
@@ -9,15 +9,7 @@ const dueList = ref([
     { name: 'No Limit', code: 'NL' },
 ]);
 
-const assesments = ref<IAssesment[]>([
-    {
-        question: '',
-        points: '0/1',
-        answerType: 'text',
-        answerText: '',
-        answerRadio: [],
-    }
-])
+
 const calendar = ref({
     month: null,
     year: null,
@@ -55,6 +47,34 @@ const tryAgainAttemptList = ref([{
 }])
 const tryAgainAttemptType = ref();
 const questions = ref(0)
+
+const quizList = ref<{ assesment: IAssesment[] }[]>([]);
+onMounted(() => {
+    quizList.value = [{
+        assesment: [
+            {
+                question: '',
+                points: '0/1',
+                answerType: 'text',
+                answerText: '',
+                answerRadio: [],
+            }
+        ]
+    }]
+})
+const addQuiz = () => {
+    quizList.value.push({
+        assesment: [
+            {
+                question: '',
+                points: '0/1',
+                answerType: 'text',
+                answerText: '',
+                answerRadio: [],
+            }
+        ]
+    })
+}
 </script>
 
 <template>
@@ -66,7 +86,8 @@ const questions = ref(0)
                 <h4 class="inter-normal black-1 mr-3" style="font-size: 20px; font-weight: 700;">
                     Give instructor access to
                 </h4>
-                <div class="flex flex-column sm:flex-row sm:align-items-center sm:flex-wrap" style="gap: 17px; margin-top: 10px">
+                <div class="flex flex-column sm:flex-row sm:align-items-center sm:flex-wrap"
+                    style="gap: 17px; margin-top: 10px">
                     <div class="flex align-items-center">
                         <RadioButton v-model="access" inputId="access1" name="access" :value="1" />
                         <label for="access1" class="ml-2 inter-normal black-4"
@@ -152,62 +173,68 @@ const questions = ref(0)
                     </div>
                 </div>
             </div>
-            <!-- <div class="flex flex-column gap-2">
-                <h4 class="inter-normal black-2" style="font-size: 20px; font-weight: 600;">Assesment</h4>
-                <div class="grid align-items-center w-full">
-                    <h4 class="font-bold text-lg col-12 md:col-9 lg:col-9 xl:col-9">Assesment (2 questions)</h4>
-                    <div class="col-12 md:col-3 lg:col-3 xl:col-3 flex gap-2 col-2 align-items-center justify-content-end">
-                        <h5 class="font-bold text-900 text-lg">Due</h5>
-                        <Dropdown v-model="selectedDue" :options="dueList" optionLabel="name" placeholder="Select Limit"
-                            class="w-full md:w-10rem h-2rem flex align-items-center " :class="{ selected: selectedDue }" />
+            <template v-for="quiz in quizList">
+                <div class="grid">
+                    <div class="col-12 sm:col-9">
+                        <InputText placeholder="Title..." class="p-inputtext-sm w-full h-full" />
+                    </div>
+                    <div class="col-12 sm:col-3">
+                        <div
+                            class="flex bg-transparent gap-1 p-1 align-items-center justify-content-around border-300 border-1">
+                            <InputNumber size="small"
+                                class="p-0 m-0 border-noround p-inputtext-sm border-none text-center h-2rem w-3rem text-questions"
+                                v-model="questions" />
+                            <svg xmlns="http://www.w3.org/2000/svg" width="2" height="18" viewBox="0 0 2 18" fill="none">
+                                <path opacity="0.1" d="M1.33398 1V17" stroke="#001125" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            <p class="inter-normal black-1" style="font-size: 14px; font-weight: 400;">Questions</p>
+                        </div>
                     </div>
                 </div>
-            </div> -->
-            <div class="grid">
-                <div class="col-12 sm:col-9">
-                    <InputText placeholder="Title..." class="p-inputtext-sm w-full h-full" />
-                </div>
-                <div class="col-12 sm:col-3">
-                    <div
-                        class="flex bg-transparent gap-1 p-1 align-items-center justify-content-around border-300 border-1">
-                        <InputNumber size="small"
-                            class="p-0 m-0 border-noround p-inputtext-sm border-none text-center h-2rem w-3rem text-questions"
-                            v-model="questions" />
-                        <svg xmlns="http://www.w3.org/2000/svg" width="2" height="18" viewBox="0 0 2 18" fill="none">
-                            <path opacity="0.1" d="M1.33398 1V17" stroke="#001125" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                        </svg>
-                        <p class="inter-normal black-1" style="font-size: 14px; font-weight: 400;">Questions</p>
-                    </div>
-                </div>
-            </div>
-            <div class="flex flex-column gap-2 border-1 border-200 p-3 border-round-lg">
-                <!-- <template > -->
-                    <div v-for="asses in assesments" :key="asses.question" class="flex w-full mb-3" style="padding-left: 10px">
+                <div class="flex flex-column gap-2 border-1 border-200 p-3 border-round-lg">
+                    <!-- <template > -->
+                    <div v-for="asses in quiz.assesment" :key="asses.question" class="flex w-full mb-3"
+                        style="padding-left: 10px">
                         <QuizInput :question="asses.question" :points="asses.points" :answerType="asses.answerType"
                             :answerText="asses.answerText" :answerRadio="asses.answerRadio" />
-                            <hr>
+                        <hr>
                     </div>
-                <!-- </template> -->
-                <!-- ADD more quiz -->
-                <div class="grid">
-                    <div class="col">
-                        <Button class="btn-orange w-full border-noround" size="small" @click="assesments.push({
+                    <Button
+                        class="w-14rem border-rounded-sm mx-auto px-0 m-0 flex align-items-center justify-content-center btn-default px-3 py-2"
+                        style="border-radius: 10px" @click="quiz.assesment.push({
                             question: '',
                             points: '0/1',
                             answerType: 'text',
                             answerText: '',
                             answerRadio: [],
                         })">
-                            <template #default>
-                                <div class="flex flex-row align-items-center gap-3">
-                                    <i class="pi pi-plus align-self-center justify-content-center font-bold text-sm"></i>
-                                    <p class="font-medium text text-sm lowercase"><span class="capitalize">Add</span> new
-                                        assesment question</p>
-                                </div>
-                            </template>
-                        </Button>
-                    </div>
+                        <div class="flex flex-row align-items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
+                                <path d="M11 15.375V6.625" stroke="white" stroke-width="1.5" stroke-linecap="round" />
+                                <path d="M6.625 11L15.375 11" stroke="white" stroke-width="1.5" stroke-linecap="round" />
+                            </svg>
+                            <p class="font-medium ml-1 lowercase"><span class="capitalize font-medium">Add</span> new
+                                content
+                            </p>
+                        </div>
+                    </Button>
+                    <!-- </template> -->
+                </div>
+            </template>
+
+            <!-- ADD more quiz -->
+            <div class="grid">
+                <div class="col">
+                    <Button class="btn-orange w-full border-noround" size="small" @click="addQuiz">
+                        <template #default>
+                            <div class="flex flex-row align-items-center gap-3">
+                                <i class="pi pi-plus align-self-center justify-content-center font-bold text-sm"></i>
+                                <p class="font-medium text text-sm lowercase"><span class="capitalize">Add</span> new
+                                    assesment question</p>
+                            </div>
+                        </template>
+                    </Button>
                 </div>
             </div>
         </div>

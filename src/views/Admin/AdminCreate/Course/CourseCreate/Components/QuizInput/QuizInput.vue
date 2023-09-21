@@ -162,22 +162,6 @@ watchEffect(() => {
         <div class="flex flex-column gap-2" v-if="selectedType?.code === 'text'">
             <Textarea rows="4" class="w-full" placeholder="Please fill description" />
         </div>
-
-        <Button
-            class="w-14rem border-rounded-sm mx-auto px-0 m-0 flex align-items-center justify-content-center btn-default px-3 py-2"
-            style="border-radius: 10px">
-            <div class="flex flex-row align-items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
-                    viewBox="0 0 22 22" fill="none">
-                    <path d="M11 15.375V6.625" stroke="white" stroke-width="1.5"
-                        stroke-linecap="round" />
-                    <path d="M6.625 11L15.375 11" stroke="white" stroke-width="1.5"
-                        stroke-linecap="round" />
-                </svg>
-                <p class="font-medium ml-1 lowercase"><span
-                        class="capitalize font-medium">Add</span> new content</p>
-            </div>
-        </Button>
     </div>
 </template>
 
