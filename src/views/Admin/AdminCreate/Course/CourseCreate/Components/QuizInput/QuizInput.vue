@@ -38,6 +38,8 @@ const answerList = ref<{ title: string; isCorrect: boolean }[]>([
     },
 ]);
 
+const emit = defineEmits(['onDelete'])
+
 const numberToChar = (number: number) => {
     if (!Number.isInteger(number) || number < 0 || number > 25) {
         throw new Error("Number must be an integer between 1 and 26");
@@ -59,6 +61,13 @@ watchEffect(() => {
                 <InputText size="small" class="instructor-total-input py-0 m-0 w-3rem p-inputtext-sm h-2rem surface-200"
                     inputId="withoutgrouping" :useGrouping="false" v-model="points" />
                 <p class="inter-normal black-2" style="font-size: 14px; font-weight: 400;">points</p>
+                <Button size="small" link title="delete" class="p-0 m-0" style="height: 16px; width: 16px;"
+                    @click="emit('onDelete')">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10" fill="none">
+                        <path d="M8.53553 1.46522L1.46447 8.53629M8.53553 8.53629L1.46447 1.46522" stroke="#001125"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </Button>
             </div>
         </div>
         <div class="grid">
