@@ -56,8 +56,10 @@ watchEffect(() => {
 <template>
     <div class="flex flex-column gap-2 w-full">
         <div class="grid">
-            <InputText label="Title" placeholder="Title..." v-model="title" class="p-inputtext-sm col-12 sm:col-11" />
-            <div class="flex flex-row text-900 text-sm font-bold col-1 align-items-center gap-1 col-12 sm:col-1">
+            <InputText label="Title" placeholder="Title..." v-model="title"
+                class="p-inputtext-sm col-7 sm:col-10 border-none" />
+            <div
+                class="flex flex-row text-900 text-sm font-bold col-5 align-items-center gap-1 sm:col-2 justify-content-end">
                 <InputText size="small" class="instructor-total-input py-0 m-0 w-3rem p-inputtext-sm h-2rem surface-200"
                     inputId="withoutgrouping" :useGrouping="false" v-model="points" />
                 <p class="inter-normal black-2" style="font-size: 14px; font-weight: 400;">points</p>
@@ -71,7 +73,7 @@ watchEffect(() => {
             </div>
         </div>
         <div class="grid">
-            <div class="col-4 px-0">
+            <div class="col-12 sm:col-4 px-0">
                 <Dropdown v-model="selectedType" :options="typeList" optionLabel="name" placeholder="Select Type"
                     class="w-full md:w-14rem selected h-3rem border-noround">
                     <template #value="slotProps">
@@ -127,7 +129,7 @@ watchEffect(() => {
             <!-- Question list -->
             <template v-for="(answer, key) in answerList" :key="key">
                 <div class="grid pl-3 mb-2 p-inputtext-sm" :class="{ 'blank-question': !answer.title }">
-                    <div class="col-11">
+                    <div class="col-8 sm:col-11">
                         <div class="flex align-items-center gap-2">
                             <RadioButton :inputId="'answer_radio' + key" name="answer_radio" disabled
                                 v-model="radioSelected" :value="answer.title" />
@@ -136,7 +138,7 @@ watchEffect(() => {
                                 :class="{ 'blank-question': !answer.title }" />
                         </div>
                     </div>
-                    <div class="col-1 flex gap-2 align-items-center" v-if="answer.title">
+                    <div class="col-4 sm:col-1 flex gap-2 align-items-center justify-content-end" v-if="answer.title">
                         <Checkbox v-model="answer.isCorrect" :binary="true">
                             <template #icon="{ checked }">
                                 <svg v-if="!checked" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
