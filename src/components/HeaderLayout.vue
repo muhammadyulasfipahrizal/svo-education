@@ -152,7 +152,7 @@
               <h1 class="header-title">Education</h1>
             </div>
           </template>
-          <SidebarNavigation />
+          <SidebarNavigation @close="handleClose"/>
         </Sidebar>
 
         <div class="flex flex-row align-items-center justify-content-between svo-primary px-2">
@@ -264,7 +264,7 @@
 <script setup lang="ts">
 import Dropdown from 'primevue/dropdown';
 import SidebarNavigation from './SidebarNavigation.vue';
-import { ref, onMounted, watchEffect } from "vue";
+import { ref, onMounted, watchEffect, defineComponent  } from "vue";
 import { notificationDummyData } from '../views/Admin/AdminDashboard/DashboardNotification/DashboardNotificatioDummyData';
 
 interface Massage {
@@ -367,6 +367,10 @@ const toggleMobile = (event: any) => {
 const toggleDropdown = (event: any) => {
   toggleDashboardDropdown.value.toggle(event);
 }
+
+const handleClose = () => {
+  visible.value = false
+};
 </script>
 
 <style scoped lang="scss">

@@ -48,25 +48,24 @@ const tryAgainAttemptList = ref([{
 const tryAgainAttemptType = ref();
 const questions = ref(0)
 
-const quizList = ref<{ assesment: IAssesment[] }[]>([]);
-onMounted(() => {
-    quizList.value = [{
+const quizList = ref<{ assesment: IAssesment[] }[]>([
+    {
         assesment: [
             {
-                question: '',
+                question: 'test-1',
                 points: '0/1',
                 answerType: 'text',
                 answerText: '',
                 answerRadio: [],
             }
         ]
-    }]
-})
+    }
+]);
 const addQuiz = () => {
     quizList.value.push({
         assesment: [
             {
-                question: '',
+                question: 'test-1',
                 points: '0/1',
                 answerType: 'text',
                 answerText: '',
@@ -213,7 +212,7 @@ const deleteQuiz = (quizIndex: number) => quizList.value = quizList.value.filter
                     <Button
                         class="w-14rem border-rounded-sm mx-auto px-0 m-0 flex align-items-center justify-content-center btn-default px-3 py-2"
                         style="border-radius: 10px" @click="quiz.assesment.push({
-                            question: '',
+                            question: 'test-2',
                             points: '0/1',
                             answerType: 'text',
                             answerText: '',
