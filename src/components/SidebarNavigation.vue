@@ -8,7 +8,7 @@
         </div>
       </div>
       <ul class="menu-root">
-        <li>
+        <li @click="closeSidebar">
           <router-link to="/dashboard" class="grid gap-2 menuitem-link" :class="{ active: isActive('/dashboard') }">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="18" viewBox="0 0 20 18">
               <path
@@ -20,7 +20,7 @@
             <span class="menuitem-text">Dashboard</span>
           </router-link>
         </li>
-        <li>
+        <li @click="closeSidebar">
           <router-link to="/admin/event" class="grid gap-2 menuitem-link" :class="{ active: isActive('/admin/event') }">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
               <path
@@ -33,7 +33,7 @@
             <span class="menuitem-text">Event</span>
           </router-link>
         </li>
-        <li>
+        <li @click="closeSidebar">
           <router-link to="/admin/live" class="grid gap-2 menuitem-link" :class="{ active: isActive('/admin/live') }">
             <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g id="Group">
@@ -70,13 +70,13 @@
           <ul
             class="list-none py-0 pl-3 pr-0 m-0 overflow-y-hidden transition-all transition-duration-400 transition-ease-in-out"
             :class="{ hidden: !subMenuState['progress'] }">
-            <li>
+            <li @click="closeSidebar">
               <router-link to="/admin/progress/student" class="grid gap-2 menuitem-link"
                 :class="{ active: isActive('/admin/progress/student') }">
                 <span class="menuitem-text"><span class="dot"></span> Student</span>
               </router-link>
             </li>
-            <li>
+            <li @click="closeSidebar">
               <router-link to="/admin/progress/guest" class="grid gap-2 menuitem-link"
                 :class="{ active: isActive('/admin/progress/guest') }">
                 <span class="menuitem-text"><span class="dot"></span> Guest</span>
@@ -118,13 +118,13 @@
           <ul
             class="list-none py-0 pl-3 pr-0 m-0 overflow-y-hidden transition-all transition-duration-400 transition-ease-in-out"
             :class="{ hidden: !subMenuState['grades'] }">
-            <li>
+            <li @click="closeSidebar">
               <router-link to="/admin/grade/instructor" class="grid gap-2 menuitem-link"
                 :class="{ active: isActive('/admin/grade/instructor') }">
                 <span class="menuitem-text"><span class="dot"></span> Instructors</span>
               </router-link>
             </li>
-            <li>
+            <li @click="closeSidebar">
               <router-link to="/admin/grade/course" class="grid gap-2 menuitem-link"
                 :class="{ active: isActive('/admin/grade/course') }">
                 <span class="menuitem-text"><span class="dot"></span> Students</span>
@@ -132,7 +132,7 @@
             </li>
           </ul>
         </li>
-        <li>
+        <li @click="closeSidebar">
           <router-link to="/admin/attendance" class="grid gap-2 menuitem-link"
             :class="{ active: isActive('/attendance') }">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -150,7 +150,7 @@
             <span class="menuitem-text">Student attendance</span>
           </router-link>
         </li>
-        <li>
+        <li @click="closeSidebar">
           <router-link to="/admin/create" class="grid gap-2 menuitem-link" :class="{ active: isActive('/admin/create') }">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
               <path d="M10 14.1654V5.83203" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
@@ -159,7 +159,7 @@
             <span class="menuitem-text">Create</span>
           </router-link>
         </li>
-        <li>
+        <li @click="closeSidebar">
           <router-link to="/admin/customize" class="grid gap-2 menuitem-link"
             :class="{ active: isActive('/admin/customize') }">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -213,13 +213,13 @@
           <ul
             class="list-none py-0 pl-3 pr-0 m-0 overflow-y-hidden transition-all transition-duration-400 transition-ease-in-out"
             :class="{ hidden: !subMenuState['profiles'] }">
-            <li>
+            <li @click="closeSidebar">
               <router-link to="/admin/profile/instructors" class="grid gap-2 menuitem-link"
                 :class="{ active: isActive('/admin/profile/instructors') }">
                 <span class="menuitem-text"><span class="dot"></span> Instructors</span>
               </router-link>
             </li>
-            <li>
+            <li @click="closeSidebar">
               <router-link to="/admin/profile/students" class="grid gap-2 menuitem-link"
                 :class="{ active: isActive('/admin/profile/students') }">
                 <span class="menuitem-text"><span class="dot"></span> Students</span>
@@ -251,6 +251,10 @@ const openSub = (menu: 'grades' | 'progress' | 'profiles') => {
   }
 }
 
+const emit = defineEmits(["close"]);
+const closeSidebar = () => {
+  emit('close');
+}
 </script>
 
 <style scoped lang="scss">
