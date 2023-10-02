@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { ref } from 'vue';
 import QuizInput from '../../Course/CourseCreate/Components/QuizInput/QuizInput.vue';
 import type { IAssesment } from './AssesmentInterface';
 const access = ref<number>(3);
@@ -48,8 +48,9 @@ const tryAgainAttemptList = ref([{
 const tryAgainAttemptType = ref();
 const questions = ref(0)
 
-const quizList = ref<{ assesment: IAssesment[] }[]>([
+const quizList = ref<{ title: string; assesment: IAssesment[] }[]>([
     {
+        title: '',
         assesment: [
             {
                 question: '',
@@ -63,6 +64,7 @@ const quizList = ref<{ assesment: IAssesment[] }[]>([
 ]);
 const addQuiz = () => {
     quizList.value.push({
+        title: '',
         assesment: [
             {
                 question: '',
@@ -134,8 +136,7 @@ const deleteQuiz = (quizIndex: number) => quizList.value = quizList.value.filter
                 <div class="col-12 sm:col-3">
                     <p class="inter-normal black-1" style="font-size: 12px; font-weight: 400;">Time Limit</p>
                     <div class="flex bg-transparent gap-1 p-1 align-items-center border-300 border-1">
-                        <InputText size="small"
-                            class="p-0 m-0 border-noround p-inputtext-sm border-none text-center h-2rem w-3rem"
+                        <InputText class="p-0 m-0 border-noround p-inputtext-sm border-none text-center h-2rem w-3rem"
                             v-model="timeLimit.time" />
                         <svg xmlns="http://www.w3.org/2000/svg" width="2" height="18" viewBox="0 0 2 18" fill="none">
                             <path opacity="0.1" d="M1.33398 1V17" stroke="#001125" stroke-linecap="round"
@@ -149,8 +150,7 @@ const deleteQuiz = (quizIndex: number) => quizList.value = quizList.value.filter
                 <div class="col-12 sm:col-2">
                     <p class="inter-normal black-1" style="font-size: 12px; font-weight: 400;">Attempt</p>
                     <div class="flex bg-transparent gap-1 p-1 align-items-center border-300 border-1">
-                        <InputText size="small"
-                            class="p-0 m-0 border-noround p-inputtext-sm border-none text-center h-2rem w-3rem"
+                        <InputText class="p-0 m-0 border-noround p-inputtext-sm border-none text-center h-2rem w-3rem"
                             v-model="attempts" />
                         <svg xmlns="http://www.w3.org/2000/svg" width="2" height="18" viewBox="0 0 2 18" fill="none">
                             <path opacity="0.1" d="M1.33398 1V17" stroke="#001125" stroke-linecap="round"
@@ -162,8 +162,7 @@ const deleteQuiz = (quizIndex: number) => quizList.value = quizList.value.filter
                 <div class="col-12 sm:col-3">
                     <p class="inter-normal black-1" style="font-size: 12px; font-weight: 400;">Try Again After Attempts</p>
                     <div class="flex bg-transparent gap-1 p-1 align-items-center border-300 border-1">
-                        <InputText size="small"
-                            class="p-0 m-0 border-noround p-inputtext-sm border-none text-center h-2rem w-3rem"
+                        <InputText class="p-0 m-0 border-noround p-inputtext-sm border-none text-center h-2rem w-3rem"
                             v-model="tryAgainAttempt" />
                         <svg xmlns="http://www.w3.org/2000/svg" width="2" height="18" viewBox="0 0 2 18" fill="none">
                             <path opacity="0.1" d="M1.33398 1V17" stroke="#001125" stroke-linecap="round"
@@ -178,14 +177,14 @@ const deleteQuiz = (quizIndex: number) => quizList.value = quizList.value.filter
             <template v-for="(quiz, quizIndex) in quizList">
                 <div class="grid">
                     <div class="col-12 sm:col-9">
-                        <InputText placeholder="Title..." class="p-inputtext-sm w-full h-full" />
+                        <InputText placeholder="Title..." class="p-inputtext-sm w-full h-full" v-model="quiz.title" />
                     </div>
                     <div class="col-12 sm:col-3 flex grid align-items-center gap-2 m-0">
                         <div
                             class="flex bg-transparent col gap-1 p-1 align-items-center justify-content-around border-300 border-1">
                             <InputNumber size="small"
                                 class="p-0 m-0 border-noround p-inputtext-sm border-none text-center h-2rem w-3rem text-questions"
-                                v-model="questions" />
+                                :model-value="quiz.assesment.length" readonly />
                             <svg xmlns="http://www.w3.org/2000/svg" width="2" height="18" viewBox="0 0 2 18" fill="none">
                                 <path opacity="0.1" d="M1.33398 1V17" stroke="#001125" stroke-linecap="round"
                                     stroke-linejoin="round" />
@@ -205,9 +204,11 @@ const deleteQuiz = (quizIndex: number) => quizList.value = quizList.value.filter
                     <!-- <template > -->
                     <div v-for="(asses, assesIndex) in quiz.assesment" :key="asses.question" class="flex w-full mb-3"
                         style="padding-left: 10px">
-                        <QuizInput :question="asses.question" :points="asses.points" :answerType="asses.answerType"
-                            :answerText="asses.answerText" :answerRadio="asses.answerRadio"
-                            @on-delete="onDeleteAssesment(quizIndex, assesIndex)" />
+                        <QuizInput :question="asses.question" :points="asses.points"
+                            :answerType="asses.answerType ?? 'text'" :answerText="asses.answerText"
+                            :answerRadio="asses.answerRadio" @on-update="(e: any) => {
+                                quiz.assesment[assesIndex] = e
+                            }" @on-delete="onDeleteAssesment(quizIndex, assesIndex)" />
                     </div>
                     <Button
                         class="w-14rem border-rounded-sm mx-auto px-0 m-0 flex align-items-center justify-content-center btn-default px-3 py-2"

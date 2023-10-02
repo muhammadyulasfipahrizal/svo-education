@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, watchEffect } from 'vue';
+import { ref } from 'vue';
 const props = defineProps({
     question: {
         type: String,
@@ -38,7 +38,8 @@ const answerList = ref<{ title: string; isCorrect: boolean }[]>([
     },
 ]);
 
-const emit = defineEmits(['onDelete'])
+const description = ref<string>('');
+const emit = defineEmits(['onDelete', 'onUpdate'])
 
 const numberToChar = (number: number) => {
     if (!Number.isInteger(number) || number < 0 || number > 25) {
@@ -47,21 +48,29 @@ const numberToChar = (number: number) => {
 
     return String.fromCharCode((number + 1) + 'A'.charCodeAt(0) - 1);
 }
-watchEffect(() => {
-    console.log('selectedType', selectedType.value);
 
-})
+const updateData = () => {
+    emit('onUpdate', { question: title, points, answerType: selectedType, answerText: description, answerRadio: answerList })
+}
+const addNewOption = () => {
+    answerList.value.push({ title: '', isCorrect: false })
+    updateData()
+}
+const onDelete = (key: number) => {
+    answerList.value = answerList.value.filter((v, k) => k !== key)
+    updateData()
+}
 </script>
 
 <template>
     <div class="flex flex-column gap-2 w-full">
         <div class="grid">
-            <InputText label="Title" placeholder="Title..." v-model="title"
+            <InputText label="Title" placeholder="Title..." v-model="title" @change="updateData"
                 class="p-inputtext-sm col-7 sm:col-10 border-none" />
             <div
                 class="flex flex-row text-900 text-sm font-bold col-5 align-items-center gap-1 sm:col-2 justify-content-end">
-                <InputText size="small" class="instructor-total-input py-0 m-0 w-3rem p-inputtext-sm h-2rem surface-200"
-                    inputId="withoutgrouping" :useGrouping="false" v-model="points" />
+                <InputText class="instructor-total-input py-0 m-0 w-3rem p-inputtext-sm h-2rem surface-200"
+                    inputId="withoutgrouping" :useGrouping="false" v-model="points" @change="updateData" />
                 <p class="inter-normal black-2" style="font-size: 14px; font-weight: 400;">points</p>
                 <Button size="small" link title="delete" class="p-0 m-0" style="height: 16px; width: 16px;"
                     @click="emit('onDelete')">
@@ -132,14 +141,14 @@ watchEffect(() => {
                     <div class="col-8 sm:col-11">
                         <div class="flex align-items-center gap-2">
                             <RadioButton :inputId="'answer_radio' + key" name="answer_radio" disabled
-                                v-model="radioSelected" :value="answer.title" />
+                                v-model="radioSelected" :value="answer.title" @change="updateData" />
                             <label :for="'answer_radio' + key" class="ml-2">{{ numberToChar(key) }}.</label>
                             <InputText v-model="answer.title" placeholder="Title..." class="border-0 w-full answer-title"
-                                :class="{ 'blank-question': !answer.title }" />
+                                :class="{ 'blank-question': !answer.title }" @change="updateData" />
                         </div>
                     </div>
                     <div class="col-4 sm:col-1 flex gap-2 align-items-center justify-content-end" v-if="answer.title">
-                        <Checkbox v-model="answer.isCorrect" :binary="true">
+                        <Checkbox v-model="answer.isCorrect" :binary="true" @change="updateData">
                             <template #icon="{ checked }">
                                 <svg v-if="!checked" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
                                     viewBox="0 0 18 18" fill="none">
@@ -155,7 +164,7 @@ watchEffect(() => {
                             </template>
                         </Checkbox>
                         <button class="w-1rem border-none cursor-pointer p-1 bg-white hover:text-white hover:surface-700"
-                            @click="answerList = answerList.filter((v, k) => k !== key)">&times;</button>
+                            @click="onDelete(key)">&times;</button>
                     </div>
                 </div>
             </template>
@@ -163,15 +172,15 @@ watchEffect(() => {
                 <div class="col-11">
                     <div class="flex align-items-center gap-2">
                         <RadioButton disabled name="add_answer_radio" />
-                        <span role="button" class="text-600 cursor-pointer"
-                            @click="answerList.push({ title: '', isCorrect: false })">+ Add new option</span>
+                        <span role="button" class="text-600 cursor-pointer" @click="addNewOption">+ Add new option</span>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="flex flex-column gap-2" v-if="selectedType?.code === 'text'">
-            <Textarea rows="4" class="w-full" placeholder="Please fill description" />
+            <Textarea rows="4" class="w-full" placeholder="Please fill description" v-model="description"
+                @change="updateData" />
         </div>
     </div>
 </template>
