@@ -52,7 +52,7 @@ const quizList = ref<{ assesment: IAssesment[] }[]>([
     {
         assesment: [
             {
-                question: 'test-1',
+                question: '',
                 points: '0/1',
                 answerType: 'text',
                 answerText: '',
@@ -65,7 +65,7 @@ const addQuiz = () => {
     quizList.value.push({
         assesment: [
             {
-                question: 'test-1',
+                question: '',
                 points: '0/1',
                 answerType: 'text',
                 answerText: '',
@@ -212,7 +212,7 @@ const deleteQuiz = (quizIndex: number) => quizList.value = quizList.value.filter
                     <Button
                         class="w-14rem border-rounded-sm mx-auto px-0 m-0 flex align-items-center justify-content-center btn-default px-3 py-2"
                         style="border-radius: 10px" @click="quiz.assesment.push({
-                            question: 'test-2',
+                            question: '',
                             points: '0/1',
                             answerType: 'text',
                             answerText: '',
