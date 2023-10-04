@@ -2,7 +2,7 @@
 import UploadVideo from './Components/UploadVideo/UploadVideo.vue'
 import UploadImage from './Components/UploadImage/UploadImage.vue'
 import QuizInput from './Components/QuizInput/QuizInput.vue'
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import type { InputNumberBlurEvent } from 'primevue/inputnumber';
 import { instructorDummyData } from '@/views/Admin/AdminGrades/InstructorGrades/instructorDummyData';
 import type { Instructor } from '@/views/Admin/AdminGrades/InstructorGrades/Instructor.type';
@@ -105,6 +105,16 @@ const addMoreGrading = () => {
         weight: 0
     })
 }
+
+const maxWeight = computed(() => {
+    const newMaxWeight = gradeSystem.value.reduce((total, item) =>  total + item.weight, 0)
+    if(newMaxWeight < 100){
+        return 100 - newMaxWeight
+    } else if(newMaxWeight >= 100){
+        return 0
+    }
+})
+
 
 const aboutDescription = ref<string>('');
 
@@ -383,7 +393,7 @@ const addNewSection = () => {
                                     <td class="p-2"><span class="divider"></span></td>
                                     <td>
                                         <div class="flex grade-weight">
-                                            <InputNumber class="weight p-inputtext-sm" :max="100"
+                                            <InputNumber class="weight p-inputtext-sm" :max="maxWeight"
                                                 v-model="item.weight" />
                                             <span>%</span>
                                             <Button size="small" class="p-0 m-0" link @click="deleteGradeSystem(key)">
