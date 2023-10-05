@@ -151,7 +151,7 @@ onMounted(() => {
                             default: 'CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown'
                         }" :pageLinkSize="3"
                         currentPageReportTemplate="Showing data {first} to {last} of {totalRecords} entries">
-                        <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
+                        <Column selectionMode="multiple" headerStyle="width: 3rem" style="padding-left: 15px !important"></Column>
                         <Column field="name" headerStyle="width: 20%">
                             <template #header>
                                 <div class="flex justify-content-center align-items-center">
