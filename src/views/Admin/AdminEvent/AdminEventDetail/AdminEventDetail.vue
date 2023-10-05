@@ -155,8 +155,8 @@ const dataEvent = [{
                         </div>
                     </template>
                 </Carousel>
-                <InputText :placeholder="name ? name : 'Network Technology Seminar'" class="inter-normal black-2 mx-3" style="font-size: 25px; font-weight: 700;" />
-                <Textarea :placeholder="description ? description : ''" rows="8" class="inter-normal black-2 mx-3"
+                <InputText :value="name ? name : 'Network Technology Seminar'" class="inter-normal black-2 mx-3" style="font-size: 25px; font-weight: 700;" />
+                <Textarea :value="description ? description : ''" rows="8" class="inter-normal black-2 mx-3"
                     style="font-size: 14px; font-weight: 400; background-color: white !important" />
             </div>
         </div>
