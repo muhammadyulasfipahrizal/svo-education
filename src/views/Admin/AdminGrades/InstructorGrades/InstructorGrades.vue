@@ -33,14 +33,14 @@ const onSelectProfile = (v: Instructor) => {
     <section>
         <section
             class="grid overflow-hidden flex-column md:flex-row"  style="padding: 10px;">
-            <h1 class="hidden lg:block title-head" style="padding: 0px 5px">Instructor Grades</h1>
+            <h1 class="hidden lg:block title-head" style="padding: 0px 20px">Instructor Grades</h1>
             <h1 class="title-head lg:hidden" style="padding: 0px 5px">Instructors</h1>
             <div class="col-12">
                 <div
                     class="col-12 flex flex-row align-items-center justify-content-between filter-search p-0 m-0">
                     <div
                         class="col-12 md:col-10 lg:col-10 lg:col-10 grid grid-nogutter gap-2 align-items-center filter-container ">
-                        <Button size="small" class="filter-button sm:col-1 md:col-2">
+                        <Button size="small" class="filter-button sm:col-1 md:col-2" style="margin-left: 13px">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                                 <g clip-path="url(#clip0_2726_4798)">
                                     <path d="M12 12L20 4V0H0V4L8 12V20L12 16V12Z" fill="#808081" />

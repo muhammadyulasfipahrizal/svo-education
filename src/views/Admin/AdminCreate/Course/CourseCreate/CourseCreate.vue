@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import UploadVideo from './Components/UploadVideo/UploadVideo.vue'
-import UploadImage from './Components/UploadImage/UploadImage.vue'
-import QuizInput from './Components/QuizInput/QuizInput.vue'
+import UploadVideo from './Components/UploadVideo/UploadVideo.vue';
+import UploadImage from './Components/UploadImage/UploadImage.vue';
+import QuizInput from './Components/QuizInput/QuizInput.vue';
+import MultipleChoiceDropdown from './Components/MultipleChoiceDropdown/MultipleChoiceDropdown.vue';
 import { ref, computed } from 'vue';
 import type { InputNumberBlurEvent } from 'primevue/inputnumber';
 import { instructorDummyData } from '@/views/Admin/AdminGrades/InstructorGrades/instructorDummyData';
@@ -251,32 +252,34 @@ const addNewSection = () => {
             <div class="card-content">
                 <div class="grid grid-nogutter">
                     <div class="col-12 xl:col-6">
-                        <div class="flex flex-column align-items-start justify-content-start " style="gap: 10px">
+                        <div class="flex flex-column align-items-center justify-content-start " style="gap: 10px; position: relative;">
                             <InputText type="text" label="Title" v-model="title" style="margin-top: 40px"
                                 class="p-inputtext-lg w-full text-6xl h-4rem" required placeholder="Title" />
 
-                            <div class="grid align-items-center col-12 gap-2 p-0 m-0">
+                            <div class="grid align-items-start col-12 gap-2 p-0 m-0">
                                 <h1 class="col-12 sm:col-3 inter-normal black-1 min-w-max p-0 m-0"
                                     style="font-size: 25px; font-weight: 700;">
                                     Instructor By
                                 </h1>
-                                <div
-                                    class="flex col justify-content-between gap-2 align-items-start flex-column p-0 sm:align-items-center sm:flex-row">
-                                    <Dropdown v-model="selectedInstructor" v-bind:class="{ selected: selectedInstructor }"
+                                <div style="position: relative;"
+                                    class="flex sm:col-6 justify-content-between gap-2 align-items-start flex-column p-0 sm:align-items-start sm:flex-row">
+                                    <!-- <Dropdown v-model="selectedInstructor" v-bind:class="{ selected: selectedInstructor }"
                                         :options="instructorList" optionLabel="name" placeholder="Select Instructor"
                                         class=" h-2rem flex align-items-center w-full" size="small"
-                                        @change="(value: any) => onChangeInstructor(value.value)" />
-                                    <div class="flex gap-1">
-                                        <i class="pi-thumbs-up pi mt-1"></i>
-                                        <p class="text-900 font-normal">0%</p>
-                                        <p>|</p>
-                                        <i class="pi-thumbs-down pi mt-1"></i>
-                                        <p class="text-900 font-normal">0%</p>
-                                    </div>
+                                        @change="(value: any) => onChangeInstructor(value.value)" /> -->
+                                        <MultipleChoiceDropdown style="position: absolute; top: 0; left: 0; z-index: 9999;"/>
+                                    
+                                </div>
+                                <div class="flex sm:col-1 gap-1" style="margin-left: 20px">
+                                    <i class="pi-thumbs-up pi mt-1"></i>
+                                    <p class="text-900 font-normal">0%</p>
+                                    <p>|</p>
+                                    <i class="pi-thumbs-down pi mt-1"></i>
+                                    <p class="text-900 font-normal">0%</p>
                                 </div>
                             </div>
 
-                            <div class="w-full ratings-container">
+                            <div class="w-full ratings-container mt-3">
                                 <div class="w-full p-2 card shadow-1 flex flex-column">
                                     <div
                                         class="flex flex-row md:flex-column gap-2 md:gap-0 align-items-center md:align-items-start mb-1">

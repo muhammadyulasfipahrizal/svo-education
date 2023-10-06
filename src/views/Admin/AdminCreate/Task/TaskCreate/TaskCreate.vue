@@ -101,7 +101,7 @@ const changeSubtitle = (mainTaskIndex: number, taskIndex: number, subtitleIndex:
                                 </Button>
                             </div>
                         </div>
-                        <hr v-if="taskIndex !== mainTask.subtasks.length - 1" style="background: #D9D5EC; height: 1px;">
+                        <hr v-if="taskIndex !== mainTask.subtasks.length - 1" style="background: #D9D5EC; height: 1px; color: #D9D5EC;">
                     </div>
 
                 </div>

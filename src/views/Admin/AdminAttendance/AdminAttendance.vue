@@ -82,14 +82,18 @@
           </template>
         </Dropdown>
         <Dropdown optionLabel="courseName" :options="courseList" v-model="selectedCourse" placeholder="Course Name"
-          class="md:flex dropdown-course w-full md:w-max" :class="{ 'selected': selectedCourse }" style="height: 44px">
+          class="md:flex dropdown-course" :class="{ 'selected': selectedCourse }" style="height: 44px; width: 320px;">
           <template #value="slotProps">
-            <div v-if="slotProps.value" class="flex align-items-center" style="padding-right: 10px;">
+            <div v-if="slotProps.value" class="flex align-items-center justify-content-start" style="padding-right: 10px;">
               <img :alt="slotProps.value.courseName" :src="slotProps.value.image" class="mr-2" style="width: 53px" />
-              <h1>{{ slotProps.value.courseName }}</h1>
+              <h1 class="w-min">{{ slotProps.value.courseName }}</h1>
             </div>
             <span v-else>
-              {{ slotProps.placeholder }}
+              <!-- {{ slotProps.placeholder }} -->
+              <div class="flex flex-row align-items-center justify-content-start ">
+                <img src="/assets/img/course/ui-ux-design.png"  class="mr-2"/>
+                <h1 class="w-min">UI UX Design</h1>
+              </div>
             </span>
           </template>
           <template #option="slotProps">
