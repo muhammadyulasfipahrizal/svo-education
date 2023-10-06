@@ -142,6 +142,15 @@ const syllabusAccordion = ref([
         }]
     }
 ])
+
+const syllabusAddList = ref([
+    {
+        title: '',
+        duration: '',
+        selectedType: 'none'
+    }
+])
+
 const syllabusAccordionData = ref<ISyllabusAccordion[]>([])
 
 const resizeInput = (e: InputNumberBlurEvent, className: string) => {
@@ -174,7 +183,8 @@ const deleteGradeSystem = (index: number) => {
 const deleteSyllabus = (index: number) => {
     syllabusAccordion.value = syllabusAccordion.value.filter((v, x) => x !== index);
 }
-const syllabusAddList = ref<{ title: string; duration: string; selectedType: string }[]>([])
+
+// const syllabusAddList = ref<{ title: string; duration: string; selectedType: string }[]>([])
 
 const addNewSection = () => {
     syllabusAccordion.value.push({
@@ -565,7 +575,7 @@ const addNewSection = () => {
                                 </template>
 
                                 <!-- adding -->
-                                <template v-for="(addData, key) in syllabus.syllabusList" :key="key">
+                                <template v-for="(addData, key) in syllabusAddList" :key="key">
                                     <div class="flex justify-content-between align-items-center gap-0">
                                         <div class="grid align-items-center gap-2 w-full p-0 m-0">
                                             <Dropdown optionLabel="name" v-model="addData.selectedType"
@@ -656,7 +666,8 @@ const addNewSection = () => {
                                                 <span class="text-900 text-lg font-md">min</span>
                                             </div>
                                             <Button size="small" link class="px-0 m-0"
-                                                @click="syllabusAddList = syllabusAddList.filter((v, k) => k !== key)">
+                                            @click="syllabusAddList = syllabusAddList.filter((v, k) => k !== key)"
+                                                >
                                                 <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <path id="Vector"
@@ -671,7 +682,7 @@ const addNewSection = () => {
                                 <div class="flex justify-content-center">
                                     <Button
                                         class="w-14rem border-rounded-sm px-0 m-0 flex align-items-center justify-content-center btn-default px-3 py-2"
-                                        style="border-radius: 10px" @click="syllabus.syllabusList.push({
+                                        style="border-radius: 10px" @click="syllabusAddList.push({
                                             title: '',
                                             duration: '0',
                                             selectedType: ''
