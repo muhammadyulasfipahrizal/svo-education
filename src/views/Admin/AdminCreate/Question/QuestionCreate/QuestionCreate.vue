@@ -54,7 +54,7 @@ const quizList = ref<{ title: string; assesment: IAssesment[] }[]>([
         assesment: [
             {
                 question: '',
-                points: '0/1',
+                points: '1',
                 answerType: 'text',
                 answerText: '',
                 answerRadio: [],
@@ -68,7 +68,7 @@ const addQuiz = () => {
         assesment: [
             {
                 question: '',
-                points: '0/1',
+                points: '1',
                 answerType: 'text',
                 answerText: '',
                 answerRadio: [],
@@ -214,7 +214,7 @@ const deleteQuiz = (quizIndex: number) => quizList.value = quizList.value.filter
                         class="w-14rem border-rounded-sm mx-auto px-0 m-0 flex align-items-center justify-content-center btn-default px-3 py-2"
                         style="border-radius: 10px" @click="quiz.assesment.push({
                             question: '',
-                            points: '0/1',
+                            points: '1',
                             answerType: 'text',
                             answerText: '',
                             answerRadio: [],
