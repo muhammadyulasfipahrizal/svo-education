@@ -201,6 +201,12 @@ const router = createRouter({
       name: 'admin-dashboard-settings',
       component: () => import('../views/Admin/AdminDashboard/DashboardSettings/DashboardSettings.vue'),
     },
+    {
+      path: '/admin/customize/editor/:label',
+      name: 'editor',
+      component: () => import('../views/Admin/AdminCustomize/AdminCustomizeEditor.vue'),
+      props: true
+    },
   ]
 })
 
