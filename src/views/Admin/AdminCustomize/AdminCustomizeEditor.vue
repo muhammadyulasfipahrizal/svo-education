@@ -1,6 +1,6 @@
 <template>
   <section class="max-h-full">
-    <h1 class="title hidden sm:block">Customize New</h1>
+    <h1 class="title hidden sm:block">Customize {{ $route.params.label }}</h1>
     <div class="badge-editor flex-col h-full md:flex-row mt-2" :style="`background: ${activeColor};`" style="border-radius: 10px;">
       <div class="bg-white flex justify-content-center align-items-center flex-column" style="gap: 15px;">
         <div class="relative">
