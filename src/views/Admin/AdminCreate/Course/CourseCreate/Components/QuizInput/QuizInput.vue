@@ -76,7 +76,7 @@ const onTitleEnter = (event: KeyboardEvent) => {
     <div class="flex flex-column gap-2 w-full">
         <div class="grid">
             <InputText label="Title" placeholder="Title..." :value="title" @change="updateData"
-                class="p-inputtext-sm col-7 sm:col-10 border-none" @keydown.enter.prevent="onTitleEnter"/>
+                class="p-inputtext-sm col-7 sm:col-10" @keydown.enter.prevent="onTitleEnter"/>
             <div
                 class="flex flex-row text-900 text-sm font-bold col-5 align-items-center gap-1 sm:col-2 justify-content-end">
                 <InputText class="instructor-total-input py-0 m-0 w-3rem p-inputtext-sm h-2rem surface-200"

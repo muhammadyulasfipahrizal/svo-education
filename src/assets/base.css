@@ -141,3 +141,11 @@ body {
   background: #00C0DD !important;
   border: none !important;
 }
+
+.truncate {
+  text-overflow: ellipsis;
+
+  /* Needed to make it work */
+  overflow: hidden;
+  white-space: nowrap;
+}
