@@ -175,6 +175,14 @@ const router = createRouter({
     },
     {
       path: '/admin/customize/editor',
+      name: 'admin-customize-editor-item',
+      component: () => import('../views/Admin/AdminCustomize/AdminCustomizeEditor.vue'),
+      meta: {
+        pageName: 'Customize'
+      }
+    },
+    {
+      path: '/admin/customize/editor:id',
       name: 'admin-customize-editor',
       component: () => import('../views/Admin/AdminCustomize/AdminCustomizeEditor.vue'),
       meta: {

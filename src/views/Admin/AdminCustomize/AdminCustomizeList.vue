@@ -7,50 +7,34 @@
           <div class="">
             <h1 class="inter-normal black-2 sm:text-3xl " style="font-size: 30px; font-weight: 700;">Badge</h1>
           </div>
-          <router-link :to="{ name: 'editor', params: { label: 'new' } }">
-            <Button label="NEW" class="btn-new"></Button>
-          </router-link>
-          
+          <Button label="NEW" class="btn-new" @click="$router.push('/admin/customize/editor')"></Button>
         </div>
       
-      <div class="customize-container" style="padding: 10px 0px;">
-        <div v-for="(item, index) in DummyBadges" :key="index" class="card-badge">
-          <div class="flex flex-column align-items-center gap-2">
-            <div class="flex w-full">
-              <div class="mx-auto relative">
-                <span class="inter-normal black-1" style="font-size: 20px; font-weight: 700;">Achieved</span>
-
-                <!-- Edit Icon -->
-                <router-link :to="{ name: 'editor', params: { label: 'edit' } }">
-                  <div role="button" class="edit-icon" @click="$router.push('/admin/customize/editor')">
-                    <svg width="12" height="14" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path fill-rule="evenodd" clip-rule="evenodd" d="M8.64504 0.663183C8.54275 0.558699 8.40401 0.5 8.25934 0.5C8.11468 0.5 7.97594 0.558699 7.87365 0.663183L1.18828 7.49181C1.11975 7.56181 1.07072 7.64919 1.04622 7.74497L0.31895 10.5889C0.270012 10.7803 0.324077 10.9838 0.461004 11.1237C0.597931 11.2636 0.79719 11.3188 0.984548 11.2688L3.76886 10.5259C3.86263 10.5009 3.94818 10.4508 4.0167 10.3808L10.7021 3.55222C10.9151 3.33464 10.9151 2.98188 10.7021 2.7643L8.64504 0.663183ZM2.06432 8.17284L8.25934 1.84506L9.54499 3.15826L3.34996 9.48604L1.60977 9.95032L2.06432 8.17284Z" fill="black"/>
-                      <path d="M0.545455 12.3857C0.244208 12.3857 0 12.6352 0 12.9429C0 13.2506 0.244208 13.5 0.545455 13.5H11.4545C11.7558 13.5 12 13.2506 12 12.9429C12 12.6352 11.7558 12.3857 11.4545 12.3857H0.545455Z" fill="black"/>
-                    </svg>
-                  </div>
-                </router-link>
+        <div class="customize-container" style="padding: 10px 0px;">
+          <div v-for="(item, index) in costumizeList" :key="index" class="card-badge">
+            <div class="flex flex-column align-items-center gap-2">
+              <div class="flex w-full">
+                <div class="mx-auto relative">
+                  <span class="inter-normal black-1" style="font-size: 20px; font-weight: 700;">Achieved</span>
+  
+                  <!-- Edit Icon -->
+                    <div role="button" class="edit-icon" @click="$router.push('/admin/customize/editor' + item.id)">
+                      <svg width="12" height="14" viewBox="0 0 12 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M8.64504 0.663183C8.54275 0.558699 8.40401 0.5 8.25934 0.5C8.11468 0.5 7.97594 0.558699 7.87365 0.663183L1.18828 7.49181C1.11975 7.56181 1.07072 7.64919 1.04622 7.74497L0.31895 10.5889C0.270012 10.7803 0.324077 10.9838 0.461004 11.1237C0.597931 11.2636 0.79719 11.3188 0.984548 11.2688L3.76886 10.5259C3.86263 10.5009 3.94818 10.4508 4.0167 10.3808L10.7021 3.55222C10.9151 3.33464 10.9151 2.98188 10.7021 2.7643L8.64504 0.663183ZM2.06432 8.17284L8.25934 1.84506L9.54499 3.15826L3.34996 9.48604L1.60977 9.95032L2.06432 8.17284Z" fill="black"/>
+                        <path d="M0.545455 12.3857C0.244208 12.3857 0 12.6352 0 12.9429C0 13.2506 0.244208 13.5 0.545455 13.5H11.4545C11.7558 13.5 12 13.2506 12 12.9429C12 12.6352 11.7558 12.3857 11.4545 12.3857H0.545455Z" fill="black"/>
+                      </svg>
+                    </div>
+                </div>
               </div>
-              
+              <div class="relative">
+                <Badge :color="item.color" :word="firstLetterOfWord(item.title)" :width="isMobile ? '150' : undefined" :height="isMobile ? '144': undefined" />
+                <span class="title-badge"><em>{{ item.title }}</em></span>
+              </div> 
+              <p class="title">{{ item.title  }}</p>
+              <p class="description">{{ item.description }}</p>
             </div>
-            <div class="relative">
-              <Badge :color="item.color" :word="firstLetterOfWord(item.title)" :width="isMobile ? '150' : undefined" :height="isMobile ? '144': undefined" />
-              <span class="title-badge"><em>{{ item.title }}</em></span>
-            </div> 
-            <p class="title">{{ item.title  }}</p>
-            <p class="description">{{ item.description }}</p>
-            <!-- <div class="relative">
-              <Badge :color="item.color" :word="firstLetterOfWord(item.title)" :width="isMobile ? '150' : undefined" :height="isMobile ? '144': undefined" />
-              <span v-if="!isEdit[index]" class="title-badge"><em>{{ item.title }}</em></span>
-              <span v-else contenteditable :class="{ 'edit-mode': isEdit }" class="title-badge"><em>{{ item.title }}</em></span>
-            </div> 
-            <p v-if="!isEdit[index]" class="title">{{ item.title  }}</p>
-            <p v-else contenteditable :class="{ 'edit-mode': isEdit }" class="title">{{ item.title  }}</p>
-            <p v-if="!isEdit[index]" class="description">{{ item.description }}</p>
-            <p v-else contenteditable :class="{ 'edit-mode': isEdit }" class="description">{{ item.description }}</p> -->
           </div>
         </div>
-      </div>
-    
     </section>
   </main>
 </template>
@@ -59,17 +43,13 @@ import { ref, watchEffect } from 'vue';
 import { DummyBadges} from './DummyBadgeList'
 import Badge from '@/components/customizeBadge/Badge.vue'
 import { useRouter } from 'vue-router';
-import {  firstLetterOfWord } from '@/utils/utils'
+import {  firstLetterOfWord } from '@/utils/utils';
+import { useCostumizeStore, type ICostumize } from '@/stores/costumize';
 
 const router = useRouter()
 const isMobile = ref(window.matchMedia('(max-width: 768px)').matches);
-
-// //editing function
-// const isEdit = ref(DummyBadges.map(() => false));
-
-// const toggleEdit = (index: number) => {
-//   isEdit.value[index] = !isEdit.value[index];
-// };
+const costumizeStore = useCostumizeStore();
+const costumizeList = ref<ICostumize[]>(costumizeStore.allCostumize);
 
 watchEffect(() => {
   const handleResize = () => {
