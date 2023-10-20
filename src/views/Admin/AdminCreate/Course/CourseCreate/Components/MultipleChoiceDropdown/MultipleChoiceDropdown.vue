@@ -51,7 +51,7 @@ const selectedCategories = ref(['David Burn']);
     border-radius: 10px;
     border: 1px solid var(--Suggested-dark-grey, #808081);
     background: #FFF;
-    min-width: 325px;
+    width: 325px;
     padding: 9px 8px;
   }
 
