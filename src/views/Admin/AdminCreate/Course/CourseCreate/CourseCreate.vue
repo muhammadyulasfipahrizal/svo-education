@@ -121,6 +121,12 @@ const aboutDescription = ref<string>('');
 
 const instructorName = ref<string>('');
 const instructorProfile = ref<string>('');
+const instuctors = ref([
+    {
+        name: '',
+        profile: ''
+    }
+])
 
 // syllabus
 const syllabusLectures = ref<number>(0);
@@ -172,9 +178,13 @@ const quizList = ref<{ title: string; }[]>([
 ])
 // END syllabus
 
-const onChangeInstructor = (value: Instructor) => {
-    instructorName.value = value.name;
-    instructorProfile.value = value.work_as;
+const onChangeInstructor = (value: any) => {
+    instuctors.value = value.map((item: string) => {
+        return {
+            name: item,
+            profile: 'Lorem Ipsu'
+        }
+    })
 }
 
 const deleteGradeSystem = (index: number) => {
@@ -200,6 +210,10 @@ const addNewSection = () => {
         duration: '0',
         selectedType: 'none'
     })
+}
+
+const goToView = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
 }
 </script>
 
@@ -277,7 +291,7 @@ const addNewSection = () => {
                                         :options="instructorList" optionLabel="name" placeholder="Select Instructor"
                                         class=" h-2rem flex align-items-center w-full" size="small"
                                         @change="(value: any) => onChangeInstructor(value.value)" /> -->
-                                        <MultipleChoiceDropdown style="position: absolute; top: 0; left: 0; z-index: 9999;"/>
+                                        <MultipleChoiceDropdown @on-change="onChangeInstructor" style="position: absolute; top: 0; left: 0; z-index: 9999;"/>
                                     
                                 </div>
                                 <div class="flex sm:col-1 gap-1" style="margin-left: 20px">
@@ -376,18 +390,18 @@ const addNewSection = () => {
 
         <!-- STEP SECTION -->
         <div class="flex justify-content-start align-items-center gap-2 my-3 step-container">
-            <Button label="ABOUT" :class="{ 'btn-default': steps.about }" outlined @click="steps.about = !steps.about" />
-            <Button label="INSTRUCTOR" :class="{ 'btn-default': steps.instructor }" outlined
-                @click="steps.instructor = !steps.instructor" />
-            <Button label="SYLLABUS" :class="{ 'btn-default': steps.syllabus }" outlined
-                @click="steps.syllabus = !steps.syllabus" />
-            <Button label="REVIEWS" :class="{ 'btn-default': steps.reviews }" outlined @click="steps.reviews = !steps.reviews" />
+            <Button label="ABOUT" outlined class="btn-default" @click="goToView('section-about')" />
+            <Button label="INSTRUCTOR" outlined class="btn-default"
+                @click="goToView('section-instructor')" />
+            <Button label="SYLLABUS" outlined class="btn-default"
+                @click="goToView('section-syllabus')" />
+            <Button label="REVIEWS" outlined class="btn-default" @click="goToView('section-review')" />
         </div>
 
         <div class="flex flex-column">
             <!-- ABOUT -->
             <template v-if="steps.about">
-                <div class="card p-1 border-1 surface-border justify-content-center flex md:w-fit">
+                <div id="section-about" class="card p-1 border-1 surface-border justify-content-center flex md:w-fit">
                     <table class="table-grade-system">
                         <thead>
                             <tr>
@@ -463,19 +477,21 @@ const addNewSection = () => {
 
             <!-- INSTRUCTOR -->
             <template v-if="steps.instructor">
-                <div class="card p-1 flex flex-column gap-3 my-3">
+                <div id="section-instructor" class="card p-1 flex flex-column gap-3 my-3">
                     <h1 class="text-900 text-xl font-bold">Instructor</h1>
-                    <img :src="selectedInstructor?.image" alt="" class="w-5rem" />
-                    <InputText label="Instructor Name" placeholder="Instructor Name" v-model="instructorName"
+                    <div v-for="(instructor, index) in instuctors" :key="index" class="flex flex-column gap-2">
+                        <img :src="selectedInstructor?.image" alt="" class="w-5rem" />
+                        <InputText label="Instructor Name" placeholder="Instructor Name" v-model="instructor.name"
                         class="p-inputtext-sm w-2" />
-                    <Textarea label="Instructor Profile..." placeholder="Instructor Profile" v-model="instructorProfile"
+                        <Textarea label="Instructor Profile..." placeholder="Instructor Profile" v-model="instructor.profile"
                         class="p-inputtext-sm w-full" />
+                    </div>
                 </div>
             </template>
 
             <!-- SYLLABUS -->
             <template v-if="steps.syllabus">
-                <div class="card flex flex-column gap-2">
+                <div id="section-syllabus" class="card flex flex-column gap-2">
                     <div class="flex justify-content-between">
                         <h1 class="text-2xl font-bold text-900">Syllabus</h1>
                         <div class="flex justify-content-start align-items-center gap-2">
@@ -714,7 +730,7 @@ const addNewSection = () => {
 
             <!-- REVIEW -->
             <template v-if="steps.reviews">
-                <div class="flex flex-column gap-2">
+                <div id="section-review" class="flex flex-column gap-2">
                     <h2 class="text-900 font-bold text-3xl">
                         Developer Instructor reviews
                     </h2>

@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 
 const show = ref(false);
-
+const emit = defineEmits(['onChange'])
 const showDropdown = () => {
     show.value = !show.value;
 };
@@ -12,20 +12,21 @@ const categories = ref([
     {name: "Ava Baker", key: "M"},
     {name: "Gabriel Hates", key: "P"}
 ]);
-const selectedCategories = ref(['David Burn']);
+const selectedCategories = ref([]);
 </script>
 
 <template>
     <div class="container">
         <div class="flex flex-row justify-content-between" @click="showDropdown()" style="cursor: pointer;">
-            <p class="text truncate">{{ selectedCategories.join(', ')}}</p>
+            <p v-if="selectedCategories.length > 0" class="text truncate">{{ selectedCategories.join(', ')}}</p>
+            <p v-if="selectedCategories.length === 0">Choose instructors</p>
             <svg xmlns="http://www.w3.org/2000/svg" width="27" height="28" viewBox="0 0 27 28" fill="none">
                 <path d="M19.1242 10.8154C18.9134 10.6059 18.6283 10.4883 18.3311 10.4883C18.0338 10.4883 17.7487 10.6059 17.5379 10.8154L13.4992 14.7979L9.51668 10.8154C9.3059 10.6059 9.02076 10.4883 8.72355 10.4883C8.42635 10.4883 8.14121 10.6059 7.93043 10.8154C7.82498 10.92 7.74129 11.0444 7.68418 11.1815C7.62706 11.3186 7.59766 11.4657 7.59766 11.6142C7.59766 11.7627 7.62706 11.9097 7.68418 12.0468C7.74129 12.1839 7.82498 12.3083 7.93043 12.4129L12.7004 17.1829C12.805 17.2884 12.9294 17.3721 13.0665 17.4292C13.2036 17.4863 13.3507 17.5157 13.4992 17.5157C13.6477 17.5157 13.7947 17.4863 13.9318 17.4292C14.0689 17.3721 14.1933 17.2884 14.2979 17.1829L19.1242 12.4129C19.2296 12.3083 19.3133 12.1839 19.3704 12.0468C19.4275 11.9097 19.457 11.7627 19.457 11.6142C19.457 11.4657 19.4275 11.3186 19.3704 11.1815C19.3133 11.0444 19.2296 10.92 19.1242 10.8154Z" fill="#808081"/>
             </svg>
         </div>
         <div v-if="show">
             <div class="flex flex-row align-items-center" style="gap: 10px" v-for="category of categories" :key="category.key">
-                <Checkbox v-model="selectedCategories" :inputId="category.key" name="category" :value="category.name">
+                <Checkbox v-model="selectedCategories" @change="emit('onChange', selectedCategories)" :inputId="category.key" name="category" :value="category.name">
                     <template #icon="{ checked }">
                         <svg v-if="!checked" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
                             viewBox="0 0 18 18" fill="none">
