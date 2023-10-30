@@ -388,6 +388,7 @@ const goToView = (id: string) => {
             </div>
         </div>
 
+
         <!-- STEP SECTION -->
         <div class="flex justify-content-start align-items-center gap-2 my-3 step-container">
             <Button label="ABOUT" outlined class="btn-default" @click="goToView('section-about')" />
@@ -477,14 +478,29 @@ const goToView = (id: string) => {
 
             <!-- INSTRUCTOR -->
             <template v-if="steps.instructor">
-                <div id="section-instructor" class="card p-1 flex flex-column gap-3 my-3">
+                <div class="card p-1 flex flex-column my-3" style="gap: 10px">
                     <h1 class="text-900 text-xl font-bold">Instructor</h1>
-                    <div v-for="(instructor, index) in instuctors" :key="index" class="flex flex-column gap-2">
-                        <img :src="selectedInstructor?.image" alt="" class="w-5rem" />
-                        <InputText label="Instructor Name" placeholder="Instructor Name" v-model="instructor.name"
+                    <img :src="selectedInstructor?.image || '/assets/img/avatar/avatar-2.jpeg'" alt="" class="instructor-image" />
+                    <!-- <InputText label="Instructor Name" placeholder="Instructor Name" v-model="instructorName"
                         class="p-inputtext-sm w-2" />
-                        <Textarea label="Instructor Profile..." placeholder="Instructor Profile" v-model="instructor.profile"
-                        class="p-inputtext-sm w-full" />
+                    <Textarea label="Instructor Profile..." placeholder="Instructor Profile" v-model="instructorProfile"
+                        class="p-inputtext-sm w-full" /> -->
+                    <div class="instructor-name">
+                        <p class="black-2 font-size: 20px;">David Burn</p>
+                    </div>
+                    <div class="instructor-description">
+                        <p contenteditable class="black-2 font-size: 20px;">As a developer instructor, I am passionate 
+                            about sharing my knowledge and experience with others who are eager to learn. 
+                            With a deep understanding of various programming languages and technologies, 
+                            I have developed a unique skillset that enables me to effectively teach complex 
+                            concepts in a way that is accessible and engaging. Through my experience, I have 
+                            gained the ability to break down complex topics into easily digestible pieces, 
+                            making it easier for my students to grasp difficult concepts. I believe in fostering 
+                            a collaborative and supportive learning environment, where students can feel comfortable 
+                            asking questions and engaging with their peers. I am committed to staying up-to-date with 
+                            the latest industry trends and methodologies, ensuring that my students receive the most 
+                            relevant and valuable education possible. As a developer instructor, my ultimate goal is 
+                            to empower my students to achieve their goals and excel in their careers as developers.</p>
                     </div>
                 </div>
             </template>
@@ -1090,4 +1106,34 @@ const goToView = (id: string) => {
             width: 100%;
         }
     }
-}</style>
+}
+
+.instructor-image {
+    width: 122px;
+    height: 122px;
+    border-radius: 150px;
+    background: url(<path-to-image>), lightgray 50% / cover no-repeat;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.instructor-name {
+    width: 95px;
+    height: 50px;
+    display: flex;
+    padding: 9px 10px;
+    align-items: center;
+    gap: 8px;
+    border-radius: 5px;
+    border: 1px solid var(--Suggested-dark-grey, #808081);
+}
+
+.instructor-description {
+    display: flex;
+    padding: 9px 10px;
+    align-items: center;
+    gap: 8px;
+    align-self: stretch;
+    border-radius: 10px;
+    border: 1px solid var(--Suggested-dark-grey, #808081);
+}
+</style>
